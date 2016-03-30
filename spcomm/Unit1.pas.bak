@@ -1,0 +1,350 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons;
+
+type
+  TForm1 = class(TForm)
+    Comm1: TComm;
+    Button1: TButton;
+    XPManifest1: TXPManifest;
+    GroupBox1: TGroupBox;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
+    ComboBox4: TComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Shape1: TShape;
+    GroupBox2: TGroupBox;
+    Memo1: TMemo;
+    SpeedButton1: TSpeedButton;
+    Edit1: TEdit;
+    Button2: TButton;
+    Button3: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure ComboBox2Change(Sender: TObject);
+    procedure ComboBox3Change(Sender: TObject);
+    procedure ComboBox4Change(Sender: TObject);
+    procedure Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
+      BufferLength: Word);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  viewstring: string;
+  rbuf,sbuf:array[0..1024] of byte;
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+     if Button1.Caption = '打开串口' then
+     begin
+         Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
+         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+         begin
+              Comm1.ByteSize := _5;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+         begin
+              Comm1.ByteSize := _6;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+         begin
+              Comm1.ByteSize := _7;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+         begin
+              Comm1.ByteSize := _8;
+         end;
+
+         if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+         begin
+              Comm1.Parity := None;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+         begin
+              Comm1.Parity := Even;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+         begin
+              Comm1.Parity := Odd;
+         end;
+         Comm1.StartComm;
+         Shape1.Brush.Color := clRed;
+         Button1.Caption := '关闭串口'
+     end
+     else
+     begin
+          Button1.Caption := '打开串口';
+          Comm1.StopComm;
+          Shape1.Brush.Color := clGreen;
+     end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+     ComboBox1.itemindex := 0;
+     ComboBox2.itemindex := 0;
+     ComboBox3.itemindex := 0;
+     ComboBox4.itemindex := 0;
+end;
+
+procedure TForm1.SpeedButton1Click(Sender: TObject);
+begin
+     if SpeedButton1.Caption = '+' then
+     begin
+          Memo1.Height := form1.Height - 35;
+          SpeedButton1.Caption := '-';
+     end
+     else
+     begin
+          Memo1.Height := 145;
+          SpeedButton1.Caption := '+';
+     end;
+end;
+
+procedure TForm1.ComboBox1Change(Sender: TObject);
+begin
+     if Button1.Caption = '关闭串口' then
+     begin
+          Shape1.Brush.Color := clGreen;
+          Comm1.StopComm;
+         Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
+         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+         begin
+              Comm1.ByteSize := _5;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+         begin
+              Comm1.ByteSize := _6;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+         begin
+              Comm1.ByteSize := _7;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+         begin
+              Comm1.ByteSize := _8;
+         end;
+
+         if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+         begin
+              Comm1.Parity := None;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+         begin
+              Comm1.Parity := Even;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+         begin
+              Comm1.Parity := Odd;
+         end;
+         Comm1.StartComm;
+         Shape1.Brush.Color := clRed;
+         Button1.Caption := '关闭串口'
+     end
+end;
+
+procedure TForm1.ComboBox2Change(Sender: TObject);
+begin
+     if Button1.Caption = '关闭串口' then
+     begin
+          Shape1.Brush.Color := clGreen;
+          Comm1.StopComm;
+         Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
+         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+         begin
+              Comm1.ByteSize := _5;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+         begin
+              Comm1.ByteSize := _6;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+         begin
+              Comm1.ByteSize := _7;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+         begin
+              Comm1.ByteSize := _8;
+         end;
+
+         if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+         begin
+              Comm1.Parity := None;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+         begin
+              Comm1.Parity := Even;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+         begin
+              Comm1.Parity := Odd;
+         end;
+         Comm1.StartComm;
+         Shape1.Brush.Color := clRed;
+         Button1.Caption := '关闭串口'
+     end
+end;
+
+procedure TForm1.ComboBox3Change(Sender: TObject);
+begin
+     if Button1.Caption = '关闭串口' then
+     begin
+          Shape1.Brush.Color := clGreen;
+          Comm1.StopComm;
+         Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
+         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+         begin
+              Comm1.ByteSize := _5;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+         begin
+              Comm1.ByteSize := _6;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+         begin
+              Comm1.ByteSize := _7;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+         begin
+              Comm1.ByteSize := _8;
+         end;
+
+         if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+         begin
+              Comm1.Parity := None;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+         begin
+              Comm1.Parity := Even;
+         end
+         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+         begin
+              Comm1.Parity := Odd;
+         end;
+         Comm1.StartComm;
+         Shape1.Brush.Color := clRed;
+         Button1.Caption := '关闭串口'
+     end
+end;
+
+procedure TForm1.ComboBox4Change(Sender: TObject);
+begin
+     if Button1.Caption = '关闭串口' then
+     begin
+          Shape1.Brush.Color := clGreen;
+          Comm1.StopComm;
+          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
+           Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+           if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+           begin
+                Comm1.ByteSize := _5;
+           end
+           else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+           begin
+                Comm1.ByteSize := _6;
+           end
+           else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+           begin
+                Comm1.ByteSize := _7;
+           end
+           else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+           begin
+                Comm1.ByteSize := _8;
+           end;
+
+           if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+           begin
+                Comm1.Parity := None;
+           end
+           else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+           begin
+                Comm1.Parity := Even;
+           end
+           else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+           begin
+                Comm1.Parity := Odd;
+           end;
+           Comm1.StartComm;
+           Shape1.Brush.Color := clRed;
+           Button1.Caption := '关闭串口'
+     end
+end;
+
+procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
+  BufferLength: Word);
+var
+    i:integer;
+begin
+    viewstring:='' ;
+    move(buffer^, pchar(@rbuf)^, bufferlength);
+    for i:=1 to bufferlength do
+        viewstring:= viewstring + inttohex(rbuf[i],2) + '' ;
+    viewstring:= '接收'+ viewstring;
+    memo1.lines.add(viewstring);
+    memo1.lines.add('');
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+   i ,j: Integer;
+begin
+     //if Length(Edit1.Text) > 0 then
+     begin
+          sbuf[1]:=byte($AA); //帧头
+          sbuf[2]:=byte($75); //命令号
+          sbuf[3]:=byte($91);
+          sbuf[4]:=byte($00);
+          sbuf[5]:=byte($01);
+          sbuf[6]:=byte($00);
+          sbuf[7]:=byte($59);
+          sbuf[8]:=byte($16);
+          for i := 1 to 8 do
+          begin
+               comm1.writecommdata(@sbuf[i], 1);
+               Memo1.Lines.Add(IntToHex(sbuf[i],2));
+          end;
+
+     end;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  i : Integer;
+begin
+     if Length(Edit1.Text) > 0 then
+     begin
+
+          for i := 1 to Length(Edit1.Text) do
+          begin
+               //comm1.writecommdata(@sbuf[i], 1);
+               sbuf[i] := i;
+               Memo1.Lines.Add(IntToHex(sbuf[i],3));
+          end;
+
+     end;
+end;
+
+end.

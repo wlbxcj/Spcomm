@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 423
-  Top = 137
+  Left = 306
+  Top = 306
   Width = 800
   Height = 480
   Caption = 'Spcom'
@@ -38,6 +38,7 @@ object Form1: TForm1
       ScrollBars = ssVertical
       TabOrder = 0
       OnChange = Memo1Change
+      OnMouseMove = Memo1MouseMove
     end
   end
   object GroupBox1: TGroupBox
@@ -454,9 +455,14 @@ object Form1: TForm1
         end
         item
           Text = ' Total Lines: 0'
+          Width = 200
+        end
+        item
+          Alignment = taRightJustify
           Width = 50
         end>
       SimpleText = 'werrqwer'
+      OnMouseMove = StatusBar1MouseMove
     end
   end
   object Comm1: TComm
@@ -481,7 +487,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 100
+    ReadIntervalTimeout = 30
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0

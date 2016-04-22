@@ -424,7 +424,8 @@ begin
         setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            Memo1.Lines.Add(TimeToStr(TimeBuf) + '  ');
+            Memo1.Lines.Add(formatdatetime('yy/mm/dd hh:mm:ss',now));
+            //Memo1.Lines.Add(TimeToStr(TimeBuf) + '  ');
         if HexShow = True then
         begin
              move(buffer^, pchar(@rbuf)^, len);
@@ -740,7 +741,7 @@ begin
      //StatusBar1.Panels[0].Text := 'S:' +  IntToStr(SendLen);
      //StatusBar1.Panels[1].Text := 'R:' +  IntToStr(RecLen);
     GetComListFromReg();
-    if Memo1.Lines.Count >= 100000 then           // 大于100000行自动保存
+    if Memo1.Lines.Count >= 200000 then           // 大于100000行自动保存
     begin
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
@@ -851,7 +852,7 @@ end;
 procedure TForm1.StatusBar1MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
-    StatusBar1.Panels[3].Text := '大于100000行自动保存'
+    StatusBar1.Panels[3].Text := '大于200000行自动保存'
 end;
 
 procedure TForm1.Memo1MouseMove(Sender: TObject; Shift: TShiftState; X,

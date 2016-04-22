@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 306
-  Top = 306
+  Left = 304
+  Top = 160
   Width = 800
   Height = 480
   Caption = 'Spcom'
@@ -487,7 +487,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 30
+    ReadIntervalTimeout = 20
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0

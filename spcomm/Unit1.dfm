@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 304
-  Top = 160
+  Left = 287
+  Top = 84
   Width = 800
-  Height = 480
+  Height = 485
   Caption = 'Spcom'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -16,18 +16,17 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox3: TGroupBox
-    Left = 206
+    Left = 193
     Top = 0
-    Width = 586
-    Height = 429
-    Align = alRight
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Width = 369
+    Height = 434
+    Align = alClient
     TabOrder = 3
     object Memo1: TMemo
       Left = 2
       Top = 15
-      Width = 582
-      Height = 412
+      Width = 365
+      Height = 417
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -45,7 +44,8 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 145
-    Height = 145
+    Height = 434
+    Align = alLeft
     Caption = #20018#21475#35774#32622
     TabOrder = 1
     object Label1: TLabel
@@ -166,10 +166,11 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object GroupBox2: TGroupBox
-    Left = 152
-    Top = 6
-    Width = 44
-    Height = 139
+    Left = 145
+    Top = 0
+    Width = 48
+    Height = 434
+    Align = alLeft
     TabOrder = 2
     object SpeedButton1: TSpeedButton
       Left = 12
@@ -290,9 +291,9 @@ object Form1: TForm1
     end
     object GroupBox6: TGroupBox
       Left = 2
-      Top = 112
+      Top = 108
       Width = 191
-      Height = 159
+      Height = 163
       Align = alBottom
       TabOrder = 3
       object Edit1: TEdit
@@ -306,7 +307,7 @@ object Form1: TForm1
         Left = 120
         Top = 14
         Width = 59
-        Height = 25
+        Height = 20
         Caption = #32047#21152#21644
         TabOrder = 1
         OnClick = Button3Click
@@ -315,7 +316,7 @@ object Form1: TForm1
         Left = 64
         Top = 14
         Width = 57
-        Height = 25
+        Height = 20
         Caption = #24322#25110#21644
         TabOrder = 2
         OnClick = Button4Click
@@ -350,7 +351,7 @@ object Form1: TForm1
           '6')
       end
       object BitBtn2: TBitBtn
-        Left = 96
+        Left = 88
         Top = 104
         Width = 75
         Height = 25
@@ -361,21 +362,30 @@ object Form1: TForm1
       end
       object Button6: TButton
         Left = 64
-        Top = 40
+        Top = 35
         Width = 57
-        Height = 25
+        Height = 20
         Caption = 'ASCII'#30721#34920
         TabOrder = 6
         OnClick = Button6Click
       end
       object Button7: TButton
         Left = 120
-        Top = 40
+        Top = 35
         Width = 59
-        Height = 25
+        Height = 20
         Caption = #20445#23384
         TabOrder = 7
         OnClick = Button7Click
+      end
+      object Button13: TButton
+        Left = 120
+        Top = 56
+        Width = 59
+        Height = 25
+        Caption = #25193#23637
+        TabOrder = 8
+        OnClick = Button13Click
       end
     end
     object Edit2: TEdit
@@ -426,7 +436,7 @@ object Form1: TForm1
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 429
+    Top = 434
     Width = 792
     Height = 17
     Align = alBottom
@@ -463,6 +473,536 @@ object Form1: TForm1
         end>
       SimpleText = 'werrqwer'
       OnMouseMove = StatusBar1MouseMove
+    end
+  end
+  object GroupBox7: TGroupBox
+    Left = 562
+    Top = 0
+    Width = 230
+    Height = 434
+    Align = alRight
+    TabOrder = 6
+    Visible = False
+    object PageControl2: TPageControl
+      Left = 2
+      Top = 15
+      Width = 226
+      Height = 417
+      ActivePage = TabSheet1
+      Align = alClient
+      TabOrder = 0
+      object TabSheet1: TTabSheet
+        Caption = #22810#26465#23383#31526#20018#21457#36865
+        object GroupBox8: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 218
+          Height = 28
+          Align = alTop
+          TabOrder = 0
+          object Label9: TLabel
+            Left = 190
+            Top = 8
+            Width = 13
+            Height = 13
+            Caption = 'ms'
+          end
+          object CheckBox8: TCheckBox
+            Left = 4
+            Top = 8
+            Width = 133
+            Height = 15
+            Caption = #33258#21160#24490#29615#21457#36865'    '#38388#38548
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -8
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            OnClick = CheckBox8Click
+          end
+          object Edit3: TEdit
+            Left = 150
+            Top = 4
+            Width = 40
+            Height = 21
+            TabOrder = 1
+            Text = '1000'
+            OnKeyPress = Edit3KeyPress
+          end
+        end
+        object GroupBox9: TGroupBox
+          Left = 0
+          Top = 28
+          Width = 218
+          Height = 361
+          Align = alClient
+          TabOrder = 1
+          object lbl1: TLabel
+            Left = 2
+            Top = 7
+            Width = 22
+            Height = 13
+            Caption = 'HEX'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -7
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label10: TLabel
+            Left = 80
+            Top = 8
+            Width = 70
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = #23383#31526#20018
+          end
+          object Label11: TLabel
+            Left = 184
+            Top = 8
+            Width = 33
+            Height = 17
+            AutoSize = False
+            Caption = #21457#36865
+          end
+          object chk1: TCheckBox
+            Left = 6
+            Top = 25
+            Width = 17
+            Height = 17
+            TabOrder = 0
+          end
+          object btn1: TButton
+            Left = 195
+            Top = 691
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 1
+          end
+          object Edit4: TEdit
+            Left = 24
+            Top = 22
+            Width = 168
+            Height = 21
+            TabOrder = 2
+            OnChange = Edit4Change
+          end
+          object Edit5: TEdit
+            Left = 24
+            Top = 43
+            Width = 168
+            Height = 21
+            TabOrder = 3
+            OnChange = Edit5Change
+          end
+          object Edit6: TEdit
+            Left = 24
+            Top = 64
+            Width = 168
+            Height = 21
+            TabOrder = 4
+            OnChange = Edit6Change
+          end
+          object Edit7: TEdit
+            Left = 24
+            Top = 85
+            Width = 168
+            Height = 21
+            TabOrder = 5
+            OnChange = Edit7Change
+          end
+          object Edit8: TEdit
+            Left = 24
+            Top = 106
+            Width = 168
+            Height = 21
+            TabOrder = 6
+            OnChange = Edit8Change
+          end
+          object Edit9: TEdit
+            Left = 24
+            Top = 127
+            Width = 168
+            Height = 21
+            TabOrder = 7
+            OnChange = Edit9Change
+          end
+          object Edit10: TEdit
+            Left = 24
+            Top = 148
+            Width = 168
+            Height = 21
+            TabOrder = 8
+            OnChange = Edit10Change
+          end
+          object Edit11: TEdit
+            Left = 24
+            Top = 169
+            Width = 168
+            Height = 21
+            TabOrder = 9
+            OnChange = Edit11Change
+          end
+          object Edit12: TEdit
+            Left = 24
+            Top = 190
+            Width = 168
+            Height = 21
+            TabOrder = 10
+            OnChange = Edit12Change
+          end
+          object Edit13: TEdit
+            Left = 24
+            Top = 211
+            Width = 168
+            Height = 21
+            TabOrder = 11
+            OnChange = Edit13Change
+          end
+          object Edit14: TEdit
+            Left = 24
+            Top = 232
+            Width = 168
+            Height = 21
+            TabOrder = 12
+            OnChange = Edit14Change
+          end
+          object Edit16: TEdit
+            Left = 24
+            Top = 274
+            Width = 168
+            Height = 21
+            TabOrder = 13
+            OnChange = Edit16Change
+          end
+          object CheckBox9: TCheckBox
+            Left = 6
+            Top = 46
+            Width = 17
+            Height = 17
+            TabOrder = 14
+          end
+          object CheckBox10: TCheckBox
+            Left = 6
+            Top = 67
+            Width = 17
+            Height = 17
+            TabOrder = 15
+          end
+          object CheckBox11: TCheckBox
+            Left = 6
+            Top = 88
+            Width = 17
+            Height = 17
+            TabOrder = 16
+          end
+          object CheckBox12: TCheckBox
+            Left = 6
+            Top = 108
+            Width = 17
+            Height = 17
+            TabOrder = 17
+          end
+          object CheckBox13: TCheckBox
+            Left = 6
+            Top = 129
+            Width = 17
+            Height = 17
+            TabOrder = 18
+          end
+          object CheckBox14: TCheckBox
+            Left = 6
+            Top = 150
+            Width = 17
+            Height = 17
+            TabOrder = 19
+          end
+          object CheckBox15: TCheckBox
+            Left = 6
+            Top = 171
+            Width = 17
+            Height = 17
+            TabOrder = 20
+          end
+          object CheckBox16: TCheckBox
+            Left = 6
+            Top = 192
+            Width = 17
+            Height = 17
+            TabOrder = 21
+          end
+          object CheckBox17: TCheckBox
+            Left = 6
+            Top = 213
+            Width = 17
+            Height = 17
+            TabOrder = 22
+          end
+          object CheckBox18: TCheckBox
+            Left = 6
+            Top = 234
+            Width = 17
+            Height = 17
+            TabOrder = 23
+          end
+          object CheckBox19: TCheckBox
+            Left = 6
+            Top = 255
+            Width = 17
+            Height = 17
+            TabOrder = 24
+          end
+          object CheckBox20: TCheckBox
+            Left = 6
+            Top = 276
+            Width = 17
+            Height = 17
+            TabOrder = 25
+          end
+          object CheckBox21: TCheckBox
+            Left = 6
+            Top = 296
+            Width = 17
+            Height = 17
+            TabOrder = 26
+          end
+          object CheckBox22: TCheckBox
+            Left = 6
+            Top = 317
+            Width = 17
+            Height = 17
+            TabOrder = 27
+          end
+          object CheckBox23: TCheckBox
+            Left = 6
+            Top = 338
+            Width = 17
+            Height = 17
+            TabOrder = 28
+          end
+          object Edit17: TEdit
+            Left = 24
+            Top = 253
+            Width = 168
+            Height = 21
+            TabOrder = 29
+            OnChange = Edit17Change
+          end
+          object Edit18: TEdit
+            Left = 24
+            Top = 295
+            Width = 168
+            Height = 21
+            TabOrder = 30
+            OnChange = Edit18Change
+          end
+          object Edit19: TEdit
+            Left = 24
+            Top = 316
+            Width = 168
+            Height = 21
+            TabOrder = 31
+            OnChange = Edit19Change
+          end
+          object Edit20: TEdit
+            Left = 24
+            Top = 337
+            Width = 168
+            Height = 21
+            TabOrder = 32
+            OnChange = Edit20Change
+          end
+          object Button8: TButton
+            Left = 195
+            Top = 670
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 33
+          end
+          object Button9: TButton
+            Left = 195
+            Top = 649
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 34
+          end
+          object Button10: TButton
+            Left = 195
+            Top = 628
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 35
+          end
+          object Button11: TButton
+            Left = 195
+            Top = 607
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 36
+          end
+          object Button12: TButton
+            Left = 195
+            Top = 586
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 37
+          end
+          object Button22: TButton
+            Left = 192
+            Top = 21
+            Width = 22
+            Height = 21
+            Caption = '1'
+            TabOrder = 38
+            OnClick = Button22Click
+          end
+          object Button23: TButton
+            Left = 192
+            Top = 42
+            Width = 22
+            Height = 21
+            Caption = '2'
+            TabOrder = 39
+            OnClick = Button23Click
+          end
+          object Button24: TButton
+            Left = 192
+            Top = 63
+            Width = 22
+            Height = 21
+            Caption = '3'
+            TabOrder = 40
+            OnClick = Button24Click
+          end
+          object Button25: TButton
+            Left = 192
+            Top = 84
+            Width = 22
+            Height = 21
+            Caption = '4'
+            TabOrder = 41
+            OnClick = Button25Click
+          end
+          object Button26: TButton
+            Left = 192
+            Top = 105
+            Width = 22
+            Height = 21
+            Caption = '5'
+            TabOrder = 42
+            OnClick = Button26Click
+          end
+          object Button27: TButton
+            Left = 192
+            Top = 126
+            Width = 22
+            Height = 21
+            Caption = '6'
+            TabOrder = 43
+            OnClick = Button27Click
+          end
+          object Button28: TButton
+            Left = 192
+            Top = 147
+            Width = 22
+            Height = 21
+            Caption = '7'
+            TabOrder = 44
+            OnClick = Button28Click
+          end
+          object Button29: TButton
+            Left = 192
+            Top = 168
+            Width = 22
+            Height = 21
+            Caption = '8'
+            TabOrder = 45
+            OnClick = Button29Click
+          end
+          object Button30: TButton
+            Left = 192
+            Top = 189
+            Width = 22
+            Height = 21
+            Caption = '9'
+            TabOrder = 46
+            OnClick = Button30Click
+          end
+          object Button31: TButton
+            Left = 192
+            Top = 210
+            Width = 22
+            Height = 21
+            Caption = '10'
+            TabOrder = 47
+            OnClick = Button31Click
+          end
+          object Button32: TButton
+            Left = 192
+            Top = 231
+            Width = 22
+            Height = 21
+            Caption = '11'
+            TabOrder = 48
+            OnClick = Button32Click
+          end
+          object Button33: TButton
+            Left = 192
+            Top = 251
+            Width = 22
+            Height = 21
+            Caption = '12'
+            TabOrder = 49
+            OnClick = Button33Click
+          end
+          object Button34: TButton
+            Left = 192
+            Top = 273
+            Width = 22
+            Height = 21
+            Caption = '13'
+            TabOrder = 50
+            OnClick = Button34Click
+          end
+          object Button35: TButton
+            Left = 192
+            Top = 294
+            Width = 22
+            Height = 21
+            Caption = '14'
+            TabOrder = 51
+            OnClick = Button35Click
+          end
+          object Button36: TButton
+            Left = 192
+            Top = 316
+            Width = 22
+            Height = 21
+            Caption = '15'
+            TabOrder = 52
+            OnClick = Button36Click
+          end
+          object Button37: TButton
+            Left = 192
+            Top = 337
+            Width = 22
+            Height = 21
+            Caption = '16'
+            TabOrder = 53
+            OnClick = Button37Click
+          end
+        end
+      end
     end
   end
   object Comm1: TComm
@@ -527,5 +1067,11 @@ object Form1: TForm1
       Caption = #20445#23384
       OnClick = N1Click
     end
+  end
+  object Timer3: TTimer
+    Enabled = False
+    OnTimer = Timer3Timer
+    Left = 666
+    Top = 8
   end
 end

@@ -60,6 +60,73 @@ type
     Button7: TButton;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
+    GroupBox7: TGroupBox;
+    PageControl2: TPageControl;
+    TabSheet1: TTabSheet;
+    GroupBox8: TGroupBox;
+    CheckBox8: TCheckBox;
+    Edit3: TEdit;
+    Label9: TLabel;
+    GroupBox9: TGroupBox;
+    chk1: TCheckBox;
+    lbl1: TLabel;
+    btn1: TButton;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit16: TEdit;
+    CheckBox9: TCheckBox;
+    CheckBox10: TCheckBox;
+    CheckBox11: TCheckBox;
+    CheckBox12: TCheckBox;
+    CheckBox13: TCheckBox;
+    CheckBox14: TCheckBox;
+    CheckBox15: TCheckBox;
+    CheckBox16: TCheckBox;
+    CheckBox17: TCheckBox;
+    CheckBox18: TCheckBox;
+    CheckBox19: TCheckBox;
+    CheckBox20: TCheckBox;
+    CheckBox21: TCheckBox;
+    CheckBox22: TCheckBox;
+    CheckBox23: TCheckBox;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Button8: TButton;
+    Button9: TButton;
+    Button10: TButton;
+    Button11: TButton;
+    Button12: TButton;
+    Button22: TButton;
+    Button23: TButton;
+    Button24: TButton;
+    Button25: TButton;
+    Button26: TButton;
+    Button27: TButton;
+    Button28: TButton;
+    Button29: TButton;
+    Button30: TButton;
+    Button31: TButton;
+    Button32: TButton;
+    Button33: TButton;
+    Button34: TButton;
+    Button35: TButton;
+    Button36: TButton;
+    Button37: TButton;
+    Label10: TLabel;
+    Label11: TLabel;
+    Button13: TButton;
+    Timer3: TTimer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -92,8 +159,46 @@ type
       Y: Integer);
     procedure Memo1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
+    procedure Button13Click(Sender: TObject);
+    procedure Button22Click(Sender: TObject);
+    procedure Button23Click(Sender: TObject);
+    procedure Button24Click(Sender: TObject);
+    procedure Button25Click(Sender: TObject);
+    procedure Button26Click(Sender: TObject);
+    procedure Button27Click(Sender: TObject);
+    procedure Button28Click(Sender: TObject);
+    procedure Button29Click(Sender: TObject);
+    procedure Button30Click(Sender: TObject);
+    procedure Button31Click(Sender: TObject);
+    procedure Button32Click(Sender: TObject);
+    procedure Button33Click(Sender: TObject);
+    procedure Button34Click(Sender: TObject);
+    procedure Button37Click(Sender: TObject);
+    procedure Button36Click(Sender: TObject);
+    procedure Button35Click(Sender: TObject);
+    procedure CheckBox8Click(Sender: TObject);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Timer3Timer(Sender: TObject);
+    procedure Edit4Change(Sender: TObject);
+    procedure Edit5Change(Sender: TObject);
+    procedure Edit6Change(Sender: TObject);
+    procedure Edit7Change(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
+    procedure Edit9Change(Sender: TObject);
+    procedure Edit10Change(Sender: TObject);
+    procedure Edit11Change(Sender: TObject);
+    procedure Edit12Change(Sender: TObject);
+    procedure Edit13Change(Sender: TObject);
+    procedure Edit14Change(Sender: TObject);
+    procedure Edit17Change(Sender: TObject);
+    procedure Edit16Change(Sender: TObject);
+    procedure Edit18Change(Sender: TObject);
+    procedure Edit19Change(Sender: TObject);
+    procedure Edit20Change(Sender: TObject);
+
   private
     { Private declarations }
+    procedure   WMSysCommand(var   Msg:TMessage);message   WM_SYSCOMMAND;
   public
     { Public declarations }
   end;
@@ -107,9 +212,26 @@ var
   HexSendFlag : Boolean;
   HaveOpenCom : string = '0';
   TotalComNum : Integer = 0;
+  ExtendFun   : Integer = 0;
+  AutoLoopSend: Integer = 0;
 implementation
 
 {$R *.dfm}
+
+procedure   TForm1.WMSysCommand(var   Msg:   TMessage); 
+begin 
+    case   Msg.WParam   of 
+        //SC_MINIMIZE   :   ShowMessage( '最小化 ');
+        //SC_MAXIMIZE   :   ;//ShowMessage( '最大化 ');
+          SC_RESTORE    :
+            begin
+                //form1.Width := 800;
+                //groupbox3.Align:= alcustom;
+                //groupbox3.anchors := akTop;
+            end;
+    end;
+    inherited; 
+end;
 
 procedure GetComListFromReg();
 var
@@ -280,6 +402,23 @@ begin
           MyIniFile.WriteInteger('COM', 'BaudRate', ComboBox2.itemindex);
           MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
           MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
+
+          MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
      end
      else
      begin
@@ -288,7 +427,25 @@ begin
           ComboBox2.itemindex := MyIniFile.ReadInteger('COM', 'BaudRate', 0);
           ComboBox3.itemindex := MyIniFile.ReadInteger('COM', 'ByteSize', 0);
           ComboBox4.itemindex := MyIniFile.ReadInteger('COM', 'Parity', 0);
+
+          Edit4.Text := MyIniFile.ReadString('AUTOSEND', 'SEND1', '');
+          Edit5.Text := MyIniFile.ReadString('AUTOSEND', 'SEND2',  '');
+          Edit6.Text := MyIniFile.ReadString('AUTOSEND', 'SEND3',  '');
+          Edit7.Text := MyIniFile.ReadString('AUTOSEND', 'SEND4',  '');
+          Edit8.Text := MyIniFile.ReadString('AUTOSEND', 'SEND5',  '');
+          Edit9.Text := MyIniFile.ReadString('AUTOSEND', 'SEND6',  '');
+          Edit10.Text := MyIniFile.ReadString('AUTOSEND', 'SEND7',  '');
+          Edit11.Text := MyIniFile.ReadString('AUTOSEND', 'SEND8',  '');
+          Edit12.Text := MyIniFile.ReadString('AUTOSEND', 'SEND9',  '');
+          Edit13.Text := MyIniFile.ReadString('AUTOSEND', 'SEND10',  '');
+          Edit14.Text := MyIniFile.ReadString('AUTOSEND', 'SEND11',  '');
+          Edit17.Text := MyIniFile.ReadString('AUTOSEND', 'SEND12',  '');
+          Edit16.Text := MyIniFile.ReadString('AUTOSEND', 'SEND13',  '');
+          Edit18.Text := MyIniFile.ReadString('AUTOSEND', 'SEND14',  '');
+          Edit19.Text := MyIniFile.ReadString('AUTOSEND', 'SEND15',  '');
+          Edit20.Text := MyIniFile.ReadString('AUTOSEND', 'SEND16',  '');
      end;
+     MyIniFile.Destroy;
      GetComListFromReg();
 end;
 
@@ -751,7 +908,7 @@ begin
         end;
 
         //ShowMessage(path);
-        Memo1.Lines.SaveToFile(path + formatdatetime('yyyymmddhhmmss',now) + '.txt');
+        Memo1.Lines.SaveToFile(path + HaveOpenCom + '--' + formatdatetime('yyyymmddhhmmss',now) + '.txt');
 
         Memo1.Clear;
     end;  
@@ -862,6 +1019,1654 @@ begin
     begin
         StatusBar1.Panels[3].Text := '';
     end;  
+end;
+
+
+procedure TForm1.Button13Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        form1.Width := 900;
+        ExtendFun := 1;
+        GroupBox7.Visible := True;
+        Button13.Caption := '隐藏';
+    end
+    else
+    begin
+        ExtendFun := 0;
+        Button13.Caption := '扩展';
+        GroupBox7.Visible := False;
+        form1.Width := 800;
+    end;  
+
+end;
+
+procedure TForm1.Button22Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit4.text;
+     sendbuf := '';
+     if chk1.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button23Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit5.text;
+     sendbuf := '';
+     if CheckBox9.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button24Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit6.text;
+     sendbuf := '';
+     if CheckBox10.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button25Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit7.text;
+     sendbuf := '';
+     if CheckBox11.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button26Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit8.text;
+     sendbuf := '';
+     if CheckBox12.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button27Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit9.text;
+     sendbuf := '';
+     if CheckBox13.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button28Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit10.text;
+     sendbuf := '';
+     if CheckBox14.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button29Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit11.text;
+     sendbuf := '';
+     if CheckBox15.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button30Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit12.text;
+     sendbuf := '';
+     if CheckBox16.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button31Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit13.text;
+     sendbuf := '';
+     if CheckBox17.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button32Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit14.text;
+     sendbuf := '';
+     if CheckBox18.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button33Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit17.text;
+     sendbuf := '';
+     if CheckBox19.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button34Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit16.text;
+     sendbuf := '';
+     if CheckBox20.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button37Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit20.text;
+     sendbuf := '';
+     if CheckBox23.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button36Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit19.text;
+     sendbuf := '';
+     if CheckBox22.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.Button35Click(Sender: TObject);
+var
+   i ,j,TextLen: Integer;
+   SendBuf : string;
+   strbuf : string;
+begin
+     strbuf :=Edit18.text;
+     sendbuf := '';
+     if CheckBox21.Checked = True then
+     begin
+          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          TextLen := Length(strbuf);
+          i:=1;
+          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+          if i <= TextLen then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+          if TextLen > 0 then
+          begin
+              for j:=0 to (TextLen div 2 - 1) do
+              begin
+                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+              end;
+              if TextLen mod 2 <> 0 then
+              begin
+                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+              end;
+              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+              SendLen := SendLen + TextLen div 2 + textLen mod 2;
+          end;
+     end
+     else
+     begin
+         if Length(strbuf) > 0 then
+         begin
+              comm1.writecommdata(pchar(strbuf), Length(strbuf));
+              SendLen := SendLen + Length(strbuf);
+         end;
+         if CheckBox6.Checked = true then
+         begin
+              strbuf := #13;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         if CheckBox7.Checked = true then
+         begin
+              strbuf := #10;
+              comm1.writecommdata(pchar(strbuf), 1);
+              SendLen := SendLen + 1;
+         end;
+         //SendLen := SendLen + Length(strbuf);
+     end;
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+end;
+
+procedure TForm1.CheckBox8Click(Sender: TObject);
+begin
+     if CheckBox8.Checked = True then
+     begin
+          if Length(Edit3.Text) > 0 then
+          begin
+               Timer3.Interval := StrToInt(Edit3.Text);
+               Timer3.Enabled := True;
+               Edit3.Enabled := False;
+               AutoLoopSend := 0;
+               //Button2.Enabled := False;
+          end
+          else
+          begin
+               ShowMessage('未输入时间');
+               CheckBox8.Checked := False;
+          end;
+     end
+     else
+     begin
+          Timer3.Enabled := False;
+          Edit3.Enabled := True;
+          //Button2.Enabled := True;
+     end;
+end;
+
+procedure TForm1.Edit3KeyPress(Sender: TObject; var Key: Char);
+begin
+     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+     begin
+          ShowMessage('请输入0..9');
+          Key := char(0);
+     end;
+end;
+
+procedure autosend();
+begin
+    if AutoLoopSend = 0 then
+    begin
+        if Form1.Edit4.Text <> '' then
+        begin
+           Form1.Button22.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 1 then
+    begin
+        if Form1.Edit5.Text <> '' then
+        begin
+           Form1.Button23.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 2 then
+    begin
+        if Form1.Edit6.Text <> '' then
+        begin
+           Form1.Button24.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 3 then
+    begin
+        if Form1.Edit7.Text <> '' then
+        begin
+           Form1.Button25.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+    //
+    if AutoLoopSend = 4 then
+    begin
+        if Form1.Edit8.Text <> '' then
+        begin
+           Form1.Button26.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 5 then
+    begin
+        if Form1.Edit9.Text <> '' then
+        begin
+           Form1.Button27.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 6 then
+    begin
+        if Form1.Edit10.Text <> '' then
+        begin
+           Form1.Button28.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 7 then
+    begin
+        if Form1.Edit11.Text <> '' then
+        begin
+           Form1.Button29.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 8 then
+    begin
+        if Form1.Edit12.Text <> '' then
+        begin
+           Form1.Button30.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 9 then
+    begin
+        if Form1.Edit13.Text <> '' then
+        begin
+           Form1.Button31.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 10 then
+    begin
+        if Form1.Edit14.Text <> '' then
+        begin
+           Form1.Button32.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 11 then
+    begin
+        if Form1.Edit17.Text <> '' then
+        begin
+           Form1.Button33.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 12 then
+    begin
+        if Form1.Edit16.Text <> '' then
+        begin
+           Form1.Button34.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 13 then
+    begin
+        if Form1.Edit18.Text <> '' then
+        begin
+           Form1.Button35.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 14 then
+    begin
+        if Form1.Edit19.Text <> '' then
+        begin
+           Form1.Button36.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 15 then
+    begin
+        if Form1.Edit20.Text <> '' then
+        begin
+           Form1.Button37.Click;
+           AutoLoopSend := 0;
+           Exit;
+        end
+        else
+        begin
+           AutoLoopSend := 0;
+           autosend;
+        end;
+    end;
+
+end;  
+
+procedure TForm1.Timer3Timer(Sender: TObject);
+begin
+    autosend;
+    {if AutoLoopSend = 0 then
+    begin
+        if Form1.Edit4.Text <> '' then
+        begin
+           Form1.Button22.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 1 then
+    begin
+        if Form1.Edit5.Text <> '' then
+        begin
+           Form1.Button23.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 2 then
+    begin
+        if Edit6.Text <> '' then
+        begin
+           Button24.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 3 then
+    begin
+        if Form1.Edit7.Text <> '' then
+        begin
+           Form1.Button25.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+    //
+    if AutoLoopSend = 4 then
+    begin
+        if Form1.Edit8.Text <> '' then
+        begin
+           Form1.Button26.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 5 then
+    begin
+        if Form1.Edit9.Text <> '' then
+        begin
+           Form1.Button27.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 6 then
+    begin
+        if Edit10.Text <> '' then
+        begin
+           Button28.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 7 then
+    begin
+        if Edit11.Text <> '' then
+        begin
+           Button29.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 8 then
+    begin
+        if Edit12.Text <> '' then
+        begin
+           Button30.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 9 then
+    begin
+        if Edit13.Text <> '' then
+        begin
+           Button31.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 10 then
+    begin
+        if Edit14.Text <> '' then
+        begin
+           Button32.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 11 then
+    begin
+        if Edit17.Text <> '' then
+        begin
+           Button33.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 12 then
+    begin
+        if Edit16.Text <> '' then
+        begin
+           Button34.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 13 then
+    begin
+        if Edit18.Text <> '' then
+        begin
+           Button35.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 14 then
+    begin
+        if Edit19.Text <> '' then
+        begin
+           Button36.Click;
+           Inc(AutoLoopSend);
+           Exit;
+        end
+        else
+        begin
+           Inc(AutoLoopSend);
+        end;
+    end;
+
+    if AutoLoopSend = 15 then
+    begin
+        if Edit20.Text <> '' then
+        begin
+           Button37.Click;
+           AutoLoopSend := 0;
+           Exit;
+        end
+        else
+        begin
+           AutoLoopSend := 0;
+        end;
+    end;}
+end;
+
+procedure TForm1.Edit4Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit5Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit6Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit7Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit8Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit9Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit10Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit11Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit12Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit13Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit14Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit17Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit16Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit18Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit19Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
+    MyIniFile.Destroy;
+end;
+
+procedure TForm1.Edit20Change(Sender: TObject);
+var
+    MyIniFile : TIniFile;
+    FileName : string;
+begin
+    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
+    MyIniFile := TIniFile.Create(FileName);
+    MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
+    MyIniFile.Destroy;
 end;
 
 end.

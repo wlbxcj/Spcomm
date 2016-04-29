@@ -105,8 +105,6 @@ type
     Button8: TButton;
     Button9: TButton;
     Button10: TButton;
-    Button11: TButton;
-    Button12: TButton;
     Button22: TButton;
     Button23: TButton;
     Button24: TButton;

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 287
-  Top = 84
+  Left = 238
+  Top = 250
   Width = 800
   Height = 485
   Caption = 'Spcom'
@@ -394,6 +394,7 @@ object Form1: TForm1
       Width = 49
       Height = 21
       TabOrder = 4
+      Text = '1000'
       OnKeyPress = Edit2KeyPress
     end
     object CheckBox4: TCheckBox
@@ -513,6 +514,7 @@ object Form1: TForm1
             Width = 133
             Height = 15
             Caption = #33258#21160#24490#29615#21457#36865'    '#38388#38548
+            Enabled = False
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -8

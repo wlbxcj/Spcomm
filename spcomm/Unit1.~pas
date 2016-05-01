@@ -105,8 +105,6 @@ type
     Button8: TButton;
     Button9: TButton;
     Button10: TButton;
-    Button11: TButton;
-    Button12: TButton;
     Button22: TButton;
     Button23: TButton;
     Button24: TButton;
@@ -214,6 +212,7 @@ var
   TotalComNum : Integer = 0;
   ExtendFun   : Integer = 0;
   AutoLoopSend: Integer = 0;
+  HaveData : Integer;
 implementation
 
 {$R *.dfm}
@@ -373,6 +372,7 @@ begin
               Button1.Caption := '¹Ø±Õ´®¿Ú';
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
+              CheckBox8.Enabled := True;
          end;
      end
      else
@@ -383,7 +383,11 @@ begin
           Shape1.Brush.Color := clGray;
           Button2.Enabled := False;
           CheckBox4.Enabled := False;
+          CheckBox4.Checked := False;
           Timer2.Enabled := False;
+          CheckBox8.Enabled := False;
+          CheckBox8.Checked := False;
+          Timer3.Enabled := False;
      end;
 end;
 
@@ -2040,457 +2044,194 @@ procedure autosend();
 begin
     if AutoLoopSend = 0 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit4.Text <> '' then
         begin
            Form1.Button22.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 1 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit5.Text <> '' then
         begin
            Form1.Button23.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 2 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit6.Text <> '' then
         begin
            Form1.Button24.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 3 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit7.Text <> '' then
         begin
            Form1.Button25.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
     //
     if AutoLoopSend = 4 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit8.Text <> '' then
         begin
            Form1.Button26.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 5 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit9.Text <> '' then
         begin
            Form1.Button27.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 6 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit10.Text <> '' then
         begin
            Form1.Button28.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 7 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit11.Text <> '' then
         begin
            Form1.Button29.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 8 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit12.Text <> '' then
         begin
            Form1.Button30.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 9 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit13.Text <> '' then
         begin
            Form1.Button31.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 10 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit14.Text <> '' then
         begin
            Form1.Button32.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 11 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit17.Text <> '' then
         begin
            Form1.Button33.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 12 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit16.Text <> '' then
         begin
            Form1.Button34.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 13 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit18.Text <> '' then
         begin
            Form1.Button35.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 14 then
     begin
+        Inc(AutoLoopSend);
         if Form1.Edit19.Text <> '' then
         begin
            Form1.Button36.Click;
-           Inc(AutoLoopSend);
+           HaveData := 1;
            Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
         end;
     end;
 
     if AutoLoopSend = 15 then
     begin
+        AutoLoopSend := 0;
         if Form1.Edit20.Text <> '' then
         begin
            Form1.Button37.Click;
-           AutoLoopSend := 0;
            Exit;
         end
         else
         begin
-           AutoLoopSend := 0;
-           autosend;
+            //ShowMessage('4444444444444='+IntToStr(HaveData));
+            if HaveData = 1 then
+            begin
+                HaveData := 0;
+                //ShowMessage('HaveData='+IntToStr(HaveData));
+                autosend;
+                //ShowMessage('22222222');
+            end;
         end;
     end;
-
 end;  
 
 procedure TForm1.Timer3Timer(Sender: TObject);
 begin
     autosend;
-    {if AutoLoopSend = 0 then
-    begin
-        if Form1.Edit4.Text <> '' then
-        begin
-           Form1.Button22.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 1 then
-    begin
-        if Form1.Edit5.Text <> '' then
-        begin
-           Form1.Button23.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 2 then
-    begin
-        if Edit6.Text <> '' then
-        begin
-           Button24.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 3 then
-    begin
-        if Form1.Edit7.Text <> '' then
-        begin
-           Form1.Button25.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-    //
-    if AutoLoopSend = 4 then
-    begin
-        if Form1.Edit8.Text <> '' then
-        begin
-           Form1.Button26.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 5 then
-    begin
-        if Form1.Edit9.Text <> '' then
-        begin
-           Form1.Button27.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 6 then
-    begin
-        if Edit10.Text <> '' then
-        begin
-           Button28.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 7 then
-    begin
-        if Edit11.Text <> '' then
-        begin
-           Button29.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 8 then
-    begin
-        if Edit12.Text <> '' then
-        begin
-           Button30.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 9 then
-    begin
-        if Edit13.Text <> '' then
-        begin
-           Button31.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 10 then
-    begin
-        if Edit14.Text <> '' then
-        begin
-           Button32.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 11 then
-    begin
-        if Edit17.Text <> '' then
-        begin
-           Button33.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 12 then
-    begin
-        if Edit16.Text <> '' then
-        begin
-           Button34.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 13 then
-    begin
-        if Edit18.Text <> '' then
-        begin
-           Button35.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 14 then
-    begin
-        if Edit19.Text <> '' then
-        begin
-           Button36.Click;
-           Inc(AutoLoopSend);
-           Exit;
-        end
-        else
-        begin
-           Inc(AutoLoopSend);
-        end;
-    end;
-
-    if AutoLoopSend = 15 then
-    begin
-        if Edit20.Text <> '' then
-        begin
-           Button37.Click;
-           AutoLoopSend := 0;
-           Exit;
-        end
-        else
-        begin
-           AutoLoopSend := 0;
-        end;
-    end;}
 end;
 
 procedure TForm1.Edit4Change(Sender: TObject);

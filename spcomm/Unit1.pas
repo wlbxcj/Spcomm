@@ -70,7 +70,6 @@ type
     GroupBox9: TGroupBox;
     chk1: TCheckBox;
     lbl1: TLabel;
-    btn1: TButton;
     Edit4: TEdit;
     Edit5: TEdit;
     Edit6: TEdit;
@@ -102,9 +101,6 @@ type
     Edit18: TEdit;
     Edit19: TEdit;
     Edit20: TEdit;
-    Button8: TButton;
-    Button9: TButton;
-    Button10: TButton;
     Button22: TButton;
     Button23: TButton;
     Button24: TButton;

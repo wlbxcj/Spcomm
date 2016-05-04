@@ -581,7 +581,7 @@ begin
         setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            Memo1.Lines.Add(formatdatetime('yy/mm/dd hh:mm:ss',now));
+            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']');
             //Memo1.Lines.Add(TimeToStr(TimeBuf) + '  ');
         if HexShow = True then
         begin

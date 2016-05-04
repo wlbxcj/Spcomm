@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 464
-  Top = 403
+  Left = 477
+  Top = 54
   Width = 800
   Height = 485
   Caption = 'Spcom'
@@ -511,7 +511,7 @@ object Form1: TForm1
           object CheckBox8: TCheckBox
             Left = 4
             Top = 8
-            Width = 133
+            Width = 149
             Height = 15
             Caption = #33258#21160#24490#29615#21457#36865'    '#38388#38548
             Enabled = False

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 477
-  Top = 54
+  Left = 623
+  Top = 128
   Width = 800
   Height = 485
   Caption = 'Spcom'
@@ -277,8 +277,11 @@ object Form1: TForm1
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
+      PopupMenu = pm1
       TabOrder = 1
       OnChange = Memo2Change
+      OnDblClick = Memo2DblClick
+      OnKeyPress = Memo2KeyPress
     end
     object CheckBox2: TCheckBox
       Left = 5
@@ -1027,5 +1030,20 @@ object Form1: TForm1
     OnTimer = Timer3Timer
     Left = 666
     Top = 8
+  end
+  object pm1: TPopupMenu
+    Left = 16
+    Top = 152
+    object N2: TMenuItem
+      Caption = #28165#31354
+      OnClick = N2Click
+    end
+    object N3: TMenuItem
+      Caption = #22238#36710#21457#36865
+      OnClick = N3Click
+    end
+    object N4: TMenuItem
+      Caption = #21452#20987#36755#20837#31383#21475#21457#36865#23567#25991#20214
+    end
   end
 end

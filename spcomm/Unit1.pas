@@ -121,6 +121,10 @@ type
     Label11: TLabel;
     Button13: TButton;
     Timer3: TTimer;
+    pm1: TPopupMenu;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -189,6 +193,10 @@ type
     procedure Edit18Change(Sender: TObject);
     procedure Edit19Change(Sender: TObject);
     procedure Edit20Change(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure Memo2KeyPress(Sender: TObject; var Key: Char);
+    procedure Memo2DblClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -209,6 +217,7 @@ var
   ExtendFun   : Integer = 0;
   AutoLoopSend: Integer = 0;
   HaveData : Integer;
+  EnterSend : Integer = 0;
 implementation
 
 {$R *.dfm}
@@ -2404,6 +2413,50 @@ begin
     MyIniFile := TIniFile.Create(FileName);
     MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
     MyIniFile.Destroy;
+end;
+
+procedure TForm1.N2Click(Sender: TObject);
+begin
+    Memo2.Text := '';
+end;
+
+procedure TForm1.N3Click(Sender: TObject);
+begin
+    if EnterSend = 0 then
+    begin
+        Button2.Caption := '回车发送';
+        EnterSend := 1;
+        pm1.Items[1].caption := '点击发送';
+    end
+    else
+    begin
+        Button2.Caption := '点击发送';
+        EnterSend := 0;
+        pm1.Items[1].caption := '回车发送';
+    end;
+    
+end;
+
+procedure TForm1.Memo2KeyPress(Sender: TObject; var Key: Char);
+begin
+    if EnterSend = 1 then
+    begin
+        if Key = Char(13) then
+        begin
+            Key := char(0);
+            if Memo2.Text <> '' then
+            begin
+                button2.Click;
+                Memo2.Text := '';
+            end;
+        end;
+       
+    end;
+end;
+
+procedure TForm1.Memo2DblClick(Sender: TObject);
+begin
+    Button5.Click;
 end;
 
 end.

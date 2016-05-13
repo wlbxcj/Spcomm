@@ -618,9 +618,10 @@ begin
                 memo1.lines.add(rbufstr)
             else
             begin
-              memo1.Text := memo1.Text + rbufstr;
-              Memo1.SelStart := Length(Memo1.Text);
-              Memo1.SelLength:= Length(Memo1.Text);
+              Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
+              //memo1.Text := memo1.Text + rbufstr;
+              //Memo1.SelStart := Length(Memo1.Text);
+              //Memo1.SelLength:= Length(Memo1.Text);
             end;
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;

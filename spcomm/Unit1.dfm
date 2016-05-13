@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 623
-  Top = 128
+  Left = 474
+  Top = 118
   Width = 800
   Height = 485
-  Caption = 'Spcom'
+  Caption = 'Spcom V1.0'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText

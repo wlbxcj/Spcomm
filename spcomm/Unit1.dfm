@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 474
-  Top = 118
+  Left = 411
+  Top = 111
   Width = 800
   Height = 485
-  Caption = 'Spcom V1.0'
+  Caption = 'Spcom V1.1'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -406,6 +406,7 @@ object Form1: TForm1
       Width = 81
       Height = 17
       Caption = #23450#26102#21457#36865
+      Enabled = False
       TabOrder = 5
       OnClick = CheckBox4Click
     end
@@ -1008,13 +1009,13 @@ object Form1: TForm1
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 56
-    Top = 168
+    Left = 16
+    Top = 176
   end
   object Timer2: TTimer
     Enabled = False
     OnTimer = Timer2Timer
-    Left = 24
+    Left = 48
     Top = 168
   end
   object PopupMenu1: TPopupMenu

@@ -234,7 +234,7 @@ begin
                 //groupbox3.anchors := akTop;
             end;
     end;
-    inherited; 
+    inherited;
 end;
 
 procedure GetComListFromReg();
@@ -278,21 +278,26 @@ begin
       else
       begin
           //ShowMessage('456');
+          //ShowMessage('*******'+ HaveOpenCom);
           for i := 0  to Namelst.Count-1 do
           begin
-              //ShowMessage('*******'+ HaveOpenCom);
               //ShowMessage('-------' + reg.ReadString(Namelst[i]));
               if HaveOpenCom = reg.ReadString(Namelst[i]) then
               begin
-                  break;
+                  reg.CloseKey;
+                  reg.Free;
+                  Namelst.Free;
+                  Exit;
+                  //break;
               end;
           end;
-
-          if i = Namelst.Count-1 then
+          //ShowMessage('i=' + IntToStr(i) + 'count=' + IntToStr(Namelst.Count));
+          if i = Namelst.Count then
           begin
               //ShowMessage('close');
               Form1.Button1.Click;
           end;
+          //ShowMessage('***i=' + IntToStr(i) + 'count=' + IntToStr(Namelst.Count));
       end;
   end;
   reg.CloseKey;
@@ -378,6 +383,7 @@ begin
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
+              Timer1.Interval := 3000;
          end;
      end
      else
@@ -393,6 +399,8 @@ begin
           CheckBox8.Enabled := False;
           CheckBox8.Checked := False;
           Timer3.Enabled := False;
+          TotalComNum := 0;
+          Timer1.Interval := 1000;
      end;
 end;
 
@@ -905,23 +913,19 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
     path : string;
 begin
-     //StatusBar1.Panels[0].Text := 'S:' +  IntToStr(SendLen);
-     //StatusBar1.Panels[1].Text := 'R:' +  IntToStr(RecLen);
     GetComListFromReg();
-    if Memo1.Lines.Count >= 200000 then           // 大于100000行自动保存
+
+    if Memo1.Lines.Count >= 200000 then           // 大于200000行自动保存
     begin
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
         begin
-            //ShowMessage('新建文件夹?');
             ForceDirectories(path);
         end;
-
-        //ShowMessage(path);
-        Memo1.Lines.SaveToFile(path + HaveOpenCom + '--' + formatdatetime('yyyymmddhhmmss',now) + '.txt');
-
+        Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
         Memo1.Clear;
-    end;  
+        StatusBar1.Panels[2].Text := ' Total Lines: 0';
+    end;
 end;
 
 procedure TForm1.CheckBox4Click(Sender: TObject);

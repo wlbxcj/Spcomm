@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 411
-  Top = 111
+  Left = 177
+  Top = 122
   Width = 800
   Height = 485
   Caption = 'Spcom V1.1'
@@ -325,8 +325,8 @@ object Form1: TForm1
         OnClick = Button4Click
       end
       object Button5: TButton
-        Left = 152
-        Top = 104
+        Left = 88
+        Top = 96
         Width = 75
         Height = 17
         Caption = 'SendFile'
@@ -354,8 +354,8 @@ object Form1: TForm1
           '6')
       end
       object BitBtn2: TBitBtn
-        Left = 88
-        Top = 104
+        Left = 8
+        Top = 88
         Width = 75
         Height = 25
         Caption = #25171#21360#31561#32423
@@ -493,7 +493,7 @@ object Form1: TForm1
       Top = 15
       Width = 226
       Height = 417
-      ActivePage = TabSheet1
+      ActivePage = ts1
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
@@ -961,6 +961,97 @@ object Form1: TForm1
           end
         end
       end
+      object ts1: TTabSheet
+        Caption = 'HID'
+        ImageIndex = 1
+        object ReadBtn: TSpeedButton
+          Left = 0
+          Top = 360
+          Width = 81
+          Height = 22
+          AllowAllUp = True
+          GroupIndex = 1
+          Caption = #30417#25511
+          OnClick = ReadBtnClick
+        end
+        object DevListBox: TListBox
+          Left = 0
+          Top = 0
+          Width = 217
+          Height = 113
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ItemHeight = 14
+          ParentFont = False
+          TabOrder = 0
+          OnClick = DevListBoxClick
+        end
+        object GroupBox10: TGroupBox
+          Left = 0
+          Top = 112
+          Width = 217
+          Height = 105
+          Caption = 'Attribute'
+          TabOrder = 1
+          object Memo3: TMemo
+            Left = 2
+            Top = 15
+            Width = 213
+            Height = 88
+            Align = alClient
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ScrollBars = ssVertical
+            TabOrder = 0
+          end
+        end
+        object GroupBox11: TGroupBox
+          Left = 0
+          Top = 216
+          Width = 217
+          Height = 145
+          Caption = 'Send'
+          TabOrder = 2
+          object Memo4: TMemo
+            Left = 2
+            Top = 15
+            Width = 213
+            Height = 128
+            Align = alClient
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object Button8: TButton
+          Left = 160
+          Top = 360
+          Width = 59
+          Height = 25
+          Caption = #21457#36865
+          TabOrder = 3
+          OnClick = Button8Click
+        end
+        object CheckBox24: TCheckBox
+          Left = 112
+          Top = 364
+          Width = 46
+          Height = 17
+          Caption = 'HEX'
+          TabOrder = 4
+        end
+      end
     end
   end
   object Comm1: TComm
@@ -1029,7 +1120,7 @@ object Form1: TForm1
   object Timer3: TTimer
     Enabled = False
     OnTimer = Timer3Timer
-    Left = 666
+    Left = 618
     Top = 8
   end
   object pm1: TPopupMenu
@@ -1046,5 +1137,14 @@ object Form1: TForm1
     object N4: TMenuItem
       Caption = #21452#20987#36755#20837#31383#21475#21457#36865#23567#25991#20214
     end
+  end
+  object JvHidDeviceController1: TJvHidDeviceController
+    OnArrival = JvHidDeviceController1Arrival
+    OnEnumerate = JvHidDeviceController1Enumerate
+    OnDeviceChange = JvHidDeviceController1DeviceChange
+    OnDeviceDataError = JvHidDeviceController1DeviceDataError
+    OnRemoval = JvHidDeviceController1Removal
+    Left = 465
+    Top = 72
   end
 end

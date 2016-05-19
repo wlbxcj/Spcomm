@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2;
+  Menus,Registry,Unit2, JvHidControllerClass;
 
 type
   TForm1 = class(TForm)
@@ -125,6 +125,16 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     N4: TMenuItem;
+    JvHidDeviceController1: TJvHidDeviceController;
+    ts1: TTabSheet;
+    DevListBox: TListBox;
+    GroupBox10: TGroupBox;
+    GroupBox11: TGroupBox;
+    Memo3: TMemo;
+    Memo4: TMemo;
+    ReadBtn: TSpeedButton;
+    Button8: TButton;
+    CheckBox24: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -197,12 +207,27 @@ type
     procedure N3Click(Sender: TObject);
     procedure Memo2KeyPress(Sender: TObject; var Key: Char);
     procedure Memo2DblClick(Sender: TObject);
+    procedure JvHidDeviceController1DeviceChange(Sender: TObject);
+    procedure JvHidDeviceController1Arrival(HidDev: TJvHidDevice);
+    procedure ReadBtnClick(Sender: TObject);
+    procedure DevListBoxClick(Sender: TObject);
+    procedure JvHidDeviceController1DeviceDataError(HidDev: TJvHidDevice;
+      Error: Cardinal);
+    function JvHidDeviceController1Enumerate(HidDev: TJvHidDevice;
+      const Idx: Integer): Boolean;
+    procedure JvHidDeviceController1Removal(HidDev: TJvHidDevice);
+    procedure Button8Click(Sender: TObject);
 
   private
     { Private declarations }
     procedure   WMSysCommand(var   Msg:TMessage);message   WM_SYSCOMMAND;
+
   public
-    { Public declarations }
+    CurrentDevice: TJvHidDevice;
+    procedure AddToHistory(Str: string);
+    function DeviceName(HidDev: TJvHidDevice): string;
+    procedure ShowRead(HidDev: TJvHidDevice; ReportID: Byte;
+                        const Data: Pointer; Size: Word);
   end;
 
 var
@@ -221,8 +246,59 @@ var
 implementation
 
 {$R *.dfm}
+procedure tform1.AddToHistory(Str: string);
+var
+  N: Integer;
+begin
+  {HistoryListBox.Canvas.Font := HistoryListBox.Font;
+  N := HistoryListBox.Canvas.TextWidth(Str) + 16;
+  if HistoryListBox.ScrollWidth < N then
+    HistoryListBox.ScrollWidth := N;
+  HistoryListBox.ItemIndex := HistoryListBox.Items.Add(Str);}
+    if ExtendFun = 1 then
+        Memo1.Lines.Add(Str);
+end;
 
-procedure   TForm1.WMSysCommand(var   Msg:   TMessage); 
+function TFORM1.DeviceName(HidDev: TJvHidDevice): string;
+begin
+  if HidDev.ProductName <> '' then
+    Result := HidDev.ProductName
+  else
+    Result := Format('Device VID=%.4x PID=%.4x',
+      [HidDev.Attributes.VendorID, HidDev.Attributes.ProductID]);
+  if HidDev.SerialNumber <> '' then
+    Result := Result + Format(' (Serial=%s)', [HidDev.SerialNumber]);
+end;
+
+procedure tFORM1.ReadBtnClick(Sender: TObject);
+begin
+  CurrentDevice := nil;
+  if (DevListBox.Items.Count > 0) and (DevListBox.ItemIndex >= 0) then
+  begin
+    CurrentDevice := TJvHidDevice(DevListBox.Items.Objects[DevListBox.ItemIndex]);
+    if not CurrentDevice.HasReadWriteAccess then
+      ReadBtn.Down := False
+    else
+    if ReadBtn.Down then
+      CurrentDevice.OnData := ShowRead
+    else
+      CurrentDevice.OnData := nil;
+  end;
+end;
+
+procedure TForm1.ShowRead(HidDev: TJvHidDevice; ReportID: Byte;
+  const Data: Pointer; Size: Word);
+var
+  I: Integer;
+  Str: string;
+begin
+  Str := Format('R %.2x  ', [ReportID]);
+  for I := 0 to Size - 1 do
+    Str := Str + Format('%.2x ', [Cardinal(PChar(Data)[I])]);
+  AddToHistory(Str);
+end;
+
+procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
 begin 
     case   Msg.WParam   of 
         //SC_MINIMIZE   :   ShowMessage( '最小化 ');
@@ -2462,6 +2538,187 @@ end;
 procedure TForm1.Memo2DblClick(Sender: TObject);
 begin
     Button5.Click;
+end;
+
+procedure TForm1.JvHidDeviceController1DeviceChange(Sender: TObject);
+var
+    Dev : TJvHidDevice;
+    I : Integer;
+begin
+    ReadBtn.Down := False;
+    ReadBtnClick(Self);
+    for I := 0 to DevListBox.Items.Count - 1 do
+    begin
+        Dev := TJvHidDevice(DevListBox.Items.Objects[I]);
+        Dev.Free;
+    end;
+
+    DevListBox.Items.Clear;
+    JvHidDeviceController1.Enumerate;
+    if DevListBox.Items.Count > 0 then
+    begin
+        DevListBox.ItemIndex := 0;
+        DevListBoxClick(Self);
+    end;
+end;
+
+procedure TForm1.JvHidDeviceController1Arrival(HidDev: TJvHidDevice);
+begin
+    AddToHistory('Arrival of ' + DeviceName(HidDev));
+end;
+
+procedure TForm1.DevListBoxClick(Sender: TObject);
+var
+  I: Integer;
+  Dev: TJvHidDevice;
+begin
+  ReadBtn.Down := False;
+  ReadBtnClick(Self);
+  if (DevListBox.Items.Count > 0) and (DevListBox.ItemIndex >= 0) then
+  begin
+    Dev := TJvHidDevice(DevListBox.Items.Objects[DevListBox.ItemIndex]);
+    Memo3.Clear;
+    Memo3.Lines.Add('Vendor  : ' +  Dev.VendorName);
+    Memo3.Lines.Add('Product : ' +  Dev.ProductName);
+    Memo3.Lines.Add('Vid     : ' +  IntToHex(Dev.Attributes.VendorID, 4));
+    Memo3.Lines.Add('Pid     : ' +  IntToHex(Dev.Attributes.ProductID, 4));
+
+    if Dev.Caps.InputReportByteLength > 0 then
+        Memo3.Lines.Add('InLen   : 0x' + IntToHex(Dev.Caps.InputReportByteLength-1, 1));
+
+    GroupBox11.Caption := 'Can''''t Send';
+    if Dev.Caps.OutputReportByteLength > 0 then
+    begin
+        GroupBox11.Caption := 'Max Send Len : 0x' + IntToHex(Dev.Caps.OutputReportByteLength-1, 1);
+        Memo3.Lines.Add('OutLen  : 0x' +  IntToHex(Dev.Caps.OutputReportByteLength-1, 1));
+    end;
+
+    if Dev.Caps.FeatureReportByteLength > 0 then
+        Memo3.Lines.Add('Feature   : ' +  IntToHex(Dev.Caps.FeatureReportByteLength-1, 1));
+
+    Memo3.Lines.Add('Vers    : ' +  IntToHex(Dev.Attributes.VersionNumber, 4));
+    Memo3.Lines.Add('SerialNo: ' +  Dev.SerialNumber);
+    for I := 0 to Dev.LanguageStrings.Count - 1 do
+        Memo3.Lines.Add('Language: '+Dev.LanguageStrings[I]);
+
+    Memo3.SelStart := 0;
+    Memo3.SelLength:= 0;
+  end;
+end;
+
+procedure TForm1.JvHidDeviceController1DeviceDataError(
+  HidDev: TJvHidDevice; Error: Cardinal);
+begin
+    AddToHistory(Format('READ ERROR: %s (%x)', [SysErrorMessage(Error), Error])); 
+end;
+
+function TForm1.JvHidDeviceController1Enumerate(HidDev: TJvHidDevice;
+  const Idx: Integer): Boolean;
+var
+  N: Integer;
+  Dev: TJvHidDevice;
+begin
+  N := DevListBox.Items.Add(DeviceName(HidDev));
+  JvHidDeviceController1.CheckOutByIndex(Dev, Idx);
+  DevListBox.Items.Objects[N] := Dev;
+  Result := True;
+end;
+
+procedure TForm1.JvHidDeviceController1Removal(HidDev: TJvHidDevice);
+begin
+    AddToHistory('Removal of ' + DeviceName(HidDev));
+end;
+
+procedure TForm1.Button8Click(Sender: TObject);
+var
+    I, j, TextLen, SendLen: Integer;
+    Buf: array [0..1024] of Byte;
+    Written: Cardinal;
+    ToWrite: Cardinal;
+    Str: string;
+    Err: DWORD;
+    SendBuf : string;
+    strbuf : string;
+begin
+    if Memo4.Text = '' then
+        Exit;
+
+    if Assigned(CurrentDevice) then
+    begin
+        strbuf := Memo4.text;
+        sendbuf := '';
+        if CheckBox24.Checked = True then
+        begin
+            strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+            strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+            strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+            TextLen := Length(strbuf);
+            i:=1;
+            while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+                inc(i);
+            if i <= TextLen then
+            begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+            end;
+            SendLen := TextLen div 2;
+            if SendLen > 1024-1 then
+                SendLen := 1024-1;
+
+            for j:=0 to SendLen do
+            begin
+                //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                //SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                Buf[j+1] := StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0);
+            end;
+            if TextLen mod 2 <> 0 then
+            begin
+                 //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+                 Buf[j+1] := StrToIntDef('$0' + strbuf[2*j + 1], 0);
+                 SendLen := SendLen + 1;
+            end;
+        end
+        else
+        begin
+            SendLen := Length(strbuf);;
+            if SendLen > 1024-1 then
+                SendLen := 1024-1;
+            for j:=0 to SendLen do
+            begin
+                //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                //SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                Buf[j+1] := byte(strbuf[j + 1]);
+            end;
+        end;
+
+        Buf[0] := 0;//StrToIntDef('$' + ReportID.Text, 0);
+        //ReportID.Text := Format('%.2x', [Buf[0]]);
+        //ShowMessage('sendlen='+inttostr(SendLen));
+        ToWrite := CurrentDevice.Caps.OutputReportByteLength;
+
+        if SendLen < ToWrite - 1 then
+        begin
+            for I := SendLen to ToWrite-1 do
+            begin
+              Buf[I+1] := 0;
+              //Edits[I-1].Text := Format('%.2x', [Buf[I]]);
+            end;
+        end;
+        
+
+        if not CurrentDevice.WriteFile(Buf, ToWrite, Written) then
+        begin
+          Err := GetLastError;
+          AddToHistory(Format('WRITE ERROR: %s (%x)', [SysErrorMessage(Err), Err]));
+        end
+        else
+        begin
+          Str := Format('W %.2x  ', [Buf[0]]);
+          for I := 1 to Written-1 do
+            Str := Str + Format('%.2x ', [Buf[I]]);
+          AddToHistory(Str);
+        end;
+    end;
 end;
 
 end.

@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 177
-  Top = 122
+  Left = 492
+  Top = 209
   Width = 800
-  Height = 485
+  Height = 486
   Caption = 'Spcom V1.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -19,14 +19,14 @@ object Form1: TForm1
     Left = 193
     Top = 0
     Width = 369
-    Height = 434
+    Height = 435
     Align = alClient
     TabOrder = 3
     object Memo1: TMemo
       Left = 2
       Top = 15
       Width = 365
-      Height = 417
+      Height = 418
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -44,7 +44,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 145
-    Height = 434
+    Height = 435
     Align = alLeft
     Caption = #20018#21475#35774#32622
     TabOrder = 1
@@ -169,7 +169,7 @@ object Form1: TForm1
     Left = 145
     Top = 0
     Width = 48
-    Height = 434
+    Height = 435
     Align = alLeft
     TabOrder = 2
     object SpeedButton1: TSpeedButton
@@ -259,7 +259,7 @@ object Form1: TForm1
     end
     object Button2: TButton
       Left = 104
-      Top = 83
+      Top = 82
       Width = 81
       Height = 25
       Caption = #21457#36865
@@ -441,7 +441,7 @@ object Form1: TForm1
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 434
+    Top = 435
     Width = 792
     Height = 17
     Align = alBottom
@@ -484,7 +484,7 @@ object Form1: TForm1
     Left = 562
     Top = 0
     Width = 230
-    Height = 434
+    Height = 435
     Align = alRight
     TabOrder = 6
     Visible = False
@@ -492,12 +492,12 @@ object Form1: TForm1
       Left = 2
       Top = 15
       Width = 226
-      Height = 417
-      ActivePage = ts1
+      Height = 418
+      ActivePage = TabSheet2
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
-        Caption = #22810#26465#23383#31526#20018#21457#36865
+        Caption = #22810#23383#31526#20018#21457#36865
         object GroupBox8: TGroupBox
           Left = 0
           Top = 0
@@ -542,7 +542,7 @@ object Form1: TForm1
           Left = 0
           Top = 28
           Width = 218
-          Height = 361
+          Height = 362
           Align = alClient
           TabOrder = 1
           object lbl1: TLabel
@@ -1052,6 +1052,86 @@ object Form1: TForm1
           TabOrder = 4
         end
       end
+      object TabSheet2: TTabSheet
+        Caption = 'TCP'
+        ImageIndex = 2
+        object GroupBox12: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 218
+          Height = 191
+          Align = alTop
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          Caption = 'Server'
+          TabOrder = 0
+          object Label12: TLabel
+            Left = 8
+            Top = 19
+            Width = 41
+            Height = 14
+            AutoSize = False
+            Caption = #31471#21475#65306
+          end
+          object Edit15: TEdit
+            Left = 48
+            Top = 16
+            Width = 89
+            Height = 21
+            TabOrder = 0
+            OnKeyPress = Edit15KeyPress
+          end
+          object Button9: TButton
+            Left = 144
+            Top = 14
+            Width = 67
+            Height = 25
+            Caption = #21019#24314
+            TabOrder = 1
+          end
+        end
+        object GroupBox13: TGroupBox
+          Left = 0
+          Top = 192
+          Width = 218
+          Height = 198
+          Align = alBottom
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          Caption = 'Client'
+          TabOrder = 1
+          object Label13: TLabel
+            Left = 8
+            Top = 19
+            Width = 40
+            Height = 13
+            Caption = 'IP      '#65306
+          end
+          object Label14: TLabel
+            Left = 8
+            Top = 45
+            Width = 36
+            Height = 13
+            Caption = #31471#21475#65306
+          end
+          object Edit22: TEdit
+            Left = 48
+            Top = 40
+            Width = 121
+            Height = 21
+            TabOrder = 0
+          end
+          object MaskEdit1: TMaskEdit
+            Left = 48
+            Top = 16
+            Width = 116
+            Height = 21
+            AutoSelect = False
+            EditMask = '999.999.999.999;'
+            MaxLength = 15
+            TabOrder = 1
+            Text = '   .   .   .   '
+          end
+        end
+      end
     end
   end
   object Comm1: TComm
@@ -1146,5 +1226,24 @@ object Form1: TForm1
     OnRemoval = JvHidDeviceController1Removal
     Left = 465
     Top = 72
+  end
+  object IdTCPServer1: TIdTCPServer
+    Bindings = <>
+    CommandHandlers = <>
+    DefaultPort = 0
+    Greeting.NumericCode = 0
+    MaxConnectionReply.NumericCode = 0
+    ReplyExceptionCode = 0
+    ReplyTexts = <>
+    ReplyUnknownCommand.NumericCode = 0
+    Left = 720
+    Top = 119
+  end
+  object IdTCPClient1: TIdTCPClient
+    MaxLineAction = maException
+    ReadTimeout = 0
+    Port = 0
+    Left = 720
+    Top = 311
   end
 end

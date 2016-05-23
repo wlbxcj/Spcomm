@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2, JvHidControllerClass;
+  Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
+  IdTCPServer, IdTCPConnection, IdTCPClient, Mask;
 
 type
   TForm1 = class(TForm)
@@ -135,6 +136,18 @@ type
     ReadBtn: TSpeedButton;
     Button8: TButton;
     CheckBox24: TCheckBox;
+    TabSheet2: TTabSheet;
+    IdTCPServer1: TIdTCPServer;
+    GroupBox12: TGroupBox;
+    GroupBox13: TGroupBox;
+    Edit15: TEdit;
+    Label12: TLabel;
+    Button9: TButton;
+    IdTCPClient1: TIdTCPClient;
+    Label13: TLabel;
+    Label14: TLabel;
+    Edit22: TEdit;
+    MaskEdit1: TMaskEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -217,6 +230,7 @@ type
       const Idx: Integer): Boolean;
     procedure JvHidDeviceController1Removal(HidDev: TJvHidDevice);
     procedure Button8Click(Sender: TObject);
+    procedure Edit15KeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -2719,6 +2733,15 @@ begin
           AddToHistory(Str);
         end;
     end;
+end;
+
+procedure TForm1.Edit15KeyPress(Sender: TObject; var Key: Char);
+begin
+     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+     begin
+          ShowMessage('ÇëÊäÈë0..9µÄÊý×Ö');
+          Key := char(0);
+     end;
 end;
 
 end.

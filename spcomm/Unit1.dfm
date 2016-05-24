@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 492
-  Top = 209
+  Left = 367
+  Top = 153
   Width = 800
   Height = 486
   Caption = 'Spcom V1.2'
@@ -1059,7 +1059,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 218
-          Height = 191
+          Height = 137
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
@@ -1087,13 +1087,14 @@ object Form1: TForm1
             Height = 25
             Caption = #21019#24314
             TabOrder = 1
+            OnClick = Button9Click
           end
         end
         object GroupBox13: TGroupBox
           Left = 0
-          Top = 192
+          Top = 144
           Width = 218
-          Height = 198
+          Height = 246
           Align = alBottom
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Client'
@@ -1115,20 +1116,43 @@ object Form1: TForm1
           object Edit22: TEdit
             Left = 48
             Top = 40
-            Width = 121
+            Width = 90
             Height = 21
             TabOrder = 0
+            OnKeyPress = Edit22KeyPress
           end
-          object MaskEdit1: TMaskEdit
+          object Button10: TButton
+            Left = 152
+            Top = 35
+            Width = 59
+            Height = 25
+            Caption = #36830#25509
+            TabOrder = 1
+            OnClick = Button10Click
+          end
+          object Button11: TButton
+            Left = 136
+            Top = 216
+            Width = 75
+            Height = 25
+            Caption = #21457#36865
+            TabOrder = 2
+            OnClick = Button11Click
+          end
+          object Edit21: TEdit
             Left = 48
             Top = 16
-            Width = 116
+            Width = 90
             Height = 21
-            AutoSelect = False
-            EditMask = '999.999.999.999;'
-            MaxLength = 15
-            TabOrder = 1
-            Text = '   .   .   .   '
+            TabOrder = 3
+            OnKeyPress = Edit21KeyPress
+          end
+          object Memo5: TMemo
+            Left = 0
+            Top = 64
+            Width = 217
+            Height = 145
+            TabOrder = 4
           end
         end
       end
@@ -1233,17 +1257,25 @@ object Form1: TForm1
     DefaultPort = 0
     Greeting.NumericCode = 0
     MaxConnectionReply.NumericCode = 0
+    OnConnect = IdTCPServer1Connect
+    OnExecute = IdTCPServer1Execute
     ReplyExceptionCode = 0
     ReplyTexts = <>
     ReplyUnknownCommand.NumericCode = 0
-    Left = 720
-    Top = 119
+    Left = 648
+    Top = 79
   end
   object IdTCPClient1: TIdTCPClient
     MaxLineAction = maException
     ReadTimeout = 0
     Port = 0
-    Left = 720
+    Left = 608
     Top = 311
+  end
+  object IdIPWatch1: TIdIPWatch
+    Active = False
+    HistoryFilename = 'iphist.dat'
+    Left = 576
+    Top = 87
   end
 end

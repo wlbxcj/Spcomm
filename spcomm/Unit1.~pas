@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2, JvHidControllerClass;
+  Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
+  IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch;
 
 type
   TForm1 = class(TForm)
@@ -135,6 +136,22 @@ type
     ReadBtn: TSpeedButton;
     Button8: TButton;
     CheckBox24: TCheckBox;
+    TabSheet2: TTabSheet;
+    IdTCPServer1: TIdTCPServer;
+    GroupBox12: TGroupBox;
+    GroupBox13: TGroupBox;
+    Edit15: TEdit;
+    Label12: TLabel;
+    Button9: TButton;
+    IdTCPClient1: TIdTCPClient;
+    Label13: TLabel;
+    Label14: TLabel;
+    Edit22: TEdit;
+    Button10: TButton;
+    Button11: TButton;
+    Edit21: TEdit;
+    Memo5: TMemo;
+    IdIPWatch1: TIdIPWatch;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -217,6 +234,14 @@ type
       const Idx: Integer): Boolean;
     procedure JvHidDeviceController1Removal(HidDev: TJvHidDevice);
     procedure Button8Click(Sender: TObject);
+    procedure Edit15KeyPress(Sender: TObject; var Key: Char);
+    procedure Button9Click(Sender: TObject);
+    procedure IdTCPServer1Execute(AThread: TIdPeerThread);
+    procedure Edit22KeyPress(Sender: TObject; var Key: Char);
+    procedure Button10Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
+    procedure Edit21KeyPress(Sender: TObject; var Key: Char);
+    procedure IdTCPServer1Connect(AThread: TIdPeerThread);
 
   private
     { Private declarations }
@@ -296,6 +321,49 @@ begin
   for I := 0 to Size - 1 do
     Str := Str + Format('%.2x ', [Cardinal(PChar(Data)[I])]);
   AddToHistory(Str);
+end;
+
+Function GetLocalIp(InternetIP:boolean):String;
+   type
+     TaPInAddr = Array[0..10] of PInAddr;
+     PaPInAddr = ^TaPInAddr;
+   var
+     phe: PHostEnt;
+     pptr: PaPInAddr;
+     Buffer: Array[0..63] of Char;
+     I: Integer;
+     GInitData: TWSAData;
+     IP: String;
+begin
+     Screen.Cursor := crHourGlass;
+     try
+       WSAStartup($101, GInitData);
+       IP:='0.0.0.0';
+       GetHostName(Buffer, SizeOf(Buffer));
+       phe := GetHostByName(buffer);
+       if phe = nil then
+       begin
+         ShowMessage(IP);
+         Result:=IP;
+         Exit;
+       end;
+       pPtr := PaPInAddr(phe^.h_addr_list);
+       if InternetIP then
+         begin
+           I := 0;
+           while pPtr^[I] <> nil do
+             begin
+               IP := inet_ntoa(pptr^[I]^);
+               Inc(I);
+             end;
+         end
+       else
+         IP := inet_ntoa(pptr^[0]^);
+       WSACleanup;
+       Result:=IP;//如果上网则为上网ip否则是网卡ip
+     finally
+       Screen.Cursor := crDefault;
+     end;
 end;
 
 procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
@@ -2719,6 +2787,88 @@ begin
           AddToHistory(Str);
         end;
     end;
+end;
+
+procedure TForm1.Edit15KeyPress(Sender: TObject; var Key: Char);
+begin
+     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+     begin
+          ShowMessage('请输入0..9的数字');
+          Key := char(0);
+     end;
+end;
+
+procedure TForm1.Button9Click(Sender: TObject);
+begin
+    ShowMessage(GetLocalIp(True));
+    //ShowMessage(IdIPWatch1.LocalIP);
+    //IdTCPServer1.Bindings.Add.IP := '183.13.239.41';//绑定IP
+    IdTCPServer1.Bindings.Add.Port := StrToInt(Edit15.Text);//绑定端口
+    IdTCPServer1.Active :=True; //开启服务器
+end;
+
+procedure TForm1.IdTCPServer1Execute(AThread: TIdPeerThread);
+var
+   s:string;
+   sm:TStringStream;
+   msize:integer;
+begin
+   sm:=TStringStream.Create('');
+   msize:=AThread.Connection.ReadInteger();
+   Memo1.Lines.Add('接收到的大小为:'+inttostr(msize));
+   AThread.Connection.ReadStream(sm,msize);
+   Memo1.Lines.Add(sm.DataString);
+   sm.Free;
+end;
+
+procedure TForm1.Edit22KeyPress(Sender: TObject; var Key: Char);
+begin
+     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+     begin
+          ShowMessage('请输入0..9的数字');
+          Key := char(0);
+     end;
+end;
+
+procedure TForm1.Button10Click(Sender: TObject);
+begin
+    if inet_addr(pchar(Edit21.Text))=INADDR_NONE then
+    begin
+        showmessage('ip不正确 ');
+        Exit;
+    end;
+
+    IdTCPClient1.Host:= Edit21.Text;ShowMessage(IdTCPClient1.Host);
+    IdTCPClient1.Port:= StrToInt(Edit22.Text);
+    IdTCPClient1.Connect;
+end;
+
+procedure TForm1.Button11Click(Sender: TObject);
+var
+   sm:TStringStream;
+   msize:Integer;
+begin
+   sm:=TStringStream.Create(memo5.text);
+   msize:=sm.Size;
+   Memo1.Lines.Add('发送时流大小为:'+inttostr(msize));
+   IdTCPClient1.WriteInteger(msize);
+   IdTCPClient1.WriteStream(sm);
+   sm.Free;
+end;
+
+procedure TForm1.Edit21KeyPress(Sender: TObject; var Key: Char);
+begin
+     if not (Key  in ['0'..'9', '.', Char(VK_BACK)]) then
+     begin
+          ShowMessage('请输入0..9的数字');
+          Key := char(0);
+     end;
+end;
+
+procedure TForm1.IdTCPServer1Connect(AThread: TIdPeerThread);
+begin
+    //AThread.Connection.Binding.PeerIP;
+    Memo1.Lines.Add('有用户连接');
 end;
 
 end.

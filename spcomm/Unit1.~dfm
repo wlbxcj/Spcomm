@@ -1,20 +1,26 @@
 object Form1: TForm1
-  Left = 361
-  Top = 78
+  Left = 405
+  Top = 211
   Width = 800
   Height = 486
-  Caption = 'Spcom V1.2'
+  Caption = 'Spcom V1.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Courier New'
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 14
+  object Shape2: TShape
+    Left = 368
+    Top = 208
+    Width = 65
+    Height = 65
+  end
   object GroupBox3: TGroupBox
     Left = 193
     Top = 0
@@ -24,9 +30,9 @@ object Form1: TForm1
     TabOrder = 3
     object Memo1: TMemo
       Left = 2
-      Top = 15
+      Top = 16
       Width = 365
-      Height = 418
+      Height = 417
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -51,29 +57,29 @@ object Form1: TForm1
     object Label1: TLabel
       Left = 8
       Top = 20
-      Width = 48
-      Height = 13
+      Width = 56
+      Height = 14
       Caption = #20018#21475#21495#65306
     end
     object Label2: TLabel
       Left = 8
       Top = 44
-      Width = 48
-      Height = 13
+      Width = 56
+      Height = 14
       Caption = #27874#29305#29575#65306
     end
     object Label3: TLabel
       Left = 8
       Top = 68
-      Width = 48
-      Height = 13
+      Width = 56
+      Height = 14
       Caption = #25968#25454#20301#65306
     end
     object Label4: TLabel
       Left = 8
       Top = 92
-      Width = 48
-      Height = 13
+      Width = 56
+      Height = 14
       Caption = #26657#39564#20301#65306
     end
     object Shape1: TShape
@@ -88,8 +94,8 @@ object Form1: TForm1
       Left = 64
       Top = 16
       Width = 73
-      Height = 21
-      ItemHeight = 13
+      Height = 22
+      ItemHeight = 14
       TabOrder = 0
       Text = 'COM1'
       OnChange = ComboBox1Change
@@ -108,8 +114,8 @@ object Form1: TForm1
       Left = 64
       Top = 40
       Width = 73
-      Height = 21
-      ItemHeight = 13
+      Height = 22
+      ItemHeight = 14
       ItemIndex = 0
       TabOrder = 1
       Text = '9600'
@@ -128,8 +134,8 @@ object Form1: TForm1
       Left = 64
       Top = 64
       Width = 73
-      Height = 21
-      ItemHeight = 13
+      Height = 22
+      ItemHeight = 14
       ItemIndex = 0
       TabOrder = 2
       Text = '8'
@@ -144,8 +150,8 @@ object Form1: TForm1
       Left = 64
       Top = 88
       Width = 73
-      Height = 21
-      ItemHeight = 13
+      Height = 22
+      ItemHeight = 14
       ItemIndex = 0
       TabOrder = 3
       Text = 'None'
@@ -190,23 +196,23 @@ object Form1: TForm1
     object Label5: TLabel
       Left = 8
       Top = 55
-      Width = 22
-      Height = 13
+      Width = 21
+      Height = 14
       Caption = 'HEX'
     end
     object Label6: TLabel
       Left = 7
       Top = 18
-      Width = 26
-      Height = 13
+      Width = 28
+      Height = 14
       Caption = 'TIME'
       OnClick = BitBtn1Click
     end
     object Label8: TLabel
       Left = 5
       Top = 92
-      Width = 36
-      Height = 13
+      Width = 35
+      Height = 14
       Caption = 'PAUSE'
     end
     object CheckBox1: TCheckBox
@@ -234,7 +240,6 @@ object Form1: TForm1
       Checked = True
       State = cbChecked
       TabOrder = 2
-      OnClick = CheckBox3Click
     end
     object CheckBox5: TCheckBox
       Left = 12
@@ -253,8 +258,8 @@ object Form1: TForm1
     object Label7: TLabel
       Left = 160
       Top = 59
-      Width = 30
-      Height = 13
+      Width = 35
+      Height = 14
       Caption = 'ms/'#27425
     end
     object Button2: TButton
@@ -279,7 +284,6 @@ object Form1: TForm1
       ParentFont = False
       PopupMenu = pm1
       TabOrder = 1
-      OnChange = Memo2Change
       OnDblClick = Memo2DblClick
       OnKeyPress = Memo2KeyPress
     end
@@ -303,11 +307,11 @@ object Form1: TForm1
         Left = 8
         Top = 16
         Width = 49
-        Height = 21
+        Height = 22
         TabOrder = 0
       end
       object Button3: TButton
-        Left = 120
+        Left = 126
         Top = 14
         Width = 59
         Height = 20
@@ -316,9 +320,9 @@ object Form1: TForm1
         OnClick = Button3Click
       end
       object Button4: TButton
-        Left = 64
+        Left = 61
         Top = 14
-        Width = 57
+        Width = 65
         Height = 20
         Caption = #24322#25110#21644
         TabOrder = 2
@@ -338,8 +342,8 @@ object Form1: TForm1
         Left = 8
         Top = 128
         Width = 73
-        Height = 21
-        ItemHeight = 13
+        Height = 22
+        ItemHeight = 14
         ItemIndex = 0
         TabOrder = 4
         Text = '0'
@@ -364,16 +368,16 @@ object Form1: TForm1
         OnClick = BitBtn2Click
       end
       object Button6: TButton
-        Left = 64
+        Left = 60
         Top = 35
-        Width = 57
+        Width = 65
         Height = 20
         Caption = 'ASCII'#30721#34920
         TabOrder = 6
         OnClick = Button6Click
       end
       object Button7: TButton
-        Left = 120
+        Left = 126
         Top = 35
         Width = 59
         Height = 20
@@ -382,10 +386,10 @@ object Form1: TForm1
         OnClick = Button7Click
       end
       object Button13: TButton
-        Left = 120
+        Left = 126
         Top = 56
         Width = 59
-        Height = 25
+        Height = 20
         Caption = #25193#23637
         TabOrder = 8
         OnClick = Button13Click
@@ -395,7 +399,7 @@ object Form1: TForm1
       Left = 104
       Top = 56
       Width = 49
-      Height = 21
+      Height = 22
       TabOrder = 4
       Text = '1000'
       OnKeyPress = Edit2KeyPress
@@ -490,14 +494,14 @@ object Form1: TForm1
     Visible = False
     object PageControl2: TPageControl
       Left = 2
-      Top = 15
+      Top = 16
       Width = 226
-      Height = 418
+      Height = 417
       ActivePage = TabSheet2
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
-        Caption = #22810#23383#31526#20018#21457#36865
+        Caption = 'String'
         object GroupBox8: TGroupBox
           Left = 0
           Top = 0
@@ -508,8 +512,8 @@ object Form1: TForm1
           object Label9: TLabel
             Left = 190
             Top = 8
-            Width = 13
-            Height = 13
+            Width = 14
+            Height = 14
             Caption = 'ms'
           end
           object CheckBox8: TCheckBox
@@ -532,7 +536,7 @@ object Form1: TForm1
             Left = 150
             Top = 4
             Width = 40
-            Height = 21
+            Height = 22
             TabOrder = 1
             Text = '1000'
             OnKeyPress = Edit3KeyPress
@@ -542,7 +546,7 @@ object Form1: TForm1
           Left = 0
           Top = 28
           Width = 218
-          Height = 362
+          Height = 360
           Align = alClient
           TabOrder = 1
           object lbl1: TLabel
@@ -586,7 +590,7 @@ object Form1: TForm1
             Left = 24
             Top = 22
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 1
             OnChange = Edit4Change
           end
@@ -594,7 +598,7 @@ object Form1: TForm1
             Left = 24
             Top = 43
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 2
             OnChange = Edit5Change
           end
@@ -602,7 +606,7 @@ object Form1: TForm1
             Left = 24
             Top = 64
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 3
             OnChange = Edit6Change
           end
@@ -610,7 +614,7 @@ object Form1: TForm1
             Left = 24
             Top = 85
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 4
             OnChange = Edit7Change
           end
@@ -618,7 +622,7 @@ object Form1: TForm1
             Left = 24
             Top = 106
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 5
             OnChange = Edit8Change
           end
@@ -626,7 +630,7 @@ object Form1: TForm1
             Left = 24
             Top = 127
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 6
             OnChange = Edit9Change
           end
@@ -634,7 +638,7 @@ object Form1: TForm1
             Left = 24
             Top = 148
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 7
             OnChange = Edit10Change
           end
@@ -642,7 +646,7 @@ object Form1: TForm1
             Left = 24
             Top = 169
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 8
             OnChange = Edit11Change
           end
@@ -650,7 +654,7 @@ object Form1: TForm1
             Left = 24
             Top = 190
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 9
             OnChange = Edit12Change
           end
@@ -658,7 +662,7 @@ object Form1: TForm1
             Left = 24
             Top = 211
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 10
             OnChange = Edit13Change
           end
@@ -666,7 +670,7 @@ object Form1: TForm1
             Left = 24
             Top = 232
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 11
             OnChange = Edit14Change
           end
@@ -674,7 +678,7 @@ object Form1: TForm1
             Left = 24
             Top = 274
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 12
             OnChange = Edit16Change
           end
@@ -787,7 +791,7 @@ object Form1: TForm1
             Left = 24
             Top = 253
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 28
             OnChange = Edit17Change
           end
@@ -795,7 +799,7 @@ object Form1: TForm1
             Left = 24
             Top = 295
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 29
             OnChange = Edit18Change
           end
@@ -803,7 +807,7 @@ object Form1: TForm1
             Left = 24
             Top = 316
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 30
             OnChange = Edit19Change
           end
@@ -811,7 +815,7 @@ object Form1: TForm1
             Left = 24
             Top = 337
             Width = 168
-            Height = 21
+            Height = 22
             TabOrder = 31
             OnChange = Edit20Change
           end
@@ -998,9 +1002,9 @@ object Form1: TForm1
           TabOrder = 1
           object Memo3: TMemo
             Left = 2
-            Top = 15
+            Top = 16
             Width = 213
-            Height = 88
+            Height = 87
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1021,9 +1025,9 @@ object Form1: TForm1
           TabOrder = 2
           object Memo4: TMemo
             Left = 2
-            Top = 15
+            Top = 16
             Width = 213
-            Height = 128
+            Height = 127
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1055,56 +1059,51 @@ object Form1: TForm1
       object TabSheet2: TTabSheet
         Caption = 'TCP'
         ImageIndex = 2
+        PopupMenu = PopupMenu3
         object GroupBox12: TGroupBox
           Left = 0
           Top = 0
           Width = 218
-          Height = 129
+          Height = 127
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
           TabOrder = 0
           object Label12: TLabel
-            Left = 8
+            Left = 1
             Top = 35
-            Width = 57
+            Width = 64
             Height = 14
             AutoSize = False
-            Caption = ' '#31471#21475'   '#65306
+            Caption = ' '#31471'  '#21475' '#65306
           end
           object Label15: TLabel
             Left = 8
-            Top = 16
-            Width = 49
-            Height = 13
+            Top = 13
+            Width = 63
+            Height = 14
             Caption = #26412#26426'IP '#65306
           end
           object Label16: TLabel
             Left = 64
-            Top = 16
-            Width = 33
-            Height = 13
+            Top = 13
+            Width = 49
+            Height = 14
             Caption = '1.1.1.1'
           end
-          object Label17: TLabel
-            Left = 8
-            Top = 56
-            Width = 48
-            Height = 13
-            Caption = #23458#25143#31471#65306
-          end
-          object Label18: TLabel
-            Left = 67
-            Top = 56
-            Width = 12
-            Height = 13
-            Caption = #26080
+          object Shape3: TShape
+            Left = 172
+            Top = 9
+            Width = 25
+            Height = 17
+            Brush.Color = clGray
+            Shape = stCircle
           end
           object Edit15: TEdit
             Left = 64
             Top = 31
             Width = 85
-            Height = 21
+            Height = 22
             TabOrder = 0
             OnKeyPress = Edit15KeyPress
           end
@@ -1112,14 +1111,14 @@ object Form1: TForm1
             Left = 162
             Top = 29
             Width = 50
-            Height = 25
+            Height = 21
             Caption = #24320#21551
             TabOrder = 1
             OnClick = Button9Click
           end
           object CheckBox25: TCheckBox
-            Left = 1
-            Top = 108
+            Left = 8
+            Top = 107
             Width = 73
             Height = 17
             Caption = #33258#21160#22238#22797
@@ -1129,29 +1128,37 @@ object Form1: TForm1
             OnClick = CheckBox25Click
           end
           object RadioButton1: TRadioButton
-            Left = 71
-            Top = 108
-            Width = 73
+            Left = 98
+            Top = 107
+            Width = 55
             Height = 17
-            Caption = #25968#25454#22238#22797
+            Caption = #25968#25454
             TabOrder = 3
+            OnClick = RadioButton1Click
           end
           object RadioButton2: TRadioButton
-            Left = 145
-            Top = 108
-            Width = 113
+            Left = 161
+            Top = 107
+            Width = 54
             Height = 17
-            Caption = #36879#26126#22238#22797
+            Caption = #36879#26126
             Checked = True
             TabOrder = 4
             TabStop = True
           end
           object CheckListBox1: TCheckListBox
-            Left = 64
+            Left = 8
             Top = 56
-            Width = 150
+            Width = 205
             Height = 49
-            ItemHeight = 13
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ItemHeight = 14
+            ParentFont = False
+            PopupMenu = PopupMenu2
             TabOrder = 5
           end
         end
@@ -1159,45 +1166,53 @@ object Form1: TForm1
           Left = 0
           Top = 128
           Width = 218
-          Height = 57
+          Height = 55
           Caption = 'Client'
           TabOrder = 1
           object Label13: TLabel
             Left = 8
             Top = 15
-            Width = 40
-            Height = 13
-            Caption = 'IP      '#65306
+            Width = 42
+            Height = 14
+            Caption = 'IP  '#65306
           end
           object Label14: TLabel
             Left = 8
             Top = 34
-            Width = 36
-            Height = 13
+            Width = 42
+            Height = 14
             Caption = #31471#21475#65306
           end
+          object Shape4: TShape
+            Left = 172
+            Top = 9
+            Width = 25
+            Height = 17
+            Brush.Color = clGray
+            Shape = stCircle
+          end
           object Edit22: TEdit
-            Left = 48
+            Left = 52
             Top = 31
-            Width = 100
-            Height = 21
+            Width = 110
+            Height = 22
             TabOrder = 0
             OnKeyPress = Edit22KeyPress
           end
           object Button10: TButton
-            Left = 162
-            Top = 29
+            Left = 165
+            Top = 31
             Width = 50
-            Height = 25
+            Height = 21
             Caption = #36830#25509
             TabOrder = 1
             OnClick = Button10Click
           end
           object Edit21: TEdit
-            Left = 48
+            Left = 52
             Top = 8
-            Width = 100
-            Height = 21
+            Width = 110
+            Height = 22
             TabOrder = 2
           end
         end
@@ -1205,45 +1220,52 @@ object Form1: TForm1
           Left = 0
           Top = 184
           Width = 218
-          Height = 206
+          Height = 204
           Align = alBottom
           Caption = 'Send'
           TabOrder = 2
           object Label19: TLabel
             Left = 98
             Top = 161
-            Width = 31
-            Height = 13
+            Width = 35
+            Height = 14
             Caption = #38388#38548':'
           end
           object Label20: TLabel
             Left = 194
             Top = 160
             Width = 14
-            Height = 13
+            Height = 14
             Caption = #31186
           end
           object Memo5: TMemo
             Left = 2
-            Top = 15
+            Top = 16
             Width = 214
             Height = 138
             Align = alTop
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Courier New'
+            Font.Style = []
+            MaxLength = 4096
+            ParentFont = False
             TabOrder = 0
           end
           object Button12: TButton
-            Left = 162
+            Left = 164
             Top = 180
             Width = 50
-            Height = 25
+            Height = 21
             Caption = #21457#36865
             TabOrder = 1
             OnClick = Button12Click
           end
           object RadioButton3: TRadioButton
-            Left = 8
+            Left = 5
             Top = 182
-            Width = 49
+            Width = 73
             Height = 17
             Caption = 'Server'
             Checked = True
@@ -1251,17 +1273,17 @@ object Form1: TForm1
             TabStop = True
           end
           object RadioButton4: TRadioButton
-            Left = 63
+            Left = 65
             Top = 183
-            Width = 49
+            Width = 55
             Height = 17
             Caption = 'Client'
             TabOrder = 3
           end
           object CheckBox26: TCheckBox
-            Left = 111
+            Left = 123
             Top = 183
-            Width = 46
+            Width = 41
             Height = 17
             Caption = 'HEX'
             TabOrder = 4
@@ -1279,10 +1301,34 @@ object Form1: TForm1
             Left = 134
             Top = 156
             Width = 59
-            Height = 21
+            Height = 22
             TabOrder = 6
             Text = '1'
             OnKeyPress = Edit23KeyPress
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'More'
+        ImageIndex = 3
+        object GroupBox15: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 218
+          Height = 388
+          Align = alClient
+          TabOrder = 0
+          object Memo6: TMemo
+            Left = 2
+            Top = 16
+            Width = 214
+            Height = 370
+            Align = alClient
+            Lines.Strings = (
+              #26368#26032#29256#26412#65306
+              'https://github.com/wlbxcj/Spc'
+              'omm')
+            TabOrder = 0
           end
         end
       end
@@ -1320,8 +1366,8 @@ object Form1: TForm1
     Top = 168
   end
   object XPManifest1: TXPManifest
-    Left = 232
-    Top = 40
+    Left = 240
+    Top = 88
   end
   object SaveDialog1: TSaveDialog
     Filter = '.txt'
@@ -1354,8 +1400,8 @@ object Form1: TForm1
   object Timer3: TTimer
     Enabled = False
     OnTimer = Timer3Timer
-    Left = 618
-    Top = 8
+    Left = 522
+    Top = 40
   end
   object pm1: TPopupMenu
     Left = 16
@@ -1393,8 +1439,8 @@ object Form1: TForm1
     ReplyExceptionCode = 0
     ReplyTexts = <>
     ReplyUnknownCommand.NumericCode = 0
-    Left = 688
-    Top = 39
+    Left = 672
+    Top = 47
   end
   object IdTCPClient1: TIdTCPClient
     MaxLineAction = maException
@@ -1402,23 +1448,39 @@ object Form1: TForm1
     OnDisconnected = IdTCPClient1Disconnected
     OnConnected = IdTCPClient1Connected
     Port = 0
-    Left = 608
-    Top = 311
+    Left = 640
+    Top = 247
   end
   object IdIPWatch1: TIdIPWatch
     Active = False
     HistoryFilename = 'iphist.dat'
-    Left = 656
-    Top = 39
-  end
-  object IdAntiFreeze1: TIdAntiFreeze
-    Left = 720
-    Top = 40
+    Left = 640
+    Top = 47
   end
   object Timer4: TTimer
     Enabled = False
     OnTimer = Timer4Timer
     Left = 736
     Top = 336
+  end
+  object IdAntiFreeze1: TIdAntiFreeze
+    Left = 704
+    Top = 47
+  end
+  object PopupMenu2: TPopupMenu
+    Left = 736
+    Top = 55
+    object N5: TMenuItem
+      Caption = #26029#24320
+      OnClick = N5Click
+    end
+  end
+  object PopupMenu3: TPopupMenu
+    Left = 576
+    Top = 55
+    object IP1: TMenuItem
+      Caption = 'log:'#26174#31034'IP'
+      OnClick = IP1Click
+    end
   end
 end

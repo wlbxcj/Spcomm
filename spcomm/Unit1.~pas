@@ -7,7 +7,8 @@ uses
   Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
   Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
-  IdAntiFreezeBase, IdAntiFreeze, CheckLst;
+  IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
+  MConnect, SConnect, IdThread;
 
 type
   TForm1 = class(TForm)
@@ -153,9 +154,6 @@ type
     IdIPWatch1: TIdIPWatch;
     Label15: TLabel;
     Label16: TLabel;
-    IdAntiFreeze1: TIdAntiFreeze;
-    Label17: TLabel;
-    Label18: TLabel;
     CheckBox25: TCheckBox;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
@@ -171,6 +169,17 @@ type
     Label19: TLabel;
     Label20: TLabel;
     Timer4: TTimer;
+    TabSheet3: TTabSheet;
+    Shape2: TShape;
+    Shape3: TShape;
+    Shape4: TShape;
+    IdAntiFreeze1: TIdAntiFreeze;
+    PopupMenu2: TPopupMenu;
+    N5: TMenuItem;
+    PopupMenu3: TPopupMenu;
+    IP1: TMenuItem;
+    GroupBox15: TGroupBox;
+    Memo6: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -185,8 +194,6 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Memo2Change(Sender: TObject);
-    procedure CheckBox3Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
@@ -258,7 +265,7 @@ type
     procedure IdTCPServer1Execute(AThread: TIdPeerThread);
     procedure Edit22KeyPress(Sender: TObject; var Key: Char);
     procedure Button10Click(Sender: TObject);
-    procedure Button11Click(Sender: TObject);
+
     procedure IdTCPServer1Connect(AThread: TIdPeerThread);
     procedure IdTCPClient1Connected(Sender: TObject);
     procedure IdTCPClient1Disconnected(Sender: TObject);
@@ -268,6 +275,11 @@ type
     procedure CheckBox27Click(Sender: TObject);
     procedure Timer4Timer(Sender: TObject);
     procedure Edit23KeyPress(Sender: TObject; var Key: Char);
+    procedure TcpClient1Receive(Sender: TObject; Buf: PAnsiChar;
+      var DataLen: Integer);
+    procedure N5Click(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure IP1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -275,6 +287,11 @@ type
 
   public
     ServerThread: TIdPeerThread;
+    FList: TList;
+    myThread: TThread;
+    ID: DWORD;
+    MythreadHandle : THandle;
+    
 
     CurrentDevice: TJvHidDevice;
     procedure AddToHistory(Str: string);
@@ -283,6 +300,7 @@ type
                         const Data: Pointer; Size: Word);
 
     procedure LockControls(ALock:Boolean);
+    procedure DisplayRecData(buffer:array of byte; DataLen: Integer; disIP:string);
   end;
 
 var
@@ -298,6 +316,7 @@ var
   AutoLoopSend: Integer = 0;
   HaveData : Integer;
   EnterSend : Integer = 0;
+  IfDisIp : Boolean = False;
 implementation
 
 {$R *.dfm}
@@ -305,11 +324,6 @@ procedure tform1.AddToHistory(Str: string);
 var
   N: Integer;
 begin
-  {HistoryListBox.Canvas.Font := HistoryListBox.Font;
-  N := HistoryListBox.Canvas.TextWidth(Str) + 16;
-  if HistoryListBox.ScrollWidth < N then
-    HistoryListBox.ScrollWidth := N;
-  HistoryListBox.ItemIndex := HistoryListBox.Items.Add(Str);}
     if ExtendFun = 1 then
         Memo1.Lines.Add(Str);
 end;
@@ -353,48 +367,87 @@ begin
   AddToHistory(Str);
 end;
 
-{Function GetLocalIp(InternetIP:boolean):String;
-   type
-     TaPInAddr = Array[0..10] of PInAddr;
-     PaPInAddr = ^TaPInAddr;
-   var
-     phe: PHostEnt;
-     pptr: PaPInAddr;
-     Buffer: Array[0..63] of Char;
-     I: Integer;
-     GInitData: TWSAData;
-     IP: String;
+procedure tForm1.DisplayRecData(buffer:array of Byte; DataLen: Integer; DISIP:string);
+var
+  i : Integer;
+  strtmp : string;
+  rbufstr :string;
+  TimeBuf : TDateTime;
+  rbuf:array[0..5000] of byte;
 begin
-     Screen.Cursor := crHourGlass;
-     try
-       WSAStartup($101, GInitData);
-       IP:='0.0.0.0';
-       GetHostName(Buffer, SizeOf(Buffer));
-       phe := GetHostByName(buffer);
-       if phe = nil then
-       begin
-         ShowMessage(IP);
-         Result:=IP;
-         Exit;
-       end;
-       pPtr := PaPInAddr(phe^.h_addr_list);
-       if InternetIP then
-         begin
-           I := 0;
-           while pPtr^[I] <> nil do
-             begin
-               IP := inet_ntoa(pptr^[I]^);
-               Inc(I);
-             end;
-         end
-       else
-         IP := inet_ntoa(pptr^[0]^);
-       WSACleanup;
-       Result:=IP;//如果上网则为上网ip否则是网卡ip
-     finally
-       Screen.Cursor := crDefault;
-     end;
-end;}
+    //move(buffer^, pchar(@rbuf)^, DataLen);
+    strtmp := '';
+    if Form1.CheckBox1.Checked = True then
+    begin
+        for i := 0 to DataLen - 1 do
+        begin
+            strtmp := strtmp + inttohex((buffer[i]), 2) + ' ';
+        end;
+    end
+    else
+    begin
+        //move(buffer^, pchar(strtmp)^, DataLen);
+        for i := 0 to DataLen - 1 do
+        begin
+            strtmp := strtmp + Char(buffer[i]);
+        end;
+    end;
+
+    if form1.CheckBox3.Checked = True then
+        if IfDisIp = False then
+            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']')
+        else
+            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ' ' + disIP + ']')
+    else
+    begin
+        if IfDisIp = True then
+            Memo1.Lines.Add('[' + disIP + ']')
+    end;
+
+    form1.Memo1.Lines.Add(strtmp);
+    RecLen := RecLen + DataLen;
+    form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
+    form1.StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(form1.Memo1.Lines.Count);
+end;
+
+
+function MyThreadFun(P: Pointer):Integer;stdcall;
+var
+    buf : array[0..5000] of byte;
+    readlen : Integer;
+    i : Integer;
+    strtmp : string;
+begin
+    while True do
+    begin
+        {if Form1.TcpClient1.WaitForData(60) then
+        begin
+            Form1.TcpClient1.Receiveln;
+        end;}
+        if form1.IdTCPClient1.Connected then
+        begin
+            readlen := Form1.IdTCPClient1.InputBuffer.Size;
+            //form1.Memo1.Lines.Add(IntToStr(readlen));
+            if 0 < readlen then
+            begin
+                Form1.Memo1.Lines.Add(IntToStr(RecLen));
+                Form1.IdTCPClient1.ReadBuffer(buf, readlen);
+            end
+            else
+            begin
+                form1.IdTCPClient1.ReadFromStack(False, 1, False);
+                readlen := Form1.IdTCPClient1.InputBuffer.Size;
+                //form1.Memo1.Lines.Add('==========' + IntToStr(readlen));
+                if 0 < readlen then
+                begin
+                    Form1.IdTCPClient1.ReadBuffer(buf, readlen);
+                    Form1.DisplayRecData(buf, readlen, Form1.Edit21.Text);
+                end;
+            end;
+        end;
+        Sleep(30);
+    end;
+end;
 
 procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
 begin 
@@ -647,6 +700,8 @@ begin
      MyIniFile.Destroy;
      GetComListFromReg();
      Label16.Caption := (IdIPWatch1.LocalIP);
+
+     Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
 end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
@@ -950,26 +1005,8 @@ begin
     MyIniFile.WriteString('TCP', 'CLIENT_PORT', Edit22.Text);
 
     MyIniFile.Destroy;
-end;
 
-procedure TForm1.Memo2Change(Sender: TObject);
-begin
-     {if Memo2.Lines.Count > 4 then
-     begin
-          Memo2.ScrollBars := ssVertical;
-     end
-     else
-     begin
-          Memo2.ScrollBars := ssNone
-     end;}
-end;
-
-procedure TForm1.CheckBox3Click(Sender: TObject);
-begin
-     //if CheckBox3.Checked = True then
-        //Comm1.DtrControl := DtrEnable
-     //else
-         //Comm1.DtrControl := DtrDisable;
+    TerminateThread(MythreadHandle, 0); //　终止线程
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -2699,7 +2736,7 @@ begin
     if Dev.Caps.InputReportByteLength > 0 then
         Memo3.Lines.Add('InLen   : 0x' + IntToHex(Dev.Caps.InputReportByteLength-1, 1));
 
-    GroupBox11.Caption := 'Can''''t Send';
+    GroupBox11.Caption := 'Can''t Send';
     if Dev.Caps.OutputReportByteLength > 0 then
     begin
         GroupBox11.Caption := 'Max Send Len : 0x' + IntToHex(Dev.Caps.OutputReportByteLength-1, 1);
@@ -2844,29 +2881,50 @@ begin
 end;
 
 procedure TForm1.Button9Click(Sender: TObject);
+var
+    list : TList;
+    Count : Integer;
 begin
     if Button9.Caption = '开启' then
     begin
-        Button9.Caption := '停止';
-        //ShowMessage(GetLocalIp(True));
-        Label16.Caption := (IdIPWatch1.LocalIP);
-        //IdTCPServer1.Bindings.Add.IP := IdIPWatch1.LocalIP;//绑定IP
-        //IdTCPServer1.Bindings.Add.Port := StrToInt(Edit15.Text);//绑定端口
+        if Edit15.Text = '' then
+        begin
+            ShowMessage('请输入正确的端口');
+            Exit;
+        end;
+        IdTCPServer1.Bindings.Clear;
         IdTCPServer1.DefaultPort := StrToInt(Edit15.Text);
         IdTCPServer1.Active :=True; //开启服务器
         Memo1.Lines.Add('服务器已开启');
+        Shape3.Brush.Color := clRed;
+        Button9.Caption := '停止';
+        Label16.Caption := (IdIPWatch1.LocalIP);
+        
     end
     else
     begin
-        Button9.Caption := '开启';
-        //ShowMessage(GetLocalIp(True));
-        //Label16.Caption := (IdIPWatch1.LocalIP);
-        //IdTCPServer1.Bindings.Add.IP := IdIPWatch1.LocalIP;//绑定IP
-        //IdTCPServer1.Bindings.Add.Port := StrToInt(Edit15.Text);//绑定端口
-        //IdTCPServer1.DefaultPort := StrToInt(Edit15.Text);
+        list := idtcpserver1.Threads.LockList;
+        try
+            for Count := 0 to List.Count -1 do
+            begin
+                //if clientIP = TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.PeerIP then
+                begin
+                    //try
+                    //    TIdPeerThread(List.Items[Count]).Connection.WriteBuffer(aucBuf[0], TextLen);
+                    //except
+                        //TIdPeerThread(List.Items[Count]).Stop;
+                        TIdPeerThread(List.Items[Count]).Connection.Disconnect;
+                    //end
+                end
+            end;
+        finally
+            idtcpServer1.Threads.UnlockList;
+        end;
         IdTCPServer1.Active :=False; //开启服务器
+        CheckListBox1.Items.Clear;
+        Button9.Caption := '开启';
         Memo1.Lines.Add('服务器已停止');
-
+        Shape3.Brush.Color := clGray;
     end;
 end;
 
@@ -2878,6 +2936,7 @@ var
    cnt, i, Count: Integer;
    buf: array of byte;
    temp:string;
+   ip : string;
 begin
    with AThread.Connection do
    begin
@@ -2885,23 +2944,21 @@ begin
        if cnt <> 0 then
        begin
             SetLength(buf, cnt);
-            //setlength(temp, cnt * 2);
             ReadBuffer(buf[0], cnt);
-            if CheckBox1.Checked = True then
-                for i:= 0 to cnt - 1 do
-                begin
-                    temp := temp + inttohex(buf[i], 2);
-                end
-            else
-                for i:= 0 to cnt - 1 do
-                begin
-                    temp := temp + Char(buf[i]);
-                end;
-            //Memo1.Lines.Add(pchar(@buf[0])^);
-            Memo1.Lines.Add(temp);
-            if CheckBox25.Checked = True and RadioButton2.Checked = True then
+
+            ip := Socket.Binding.PeerIP;
+            form1.DisplayRecData(buf, cnt, ip);
+
+            if CheckBox25.Checked = True then
             begin
-                WriteBuffer(buf[0], cnt);
+                if RadioButton2.Checked = True then
+                begin
+                    WriteBuffer(buf[0], cnt);
+                end
+                else if RadioButton1.Checked = True then
+                begin
+                    Button12.Click;
+                end;
             end;
        end;
    end;  
@@ -2929,116 +2986,105 @@ procedure TForm1.Button10Click(Sender: TObject);
 begin
     if Button10.Caption = '连接' then
     begin
-        if inet_addr(pchar(Edit21.Text))=INADDR_NONE then
+        if inet_addr(pchar(Edit21.Text)) = INADDR_NONE then
         begin
             showmessage('ip不正确 ');
             Exit;
         end;
+
         with IdTCPClient1 do
         begin
             Host := Edit21.Text;
             Port := StrToint(Edit22.Text);
             try
-                Button10.Caption := '断开';
-                Connect(2000); // add a timeout here if you wish, eg: Connect(3000) = timeout after 3 seconds.
-                {try
-                    Memo1.Lines.Add(ReadLn());
-                except
-                    Memo1.Lines.Add('远程主机无响应!');
-                    Disconnect();
-                end;}
+
+                Connect(3000); // add a timeout here if you wish, eg: Connect(3000) = timeout after 3 seconds.
+                //Button10.Caption := '断开';
+                //Shape4.Brush.Color := clRed;
             except
-                //on E : Exception do
+                on E : Exception do
                 begin
                     //Memo1.Lines.Add('')
                     Button10.Caption := '连接';
+                    Shape4.Brush.Color := clGray;
                     //LockControls(True);
-                    //ShowMessage(E.Message);
+                    ShowMessage(E.Message);
                 end;
             end;
         end;
     end
     else
     begin
-    if IdTCPClient1.Connected then
+        if IdTCPClient1.Connected then
         try
-            Button10.Caption := '连接';
+            //Button10.Caption := '连接';
             IdTCPClient1.Disconnect; // we can disconnect from either the server or the client side
-            //btnConnect.Enabled := true;
-            //btnDisconnect.Enabled := false;
+            //Shape4.Brush.Color := clGray;
         except
             on E : Exception do
             begin
                 Button10.Caption := '断开';
+                Shape4.Brush.Color := clGray;
                 ShowMessage(E.Message);
             end;
         end;
     end;
 end;
 
-procedure TForm1.Button11Click(Sender: TObject);
-var
-   sm:TStringStream;
-   msize:Integer;
-begin
-   sm:=TStringStream.Create(memo5.text);
-   msize:=sm.Size;
-   Memo1.Lines.Add('发送时流大小为:'+inttostr(msize));
-   //IdTCPClient1.WriteInteger(msize);
-   IdTCPClient1.WriteStream(sm);
-   sm.Free;
-   {IdTCPClient1.WriteLn(memo5.text);
-   Memo1.Lines.Add(IdTCPClient1.ReadLn); }
-end;
-
 procedure TForm1.IdTCPServer1Connect(AThread: TIdPeerThread);
 var
     clientIP : string;
     clientPort : string;
+    dis : string;
 begin
-    //ServerThread := AThread;
-    clientIP := AThread.Connection.Socket.Binding.PeerIP;
 
-    //AThread.Connection.ReadInteger();
-    Memo1.Lines.Add('用户' + clientIP + '连接');
-    CheckListBox1.Items.Add(clientIP);
-    Label18.Caption := clientIP;
-    //AThread.Connection.WriteLn('100: 欢迎连接到简单TCP服务器！');
+    clientIP := AThread.Connection.Socket.Binding.PeerIP;
+    clientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
+    dis := clientIP + ' -- ' + ClientPort;
+    //Memo1.Lines.Add('用户 ' + clientIP + ':' + clientPort + ' 连接');
+    Memo1.Lines.Add('用户 ' + clientIP + ' 连接');
+    CheckListBox1.Items.Add(dis);
+    //CheckListBox1.Items.Add(AThread);
 end;
 
 procedure TForm1.IdTCPClient1Connected(Sender: TObject);
 var
     LString : String;
 begin
-    LString := IdTCPClient1.ReadLn;
-    Memo1.Lines.Add('Connected to remote server');
-    Memo1.Lines.Add('Server said -> ' + LString);
-    LockControls(true);
+    //Memo1.Lines.Add('connected');
+    Shape4.Brush.Color := clRed;
+    Button10.Caption := '断开';
+    ResumeThread(MythreadHandle);
 end;
 
 procedure TForm1.IdTCPClient1Disconnected(Sender: TObject);
 begin
-    Memo1.Lines.Add('Disconnected from remote server');
-    LockControls(false);
+    //Memo1.Lines.Add('Disconnected from remote server');
+    //LockControls(false);
+    Shape4.Brush.Color := clGray;
+    Button10.Caption := '连接';
+    SuspendThread(MythreadHandle); //挂起线程
 end;
 
 procedure TForm1.IdTCPServer1Disconnect(AThread: TIdPeerThread);
 var
-    clientIP : string;
+    ClientIp,ClientPort : string;
+    dis : string;
     i : Integer;
 begin
-    Memo1.Lines.Add(clientIP + '用户断开');
-    clientIP := AThread.Connection.Socket.Binding.PeerIP;
+    ClientIP := AThread.Connection.Socket.Binding.PeerIP;
+    ClientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
+    dis := clientIP + ' -- ' + ClientPort;
+    Memo1.Lines.Add(ClientIP + ':' + ClientPort + ' 用户断开');
+
     for i:=0 to CheckListBox1.Items.Count - 1 do
     begin
-        if clientIP = CheckListBox1.Items[i] then
+        if dis = CheckListBox1.Items[i] then
         begin
             CheckListBox1.Items.Delete(i);
             Exit;
         end;
     end;
-
-    
 end;
 
 procedure TForm1.Button12Click(Sender: TObject);
@@ -3053,11 +3099,13 @@ var
    Count : Integer;
    list : TList;
    clientIP : string;
+   dis : string;
 begin
     if Memo5.Text = '' then
         Exit;
 
     strbuf :=Memo5.text;
+    //SetLength(strbuf, 4096);
     sendbuf := '';
     // HEX
     if CheckBox26.Checked = True then
@@ -3096,6 +3144,7 @@ begin
     // server
     if RadioButton3.Checked = True then
     begin
+        clientIP := '';
         for i:=0 to CheckListBox1.Items.Count - 1 do
         begin
             if CheckListBox1.Checked[i] = True then
@@ -3105,10 +3154,14 @@ begin
                 try
                     for Count := 0 to List.Count -1 do
                     begin
-                        if clientIP = TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.PeerIP then
+                        dis := TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.PeerIP + ' -- ' +
+                               IntToStr(TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.Peerport);
+                        if clientIP = dis then
                         begin
                             try
                                 TIdPeerThread(List.Items[Count]).Connection.WriteBuffer(aucBuf[0], TextLen);
+                                SendLen := SendLen + TextLen;
+                                StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
                             except
                                 TIdPeerThread(List.Items[Count]).Stop;
                             end
@@ -3118,20 +3171,28 @@ begin
                     idtcpServer1.Threads.UnlockList;
                 end;
             end;
-        end
+        end;
+
+        if clientIP = '' then
+        begin
+            ShowMessage('请在客户端勾选要发送的对象');
+        end;
     end
     else      // client
     begin
+        if IdTCPClient1.Connected then
+        begin
+            IdTCPClient1.WriteBuffer(aucBuf[0], TextLen);
 
+            SendLen := SendLen + TextLen;
+            StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+        end
+        else
+        begin
+            ShowMessage('请先连接服务器');
+        end;
+        //TcpClient1.SendBuf(aucBuf[0], TextLen)
     end;
-    {sm:=TStringStream.Create(memo5.text);
-    msize:=sm.Size;
-    Memo1.Lines.Add('发送时流大小为:'+inttostr(msize));
-    //IdTCPClient1.WriteInteger(msize);
-    IdTCPClient1.WriteStream(sm);
-    sm.Free;
-    {IdTCPClient1.WriteLn(memo5.text);
-    Memo1.Lines.Add(IdTCPClient1.ReadLn); }
 end;
 
 procedure TForm1.CheckBox25Click(Sender: TObject);
@@ -3181,6 +3242,73 @@ begin
           ShowMessage('请输入0..9');
           Key := char(0);
      end;
+end;
+
+procedure TForm1.TcpClient1Receive(Sender: TObject; Buf: PAnsiChar;
+  var DataLen: Integer);
+begin
+    //ShowMessage(IntToStr(DataLen) + ' : '  + Buf);
+    Memo1.Lines.Add(Edit21.Text + ':') ;
+    Memo1.Lines.Add(Buf);
+
+    RecLen := RecLen + DataLen;
+    StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
+    StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+end;
+
+procedure TForm1.N5Click(Sender: TObject);
+var
+    IpAndPort : string;
+    dis : string;
+    realIp, realPort : string;
+    count, index : Integer;
+    list : TList;
+begin
+    index := CheckListBox1.ItemIndex;
+    IpAndPort := CheckListBox1.Items[index];
+    //ShowMessage('index=' + IntToStr(index)+ 'ip=' + IpAndPort);
+    IpAndPort := StringReplace(IpAndPort, ' ', '', [rfReplaceAll]);
+    IpAndPort := StringReplace(IpAndPort, '-', '', [rfReplaceAll]);
+    //ShowMessage(IpAndPort);
+
+    list := idtcpserver1.Threads.LockList;
+    try
+        for Count := 0 to List.Count -1 do
+        begin
+            dis := TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.PeerIP+
+                   IntToStr(TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.Peerport);
+            if IpAndPort = dis then
+            begin
+                //TIdPeerThread(List.Items[Count]).Stop;
+                TIdPeerThread(List.Items[Count]).Connection.Disconnect;
+                CheckListBox1.Checked[index] := False;
+                CheckListBox1.Items.Delete(index);
+            end
+        end;
+    finally
+        idtcpServer1.Threads.UnlockList;
+    end;
+end;
+
+procedure TForm1.RadioButton1Click(Sender: TObject);
+begin
+    if CheckBox25.Checked = True and RadioButton1.Checked = True then
+        RadioButton3.Checked := True;
+end;
+
+procedure TForm1.IP1Click(Sender: TObject);
+begin
+
+    if  IfDisIp = False then
+    begin
+        IfDisIp := True;
+        PopupMenu3.Items[0].Caption :=  'log:不显示IP';
+    end
+    else
+    begin
+        IfDisIp := False;
+        PopupMenu3.Items[0].Caption :=  'log:显示IP';
+    end;
 end;
 
 end.

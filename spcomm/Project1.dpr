@@ -9,7 +9,7 @@ uses
 
 begin
   Application.Initialize;
-  Application.Title := 'Spcom V1.0';
+  Application.Title := 'Spcom V1.3';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.Run;

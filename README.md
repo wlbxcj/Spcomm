@@ -1,6 +1,5 @@
 # Spcomm
 
-# Spcomm
 V1.3   2015-05-29
 
 1、增加TCP功能

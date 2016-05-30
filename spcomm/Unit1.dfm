@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 405
-  Top = 211
+  Left = 268
+  Top = 113
   Width = 800
   Height = 486
   Caption = 'Spcom V1.3'
@@ -307,7 +307,13 @@ object Form1: TForm1
         Left = 8
         Top = 16
         Width = 49
-        Height = 22
+        Height = 21
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Microsoft Sans Serif'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 0
       end
       object Button3: TButton
@@ -1328,6 +1334,7 @@ object Form1: TForm1
               #26368#26032#29256#26412#65306
               'https://github.com/wlbxcj/Spc'
               'omm')
+            ReadOnly = True
             TabOrder = 0
           end
         end

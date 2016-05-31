@@ -3102,7 +3102,13 @@ var
    dis : string;
 begin
     if Memo5.Text = '' then
+    begin
+        Timer4.Enabled := False;
+        CheckBox27.Checked := False;
+        ShowMessage('请先输入要发送的内容!!!');
         Exit;
+    end;
+        
 
     strbuf :=Memo5.text;
     //SetLength(strbuf, 4096);
@@ -3145,6 +3151,14 @@ begin
     if RadioButton3.Checked = True then
     begin
         clientIP := '';
+        if CheckListBox1.Items.Count = 0 then
+        begin
+            Timer4.Enabled := False;
+            CheckBox27.Checked := False;
+            ShowMessage('没有客户端链接!!!');
+            Exit;
+        end;            
+
         for i:=0 to CheckListBox1.Items.Count - 1 do
         begin
             if CheckListBox1.Checked[i] = True then
@@ -3175,7 +3189,7 @@ begin
 
         if clientIP = '' then
         begin
-            ShowMessage('请在客户端勾选要发送的对象');
+            Memo1.Lines.Add('请在客户端勾选要发送的对象');
         end;
     end
     else      // client
@@ -3189,7 +3203,7 @@ begin
         end
         else
         begin
-            ShowMessage('请先连接服务器');
+            Memo1.Lines.Add('请先连接服务器');
         end;
         //TcpClient1.SendBuf(aucBuf[0], TextLen)
     end;

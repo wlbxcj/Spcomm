@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 405
-  Top = 211
+  Left = 268
+  Top = 113
   Width = 800
   Height = 486
   Caption = 'Spcom V1.3'

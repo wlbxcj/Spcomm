@@ -3126,6 +3126,8 @@ begin
           if i <= TextLen then
           begin
                ShowMessage('非法的十六进制数');
+              Timer4.Enabled := False;
+              CheckBox27.Checked := False;
                Exit;
           end;
           if TextLen > 0 then

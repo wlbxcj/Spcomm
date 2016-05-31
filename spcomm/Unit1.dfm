@@ -1255,7 +1255,7 @@ object Form1: TForm1
             Font.Height = -11
             Font.Name = 'Courier New'
             Font.Style = []
-            MaxLength = 4096
+            MaxLength = 32767
             ParentFont = False
             TabOrder = 0
           end

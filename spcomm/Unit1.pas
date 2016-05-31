@@ -373,7 +373,7 @@ var
   strtmp : string;
   rbufstr :string;
   TimeBuf : TDateTime;
-  rbuf:array[0..5000] of byte;
+  rbuf:array[0..40960] of byte;
 begin
     //move(buffer^, pchar(@rbuf)^, DataLen);
     strtmp := '';
@@ -413,7 +413,7 @@ end;
 
 function MyThreadFun(P: Pointer):Integer;stdcall;
 var
-    buf : array[0..5000] of byte;
+    buf : array[0..40960] of byte;
     readlen : Integer;
     i : Integer;
     strtmp : string;
@@ -440,12 +440,14 @@ begin
                 //form1.Memo1.Lines.Add('==========' + IntToStr(readlen));
                 if 0 < readlen then
                 begin
+                    if readlen > 40960 then
+                        readlen := 40960;
                     Form1.IdTCPClient1.ReadBuffer(buf, readlen);
                     Form1.DisplayRecData(buf, readlen, Form1.Edit21.Text);
                 end;
             end;
         end;
-        Sleep(30);
+        Sleep(10);
     end;
 end;
 
@@ -3093,7 +3095,7 @@ var
    msize:Integer;
 
    i ,j,TextLen: Integer;
-   aucBuf : array[0..4096] of byte;
+   aucBuf : array[0..40960] of byte;
    SendBuf : string;
    strbuf : string;
    Count : Integer;

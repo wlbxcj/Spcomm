@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 268
-  Top = 113
+  Left = 211
+  Top = 44
   Width = 800
   Height = 486
   Caption = 'Spcom V1.3'
@@ -1090,15 +1090,8 @@ object Form1: TForm1
             Height = 14
             Caption = #26412#26426'IP '#65306
           end
-          object Label16: TLabel
-            Left = 64
-            Top = 13
-            Width = 49
-            Height = 14
-            Caption = '1.1.1.1'
-          end
           object Shape3: TShape
-            Left = 172
+            Left = 188
             Top = 9
             Width = 25
             Height = 17
@@ -1115,7 +1108,7 @@ object Form1: TForm1
           end
           object Button9: TButton
             Left = 162
-            Top = 29
+            Top = 31
             Width = 50
             Height = 21
             Caption = #24320#21551
@@ -1166,6 +1159,14 @@ object Form1: TForm1
             ParentFont = False
             PopupMenu = PopupMenu2
             TabOrder = 5
+          end
+          object Edit24: TEdit
+            Left = 64
+            Top = 8
+            Width = 113
+            Height = 22
+            TabOrder = 6
+            Text = '255.255.255.255'
           end
         end
         object GroupBox13: TGroupBox
@@ -1447,7 +1448,7 @@ object Form1: TForm1
     ReplyTexts = <>
     ReplyUnknownCommand.NumericCode = 0
     Left = 672
-    Top = 47
+    Top = 103
   end
   object IdTCPClient1: TIdTCPClient
     MaxLineAction = maException
@@ -1461,8 +1462,8 @@ object Form1: TForm1
   object IdIPWatch1: TIdIPWatch
     Active = False
     HistoryFilename = 'iphist.dat'
-    Left = 640
-    Top = 47
+    Left = 624
+    Top = 103
   end
   object Timer4: TTimer
     Enabled = False
@@ -1472,11 +1473,11 @@ object Form1: TForm1
   end
   object IdAntiFreeze1: TIdAntiFreeze
     Left = 704
-    Top = 47
+    Top = 103
   end
   object PopupMenu2: TPopupMenu
     Left = 736
-    Top = 55
+    Top = 111
     object N5: TMenuItem
       Caption = #26029#24320
       OnClick = N5Click
@@ -1489,5 +1490,22 @@ object Form1: TForm1
       Caption = 'log:'#26174#31034'IP'
       OnClick = IP1Click
     end
+  end
+  object IdHTTP1: TIdHTTP
+    MaxLineAction = maException
+    ReadTimeout = 0
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = 0
+    Request.ContentRangeStart = 0
+    Request.ContentType = 'text/html'
+    Request.Accept = 'text/html, */*'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 592
+    Top = 112
   end
 end

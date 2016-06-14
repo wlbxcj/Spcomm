@@ -8,7 +8,7 @@ uses
   Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
   IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread;
+  MConnect, SConnect, IdThread, IdHTTP, wininet;
 
 type
   TForm1 = class(TForm)
@@ -153,7 +153,6 @@ type
     Edit21: TEdit;
     IdIPWatch1: TIdIPWatch;
     Label15: TLabel;
-    Label16: TLabel;
     CheckBox25: TCheckBox;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
@@ -180,6 +179,8 @@ type
     IP1: TMenuItem;
     GroupBox15: TGroupBox;
     Memo6: TMemo;
+    IdHTTP1: TIdHTTP;
+    Edit24: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -317,9 +318,46 @@ var
   HaveData : Integer;
   EnterSend : Integer = 0;
   IfDisIp : Boolean = False;
+
+  CS:TRTLCriticalSection;  //全局临界区变量
 implementation
 
 {$R *.dfm}
+
+function GetPublicIP: string;
+var
+   strIP, URL: string;
+   iStart, iEnd: Integer;
+   MyIdHTTP: TIdHTTP;
+begin
+   Result := '';
+   MyIdHTTP := TIdHTTP.Create(nil);
+   try
+      try
+
+        MyIdHTTP.request.UserAgent:= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; MyIE2; CustomExchangeBrowser; .NET CLR 1.1.4322) ';
+        //URL := MyIdHTTP.Get('http://www.ip138.com/ip2city.asp');
+        URL := MyIdHTTP.Get('http://www.ip.cn/');
+      except
+
+      end;
+   finally
+      MyIdHTTP.Free;
+   end;
+
+    if Length(URL) <> 0 then
+    begin
+      iStart := Pos('code>', URL);
+      iEnd := Pos('</code', URL);
+      if (iStart <> 0) and (iEnd <> 0) then
+      begin
+          strIP := Trim(Copy(URL, iStart + 5, iEnd - iStart - 5));
+          if strIP <> '' then
+            Result := strIP;
+      end;
+    end;
+end;
+
 procedure tform1.AddToHistory(Str: string);
 var
   N: Integer;
@@ -638,6 +676,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
     MyIniFile : TIniFile;
     FileName : string;
+    strIp : string;
 begin
      SendLen := 0;
      RecLen  := 0;
@@ -702,9 +741,10 @@ begin
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
-     Label16.Caption := (IdIPWatch1.LocalIP);
 
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
+
+     InitializeCriticalSection(CS);  //初始化
 end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
@@ -1010,6 +1050,8 @@ begin
     MyIniFile.Destroy;
 
     TerminateThread(MythreadHandle, 0); //　终止线程
+
+    DeleteCriticalSection(CS);   //删除
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -1154,6 +1196,10 @@ begin
         Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
         Memo1.Clear;
         StatusBar1.Panels[2].Text := ' Total Lines: 0';
+        SendLen := 0;
+        StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+        RecLen := 0;
+        form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
     end;
 end;
 
@@ -1266,6 +1312,9 @@ end;
 
 
 procedure TForm1.Button13Click(Sender: TObject);
+var
+    strIp : string;
+    Types:integer;
 begin
     if ExtendFun = 0 then
     begin
@@ -1273,6 +1322,30 @@ begin
         ExtendFun := 1;
         GroupBox7.Visible := True;
         Button13.Caption := '隐藏';
+
+
+        Types:=INTERNET_CONNECTION_MODEM+INTERNET_CONNECTION_LAN+INTERNET_CONNECTION_PROXY;
+        if internetGetConnectedState(@types,0)  then
+        begin
+            strIp := GetPublicIP;
+            if Length(strIp) > 0 then
+            begin
+              Label15.Caption := '服务器 :';
+              Edit24.Text := strIp;
+            end
+            else
+            begin
+              Label15.Caption := '本地IP :';
+              Edit24.Text := IdIPWatch1.LocalIP;
+            end;
+        end
+        else
+        begin
+            Label15.Caption := '本地IP :';
+            Edit24.Text := IdIPWatch1.LocalIP;
+        end;
+
+        
     end
     else
     begin
@@ -2901,7 +2974,7 @@ begin
         Memo1.Lines.Add('服务器已开启');
         Shape3.Brush.Color := clRed;
         Button9.Caption := '停止';
-        Label16.Caption := (IdIPWatch1.LocalIP);
+        //Label16.Caption := (IdIPWatch1.LocalIP);
         
     end
     else
@@ -2957,6 +3030,8 @@ begin
                 if RadioButton2.Checked = True then
                 begin
                     WriteBuffer(buf[0], cnt);
+                    SendLen := SendLen + cnt;
+                    StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
                 end
                 else if RadioButton1.Checked = True then
                 begin
@@ -3044,8 +3119,8 @@ begin
     clientIP := AThread.Connection.Socket.Binding.PeerIP;
     clientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
     dis := clientIP + ' -- ' + ClientPort;
-    //Memo1.Lines.Add('用户 ' + clientIP + ':' + clientPort + ' 连接');
-    Memo1.Lines.Add('用户 ' + clientIP + ' 连接');
+    Memo1.Lines.Add('用户 ' + clientIP + ':' + clientPort + ' 连接');
+    //Memo1.Lines.Add('用户 ' + clientIP + ' 连接');
     CheckListBox1.Items.Add(dis);
     //CheckListBox1.Items.Add(AThread);
 end;
@@ -3078,16 +3153,21 @@ begin
     ClientIP := AThread.Connection.Socket.Binding.PeerIP;
     ClientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
     dis := clientIP + ' -- ' + ClientPort;
-    Memo1.Lines.Add(ClientIP + ':' + ClientPort + ' 用户断开');
-
-    for i:=0 to CheckListBox1.Items.Count - 1 do
+    Memo1.Lines.Add('用户 ' + ClientIP + ':' + ClientPort + ' 断开');
+    
+    for i:=0 to CheckListBox1.Items.Count do
     begin
         if dis = CheckListBox1.Items[i] then
         begin
+            EnterCriticalSection(CS);    //进入临界区
+            CheckListBox1.Checked[i] := False;
             CheckListBox1.Items.Delete(i);
+            LeaveCriticalSection(CS);  //离开临界区
             Exit;
         end;
     end;
+
+    
 end;
 
 procedure TForm1.Button12Click(Sender: TObject);
@@ -3291,6 +3371,11 @@ begin
     IpAndPort := StringReplace(IpAndPort, '-', '', [rfReplaceAll]);
     //ShowMessage(IpAndPort);
 
+    EnterCriticalSection(CS);    //进入临界区
+    CheckListBox1.Checked[index] := False;
+    CheckListBox1.Items.Delete(index);
+    LeaveCriticalSection(CS);  //离开临界区
+
     list := idtcpserver1.Threads.LockList;
     try
         for Count := 0 to List.Count -1 do
@@ -3300,14 +3385,14 @@ begin
             if IpAndPort = dis then
             begin
                 //TIdPeerThread(List.Items[Count]).Stop;
+
                 TIdPeerThread(List.Items[Count]).Connection.Disconnect;
-                CheckListBox1.Checked[index] := False;
-                CheckListBox1.Items.Delete(index);
             end
         end;
     finally
         idtcpServer1.Threads.UnlockList;
     end;
+    
 end;
 
 procedure TForm1.RadioButton1Click(Sender: TObject);

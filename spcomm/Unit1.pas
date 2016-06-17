@@ -281,6 +281,7 @@ type
     procedure N5Click(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
     procedure IP1Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 
   private
     { Private declarations }
@@ -3166,8 +3167,6 @@ begin
             Exit;
         end;
     end;
-
-    
 end;
 
 procedure TForm1.Button12Click(Sender: TObject);
@@ -3384,15 +3383,13 @@ begin
                    IntToStr(TIdPeerThread(List.Items[Count]).Connection.Socket.Binding.Peerport);
             if IpAndPort = dis then
             begin
-                //TIdPeerThread(List.Items[Count]).Stop;
-
                 TIdPeerThread(List.Items[Count]).Connection.Disconnect;
-            end
+            end;
         end;
     finally
         idtcpServer1.Threads.UnlockList;
     end;
-    
+
 end;
 
 procedure TForm1.RadioButton1Click(Sender: TObject);
@@ -3414,6 +3411,14 @@ begin
         IfDisIp := False;
         PopupMenu3.Items[0].Caption :=  'log:显示IP';
     end;
+end;
+
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+    if (IDYES = Application.MessageBox('确定要退出吗?','提示',MB_YesNo+MB_IconQuestion)) then
+        CanClose:=TRUE
+    else
+        CanClose:=FALSE;
 end;
 
 end.

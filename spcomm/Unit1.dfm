@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 643
-  Top = 160
+  Left = 444
+  Top = 166
   Width = 800
   Height = 501
   Caption = 'Spcom V1.6'
@@ -1610,7 +1610,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 218
-          Height = 0
+          Height = 132
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
@@ -1711,7 +1711,7 @@ object Form1: TForm1
         end
         object GroupBox13: TGroupBox
           Left = 0
-          Top = 128
+          Top = 133
           Width = 218
           Height = 55
           Caption = 'Client'
@@ -1765,9 +1765,9 @@ object Form1: TForm1
         end
         object GroupBox14: TGroupBox
           Left = 0
-          Top = 199
+          Top = 192
           Width = 218
-          Height = 204
+          Height = 211
           Align = alBottom
           Caption = 'Send'
           TabOrder = 2
@@ -2004,8 +2004,8 @@ object Form1: TForm1
     ReplyExceptionCode = 0
     ReplyTexts = <>
     ReplyUnknownCommand.NumericCode = 0
-    Left = 664
-    Top = 119
+    Left = 696
+    Top = 55
   end
   object IdTCPClient1: TIdTCPClient
     MaxLineAction = maException
@@ -2019,8 +2019,8 @@ object Form1: TForm1
   object IdIPWatch1: TIdIPWatch
     Active = False
     HistoryFilename = 'iphist.dat'
-    Left = 624
-    Top = 111
+    Left = 664
+    Top = 63
   end
   object Timer4: TTimer
     Enabled = False
@@ -2033,8 +2033,8 @@ object Form1: TForm1
     Top = 119
   end
   object PopupMenu2: TPopupMenu
-    Left = 712
-    Top = 111
+    Left = 736
+    Top = 55
     object N5: TMenuItem
       Caption = #26029#24320
       OnClick = N5Click
@@ -2062,8 +2062,8 @@ object Form1: TForm1
     Request.BasicAuthentication = False
     Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
     HTTPOptions = [hoForceEncodeParams]
-    Left = 592
-    Top = 112
+    Left = 616
+    Top = 56
   end
   object SaveDialog2: TSaveDialog
     Left = 578

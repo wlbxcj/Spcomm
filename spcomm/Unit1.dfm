@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 444
-  Top = 166
+  Left = 652
+  Top = 233
   Width = 800
   Height = 501
   Caption = 'Spcom V1.6'
@@ -1944,6 +1944,7 @@ object Form1: TForm1
     Top = 168
   end
   object Timer1: TTimer
+    Interval = 3000
     OnTimer = Timer1Timer
     Left = 16
     Top = 176

@@ -624,6 +624,7 @@ begin
   //Form1.memo1.Clear;
   //for i := 0  to Namelst.Count-1 do
   // Form1.memo1.Lines.Add(reg.ReadString(Namelst[i]));
+  //ShowMessage('namelst = ' + IntToStr(Namelst.Count) + 'totalcomnum = ' + IntToStr(TotalComNum));
   if Namelst.Count <> TotalComNum then
   begin
       TotalComNum  := Namelst.Count;
@@ -755,7 +756,7 @@ begin
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
-              Timer1.Interval := 3000;
+              Timer1.Interval := 5000;
          end;
      end
      else
@@ -771,8 +772,8 @@ begin
           CheckBox8.Enabled := False;
           CheckBox8.Checked := False;
           Timer3.Enabled := False;
-          TotalComNum := 0;
-          Timer1.Interval := 1000;
+          //TotalComNum := 0;
+          Timer1.Interval := 3000;
      end;
 end;
 
@@ -1417,6 +1418,8 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
     path : string;
 begin
+    Timer1.Enabled := False;
+
     GetComListFromReg();
 
     if Memo1.Lines.Count >= 100000 then           // 大于100000行自动保存
@@ -1434,6 +1437,8 @@ begin
         RecLen := 0;
         form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
     end;
+
+    Timer1.Enabled := True;
 end;
 
 procedure TForm1.CheckBox4Click(Sender: TObject);
@@ -1494,6 +1499,7 @@ end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 begin
+    SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
     if SaveDialog1.Execute then
         Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
 end;

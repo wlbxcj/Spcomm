@@ -1,4 +1,9 @@
 # Spcomm
+V1.7-DEBUG 2016-08-04
+1、使用vclskin2.60 For Delphi7 Cracked皮肤，去掉XPmain，避免按ALT后button消失的现象。
+2、修复关闭串口后、端口会变的问题
+
+
 V1.6  2016-07-03
 
 1、增加多字符串能发送的分包总数（大屏幕下可发送更多）

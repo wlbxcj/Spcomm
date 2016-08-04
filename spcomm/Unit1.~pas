@@ -4,17 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, SPComm, XPMan, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
+  Dialogs, StdCtrls, SPComm, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
   Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
   IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, IdHTTP, wininet;
+  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData, bsSkinCtrls,
+  bsSkinData;
 
 type
   TForm1 = class(TForm)
     Comm1: TComm;
     Button1: TButton;
-    XPManifest1: TXPManifest;
     GroupBox1: TGroupBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
@@ -258,6 +258,7 @@ type
     GroupBox16: TGroupBox;
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
+    SkinData1: TSkinData;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -756,7 +757,7 @@ begin
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
-              Timer1.Interval := 5000;
+              Timer1.Interval := 6000;
          end;
      end
      else

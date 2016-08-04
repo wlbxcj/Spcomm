@@ -219,7 +219,7 @@ object Form1: TForm1
     object CheckBox1: TCheckBox
       Left = 12
       Top = 44
-      Width = 20
+      Width = 16
       Height = 17
       TabOrder = 0
       OnClick = CheckBox1Click
@@ -236,7 +236,7 @@ object Form1: TForm1
     object CheckBox3: TCheckBox
       Left = 12
       Top = 11
-      Width = 20
+      Width = 13
       Height = 17
       Checked = True
       State = cbChecked
@@ -245,7 +245,7 @@ object Form1: TForm1
     object CheckBox5: TCheckBox
       Left = 12
       Top = 82
-      Width = 97
+      Width = 16
       Height = 17
       TabOrder = 3
     end

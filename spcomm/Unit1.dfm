@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 394
+  Left = 334
   Top = 153
   Width = 800
   Height = 501
-  Caption = 'Spcom V1.6'
+  Caption = 'Spcom V1.7'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2015,6 +2015,7 @@ object Form1: TForm1
   end
   object IdIPWatch1: TIdIPWatch
     Active = False
+    HistoryEnabled = False
     HistoryFilename = 'iphist.dat'
     Left = 664
     Top = 63

@@ -1,4 +1,8 @@
 # Spcomm
+V1.7 2016-09-07
+
+1、indy的 TIdIPWatch 控件的historyenabled设为false，这样将不在桌面显示iphist.dat文件
+
 V1.7-DEBUG 2016-08-04
 1、使用vclskin2.60 For Delphi7 Cracked皮肤，去掉XPmain，避免按ALT后button消失的现象。
 2、修复关闭串口后、端口会变的问题

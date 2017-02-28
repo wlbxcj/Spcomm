@@ -259,6 +259,7 @@ type
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
     SkinData1: TSkinData;
+    Button54: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -385,6 +386,7 @@ type
     procedure Button52Click(Sender: TObject);
     procedure Button53Click(Sender: TObject);
     procedure CheckBox53Click(Sender: TObject);
+    procedure Button54Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -3225,6 +3227,49 @@ begin
             CheckBox53.Checked := False;
         end;
     end;
+end;
+
+procedure TForm1.Button54Click(Sender: TObject);
+var
+    EditLen,j:Integer;
+    i:Integer;
+    TextLen:Integer;
+    sendbuf,strbuf: string;
+begin
+    strbuf :=Memo2.text;
+    sendbuf := '';
+    //if HexSendFlag = True then
+    begin
+        strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+        TextLen := Length(strbuf);
+        i:=1;
+        while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+              inc(i);
+        if i <= TextLen then
+        begin
+             ShowMessage('非法的十六进制数');
+             Exit;
+        end;
+        if TextLen > 0 then
+        begin
+            for j:=0 to (TextLen div 2 - 1) do
+            begin
+                //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+            end;
+
+            if TextLen mod 2 <> 0 then
+            begin
+                 //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+                 SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
+                 TextLen := (TextLen div 2) + 1;
+            end;
+            Memo1.Lines.Add('The len after change is ' + inttostr(TextLen));
+            Memo1.Lines.Add(SendBuf);
+        end;
+    end
 end;
 
 end.

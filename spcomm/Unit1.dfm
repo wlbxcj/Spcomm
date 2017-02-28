@@ -336,8 +336,8 @@ object Form1: TForm1
         OnClick = Button4Click
       end
       object Button5: TButton
-        Left = 8
-        Top = 64
+        Left = 0
+        Top = 128
         Width = 75
         Height = 17
         Caption = 'SendFile'
@@ -371,6 +371,15 @@ object Form1: TForm1
         Caption = #25193#23637
         TabOrder = 6
         OnClick = Button13Click
+      end
+      object Button54: TButton
+        Left = 60
+        Top = 55
+        Width = 65
+        Height = 20
+        Caption = 'HexToAscii'
+        TabOrder = 7
+        OnClick = Button54Click
       end
     end
     object Edit2: TEdit

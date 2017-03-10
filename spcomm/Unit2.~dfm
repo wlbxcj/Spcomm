@@ -1,6 +1,6 @@
 object Form2: TForm2
-  Left = -21
-  Top = 119
+  Left = 225
+  Top = 174
   Width = 796
   Height = 376
   Caption = 'ASCII'#30721#34920
@@ -16,8 +16,10 @@ object Form2: TForm2
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 769
-    Height = 327
+    Width = 788
+    Height = 342
+    Align = alClient
+    Center = True
     Picture.Data = {
       0A544A504547496D616765FD040700FFD8FFE000104A46494600010101006000
       600000FFDB004300010101010101010101010101010101010101010101010101

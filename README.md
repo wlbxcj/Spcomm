@@ -1,4 +1,12 @@
 # Spcomm
+
+V1.8 2017-03-10
+
+1、在扩展板里增加DES的加解密功能
+
+2、增加字符形式的16进制数转换成ASCII码的功能
+
+
 V1.7 2016-09-07
 
 1、indy的 TIdIPWatch 控件的historyenabled设为false，这样将不在桌面显示iphist.dat文件

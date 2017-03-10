@@ -5,11 +5,10 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
+  Menus,Registry,Unit2,Unit3, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
   IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData, bsSkinCtrls,
-  bsSkinData;
+  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData;
 
 type
   TForm1 = class(TForm)
@@ -260,6 +259,22 @@ type
     SaveDialog2: TSaveDialog;
     SkinData1: TSkinData;
     Button54: TButton;
+    ts2: TTabSheet;
+    Label16: TLabel;
+    GroupBox17: TGroupBox;
+    GroupBox18: TGroupBox;
+    Button55: TButton;
+    Button56: TButton;
+    Edit50: TEdit;
+    Label17: TLabel;
+    Label18: TLabel;
+    Edit51: TEdit;
+    CheckBox55: TCheckBox;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
+    memo7: TMemo;
+    CheckBox56: TCheckBox;
+    RadioButton7: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -387,6 +402,9 @@ type
     procedure Button53Click(Sender: TObject);
     procedure CheckBox53Click(Sender: TObject);
     procedure Button54Click(Sender: TObject);
+    procedure Button55Click(Sender: TObject);
+    procedure Button56Click(Sender: TObject);
+    procedure Button57Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -3266,10 +3284,242 @@ begin
                  SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
                  TextLen := (TextLen div 2) + 1;
             end;
-            Memo1.Lines.Add('The len after change is ' + inttostr(TextLen));
+            //Memo1.Lines.Add('The len after change is ' + inttostr(TextLen));
+            Memo1.Lines.Add('');
             Memo1.Lines.Add(SendBuf);
         end;
     end
+end;
+
+{解密  。…。……}
+procedure TForm1.Button55Click(Sender: TObject);
+var
+    strbuf : string;
+    SendBuf , sendtemp: string;
+    keytemp1,keytemp2, KEYBuf : string;
+    keylen : Integer;
+    i, j : Integer;
+begin
+    strbuf := Memo7.Text;
+    SendBuf := Memo7.Text;
+
+    // KEY
+    {keyBuf := Edit50.Text;
+    if CheckBox56.Checked = True then
+    begin
+          keyBuf := '';
+          keytemp1 := Edit50.Text;
+          if RadioButton5.Checked <> True then
+          begin
+              keytemp1 := keytemp1 + edit51.text;
+          end;
+          KEYBuf := TwoAsciiToHex(keytemp1);
+          if keybuf = '' then
+              exit;
+    end;}
+    // key
+      if (Edit50.Text = '') then
+      begin
+          ShowMessage('请输入KEY1');
+          Exit;
+      end
+      else
+      begin
+          if (Length(Edit50.Text) mod 8 <> 0) then
+          begin
+              ShowMessage('请输入8字节KEY1');
+              exit;
+          end;
+      end;
+     keybuf := Edit50.Text;
+     if RadioButton5.Checked <> True then
+      begin
+          if (Edit51.Text = '') then
+          begin
+              ShowMessage('请输入KEY2');
+              Exit;
+          end;
+          keybuf := keybuf + edit51.text;
+      end;
+
+     if CheckBox56.Checked = True then        // hex
+     begin
+          keytemp1 := keyBuf;
+          keyBuf := '';
+          KEYBuf := TwoAsciiToHex(keytemp1);
+          if keybuf = '' then
+              exit;
+     end
+     else
+     begin
+          if (Length(Edit50.Text) <> 8) or (Length(Edit51.Text) mod 8 <> 0) then
+          begin
+              ShowMessage('KEY1的长度错误');
+              Exit;
+          end;
+     end;
+
+     if (Length(keybuf) mod 8 <> 0) then
+     begin
+          ShowMessage('KEY的长度错误');
+          Exit;
+     end;
+
+
+    // data
+    if CheckBox55.checked = True then
+    begin
+        SendBuf := '';
+        strbuf := Memo7.Text;
+        SendBuf := TwoAsciiToHex(strbuf);
+          if SendBuf = '' then
+              exit;
+    end;
+
+    if Length(SendBuf) mod 8 <> 0 then
+    begin
+        ShowMessage('长度必需为8的整数倍');
+        Exit;
+    end;
+
+    if RadioButton5.Checked = True then
+    begin
+        strbuf := DecryStrHex(SendBuf, KEYBuf);
+    end
+    else if RadioButton6.Checked = True then
+    begin
+        Memo1.Lines.Add('解密:');
+        strbuf := '';
+        for j := 0 to Length(SendBuf) div 8 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
+            end;
+            strbuf := des3_16(sendtemp, keybuf, 0);
+            Memo1.Lines.Add(strbuf);
+        end;
+        exit;
+    end
+    else if RadioButton7.Checked = True then
+    begin
+        strbuf := Decry_cbc(sendbuf, keybuf);
+    end;
+
+
+    Memo1.Lines.Add('解密:');
+    Memo1.Lines.Add(strbuf);
+end;
+
+// 加密
+procedure TForm1.Button56Click(Sender: TObject);
+var
+    strbuf : string;
+    SendBuf ,sendtemp: string;
+    keytemp1,keybuf : string;
+    i, j : Integer;
+begin
+    strbuf := Memo7.Text;
+    SendBuf := Memo7.Text;
+
+    //data
+    if CheckBox55.Checked = True then
+     begin
+          SendBuf := '';
+          strbuf := Memo7.Text;
+          SendBuf := TwoAsciiToHex(strbuf);
+          if SendBuf = '' then
+              exit;
+     end;
+
+     // key
+      if (Edit50.Text = '') then
+      begin
+          ShowMessage('请输入KEY1');
+          Exit;
+      end
+      else
+      begin
+          if (Length(Edit50.Text) mod 8 <> 0) then
+          begin
+              ShowMessage('请输入8字节KEY1');
+          end;
+      end;
+     keybuf := Edit50.Text;
+     if RadioButton5.Checked <> True then
+      begin
+          if (Edit51.Text = '') then
+          begin
+              ShowMessage('请输入KEY2');
+              Exit;
+          end;
+          keybuf := keybuf + edit51.text;
+      end;
+
+     if CheckBox56.Checked = True then
+     begin
+          keytemp1 := keyBuf;
+          keyBuf := '';
+          KEYBuf := TwoAsciiToHex(keytemp1);
+          if keybuf = '' then
+              exit;
+     end
+     else
+     begin
+          if (Length(Edit50.Text) <> 8) or ((Length(Edit51.Text) mod 8) <> 0) then
+          begin
+              ShowMessage('KEY1的长度错误.');
+              Exit;
+          end;
+     end;
+
+     if (Length(keybuf) mod 8 <> 0) then
+     begin
+          ShowMessage('KEY的长度错误..');
+          Exit;
+     end;
+
+     if Length(SendBuf) mod 8 <> 0 then
+     begin
+        ShowMessage('长度必需为8的整数倍');
+        Exit;
+     end;
+
+
+    if RadioButton5.Checked = True then          // des
+    begin
+        strbuf := EncryStrHex(SendBuf, keybuf);
+    end
+    else if RadioButton6.Checked = True then    // 3des
+    begin
+        //strbuf := des3_16(SendBuf, keybuf, 1);
+        Memo1.Lines.Add('加密:');
+        strbuf := '';
+        for j := 0 to Length(SendBuf) div 8 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
+            end;
+            strbuf := des3_16(sendtemp, keybuf, 1);
+            Memo1.Lines.Add(strbuf);
+        end;
+        exit;
+    end
+    else if RadioButton7.Checked = True then    // cbc
+    begin
+        strbuf := Encrypt_cbc(sendbuf,keybuf);
+    end;
+
+    Memo1.Lines.Add('加密:');
+    Memo1.Lines.Add(strbuf);
+end;
+
+procedure TForm1.Button57Click(Sender: TObject);
+begin
+    ShowMessage(Encrypt_cbc('12345678876543217418529631234567', '1234567890123456'));
 end;
 
 end.

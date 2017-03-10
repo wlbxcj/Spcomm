@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 334
-  Top = 153
+  Left = 434
+  Top = 44
   Width = 800
   Height = 501
-  Caption = 'Spcom V1.7'
+  Caption = 'Spcom V1.8'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -21,6 +21,13 @@ object Form1: TForm1
     Top = 208
     Width = 65
     Height = 65
+  end
+  object Label16: TLabel
+    Left = 584
+    Top = 192
+    Width = 49
+    Height = 14
+    Caption = 'Label16'
   end
   object GroupBox3: TGroupBox
     Left = 193
@@ -1864,6 +1871,128 @@ object Form1: TForm1
           end
         end
       end
+      object ts2: TTabSheet
+        Caption = 'DES'
+        ImageIndex = 4
+        object GroupBox17: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 218
+          Height = 105
+          Align = alTop
+          Caption = 'data'
+          TabOrder = 0
+          object memo7: TMemo
+            Left = 2
+            Top = 16
+            Width = 214
+            Height = 87
+            Align = alClient
+            TabOrder = 0
+          end
+        end
+        object GroupBox18: TGroupBox
+          Left = 0
+          Top = 112
+          Width = 218
+          Height = 291
+          Align = alBottom
+          Caption = 'operation'
+          TabOrder = 1
+          object Label17: TLabel
+            Left = 8
+            Top = 68
+            Width = 28
+            Height = 14
+            Caption = 'KEY1'
+          end
+          object Label18: TLabel
+            Left = 8
+            Top = 93
+            Width = 28
+            Height = 14
+            Caption = 'KEY2'
+          end
+          object Button55: TButton
+            Left = 8
+            Top = 168
+            Width = 75
+            Height = 25
+            Caption = #35299#23494
+            TabOrder = 0
+            OnClick = Button55Click
+          end
+          object Button56: TButton
+            Left = 128
+            Top = 168
+            Width = 75
+            Height = 25
+            Caption = #21152#23494
+            TabOrder = 1
+            OnClick = Button56Click
+          end
+          object Edit50: TEdit
+            Left = 40
+            Top = 64
+            Width = 169
+            Height = 22
+            TabOrder = 2
+          end
+          object Edit51: TEdit
+            Left = 40
+            Top = 88
+            Width = 169
+            Height = 22
+            TabOrder = 3
+          end
+          object CheckBox55: TCheckBox
+            Left = 40
+            Top = 15
+            Width = 137
+            Height = 17
+            Caption = 'DATA HEX INPUT'
+            Checked = True
+            State = cbChecked
+            TabOrder = 4
+          end
+          object RadioButton5: TRadioButton
+            Left = 40
+            Top = 120
+            Width = 57
+            Height = 17
+            Caption = 'DES'
+            Checked = True
+            TabOrder = 5
+            TabStop = True
+          end
+          object RadioButton6: TRadioButton
+            Left = 112
+            Top = 120
+            Width = 113
+            Height = 17
+            Caption = '3DES'
+            TabOrder = 6
+          end
+          object CheckBox56: TCheckBox
+            Left = 40
+            Top = 32
+            Width = 129
+            Height = 17
+            Caption = 'KEY  HEX INPUT'
+            Checked = True
+            State = cbChecked
+            TabOrder = 7
+          end
+          object RadioButton7: TRadioButton
+            Left = 40
+            Top = 144
+            Width = 113
+            Height = 17
+            Caption = 'CBC'
+            TabOrder = 8
+          end
+        end
+      end
       object TabSheet3: TTabSheet
         Caption = 'More'
         ImageIndex = 3
@@ -1971,8 +2100,8 @@ object Form1: TForm1
   object Timer3: TTimer
     Enabled = False
     OnTimer = Timer3Timer
-    Left = 522
-    Top = 40
+    Left = 450
+    Top = 24
   end
   object pm1: TPopupMenu
     Left = 16
@@ -2010,8 +2139,8 @@ object Form1: TForm1
     ReplyExceptionCode = 0
     ReplyTexts = <>
     ReplyUnknownCommand.NumericCode = 0
-    Left = 696
-    Top = 55
+    Left = 416
+    Top = 103
   end
   object IdTCPClient1: TIdTCPClient
     MaxLineAction = maException
@@ -2019,37 +2148,37 @@ object Form1: TForm1
     OnDisconnected = IdTCPClient1Disconnected
     OnConnected = IdTCPClient1Connected
     Port = 0
-    Left = 640
-    Top = 247
+    Left = 368
+    Top = 215
   end
   object IdIPWatch1: TIdIPWatch
     Active = False
     HistoryEnabled = False
     HistoryFilename = 'iphist.dat'
-    Left = 664
-    Top = 63
+    Left = 344
+    Top = 71
   end
   object Timer4: TTimer
     Enabled = False
     OnTimer = Timer4Timer
-    Left = 736
-    Top = 336
+    Left = 360
+    Top = 256
   end
   object IdAntiFreeze1: TIdAntiFreeze
-    Left = 696
-    Top = 119
+    Left = 376
+    Top = 95
   end
   object PopupMenu2: TPopupMenu
-    Left = 736
-    Top = 55
+    Left = 384
+    Top = 31
     object N5: TMenuItem
       Caption = #26029#24320
       OnClick = N5Click
     end
   end
   object PopupMenu3: TPopupMenu
-    Left = 576
-    Top = 55
+    Left = 416
+    Top = 63
     object IP1: TMenuItem
       Caption = 'log:'#26174#31034'IP'
       OnClick = IP1Click
@@ -2069,12 +2198,12 @@ object Form1: TForm1
     Request.BasicAuthentication = False
     Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
     HTTPOptions = [hoForceEncodeParams]
-    Left = 616
-    Top = 56
+    Left = 456
+    Top = 120
   end
   object SaveDialog2: TSaveDialog
-    Left = 578
-    Top = 185
+    Left = 354
+    Top = 177
   end
   object SkinData1: TSkinData
     Active = True

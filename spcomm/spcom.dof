@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=8
 Release=0
-Build=2
+Build=5
 Debug=0
 PreRelease=1
 Special=0
@@ -126,7 +126,7 @@ CodePage=936
 [Version Info Keys]
 CompanyName=
 FileDescription=多功能小工具
-FileVersion=1.8.0.2
+FileVersion=1.8.0.5
 InternalName=
 LegalCopyright=
 LegalTrademarks=

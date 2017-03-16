@@ -275,6 +275,7 @@ type
     memo7: TMemo;
     CheckBox56: TCheckBox;
     RadioButton7: TRadioButton;
+    SkinData2: TSkinData;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);

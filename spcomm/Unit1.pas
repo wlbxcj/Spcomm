@@ -3082,10 +3082,13 @@ end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-    if (IDYES = Application.MessageBox('确定要退出吗?','提示',MB_YesNo+MB_IconQuestion)) then
-        CanClose:=TRUE
-    else
-        CanClose:=FALSE;
+    if Memo1.Text <> '' then
+    begin
+        if (IDYES = Application.MessageBox('确定要退出吗？数据是否已保存?','提示',MB_YesNo+MB_IconQuestion)) then
+            CanClose:=TRUE
+        else
+            CanClose:=FALSE;
+    end;
 end;
 
 procedure TForm1.Button11Click(Sender: TObject);

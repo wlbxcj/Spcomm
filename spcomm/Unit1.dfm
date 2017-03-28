@@ -306,9 +306,9 @@ object Form1: TForm1
     end
     object GroupBox6: TGroupBox
       Left = 2
-      Top = 130
+      Top = 112
       Width = 191
-      Height = 165
+      Height = 183
       Align = alBottom
       TabOrder = 3
       object Edit1: TEdit
@@ -491,7 +491,7 @@ object Form1: TForm1
       Top = 16
       Width = 226
       Height = 432
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 368
-  Top = 168
+  Left = 241
+  Top = 51
   Width = 800
   Height = 501
   Caption = 'Spcom V1.8'
@@ -124,10 +124,10 @@ object Form1: TForm1
       Width = 73
       Height = 22
       ItemHeight = 14
-      ItemIndex = 0
       TabOrder = 1
       Text = '9600'
       OnChange = ComboBox2Change
+      OnClick = ComboBox2Click
       Items.Strings = (
         '9600'
         '14400'
@@ -136,7 +136,10 @@ object Form1: TForm1
         '38400'
         '56000'
         '57600'
-        '115200')
+        '115200'
+        '230400'
+        '460800'
+        'Custom')
     end
     object ComboBox3: TComboBox
       Left = 64
@@ -259,9 +262,9 @@ object Form1: TForm1
   end
   object GroupBox4: TGroupBox
     Left = 0
-    Top = 152
+    Top = 144
     Width = 195
-    Height = 297
+    Height = 305
     TabOrder = 4
     object Label7: TLabel
       Left = 157
@@ -308,8 +311,8 @@ object Form1: TForm1
       Left = 2
       Top = 112
       Width = 191
-      Height = 183
-      Align = alBottom
+      Height = 193
+      Align = alCustom
       TabOrder = 3
       object Edit1: TEdit
         Left = 8
@@ -2075,7 +2078,7 @@ object Form1: TForm1
   end
   object OpenDialog1: TOpenDialog
     Left = 88
-    Top = 168
+    Top = 151
   end
   object Timer1: TTimer
     Interval = 3000

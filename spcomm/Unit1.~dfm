@@ -124,10 +124,10 @@ object Form1: TForm1
       Width = 73
       Height = 22
       ItemHeight = 14
-      ItemIndex = 0
       TabOrder = 1
       Text = '9600'
       OnChange = ComboBox2Change
+      OnClick = ComboBox2Click
       Items.Strings = (
         '9600'
         '14400'
@@ -136,7 +136,10 @@ object Form1: TForm1
         '38400'
         '56000'
         '57600'
-        '115200')
+        '115200'
+        '230400'
+        '460800'
+        'Custom')
     end
     object ComboBox3: TComboBox
       Left = 64

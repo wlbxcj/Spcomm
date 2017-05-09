@@ -406,6 +406,7 @@ type
     procedure Button55Click(Sender: TObject);
     procedure Button56Click(Sender: TObject);
     procedure Button57Click(Sender: TObject);
+    procedure ComboBox2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -740,7 +741,8 @@ begin
      begin
          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
          HaveOpenCom    := Comm1.CommName;
-         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         //Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
+         Comm1.BaudRate := StrToInt(ComboBox2.text);
          if ComboBox4.Items[ComboBox4.itemindex] = '5' then
          begin
               Comm1.ByteSize := _5;
@@ -961,6 +963,10 @@ end;
 
 procedure TForm1.ComboBox2Change(Sender: TObject);
 begin
+     if ComboBox2.ItemIndex = -1 then
+     begin
+          Exit
+     end;
      if Button1.Caption = '关闭串口' then
      begin
           Shape1.Brush.Color := clGray;
@@ -973,7 +979,8 @@ begin
               Shape1.Brush.Color := clRed;
               Button1.Caption := '关闭串口'
          end;
-     end
+     end;
+     //ShowMessage(IntToStr(ComboBox2.ItemIndex));
 end;
 
 procedure TForm1.ComboBox3Change(Sender: TObject);
@@ -3524,6 +3531,17 @@ end;
 procedure TForm1.Button57Click(Sender: TObject);
 begin
     ShowMessage(Encrypt_cbc('12345678876543217418529631234567', '1234567890123456'));
+end;
+
+procedure TForm1.ComboBox2Click(Sender: TObject);
+begin
+      comboBox2.items[10] := 'Custom';
+     if ComboBox2.ItemIndex = 10 then
+     begin
+          comboBox2.items[ComboBox2.itemindex] := '';
+          ComboBox2.itemindex := 10;
+     end;
+     //ShowMessage('5 ' + IntToStr(ComboBox2.ItemIndex));
 end;
 
 end.

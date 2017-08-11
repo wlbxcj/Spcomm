@@ -454,16 +454,56 @@ implementation
 function GetPublicIP: string;
 var
    strIP, URL: string;
-   iStart, iEnd: Integer;
+   iStart, iEnd, i: Integer;
    MyIdHTTP: TIdHTTP;
 begin
    Result := '';
    MyIdHTTP := TIdHTTP.Create(nil);
+
+    //第1次尝试获取IP
+    try
+      try
+
+        MyIdHTTP.request.UserAgent:= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; MyIE2; CustomExchangeBrowser; .NET CLR 1.1.4322) ';
+        //URL := MyIdHTTP.Get('http://www.ip138.com/ip2city.asp'); http://www.ip138.com/
+        URL := MyIdHTTP.Get('http://www.net.cn/static/customercare/yourip.asp');
+        //URL := MyIdHTTP.Get('http://www.ip.cn/');
+      except
+
+      end;
+   finally
+      MyIdHTTP.Free;
+   end;
+    //Form1.Memo1.Lines.Add(url);
+    if Length(URL) <> 0 then
+    begin
+      iStart := Pos('<h2>', URL);
+      if (iStart <> 0) then
+      begin
+          for I := 0 to 15 do
+          begin
+              if URL[istart+4+i] in [',' , ' ', '<'] then
+                break;
+              //strIP[i] := URL[istart+4+i];
+              //Result := strIP;
+          end;
+          strIP := Trim(Copy(URL, iStart + 4, i));
+          if strIP <> '' then
+          begin
+            Result := strIP;
+            //ShowMessage('2 ' + Result);
+            Exit;
+          end;
+      end;
+    end;
+
+    // 第2次尝试获取IP
    try
       try
 
         MyIdHTTP.request.UserAgent:= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; MyIE2; CustomExchangeBrowser; .NET CLR 1.1.4322) ';
-        //URL := MyIdHTTP.Get('http://www.ip138.com/ip2city.asp');
+        //URL := MyIdHTTP.Get('http://www.ip138.com/ip2city.asp'); http://www.ip138.com/
+        //URL := MyIdHTTP.Get('http://www.net.cn/static/customercare/yourip.asp');
         URL := MyIdHTTP.Get('http://www.ip.cn/');
       except
 
@@ -471,7 +511,7 @@ begin
    finally
       MyIdHTTP.Free;
    end;
-
+    //Form1.Memo1.Lines.Add(url);
     if Length(URL) <> 0 then
     begin
       iStart := Pos('code>', URL);
@@ -480,7 +520,11 @@ begin
       begin
           strIP := Trim(Copy(URL, iStart + 5, iEnd - iStart - 5));
           if strIP <> '' then
+          begin
             Result := strIP;
+            //ShowMessage('1 ' + Result);
+            Exit;
+          end;
       end;
     end;
 end;

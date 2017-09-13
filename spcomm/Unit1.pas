@@ -276,6 +276,8 @@ type
     CheckBox56: TCheckBox;
     RadioButton7: TRadioButton;
     SkinData2: TSkinData;
+    F1: TMenuItem;
+    N6: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -407,6 +409,8 @@ type
     procedure Button56Click(Sender: TObject);
     procedure Button57Click(Sender: TObject);
     procedure ComboBox2Click(Sender: TObject);
+    procedure F1Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -3586,6 +3590,19 @@ begin
           ComboBox2.itemindex := 10;
      end;
      //ShowMessage('5 ' + IntToStr(ComboBox2.ItemIndex));
+end;
+
+procedure TForm1.F1Click(Sender: TObject);
+begin
+    //Memo2.SelectAll;
+    Memo2.CopyToClipboard;
+    Memo2.SetFocus;
+end;
+
+procedure TForm1.N6Click(Sender: TObject);
+begin
+    Memo2.PasteFromClipboard;
+    Memo2.SetFocus;
 end;
 
 end.

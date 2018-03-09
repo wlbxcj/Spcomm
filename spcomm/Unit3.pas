@@ -319,8 +319,9 @@ var
   StrResult: String;
   I, J: Integer;
 begin
-  if (Length(Str) > 0) and (Ord(Str[Length(Str)]) = 0) then
-    raise Exception.Create('Error: the last char is NULL char.');
+  //ShowMessage('aaaaaaaaaaa' + IntToStr(Length(Str)) + ' Ord(Str[Length(Str)])' + IntToStr(Ord(Str[Length(Str)])));
+  //if (Length(Str) > 0) and (Ord(Str[Length(Str)-1]) = 0) then
+  //  raise Exception.Create('Error: the last char is NULL char.');
   if Length(Key) < 8 then
     while Length(Key) < 8 do Key := Key + Chr(0);
   while Length(Str) mod 8 <> 0 do Str := Str + Chr(0);
@@ -458,7 +459,7 @@ begin
     begin
         str := str + IntToHex(ord(dataStr[1+i]),2) + ' ';
     end;}
-    //showmessage(str);
+    //showmessage('66666 ' + IntToStr(mode));
     if mode = 0 then
     begin
         Temp := DecryStrhex(dataStr, keytemp1);

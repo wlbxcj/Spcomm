@@ -3491,7 +3491,7 @@ begin
           if SendBuf = '' then
               exit;
      end;
-
+     //ShowMessage('1111111' + SendBuf);
      // key
       if (Edit50.Text = '') then
       begin
@@ -3538,7 +3538,7 @@ begin
           ShowMessage('KEY的长度错误..');
           Exit;
      end;
-
+     //ShowMessage('Length(SendBuf) ' + IntToStr(Length(SendBuf)));
      if Length(SendBuf) mod 8 <> 0 then
      begin
         ShowMessage('长度必需为8的整数倍');
@@ -3552,6 +3552,7 @@ begin
     end
     else if RadioButton6.Checked = True then    // 3des
     begin
+        //ShowMessage('22222222');
         //strbuf := des3_16(SendBuf, keybuf, 1);
         Memo1.Lines.Add('加密:');
         strbuf := '';
@@ -3562,7 +3563,9 @@ begin
             begin
                 sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
             end;
+            //ShowMessage('444444');
             strbuf := des3_16(sendtemp, keybuf, 1);
+            //ShowMessage('3333333');
             Memo1.Lines.Add(strbuf);
         end;
         exit;

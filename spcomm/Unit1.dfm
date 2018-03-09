@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 312
-  Top = 62
+  Left = 436
+  Top = 213
   Width = 800
   Height = 501
-  Caption = 'Spcom V1.8'
+  Caption = 'Spcom V1.9'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -320,7 +320,7 @@ object Form1: TForm1
         Left = 8
         Top = 13
         Width = 49
-        Height = 22
+        Height = 21
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

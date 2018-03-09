@@ -567,7 +567,7 @@ begin
     resulttemp := '';
     datalen := Length(str);
     iv := '';
-    ShowMessage(IntToStr(datalen));
+    //ShowMessage(IntToStr(datalen));
     for i := 0 to datalen div 8 -1 do
     begin
         datatemp := '';
@@ -577,22 +577,17 @@ begin
         end;
         cryptdata := datatemp;
         datatemp := des3_16(datatemp, key, 0);
-        ShowMessage(datatemp);
+        //ShowMessage(datatemp);
         datatemp := TwoAsciiToHex(datatemp);
         if m <> 0 then
             datatemp := AxorB(datatemp, iv, 8);
         iv := cryptdata;
 
-        //ShowMessage('1 ' + datatemp);
         inc(m);
-        //iv := '';
         for j := 0 to 7 do
         begin
-            //iv := iv + datatemp[j+1];
             resulttemp := resulttemp + IntToHex(ord(datatemp[j+1]), 2)+ ' ';
         end;
-        //datatemp := TwoAsciiToHex(datatemp);
-        //resulttemp := resulttemp + datatemp;
     end;
     result := resulttemp;
 end;

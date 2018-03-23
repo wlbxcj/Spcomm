@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2,Unit3, JvHidControllerClass, IdBaseComponent, IdComponent,
+  Menus,Registry,Unit2,Unit3,Unit4, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
   IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData;
@@ -278,6 +278,21 @@ type
     SkinData2: TSkinData;
     F1: TMenuItem;
     N6: TMenuItem;
+    TabSheet4: TTabSheet;
+    GroupBox19: TGroupBox;
+    GroupBox20: TGroupBox;
+    GroupBox21: TGroupBox;
+    Button58: TButton;
+    Button59: TButton;
+    Memo8: TMemo;
+    Memo9: TMemo;
+    GroupBox22: TGroupBox;
+    CheckBox57: TCheckBox;
+    GroupBox23: TGroupBox;
+    RadioButton8: TRadioButton;
+    RadioButton9: TRadioButton;
+    GroupBox24: TGroupBox;
+    Memo10: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -411,6 +426,8 @@ type
     procedure ComboBox2Click(Sender: TObject);
     procedure F1Click(Sender: TObject);
     procedure N6Click(Sender: TObject);
+    procedure Button58Click(Sender: TObject);
+    procedure Button59Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -452,6 +469,8 @@ var
 
   CS:TRTLCriticalSection;  //全局临界区变量
 implementation
+
+uses Unit5;
 
 {$R *.dfm}
 
@@ -976,6 +995,7 @@ begin
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
 
      InitializeCriticalSection(CS);  //初始化
+
 end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
@@ -3580,8 +3600,33 @@ begin
 end;
 
 procedure TForm1.Button57Click(Sender: TObject);
+var
+  per:TMyArray;
+  n:LongInt;
+  out :TMyArray;
+  out1 :TMyArray;
+const
+  key1 :array [0..15] of Byte=($01,$23,$45,$67,$89,$ab,$cd,$ef,$fe,$dc,$ba,$98,$76,$54,$32,$10);
+  data1 :array [0..15] of Byte=($01,$23,$45,$67,$89,$ab,$cd,$ef,$fe,$dc,$ba,$98,$76,$54,$32,$10);
+
 begin
-    ShowMessage(Encrypt_cbc('12345678876543217418529631234567', '1234567890123456'));
+    form5.Show;
+    //ShowMessage(Encrypt_cbc('12345678876543217418529631234567', '1234567890123456'));
+    per := PUT_ULONG_BE(10000, 0);
+    ShowMessage('per0 = ' + IntToStr(Per[0]) +'per1 = ' + IntToStr(Per[1]) +
+    'per2 = ' + IntToStr(Per[2]) +'per3 = ' + IntToStr(Per[3]));
+    n := 0;
+    n := GET_ULONG_BE(per, 0);
+    ShowMessage('n=' + IntToStr(n));
+    n := ROTL($f0008000, 10);
+    ShowMessage( 'n111= '+ IntToHex(n,0));
+    out := sm4_crypt_ecb(1,key1,data1,16);
+    for  n:= 0 to 15 do
+      Memo1.Lines.Add('out1:'+ IntTohex(out[n], 0));
+
+    out1 := sm4_crypt_ecb(0, key1, out, 16);
+    for  n:= 0 to 15 do
+      Memo1.Lines.Add('out0:'+ IntTohex(out1[n], 0));
 end;
 
 procedure TForm1.ComboBox2Click(Sender: TObject);
@@ -3606,6 +3651,389 @@ procedure TForm1.N6Click(Sender: TObject);
 begin
     Memo2.PasteFromClipboard;
     Memo2.SetFocus;
+end;
+
+procedure TForm1.Button58Click(Sender: TObject);
+var
+    datastr ,datatmp: string;
+    keystr , sendtemp: string;
+    IVSTR,ivstrtmp : string;
+    keytemp1,keytemp2, KEYBuf : string;
+    keylen, datalen, finish_len, ivlen : Integer;
+    i, j : Integer;
+    mykey : array[0..15] of Byte;
+    myiv : array[0..15] of Byte;
+    mydata : array[0..4095] of Byte;
+    mydatatmp : array[0..15] of Byte;
+    outbuf :TMyArray;
+    cbcout :TMyArray4096Byte;
+begin
+    datastr := Memo8.Text;
+    keystr := Memo9.Text;
+
+    if datastr = '' then
+    begin
+        ShowMessage('请输入数据');
+        Exit;
+    end;
+    if keystr = '' then
+    begin
+        ShowMessage('请输入16字节key');
+        Exit;
+    end;
+    // data len
+    if CheckBox57.Checked <> True then   // str
+    begin
+        datalen := Length(datastr);
+        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        begin
+            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datastr[i+1]);
+                //Memo1.Lines.Add('mydata['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end
+    else    // hex data
+    begin
+        datatmp := '';
+        datatmp := TwoAsciiToHex(datastr);
+        datalen := Length(datatmp);
+        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        begin
+            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datatmp[i+1]);
+                //Memo1.Lines.Add('mydatatmp['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end;
+
+    // key len
+    if CheckBox57.Checked <> True then  // str
+    begin
+        keylen := Length(keystr);
+        if (keylen <> 16) then
+        begin
+            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to 15 do
+            begin
+                mykey[i] :=  Byte(keystr[i+1]);
+                //Memo1.Lines.Add('mykey['+inttostr(i)+']='+inttohex(mykey[i], 0))
+            end;
+        end;
+    end
+    else  // hex
+    begin
+        keytemp1 := '';
+        keytemp1 := TwoAsciiToHex(keystr);
+        keylen := Length(keytemp1);
+        if (keylen <> 16) then
+        begin
+            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to keylen-1 do
+            begin
+                mykey[i] :=  Byte(keytemp1[i+1]);
+                //Memo1.Lines.Add('mykeytmp['+inttostr(i)+']='+inttohex(mykey[i], 0))
+            end;
+        end;
+    end;
+
+
+    if RadioButton8.Checked = True then   // ecb加密
+    begin
+        Memo1.Lines.Add('ECB ENC:');
+        finish_len := 0;
+        while (finish_len < datalen) do
+        begin
+          for i:= 0 to 15 do
+            mydatatmp[i] := mydata[i+ finish_len];
+
+          outbuf := sm4_crypt_ecb(1, mykey, mydatatmp, 16);
+          finish_len := finish_len + 16;
+          keytemp2 := '';
+          for i:= 0 to 15 do
+          begin
+              keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
+          end;
+          Memo1.Lines.Add(keytemp2);
+        end;
+
+    end
+    else  // cbc 加密
+    begin
+        IVSTR :=  Memo10.Text;
+        if IVSTR = '' then    // 为空的话，默认全为0
+        begin
+            for i := 0 to 15 do
+            begin
+                myiv[i] := $0;
+            end;
+        end
+        else
+        begin
+           if CheckBox57.Checked <> True then  // str
+           begin
+              ivlen := Length(IVSTR);
+              if (ivlen <> 16) then
+              begin
+                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                  Exit;
+              end
+              else
+              begin
+                  for i:= 0 to 15 do
+                  begin
+                      myiv[i] :=  Byte(IVSTR[i+1]);
+                      //Memo1.Lines.Add('myiv['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                  end;
+              end;
+           end
+           else  // hex
+           begin
+              ivstrtmp := '';
+              ivstrtmp := TwoAsciiToHex(ivstr);
+              ivlen := Length(ivstrtmp);
+              if (ivlen <> 16) then
+              begin
+                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                  Exit;
+              end
+              else
+              begin
+                  for i:= 0 to keylen-1 do
+                  begin
+                      myiv[i] :=  Byte(ivstrtmp[i+1]);
+                      //Memo1.Lines.Add('myivtmp['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                  end;
+              end;
+           end;
+        end;
+
+        cbcout := sm4_crypt_cbc(1, mykey, mydata, datalen, myiv);
+        keytemp2 := '';
+        Memo1.Lines.Add('CBC ENC:');
+        for i:= 0 to datalen-1 do
+        begin
+            if ((i mod 16) = 0) and (i <> 0) then
+            begin
+                Memo1.Lines.Add(keytemp2);
+                keytemp2 := '';
+            end;
+            keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
+        end;
+        Memo1.Lines.Add(keytemp2);
+    end;
+
+end;
+
+procedure TForm1.Button59Click(Sender: TObject);
+var
+    datastr ,datatmp: string;
+    keystr , sendtemp: string;
+    IVSTR,ivstrtmp : string;
+    keytemp1,keytemp2, KEYBuf : string;
+    keylen, datalen, finish_len, ivlen : Integer;
+    i, j : Integer;
+    mykey : array[0..15] of Byte;
+    myiv : array[0..15] of Byte;
+    mydata : array[0..4095] of Byte;
+    mydatatmp : array[0..15] of Byte;
+    outbuf :TMyArray;
+    cbcout :TMyArray4096Byte;
+begin
+    datastr := Memo8.Text;
+    keystr := Memo9.Text;
+
+    if datastr = '' then
+    begin
+        ShowMessage('请输入数据');
+        Exit;
+    end;
+    if keystr = '' then
+    begin
+        ShowMessage('请输入16字节key');
+        Exit;
+    end;
+    // data len
+    if CheckBox57.Checked <> True then   // str
+    begin
+        datalen := Length(datastr);
+        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        begin
+            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datastr[i+1]);
+                //Memo1.Lines.Add('mydata['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end
+    else    // hex data
+    begin
+        datatmp := '';
+        datatmp := TwoAsciiToHex(datastr);
+        datalen := Length(datatmp);
+        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        begin
+            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datatmp[i+1]);
+                //Memo1.Lines.Add('mydatatmp['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end;
+
+    // key len
+    if CheckBox57.Checked <> True then  // str
+    begin
+        keylen := Length(datastr);
+        if (keylen mod 16 <> 0) then
+        begin
+            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to 15 do
+            begin
+                mykey[i] :=  Byte(keystr[i+1]);
+                //Memo1.Lines.Add('mykey['+inttostr(i)+']='+inttohex(mykey[i], 0))
+            end;
+        end;
+    end
+    else  // hex
+    begin
+        keytemp1 := '';
+        keytemp1 := TwoAsciiToHex(keystr);
+        keylen := Length(keytemp1);
+        if (keylen <> 16) then
+        begin
+            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+            Exit;
+        end
+        else
+        begin
+            for i:= 0 to keylen-1 do
+            begin
+                mykey[i] :=  Byte(keytemp1[i+1]);
+                //Memo1.Lines.Add('mykeytmp['+inttostr(i)+']='+inttohex(mykey[i], 0))
+            end;
+        end;
+    end;
+
+
+    if RadioButton8.Checked = True then   // ecb解密
+    begin
+        Memo1.Lines.Add('ECB DEC:');
+        finish_len := 0;
+        while (finish_len < datalen) do
+        begin
+          for i:= 0 to 15 do
+            mydatatmp[i] := mydata[i+ finish_len];
+
+          outbuf := sm4_crypt_ecb(0, mykey, mydatatmp, 16);
+          finish_len := finish_len + 16;
+          keytemp2 := '';
+          for i:= 0 to 15 do
+          begin
+              keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
+          end;
+          Memo1.Lines.Add(keytemp2);
+        end;
+
+    end
+    else  // cbc 解密
+    begin
+        IVSTR :=  Memo10.Text;
+        if IVSTR = '' then    // 为空的话，默认全为0
+        begin
+            for i := 0 to 15 do
+            begin
+                myiv[i] := $0;
+            end;
+        end
+        else
+        begin
+           if CheckBox57.Checked <> True then  // str
+           begin
+              ivlen := Length(IVSTR);
+              if (ivlen <> 16) then
+              begin
+                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                  Exit;
+              end
+              else
+              begin
+                  for i:= 0 to 15 do
+                  begin
+                      myiv[i] :=  Byte(IVSTR[i+1]);
+                      //Memo1.Lines.Add('myiv['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                  end;
+              end;
+           end
+           else  // hex
+           begin
+              ivstrtmp := '';
+              ivstrtmp := TwoAsciiToHex(ivstr);
+              ivlen := Length(ivstrtmp);
+              if (ivlen <> 16) then
+              begin
+                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                  Exit;
+              end
+              else
+              begin
+                  for i:= 0 to keylen-1 do
+                  begin
+                      myiv[i] :=  Byte(ivstrtmp[i+1]);
+                      //Memo1.Lines.Add('myivtmp['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                  end;
+              end;
+           end;
+        end;
+
+        cbcout := sm4_crypt_cbc(0, mykey, mydata, datalen, myiv);
+        Memo1.Lines.Add('CBC DEC:');
+        keytemp2 := '';
+        for i:= 0 to datalen-1 do
+        begin
+            if ((i mod 16) = 0) and (i <> 0) then
+            begin
+                Memo1.Lines.Add(keytemp2);
+                keytemp2 := '';
+            end;
+            keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
+        end;
+        Memo1.Lines.Add(keytemp2);
+    end;
 end;
 
 end.

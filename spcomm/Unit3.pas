@@ -492,17 +492,24 @@ begin
     temp := StringReplace(temp, #13, '', [rfReplaceAll]);
     temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
     Len := Length(temp);
-
+    //ShowMessage('2 datalen = ' + IntToStr(len));
     i:=1;
     while (i <= Len) and (temp[i] in ['0'..'9','A'..'F','a'..'f']) do
           inc(i);
     if i <= Len then
     begin
-         ShowMessage('非法的十六进制数 !!');
+         //ShowMessage('非法的十六进制数 !!');
          Exit;
     end;
     if Len > 0 then
     begin
+        //ShowMessage('3 datalen = ' + IntToStr(len));
+        if (Len mod 2) = 1 then
+        begin
+            temp := temp + '0';
+            len := len +1;
+            ShowMessage('数据长度有误，末尾将补0');
+        end;
         for j:=0 to (Len div 2 - 1) do
         begin
             buf := buf + Char(StrToIntDef('$' + temp[2*j + 1] + temp[2*j + 2], 0));

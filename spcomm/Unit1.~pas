@@ -293,6 +293,14 @@ type
     RadioButton9: TRadioButton;
     GroupBox24: TGroupBox;
     Memo10: TMemo;
+    TabSheet5: TTabSheet;
+    GroupBox25: TGroupBox;
+    GroupBox26: TGroupBox;
+    GroupBox27: TGroupBox;
+    CheckBox58: TCheckBox;
+    GroupBox28: TGroupBox;
+    Button57: TButton;
+    Memo11: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -3601,32 +3609,62 @@ end;
 
 procedure TForm1.Button57Click(Sender: TObject);
 var
-  per:TMyArray;
-  n:LongInt;
-  out :TMyArray;
-  out1 :TMyArray;
-const
-  key1 :array [0..15] of Byte=($01,$23,$45,$67,$89,$ab,$cd,$ef,$fe,$dc,$ba,$98,$76,$54,$32,$10);
-  data1 :array [0..15] of Byte=($01,$23,$45,$67,$89,$ab,$cd,$ef,$fe,$dc,$ba,$98,$76,$54,$32,$10);
-
+    datastr ,datatmp: string;
+    datalen, i:LongWord;
+    mydata:array [0..4096] of Byte;
+    hashout:THashOutArray;
+    hashstr:string;
+    n:LongInt;
 begin
-    form5.Show;
-    //ShowMessage(Encrypt_cbc('12345678876543217418529631234567', '1234567890123456'));
-    per := PUT_ULONG_BE(10000, 0);
-    ShowMessage('per0 = ' + IntToStr(Per[0]) +'per1 = ' + IntToStr(Per[1]) +
-    'per2 = ' + IntToStr(Per[2]) +'per3 = ' + IntToStr(Per[3]));
-    n := 0;
-    n := GET_ULONG_BE(per, 0);
-    ShowMessage('n=' + IntToStr(n));
-    n := ROTL($f0008000, 10);
-    ShowMessage( 'n111= '+ IntToHex(n,0));
-    out := sm4_crypt_ecb(1,key1,data1,16);
-    for  n:= 0 to 15 do
-      Memo1.Lines.Add('out1:'+ IntTohex(out[n], 0));
+    datastr := Memo11.Text;
 
-    out1 := sm4_crypt_ecb(0, key1, out, 16);
-    for  n:= 0 to 15 do
-      Memo1.Lines.Add('out0:'+ IntTohex(out1[n], 0));
+    if datastr = '' then
+    begin
+        ShowMessage('«Î ‰»Î ˝æ›');
+        Exit;
+    end;
+
+    // data len
+    if CheckBox58.Checked <> True then   // str
+    begin
+        datalen := Length(datastr);
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datastr[i+1]);
+                //Memo1.Lines.Add('mydata['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end
+    else    // hex data
+    begin
+        datatmp := '';
+        datatmp := TwoAsciiToHex(datastr);
+        datalen := Length(datatmp);
+        begin
+            for i:= 0 to datalen-1 do
+            begin
+                mydata[i] :=  Byte(datatmp[i+1]);
+                //Memo1.Lines.Add('mydatatmp['+inttostr(i)+']='+inttohex(mydata[i], 0))
+            end;
+        end;
+    end;
+    SHA256Init();
+    SHA256Update(mydata, datalen);
+    hashout := SHA256Final();
+
+    hashstr := '';
+    Memo1.Lines.Add('hash256:');
+    for n:= 0 to 31 do
+    begin
+        hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
+        if n = 15 then
+        begin
+              Memo1.Lines.Add(hashstr);
+              hashstr := '';
+        end
+    end;
+    Memo1.Lines.Add(hashstr);
 end;
 
 procedure TForm1.ComboBox2Click(Sender: TObject);

@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 473
-  Top = 198
-  Width = 800
-  Height = 502
+  Left = 272
+  Top = 69
+  Width = 805
+  Height = 505
   Caption = 'Spcom V2.1'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -32,16 +32,16 @@ object Form1: TForm1
   object GroupBox3: TGroupBox
     Left = 193
     Top = 0
-    Width = 369
-    Height = 451
+    Width = 374
+    Height = 454
     Align = alClient
     Caption = 'rec'
     TabOrder = 3
     object Memo1: TMemo
       Left = 2
       Top = 16
-      Width = 365
-      Height = 433
+      Width = 370
+      Height = 436
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -59,7 +59,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 145
-    Height = 451
+    Height = 454
     Align = alLeft
     Caption = #20018#21475#35774#32622
     TabOrder = 1
@@ -187,7 +187,7 @@ object Form1: TForm1
     Left = 145
     Top = 0
     Width = 48
-    Height = 451
+    Height = 454
     Align = alLeft
     TabOrder = 2
     object SpeedButton1: TSpeedButton
@@ -313,7 +313,7 @@ object Form1: TForm1
       Left = 2
       Top = 176
       Width = 191
-      Height = 129
+      Height = 180
       Align = alCustom
       TabOrder = 3
       object Edit1: TEdit
@@ -444,15 +444,15 @@ object Form1: TForm1
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 451
-    Width = 792
+    Top = 454
+    Width = 797
     Height = 17
     Align = alBottom
     TabOrder = 5
     object PageControl1: TPageControl
       Left = 2
       Top = -219
-      Width = 788
+      Width = 793
       Height = 215
       Align = alBottom
       TabOrder = 0
@@ -460,7 +460,7 @@ object Form1: TForm1
     object StatusBar1: TStatusBar
       Left = 2
       Top = -4
-      Width = 788
+      Width = 793
       Height = 19
       Panels = <
         item
@@ -484,10 +484,10 @@ object Form1: TForm1
     end
   end
   object GroupBox7: TGroupBox
-    Left = 562
+    Left = 567
     Top = 0
     Width = 230
-    Height = 451
+    Height = 454
     Align = alRight
     TabOrder = 6
     Visible = False
@@ -495,7 +495,7 @@ object Form1: TForm1
       Left = 2
       Top = 16
       Width = 226
-      Height = 433
+      Height = 436
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
@@ -545,7 +545,7 @@ object Form1: TForm1
           Left = 0
           Top = 28
           Width = 218
-          Height = 376
+          Height = 379
           Align = alClient
           TabOrder = 1
           object lbl1: TLabel
@@ -1631,7 +1631,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 218
-          Height = 133
+          Height = 136
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
@@ -1786,7 +1786,7 @@ object Form1: TForm1
         end
         object GroupBox14: TGroupBox
           Left = 0
-          Top = 193
+          Top = 196
           Width = 218
           Height = 211
           Align = alBottom
@@ -1898,7 +1898,7 @@ object Form1: TForm1
         end
         object GroupBox18: TGroupBox
           Left = 0
-          Top = 192
+          Top = 195
           Width = 218
           Height = 212
           Align = alBottom
@@ -2126,7 +2126,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 218
-          Height = 404
+          Height = 407
           Align = alClient
           TabOrder = 0
           object GroupBox26: TGroupBox
@@ -2188,7 +2188,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 218
-          Height = 404
+          Height = 407
           Align = alClient
           TabOrder = 0
           object Memo6: TMemo
@@ -2206,7 +2206,7 @@ object Form1: TForm1
           end
           object GroupBox16: TGroupBox
             Left = 2
-            Top = 81
+            Top = 84
             Width = 214
             Height = 321
             Align = alBottom

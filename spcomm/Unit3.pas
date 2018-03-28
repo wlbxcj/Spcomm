@@ -498,7 +498,7 @@ begin
           inc(i);
     if i <= Len then
     begin
-         //ShowMessage('非法的十六进制数 !!');
+         ShowMessage('非法的十六进制数 !!');
          Exit;
     end;
     if Len > 0 then

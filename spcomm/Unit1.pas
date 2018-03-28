@@ -3641,12 +3641,17 @@ begin
         datatmp := '';
         datatmp := TwoAsciiToHex(datastr);
         datalen := Length(datatmp);
+        if (datalen > 0) then
         begin
             for i:= 0 to datalen-1 do
             begin
                 mydata[i] :=  Byte(datatmp[i+1]);
                 //Memo1.Lines.Add('mydatatmp['+inttostr(i)+']='+inttohex(mydata[i], 0))
             end;
+        end
+        else
+        begin
+            exit;
         end;
     end;
     SHA256Init();

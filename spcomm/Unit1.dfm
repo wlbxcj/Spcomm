@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 272
-  Top = 69
+  Left = 461
+  Top = 77
   Width = 805
   Height = 505
-  Caption = 'Spcom V2.1'
+  Caption = 'Spcom V2.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1995,6 +1995,228 @@ object Form1: TForm1
             Height = 17
             Caption = 'CBC'
             TabOrder = 8
+          end
+        end
+      end
+      object TabSheet6: TTabSheet
+        Caption = 'AES'
+        ImageIndex = 7
+        object GroupBox29: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 218
+          Height = 407
+          Align = alClient
+          TabOrder = 0
+          object GroupBox30: TGroupBox
+            Left = 0
+            Top = 8
+            Width = 217
+            Height = 129
+            Caption = 'data'
+            TabOrder = 0
+            object Memo12: TMemo
+              Left = 2
+              Top = 16
+              Width = 213
+              Height = 111
+              Align = alClient
+              TabOrder = 0
+            end
+          end
+          object GroupBox31: TGroupBox
+            Left = 0
+            Top = 152
+            Width = 217
+            Height = 129
+            TabOrder = 1
+            object Label21: TLabel
+              Left = 11
+              Top = 13
+              Width = 28
+              Height = 14
+              Caption = 'KEY1'
+            end
+            object Label22: TLabel
+              Left = 10
+              Top = 37
+              Width = 28
+              Height = 14
+              Caption = 'KEY2'
+            end
+            object Label23: TLabel
+              Left = 10
+              Top = 61
+              Width = 28
+              Height = 14
+              Caption = 'KEY3'
+            end
+            object Label24: TLabel
+              Left = 40
+              Top = 40
+              Width = 28
+              Height = 14
+              Caption = 'KEY1'
+            end
+            object Label25: TLabel
+              Left = 11
+              Top = 84
+              Width = 28
+              Height = 14
+              Caption = 'KEY4'
+            end
+            object Label26: TLabel
+              Left = 16
+              Top = 108
+              Width = 14
+              Height = 14
+              Caption = 'IV'
+            end
+            object Edit52: TEdit
+              Left = 40
+              Top = 8
+              Width = 175
+              Height = 22
+              Hint = '8 bytes'
+              TabOrder = 0
+            end
+            object Edit53: TEdit
+              Left = 40
+              Top = 32
+              Width = 175
+              Height = 22
+              TabOrder = 1
+            end
+            object Edit54: TEdit
+              Left = 40
+              Top = 56
+              Width = 175
+              Height = 22
+              Hint = '8 bytes'
+              Color = clScrollBar
+              Enabled = False
+              ParentShowHint = False
+              ShowHint = True
+              TabOrder = 2
+            end
+            object Edit55: TEdit
+              Left = 40
+              Top = 80
+              Width = 175
+              Height = 22
+              Color = clScrollBar
+              Enabled = False
+              TabOrder = 3
+              Text = #27599#20010'KEY  8'#23383#33410
+            end
+            object Edit56: TEdit
+              Left = 40
+              Top = 104
+              Width = 177
+              Height = 22
+              Color = clScrollBar
+              Enabled = False
+              TabOrder = 4
+              Text = '16'#23383#33410#21021#22987#21270#21521#37327
+            end
+          end
+          object GroupBox32: TGroupBox
+            Left = 2
+            Top = 280
+            Width = 214
+            Height = 125
+            Align = alBottom
+            TabOrder = 2
+            object Button60: TButton
+              Left = 8
+              Top = 96
+              Width = 75
+              Height = 25
+              Caption = #21152#23494
+              TabOrder = 0
+              OnClick = Button60Click
+            end
+            object GroupBox33: TGroupBox
+              Left = 0
+              Top = 7
+              Width = 214
+              Height = 33
+              Align = alCustom
+              TabOrder = 1
+              object RadioButton10: TRadioButton
+                Left = 7
+                Top = 8
+                Width = 73
+                Height = 17
+                Caption = '128Bit'
+                Checked = True
+                TabOrder = 0
+                TabStop = True
+                OnClick = RadioButton10Click
+              end
+              object RadioButton11: TRadioButton
+                Left = 74
+                Top = 8
+                Width = 80
+                Height = 17
+                Caption = '192Bit'
+                TabOrder = 1
+                OnClick = RadioButton11Click
+              end
+              object RadioButton12: TRadioButton
+                Left = 142
+                Top = 8
+                Width = 60
+                Height = 17
+                Caption = '256Bit'
+                TabOrder = 2
+                OnClick = RadioButton12Click
+              end
+            end
+            object GroupBox34: TGroupBox
+              Left = 0
+              Top = 40
+              Width = 214
+              Height = 30
+              TabOrder = 2
+              object RadioButton13: TRadioButton
+                Left = 8
+                Top = 7
+                Width = 89
+                Height = 17
+                Caption = 'ECB'
+                Checked = True
+                TabOrder = 0
+                TabStop = True
+                OnClick = RadioButton13Click
+              end
+              object RadioButton14: TRadioButton
+                Left = 145
+                Top = 8
+                Width = 51
+                Height = 17
+                Caption = 'CBC'
+                TabOrder = 1
+                OnClick = RadioButton14Click
+              end
+            end
+            object Button61: TButton
+              Left = 128
+              Top = 96
+              Width = 75
+              Height = 25
+              Caption = #35299#23494
+              TabOrder = 3
+              OnClick = Button61Click
+            end
+            object CheckBox59: TCheckBox
+              Left = 8
+              Top = 74
+              Width = 97
+              Height = 17
+              Caption = 'HEX INPUT'
+              TabOrder = 4
+            end
           end
         end
       end

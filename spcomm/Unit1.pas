@@ -5,10 +5,11 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2,Unit3,Unit4, JvHidControllerClass, IdBaseComponent, IdComponent,
-  IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
-  IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData;
+  Menus,Registry,Unit2,Unit3,Unit4,unit7, WinSkinData, IdHTTP,
+  IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
+  IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
+  Mask, winsock, Sockets, DB, DBClient,
+  MConnect, SConnect, IdThread, wininet;
 
 type
   TForm1 = class(TForm)
@@ -301,6 +302,33 @@ type
     GroupBox28: TGroupBox;
     Button57: TButton;
     Memo11: TMemo;
+    TabSheet6: TTabSheet;
+    GroupBox29: TGroupBox;
+    GroupBox30: TGroupBox;
+    Memo12: TMemo;
+    GroupBox31: TGroupBox;
+    Edit52: TEdit;
+    Edit53: TEdit;
+    Edit54: TEdit;
+    Edit55: TEdit;
+    GroupBox32: TGroupBox;
+    Button60: TButton;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    GroupBox33: TGroupBox;
+    RadioButton10: TRadioButton;
+    RadioButton11: TRadioButton;
+    RadioButton12: TRadioButton;
+    GroupBox34: TGroupBox;
+    RadioButton13: TRadioButton;
+    RadioButton14: TRadioButton;
+    Button61: TButton;
+    CheckBox59: TCheckBox;
+    Edit56: TEdit;
+    Label26: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -436,6 +464,13 @@ type
     procedure N6Click(Sender: TObject);
     procedure Button58Click(Sender: TObject);
     procedure Button59Click(Sender: TObject);
+    procedure Button60Click(Sender: TObject);
+    procedure RadioButton10Click(Sender: TObject);
+    procedure RadioButton11Click(Sender: TObject);
+    procedure RadioButton12Click(Sender: TObject);
+    procedure Button61Click(Sender: TObject);
+    procedure RadioButton13Click(Sender: TObject);
+    procedure RadioButton14Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -4077,6 +4112,406 @@ begin
         end;
         Memo1.Lines.Add(keytemp2);
     end;
+end;
+
+procedure TForm1.Button60Click(Sender: TObject);
+var
+  Source: TStringStream;
+  Dest: TStringStream;
+  Start, Stop: cardinal;
+  Size: integer;
+  Key128: TAESKey128;
+  Key192: TAESKey192;
+  Key256: TAESKey256;
+  TAESKey:array [0..31] of byte;
+  RegCode:String;
+  IV:TAESBuffer;
+  key1,key2,key3,key4,ivedit,datain:string;
+begin
+    key1 := Edit52.Text;
+    key2 := Edit53.Text;
+    key3 := Edit54.Text;
+    key4 := Edit55.Text;
+    ivedit := Edit56.Text;
+    datain := Memo12.Text;
+
+    if CheckBox59.Checked = true then   // hex
+    begin
+        key1:=TwoAsciiToHex(key1);
+        key2:=TwoAsciiToHex(key2);
+        if RadioButton11.Checked = True then
+            key3:=TwoAsciiToHex(key3);
+        if RadioButton12.Checked = True then
+        begin
+            key4:=TwoAsciiToHex(key4);
+            key3:=TwoAsciiToHex(key3);
+        end;
+        if RadioButton14.Checked = True then
+        begin
+            ivedit:=TwoAsciiToHex(ivedit);
+            Move( PChar(ivedit)^, IV, 8);
+        end;
+
+        datain:=TwoAsciiToHex(datain);
+    end;
+
+    //if CheckBox59.Checked = False then   // string
+    begin
+        Source := TStringStream.Create(datain);
+        Dest   := TStringStream.Create( '' );
+        try
+            Size := Source.Size;
+            //Dest.WriteBuffer( Size, SizeOf(Size) );
+            FillChar(Key128, SizeOf(Key128), 0 );
+            FillChar(Key192, SizeOf(Key192), 0 );
+            FillChar(Key256, SizeOf(Key256), 0 );
+
+
+            if RadioButton10.Checked = True then     // 128 biT
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key128, 8);
+                Move( PChar(key2)^, PChar(@Key128[8])^, 8);
+                if RadioButton13.Checked = True then       // ECB
+                    EncryptAESStreamECB( Source, 0, Key128, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    EncryptAESStreamCBC( Source, 0, Key128, IV, Dest);
+                end;
+            end
+            else if RadioButton11.Checked = True then    // 192bit
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) or (Length(key3) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key192, 8);
+                Move( PChar(key2)^, (@Key192[8])^, 8);
+                Move( PChar(key3)^, (@Key192[16])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    EncryptAESStreamECB( Source, 0, Key192, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    EncryptAESStreamCBC( Source, 0, Key192, IV, Dest);
+                end
+            end
+            else if RadioButton12.Checked = True then    // 256bit
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) or (Length(key3) <> 8) or (Length(key4) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3和KEY4');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key256, 8);
+                Move( PChar(key2)^, (@Key256[8])^, 8);
+                Move( PChar(key3)^, (@Key256[16])^, 8);
+                Move( PChar(key4)^, (@Key256[24])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    EncryptAESStreamECB( Source, 0, Key256, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    EncryptAESStreamCBC( Source, 0, Key256, IV, Dest);
+                end;
+            end;
+            RegCode:= StringToHex( Dest.DataString );
+        finally
+            Source.Free;
+            Dest.Free;
+        end;
+    end;
+
+    Memo1.Lines.Add('AES ENC:'+RegCode);
+end;
+
+procedure TForm1.RadioButton10Click(Sender: TObject);
+begin
+    if RadioButton10.Checked = True then
+    begin
+       //Edit54.Text := '';
+       Edit54.Enabled := False;
+       Edit54.Color := clScrollBar;
+
+       //Edit55.Text := '每个KEY8字节';
+       Edit55.Enabled := False;
+       Edit55.Color := clScrollBar;
+    end;
+end;
+
+procedure TForm1.RadioButton11Click(Sender: TObject);
+begin
+    if RadioButton11.Checked = True then
+    begin
+       //Edit54.Text := '';
+       Edit54.Enabled := True;
+       Edit54.Color := clWindow;
+
+       //Edit55.Text := '每个KEY8字节';
+       Edit55.Enabled := False;
+       Edit55.Color := clScrollBar;
+    end;
+end;
+
+procedure TForm1.RadioButton12Click(Sender: TObject);
+begin
+    if RadioButton12.Checked = True then
+    begin
+       //Edit54.Text := '';
+       Edit54.Enabled := True;
+       Edit54.Color := clWindow;
+
+       //Edit55.Text := '';
+       Edit55.Enabled := True;
+       Edit55.Color := clWindow;
+    end;
+end;
+
+procedure TForm1.Button61Click(Sender: TObject);
+{var
+  Source: TStringStream;
+  Dest: TStringStream;
+  Start, Stop: cardinal;
+  Size: integer;
+  Key128: TAESKey128;
+  Key192: TAESKey192;
+  Key256: TAESKey256;
+  TAESKey:array [0..31] of byte;
+  RegCode:String;
+  IV:TAESBuffer;
+begin
+    if CheckBox59.Checked = False then   // string
+    begin
+        Source := TStringStream.Create(memo12.Text);
+        Dest   := TStringStream.Create( '' );
+        try
+            Size := Source.Size;
+            //Dest.WriteBuffer( Size, SizeOf(Size) );
+            FillChar(Key128, SizeOf(Key128), 0 );
+            FillChar(Key192, SizeOf(Key192), 0 );
+            FillChar(Key256, SizeOf(Key256), 0 );
+
+
+            if RadioButton10.Checked = True then     // 128 biT
+            begin
+                if (Length(Edit52.text) <> 8) or (Length(Edit53.text) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2');
+                    Exit;
+                end;
+                Move( PChar(Edit52.text)^, Key128, 8);
+                Move( PChar(Edit53.text)^, PChar(@Key128[8])^, 8);
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key128, Dest )
+                else
+                    DecryptAESStreamCBC( Source, 0, Key128, IV, Dest);
+            end
+            else if RadioButton11.Checked = True then    // 192bit
+            begin
+                if (Length(Edit52.text) <> 8) or (Length(Edit53.text) <> 8) or (Length(Edit54.text) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3');
+                    Exit;
+                end;
+                Move( PChar(Edit52.text)^, Key192, 8);
+                Move( PChar(Edit53.text)^, (@Key192[8])^, 8);
+                Move( PChar(Edit54.text)^, (@Key192[16])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key192, Dest )
+                else
+                    DecryptAESStreamCBC( Source, 0, Key192, IV, Dest);
+            end
+            else if RadioButton12.Checked = True then    // 256bit
+            begin
+                if (Length(Edit52.text) <> 8) or (Length(Edit53.text) <> 8) or (Length(Edit54.text) <> 8) or (Length(Edit55.text) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3和KEY4');
+                    Exit;
+                end;
+                Move( PChar(Edit52.text)^, Key256, 8);
+                Move( PChar(Edit53.text)^, (@Key256[8])^, 8);
+                Move( PChar(Edit54.text)^, (@Key256[16])^, 8);
+                Move( PChar(Edit55.text)^, (@Key256[24])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key256, Dest )
+                else
+                    DecryptAESStreamCBC( Source, 0, Key256, IV, Dest);
+            end;
+            RegCode:= StringToHex( Dest.DataString );
+        finally
+          Source.Free;
+          Dest.Free;
+        end;
+    end;
+
+    Memo1.Lines.Add('AES ENC:'+RegCode);}
+var
+  Source: TStringStream;
+  Dest: TStringStream;
+  Start, Stop: cardinal;
+  Size: integer;
+  Key128: TAESKey128;
+  Key192: TAESKey192;
+  Key256: TAESKey256;
+  TAESKey:array [0..31] of byte;
+  RegCode:String;
+  IV:TAESBuffer;
+  key1,key2,key3,key4,ivedit,datain:string;
+begin
+    key1 := Edit52.Text;
+    key2 := Edit53.Text;
+    key3 := Edit54.Text;
+    key4 := Edit55.Text;
+    ivedit := Edit56.Text;
+    datain := Memo12.Text;
+
+    if CheckBox59.Checked = true then   // hex
+    begin
+        key1:=TwoAsciiToHex(key1);
+        key2:=TwoAsciiToHex(key2);
+        if RadioButton11.Checked = True then
+            key3:=TwoAsciiToHex(key3);
+        if RadioButton12.Checked = True then
+        begin
+            key4:=TwoAsciiToHex(key4);
+            key3:=TwoAsciiToHex(key3);
+        end;
+        if RadioButton14.Checked = True then
+        begin
+            ivedit:=TwoAsciiToHex(ivedit);
+            Move( PChar(ivedit)^, IV, 8);
+        end;
+
+        datain:=TwoAsciiToHex(datain);
+    end;
+
+    if (Length(datain) mod 16 <> 0) then
+    begin
+        ShowMessage('解析的数据必需为16的整数倍');
+        Exit;
+    end;
+    //if CheckBox59.Checked = False then   // string
+    begin
+        Source := TStringStream.Create(datain);
+        Dest   := TStringStream.Create( '' );
+        try
+            Size := Source.Size;
+            //Dest.WriteBuffer( Size, SizeOf(Size) );
+            FillChar(Key128, SizeOf(Key128), 0 );
+            FillChar(Key192, SizeOf(Key192), 0 );
+            FillChar(Key256, SizeOf(Key256), 0 );
+
+
+            if RadioButton10.Checked = True then     // 128 biT
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key128, 8);
+                Move( PChar(key2)^, PChar(@Key128[8])^, 8);
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key128, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    DecryptAESStreamCBC( Source, 0, Key128, IV, Dest);
+                end;
+            end
+            else if RadioButton11.Checked = True then    // 192bit
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) or (Length(key3) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key192, 8);
+                Move( PChar(key2)^, (@Key192[8])^, 8);
+                Move( PChar(key3)^, (@Key192[16])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key192, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    DecryptAESStreamCBC( Source, 0, Key192, IV, Dest);
+                end
+            end
+            else if RadioButton12.Checked = True then    // 256bit
+            begin
+                if (Length(key1) <> 8) or (Length(key2) <> 8) or (Length(key3) <> 8) or (Length(key4) <> 8) then
+                begin
+                    ShowMessage('请输入8字节长度的KEY1和KEY2和KEY3和KEY4');
+                    Exit;
+                end;
+                Move( PChar(key1)^, Key256, 8);
+                Move( PChar(key2)^, (@Key256[8])^, 8);
+                Move( PChar(key3)^, (@Key256[16])^, 8);
+                Move( PChar(key4)^, (@Key256[24])^, 8);
+
+                if RadioButton13.Checked = True then       // ECB
+                    DecryptAESStreamECB( Source, 0, Key256, Dest )
+                else
+                begin
+                    if (Length(ivedit) <> 16) then
+                    begin
+                        ShowMessage('请输入16字节长度的IV');
+                        Exit;
+                    end;
+                    DecryptAESStreamCBC( Source, 0, Key256, IV, Dest);
+                end;
+            end;
+            RegCode:= StringToHex( Dest.DataString );
+        finally
+            Source.Free;
+            Dest.Free;
+        end;
+    end;
+
+    Memo1.Lines.Add('AES DEC:'+RegCode);
+end;
+
+procedure TForm1.RadioButton13Click(Sender: TObject);
+begin
+    Edit56.Enabled := False;
+    Edit56.Color := clScrollBar;
+end;
+
+procedure TForm1.RadioButton14Click(Sender: TObject);
+begin
+    Edit56.Enabled := True;
+    Edit56.Color := clWindow;
 end;
 
 end.

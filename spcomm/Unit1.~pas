@@ -329,6 +329,7 @@ type
     CheckBox59: TCheckBox;
     Edit56: TEdit;
     Label26: TLabel;
+    Button62: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -471,6 +472,7 @@ type
     procedure Button61Click(Sender: TObject);
     procedure RadioButton13Click(Sender: TObject);
     procedure RadioButton14Click(Sender: TObject);
+    procedure Button62Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -4407,6 +4409,11 @@ begin
         datain:=TwoAsciiToHex(datain);
     end;
 
+    if (Length(datain) mod 16 <> 0) then
+    begin
+        ShowMessage('解析的数据必需为16的整数倍');
+        Exit;
+    end;
     //if CheckBox59.Checked = False then   // string
     begin
         Source := TStringStream.Create(datain);
@@ -4507,6 +4514,48 @@ procedure TForm1.RadioButton14Click(Sender: TObject);
 begin
     Edit56.Enabled := True;
     Edit56.Color := clWindow;
+end;
+
+procedure TForm1.Button62Click(Sender: TObject);
+var
+   pMyFile:file;
+   pStr : string;
+   aucData: array[0..1152] of Byte;
+   ReadLen:Integer;
+   hashout:THashOutArray;
+   hashstr:string;
+   n:LongInt;
+begin
+     //SunLen := 0;
+     //WriteArrToFile(@Memo1.text[1], RecLen, 'D:\abc.bin');
+     if OpenDialog1.Execute then
+     begin
+        Assignfile(pMyFile, OpenDialog1.FileName);
+        Reset(pMyFile, 1);
+        SHA256Init();
+        while not Eof(pMyFile) do
+        begin
+            BlockRead(pMyFile, aucData, 1024, ReadLen);
+            SHA256Update(aucData, ReadLen);
+            next;
+        end;
+        CloseFile(pMyFile);
+        hashout := SHA256Final();
+        hashstr := '';
+
+        Memo1.Lines.Add('hash256:');
+        for n:= 0 to 31 do
+        begin
+            hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
+            if n = 15 then
+            begin
+                  Memo1.Lines.Add(hashstr);
+                  hashstr := '';
+            end
+        end;
+        Memo1.Lines.Add(hashstr);
+     end;
+     //ShowMessage(IntToStr(SunLen));
 end;
 
 end.

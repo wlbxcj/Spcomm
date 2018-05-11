@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 77
   Width = 805
   Height = 505
-  Caption = 'Spcom V2.2'
+  Caption = 'Spcom V2.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2390,15 +2390,25 @@ object Form1: TForm1
             Top = 320
             Width = 217
             Height = 81
+            Caption = 'SHA256'
             TabOrder = 2
             object Button57: TButton
-              Left = 64
+              Left = 17
               Top = 32
               Width = 75
               Height = 25
-              Caption = 'HASH256'
+              Caption = #36755#20837#35745#31639
               TabOrder = 0
               OnClick = Button57Click
+            end
+            object Button62: TButton
+              Left = 128
+              Top = 31
+              Width = 75
+              Height = 25
+              Caption = #25991#20214#35745#31639
+              TabOrder = 1
+              OnClick = Button62Click
             end
           end
         end

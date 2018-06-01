@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 77
   Width = 805
   Height = 505
-  Caption = 'Spcom V2.3'
+  Caption = 'Spcom V2.4'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText

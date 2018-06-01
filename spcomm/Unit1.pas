@@ -3446,15 +3446,15 @@ begin
       begin
           ShowMessage('请输入KEY1');
           Exit;
-      end
-      else
+      end;
+      {else
       begin
           if (Length(Edit50.Text) mod 8 <> 0) then
           begin
               ShowMessage('请输入8字节KEY1');
               exit;
           end;
-      end;
+      end;}
      keybuf := Edit50.Text;
      if RadioButton5.Checked <> True then
       begin
@@ -3562,14 +3562,14 @@ begin
       begin
           ShowMessage('请输入KEY1');
           Exit;
-      end
-      else
+      end;
+      {else
       begin
           if (Length(Edit50.Text) mod 8 <> 0) then
           begin
               ShowMessage('请输入8字节KEY1');
           end;
-      end;
+      end; }
      keybuf := Edit50.Text;
      if RadioButton5.Checked <> True then
       begin
@@ -3593,7 +3593,7 @@ begin
      begin
           if (Length(Edit50.Text) <> 8) or ((Length(Edit51.Text) mod 8) <> 0) then
           begin
-              ShowMessage('KEY1的长度错误.');
+              ShowMessage('KEY 的长度错误.');
               Exit;
           end;
      end;

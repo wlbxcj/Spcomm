@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 461
-  Top = 77
+  Left = 457
+  Top = 88
   Width = 805
   Height = 505
   Caption = 'Spcom V2.4'
@@ -5783,5 +5783,11 @@ object Form1: TForm1
       255E80FB48FE93FBF879988B103FDA018AB3C01F691EA56A76A76A76A77A4277
       84FCF366D51A6033E5627F48A59B689BFA25710EE36F401E06FC045A959089DD
       114ED4EF644ED00A0140280500A014028063DDF8}
+  end
+  object Timer5: TTimer
+    Interval = 3000
+    OnTimer = Timer5Timer
+    Left = 441
+    Top = 304
   end
 end

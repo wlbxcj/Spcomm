@@ -330,6 +330,7 @@ type
     Edit56: TEdit;
     Label26: TLabel;
     Button62: TButton;
+    Timer5: TTimer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -473,6 +474,7 @@ type
     procedure RadioButton13Click(Sender: TObject);
     procedure RadioButton14Click(Sender: TObject);
     procedure Button62Click(Sender: TObject);
+    procedure Timer5Timer(Sender: TObject);
 
   private
     { Private declarations }
@@ -1202,6 +1204,8 @@ begin
     end
     else
     begin
+        Timer5.Enabled := False;
+
         viewstring:='' ;
         TimeBuf := Now;
         datetimeSTR := DateToStr(Now);
@@ -1251,6 +1255,8 @@ begin
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
         StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+
+        Timer5.Enabled := True;
     end;
 end;
 
@@ -1565,10 +1571,12 @@ var
 begin
     Timer1.Enabled := False;
 
-    GetComListFromReg();
+    //GetComListFromReg();
 
     if Memo1.Lines.Count >= 50000 then           // 大于50000行自动保存
     begin
+        CheckBox5.Checked := True;
+
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
         begin
@@ -1581,6 +1589,8 @@ begin
         StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
         RecLen := 0;
         form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
+
+        CheckBox5.Checked := False;
     end;
 
     Timer1.Enabled := True;
@@ -4563,6 +4573,13 @@ begin
         Memo1.Lines.Add(hashstr);
      end;
      //ShowMessage(IntToStr(SunLen));
+end;
+
+procedure TForm1.Timer5Timer(Sender: TObject);
+begin
+    Timer5.Enabled := False;
+    GetComListFromReg();
+    Timer5.Enabled := True;
 end;
 
 end.

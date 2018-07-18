@@ -13,7 +13,7 @@ uses
 
 begin
   Application.Initialize;
-  Application.Title := 'Spcom V2.3';
+  Application.Title := 'Spcom V2.4';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm6, Form6);

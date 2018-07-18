@@ -511,8 +511,10 @@ var
   EnterSend : Integer = 0;
   IfDisIp : Boolean = False;
   RealLogFile : TextFile;
-
+  LinesCount :DWORD = 0;
   CS:TRTLCriticalSection;  //全局临界区变量
+
+
 implementation
 
 uses Unit5;
@@ -1182,6 +1184,7 @@ begin
     end;
 end;
 
+
 procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
@@ -1564,7 +1567,7 @@ begin
 
     GetComListFromReg();
 
-    if Memo1.Lines.Count >= 100000 then           // 大于100000行自动保存
+    if Memo1.Lines.Count >= 50000 then           // 大于50000行自动保存
     begin
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
@@ -1631,7 +1634,11 @@ end;
 
 procedure TForm1.Memo1Change(Sender: TObject);
 begin
-    StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+    if (LinesCount <> Memo1.Lines.Count) then
+    begin
+        StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+        LinesCount := Memo1.Lines.Count;
+    end;
 end;
 
 procedure TForm1.Button6Click(Sender: TObject);
@@ -1649,7 +1656,7 @@ end;
 procedure TForm1.StatusBar1MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
-    StatusBar1.Panels[3].Text := '大于100000行自动保存'
+    StatusBar1.Panels[3].Text := '大于50000行自动保存'
 end;
 
 procedure TForm1.Memo1MouseMove(Sender: TObject; Shift: TShiftState; X,

@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 457
-  Top = 88
+  Left = 442
+  Top = 63
   Width = 805
   Height = 505
-  Caption = 'Spcom V2.4'
+  Caption = 'Spcom V2.5'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -496,7 +496,7 @@ object Form1: TForm1
       Top = 16
       Width = 226
       Height = 436
-      ActivePage = TabSheet1
+      ActivePage = TabSheet6
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
@@ -2479,7 +2479,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 20
+    ReadIntervalTimeout = 60
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0

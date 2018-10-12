@@ -7,7 +7,7 @@ uses SysUtils,Windows, Messages, Variants, Classes, Graphics, Controls, Forms,
   Menus,Registry,Unit2, JvHidControllerClass, IdBaseComponent, IdComponent,
   IdTCPServer, IdTCPConnection, IdTCPClient, Mask, winsock, IdIPWatch,
   IdAntiFreezeBase, IdAntiFreeze, CheckLst, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData;
+  MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData; 
 type
   TKeyByte = array[0..5] of Byte;
   TDesMode = (dmEncry, dmDecry);
@@ -482,7 +482,7 @@ end;
 
 function TwoAsciiToHex(Str: String): String;
 var
-  temp : string;
+  temp,s : string;
   buf : string;
   Len ,i, j: Integer;
 begin
@@ -490,15 +490,20 @@ begin
     temp := str;
     temp := StringReplace(temp, #10, '', [rfReplaceAll]);
     temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
     temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    ShowMessage('temp='+temp);
     Len := Length(temp);
+    ShowMessage('Len='+inttostr(len));
     //ShowMessage('2 datalen = ' + IntToStr(len));
     i:=1;
     while (i <= Len) and (temp[i] in ['0'..'9','A'..'F','a'..'f']) do
           inc(i);
+    //s := IntToHex(Ord(temp[i]), 2);
+    //ShowMessage('err='+ s);// StrToIntDef('$' + temp[2*j + 1] + temp[2*j + 2], 0));
     if i <= Len then
     begin
-         //ShowMessage('非法的十六进制数 !!');
+         ShowMessage('非法的十六进制数 !!');
          Exit;
     end;
     if Len > 0 then

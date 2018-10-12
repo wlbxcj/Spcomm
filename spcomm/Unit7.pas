@@ -127,6 +127,8 @@ resourcestring
 
 implementation
 
+uses Unit1;
+
 {$R *.dfm}
 
 type
@@ -2175,10 +2177,12 @@ begin
     Done := Source.Read(TempIn, SizeOf(TempIn));
     if Done < SizeOf(TempIn) then
       raise EStreamError.Create(SReadError);
+
     PLongWord(@TempIn[0])^ := PLongWord(@TempIn[0])^ xor PLongWord(@Vector[0])^;
     PLongWord(@TempIn[4])^ := PLongWord(@TempIn[4])^ xor PLongWord(@Vector[4])^;
     PLongWord(@TempIn[8])^ := PLongWord(@TempIn[8])^ xor PLongWord(@Vector[8])^;
     PLongWord(@TempIn[12])^ := PLongWord(@TempIn[12])^ xor PLongWord(@Vector[12])^;
+
     EncryptAES(TempIn, ExpandedKey, TempOut);
     Done := Dest.Write(TempOut, SizeOf(TempOut));
     if Done < SizeOf(TempOut) then

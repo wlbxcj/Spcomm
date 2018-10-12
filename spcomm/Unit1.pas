@@ -1210,7 +1210,7 @@ begin
         TimeBuf := Now;
         datetimeSTR := DateToStr(Now);
         len:=BufferLength;
-        setlength(rbufstr, len);
+        setlength(rbufstr, len+10);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
             Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']');
@@ -1257,6 +1257,12 @@ begin
         StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
 
         Timer5.Enabled := True;
+
+        if Memo1.Lines.Count >= 50000 then           // 大于50000行自动保存
+        begin
+            CheckBox5.Checked := True;
+            Timer1.Interval := 100;
+        end;
     end;
 end;
 
@@ -1274,6 +1280,7 @@ begin
           strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
           TextLen := Length(strbuf);
           i:=1;
           while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -1353,6 +1360,7 @@ begin
           strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
           TextLen := Length(strbuf);
           i:=1;
           while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -1499,9 +1507,10 @@ begin
     StrTemp := Memo2.Text;
     if CheckBox2.Checked = True then
     begin
-       strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+       strbuf := StringReplace(StrTemp, #10, '', [rfReplaceAll]);
        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-        strbuf := StringReplace(StrTemp, ' ', '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
         EditLen := Length(strbuf);
         if editlen mod 2 = 0  then
         begin
@@ -1592,7 +1601,7 @@ begin
 
         CheckBox5.Checked := False;
     end;
-
+    Timer1.Interval := 3000;
     Timer1.Enabled := True;
 end;
 
@@ -1738,6 +1747,7 @@ begin
           strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
           TextLen := Length(strbuf);
           i:=1;
           while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -2683,6 +2693,7 @@ begin
             strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
             strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
             strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+            strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
             TextLen := Length(strbuf);
             i:=1;
             while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -3005,6 +3016,7 @@ begin
           strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
           strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
           TextLen := Length(strbuf);
           i:=1;
           while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -3402,6 +3414,7 @@ begin
         strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
         strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
         strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
         TextLen := Length(strbuf);
         i:=1;
         while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -4168,10 +4181,11 @@ begin
         if RadioButton14.Checked = True then
         begin
             ivedit:=TwoAsciiToHex(ivedit);
-            Move( PChar(ivedit)^, IV, 8);
+            Move( PChar(ivedit)^, IV, 16);
         end;
 
         datain:=TwoAsciiToHex(datain);
+
     end;
 
     //if CheckBox59.Checked = False then   // string
@@ -4420,7 +4434,7 @@ begin
         if RadioButton14.Checked = True then
         begin
             ivedit:=TwoAsciiToHex(ivedit);
-            Move( PChar(ivedit)^, IV, 8);
+            Move( PChar(ivedit)^, IV, 16);
         end;
 
         datain:=TwoAsciiToHex(datain);

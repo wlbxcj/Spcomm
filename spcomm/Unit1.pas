@@ -1210,7 +1210,7 @@ begin
         TimeBuf := Now;
         datetimeSTR := DateToStr(Now);
         len:=BufferLength;
-        setlength(rbufstr, len+10);
+        setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
             Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']');
@@ -1237,11 +1237,13 @@ begin
         else
         begin
             move(buffer^, pchar(rbufstr)^, bufferlength);
+            //Memo1.Lines.Add('1 >> ' +  pchar(buffer));
+            //Memo1.Lines.Add('2 >> ' +  rbufstr);
             //Memo1.Lines.Add(TimeToStr(TimeBuf));
             if CheckBox3.Checked = True then
             begin
                 memo1.lines.add(rbufstr);
-                
+
             end
             else
             begin

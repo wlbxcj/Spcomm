@@ -331,6 +331,13 @@ type
     Label26: TLabel;
     Button62: TButton;
     Timer5: TTimer;
+    Edit57: TEdit;
+    Label27: TLabel;
+    Edit58: TEdit;
+    Label28: TLabel;
+    GroupBox35: TGroupBox;
+    RadioButton15: TRadioButton;
+    RadioButton16: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -475,6 +482,11 @@ type
     procedure RadioButton14Click(Sender: TObject);
     procedure Button62Click(Sender: TObject);
     procedure Timer5Timer(Sender: TObject);
+    procedure RadioButton7Click(Sender: TObject);
+    procedure RadioButton6Click(Sender: TObject);
+    procedure RadioButton5Click(Sender: TObject);
+    procedure RadioButton15Click(Sender: TObject);
+    procedure RadioButton16Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -3408,6 +3420,7 @@ var
     i:Integer;
     TextLen:Integer;
     sendbuf,strbuf: string;
+    ivtmp, iv : string;
 begin
     strbuf :=Memo2.text;
     sendbuf := '';
@@ -3453,6 +3466,7 @@ var
     strbuf : string;
     SendBuf , sendtemp: string;
     keytemp1,keytemp2, KEYBuf : string;
+    ivtmp, iv : string;
     keylen : Integer;
     i, j : Integer;
 begin
@@ -3497,7 +3511,17 @@ begin
           end;
           keybuf := keybuf + edit51.text;
       end;
-
+      // 192bit
+      if RadioButton16.Checked = True then
+      begin
+          if (Edit58.Text = '') then
+          begin
+              ShowMessage('请输入KEY3');
+              Exit;
+          end;
+          keybuf := keybuf + edit58.text;
+      end;
+      
      if CheckBox56.Checked = True then        // hex
      begin
           keytemp1 := keyBuf;
@@ -3512,6 +3536,14 @@ begin
           begin
               ShowMessage('KEY1的长度错误');
               Exit;
+          end;
+          if RadioButton16.Checked = True then
+          begin
+             if (Length(Edit58.Text) <> 8) then
+             begin
+                  ShowMessage('KEY 的长度错误.');
+                  Exit;
+             end;
           end;
      end;
 
@@ -3553,14 +3585,21 @@ begin
             begin
                 sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
             end;
-            strbuf := des3_16(sendtemp, keybuf, 0);
+            if RadioButton16.Checked = True then
+                strbuf := des3_24(sendtemp, keybuf, 0)
+            else
+                strbuf := des3_16(sendtemp, keybuf, 0);
             Memo1.Lines.Add(strbuf);
         end;
         exit;
     end
     else if RadioButton7.Checked = True then
     begin
-        strbuf := Decry_cbc(sendbuf, keybuf);
+        iv := '';
+        ivtmp := Edit57.Text;
+        if ivtmp <> '' then
+          iv := TwoAsciiToHex(ivtmp);
+        strbuf := Decry_cbc(sendbuf, keybuf, iv);
     end;
 
 
@@ -3574,6 +3613,7 @@ var
     strbuf : string;
     SendBuf ,sendtemp: string;
     keytemp1,keybuf : string;
+    ivtmp, iv : string;
     i, j : Integer;
 begin
     strbuf := Memo7.Text;
@@ -3602,8 +3642,8 @@ begin
               ShowMessage('请输入8字节KEY1');
           end;
       end; }
-     keybuf := Edit50.Text;
-     if RadioButton5.Checked <> True then
+      keybuf := Edit50.Text;
+      if RadioButton5.Checked <> True then
       begin
           if (Edit51.Text = '') then
           begin
@@ -3611,6 +3651,17 @@ begin
               Exit;
           end;
           keybuf := keybuf + edit51.text;
+      end;
+
+      // 192bit
+      if RadioButton16.Checked = True then
+      begin
+          if (Edit58.Text = '') then
+          begin
+              ShowMessage('请输入KEY3');
+              Exit;
+          end;
+          keybuf := keybuf + edit58.text;
       end;
 
      if CheckBox56.Checked = True then
@@ -3627,6 +3678,14 @@ begin
           begin
               ShowMessage('KEY 的长度错误.');
               Exit;
+          end;
+          if RadioButton16.Checked = True then
+          begin
+             if (Length(Edit58.Text) <> 8) then
+             begin
+                  ShowMessage('KEY 的长度错误.');
+                  Exit;
+             end;
           end;
      end;
 
@@ -3661,7 +3720,10 @@ begin
                 sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
             end;
             //ShowMessage('444444');
-            strbuf := des3_16(sendtemp, keybuf, 1);
+            if RadioButton16.Checked = True then
+                strbuf := des3_24(sendtemp, keybuf, 1)
+            else
+                strbuf := des3_16(sendtemp, keybuf, 1);
             //ShowMessage('3333333');
             Memo1.Lines.Add(strbuf);
         end;
@@ -3669,7 +3731,11 @@ begin
     end
     else if RadioButton7.Checked = True then    // cbc
     begin
-        strbuf := Encrypt_cbc(sendbuf,keybuf);
+        iv := '';
+        ivtmp := Edit57.Text;
+        if ivtmp <> '' then
+          iv := TwoAsciiToHex(ivtmp);
+        strbuf := Encrypt_cbc(sendbuf,keybuf, iv);
     end;
 
     Memo1.Lines.Add('加密:');
@@ -4596,6 +4662,42 @@ begin
     Timer5.Enabled := False;
     GetComListFromReg();
     Timer5.Enabled := True;
+end;
+
+procedure TForm1.RadioButton7Click(Sender: TObject);
+begin
+    Edit57.Enabled := True;
+    Edit57.Color := clWindow;
+    GroupBox35.Visible := True;
+end;
+
+procedure TForm1.RadioButton6Click(Sender: TObject);
+begin
+  Edit57.Enabled := False;
+  Edit57.Color := clScrollBar;
+  GroupBox35.Visible := True;
+end;
+
+procedure TForm1.RadioButton5Click(Sender: TObject);
+begin
+  Edit57.Enabled := False;
+  Edit57.Color := clScrollBar;
+  GroupBox35.Visible := False;
+  Edit58.Enabled := False;
+  Edit58.Color := clScrollBar;
+  RadioButton15.Checked := True;
+end;
+
+procedure TForm1.RadioButton15Click(Sender: TObject);
+begin
+    Edit58.Enabled := False;
+    Edit58.Color := clScrollBar;
+end;
+
+procedure TForm1.RadioButton16Click(Sender: TObject);
+begin
+    Edit58.Enabled := True;
+    Edit58.Color := clWindow;
 end;
 
 end.

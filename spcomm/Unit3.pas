@@ -18,9 +18,10 @@ type
   function DecryStrHex(StrHex, Key: String): String;
   function TwoAsciiToHex(Str: String): String;
   function des3_16(dataStr, key: String; mode : Integer): String;
+  function des3_24(dataStr, key: String; mode : Integer): String;
   function AxorB(dst,src:string; dstlen : Integer):string;
-  function Encrypt_cbc(Str, key: String): String;
-  function Decry_cbc(Str, key: String): String;
+  function Encrypt_cbc(Str, key, inputiv: String): String;
+  function Decry_cbc(Str, key, inputiv: String): String;
 const
   BitIP: array[0..63] of Byte =
     (57, 49, 41, 33, 25, 17,  9,  1,
@@ -480,6 +481,53 @@ begin
     Result := Temp;
 end;
 
+// 1=Encrypt加密 0=Decrypt 解密 ,datastr必需为8字节
+function des3_24(dataStr, key: String; mode : Integer): String;
+var
+    Str, Temp: String;
+    keytemp1,keytemp2, keytemp3:string;
+    I : Integer;
+begin
+    if (Length(dataStr) <> 8) then
+    begin
+         Result := '';
+         ShowMessage('datastr = null');
+         Exit;
+    end;
+
+    //keytemp1 := key;
+    //ShowMessage('data len = ' + IntToStr(Length(dataStr)));
+    for i := 0 to 7 do
+    begin
+        keytemp1 := keytemp1 + Char(key[1+i]);
+        keytemp2 := keytemp2 + Char(key[9+i]);
+        keytemp3 := keytemp3 + Char(key[17+i]);
+    end;
+    {for i := 0 to 7 do
+    begin
+        str := str + IntToHex(ord(dataStr[1+i]),2) + ' ';
+    end;}
+    //showmessage('k1= ' + keytemp1 + ' k2= ' + keytemp2 + ' k3= ' + keytemp3);
+    if mode = 0 then
+    begin
+        Temp := DecryStrhex(dataStr, keytemp3);
+        Temp := TwoAsciiToHex(Temp);
+        Temp := EncryStrHex(Temp, keytemp2);
+        Temp := TwoAsciiToHex(Temp);
+        Temp := DecryStrhex(Temp, keytemp1);
+    end
+    else
+    begin
+        //ShowMessage('123--' +IntToStr(Length(temp)));
+        Temp := EncryStrHex(dataStr, keytemp1);
+        Temp := TwoAsciiToHex(Temp);
+        Temp := DecryStrhex(Temp, keytemp2);
+        Temp := TwoAsciiToHex(Temp);
+        Temp := EncryStrHex(Temp, keytemp3);
+    end;
+    Result := Temp;
+end;
+
 function TwoAsciiToHex(Str: String): String;
 var
   temp,s : string;
@@ -534,7 +582,7 @@ begin
     Result := dst;  
 end;
 
-function Encrypt_cbc(Str, key: String): String;
+function Encrypt_cbc(Str, key, inputiv: String): String;
 var
     i,j , m,datalen: integer;
     iv ,datatemp: string;
@@ -543,7 +591,9 @@ begin
     m := 0;
     resulttemp := '';
     datalen := Length(str);
-    iv := '';
+    iv := inputiv;
+    //ShowMessage('iv = ' + iv+',key='+key );
+    //ShowMessage('key len = ' + IntToStr(Length(key)));
     for i := 0 to datalen div 8 -1 do
     begin
         datatemp := '';
@@ -551,13 +601,25 @@ begin
         begin
             datatemp := datatemp + Str[i*8+j+1];
         end;
-        if m <> 0 then
+
+        if iv <> '' then
             datatemp := AxorB(datatemp, iv, 8);
-        datatemp := des3_16(datatemp, key, 1);
+
+        if Length(key) = 24 then
+            datatemp := des3_24(datatemp, key, 1)
+        else
+            datatemp := des3_16(datatemp, key, 1);
         resulttemp := resulttemp + datatemp;
         //ShowMessage('1 ' + datatemp);
+
         datatemp := TwoAsciiToHex(datatemp);
         inc(m);
+        if (Length(datatemp) = 0) then
+        begin
+            ShowMessage('未知错误，可能数据与密钥或相量相同');
+            result := '';
+            Exit;
+        end;
         iv := '';
         for j := 0 to 7 do
         begin
@@ -568,7 +630,7 @@ begin
 end;
 
  //CBC 解密
-function Decry_cbc(Str, key: String): String;
+function Decry_cbc(Str, key, inputiv: String): String;
 var
     i,j , m,datalen: integer;
     iv ,datatemp,cryptdata: string;
@@ -577,7 +639,7 @@ begin
     m := 0;
     resulttemp := '';
     datalen := Length(str);
-    iv := '';
+    iv := inputiv;
     //ShowMessage(IntToStr(datalen));
     for i := 0 to datalen div 8 -1 do
     begin
@@ -587,10 +649,13 @@ begin
             datatemp := datatemp + Str[i*8+j+1];
         end;
         cryptdata := datatemp;
-        datatemp := des3_16(datatemp, key, 0);
+        if Length(key) = 24 then
+            datatemp := des3_24(datatemp, key, 0)
+        else
+            datatemp := des3_16(datatemp, key, 0);
         //ShowMessage(datatemp);
         datatemp := TwoAsciiToHex(datatemp);
-        if m <> 0 then
+        if iv <> '' then
             datatemp := AxorB(datatemp, iv, 8);
         iv := cryptdata;
 

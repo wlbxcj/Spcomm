@@ -9,7 +9,7 @@ uses
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, wininet;
+  MConnect, SConnect, IdThread, wininet, util_utf8;
 
 type
   TForm1 = class(TForm)
@@ -338,6 +338,7 @@ type
     GroupBox35: TGroupBox;
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
+    CheckBox60: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -1254,15 +1255,26 @@ begin
             //Memo1.Lines.Add(TimeToStr(TimeBuf));
             if CheckBox3.Checked = True then
             begin
-                memo1.lines.add(rbufstr);
-
+                if (CheckBox60.Checked <> True) then
+                begin
+                    memo1.lines.add(rbufstr);
+                end
+                else
+                begin
+                    // utf8转换显示
+                    memo1.lines.add(UTF8ToAnsi(rbufstr));
+                end;
             end
             else
             begin
-              Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
-              //memo1.Text := memo1.Text + rbufstr;
-              //Memo1.SelStart := Length(Memo1.Text);
-              //Memo1.SelLength:= Length(Memo1.Text);
+              if (CheckBox60.Checked <> True) then
+              begin
+                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
+              end
+              else
+              begin
+                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + UTF8ToAnsi(rbufstr);
+              end;
             end;
             writeWorkLog(rbufstr);
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
@@ -3511,7 +3523,17 @@ begin
           end;
           keybuf := keybuf + edit51.text;
       end;
-
+      // 192bit
+      if RadioButton16.Checked = True then
+      begin
+          if (Edit58.Text = '') then
+          begin
+              ShowMessage('请输入KEY3');
+              Exit;
+          end;
+          keybuf := keybuf + edit58.text;
+      end;
+      
      if CheckBox56.Checked = True then        // hex
      begin
           keytemp1 := keyBuf;
@@ -3526,6 +3548,14 @@ begin
           begin
               ShowMessage('KEY1的长度错误');
               Exit;
+          end;
+          if RadioButton16.Checked = True then
+          begin
+             if (Length(Edit58.Text) <> 8) then
+             begin
+                  ShowMessage('KEY 的长度错误.');
+                  Exit;
+             end;
           end;
      end;
 
@@ -3567,7 +3597,10 @@ begin
             begin
                 sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
             end;
-            strbuf := des3_16(sendtemp, keybuf, 0);
+            if RadioButton16.Checked = True then
+                strbuf := des3_24(sendtemp, keybuf, 0)
+            else
+                strbuf := des3_16(sendtemp, keybuf, 0);
             Memo1.Lines.Add(strbuf);
         end;
         exit;
@@ -3658,6 +3691,14 @@ begin
               ShowMessage('KEY 的长度错误.');
               Exit;
           end;
+          if RadioButton16.Checked = True then
+          begin
+             if (Length(Edit58.Text) <> 8) then
+             begin
+                  ShowMessage('KEY 的长度错误.');
+                  Exit;
+             end;
+          end;
      end;
 
      if (Length(keybuf) mod 8 <> 0) then
@@ -3691,7 +3732,10 @@ begin
                 sendtemp := sendtemp + SendBuf[j * 8 + i + 1];
             end;
             //ShowMessage('444444');
-            strbuf := des3_16(sendtemp, keybuf, 1);
+            if RadioButton16.Checked = True then
+                strbuf := des3_24(sendtemp, keybuf, 1)
+            else
+                strbuf := des3_16(sendtemp, keybuf, 1);
             //ShowMessage('3333333');
             Memo1.Lines.Add(strbuf);
         end;

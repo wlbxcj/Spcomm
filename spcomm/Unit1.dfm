@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 567
-  Top = 87
+  Left = 397
+  Top = 84
   Width = 805
   Height = 505
-  Caption = 'Spcom V2.6'
+  Caption = 'Spcom V2.7'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2515,6 +2515,14 @@ object Form1: TForm1
               TabOrder = 0
               OnClick = CheckBox53Click
             end
+            object CheckBox60: TCheckBox
+              Left = 8
+              Top = 48
+              Width = 97
+              Height = 17
+              Caption = 'UTF8'#26174#31034
+              TabOrder = 1
+            end
           end
         end
       end
@@ -2549,28 +2557,28 @@ object Form1: TForm1
     WriteTotalTimeoutConstant = 0
     OnReceiveData = Comm1ReceiveData
     Left = 160
-    Top = 168
+    Top = 232
   end
   object SaveDialog1: TSaveDialog
     Filter = '.txt'
     Left = 128
-    Top = 168
+    Top = 232
   end
   object OpenDialog1: TOpenDialog
     Left = 88
-    Top = 183
+    Top = 223
   end
   object Timer1: TTimer
     Interval = 3000
     OnTimer = Timer1Timer
     Left = 16
-    Top = 176
+    Top = 224
   end
   object Timer2: TTimer
     Enabled = False
     OnTimer = Timer2Timer
     Left = 48
-    Top = 168
+    Top = 224
   end
   object PopupMenu1: TPopupMenu
     Left = 256
@@ -2588,7 +2596,7 @@ object Form1: TForm1
   end
   object pm1: TPopupMenu
     Left = 16
-    Top = 152
+    Top = 256
     object N2: TMenuItem
       Caption = #28165#31354
       OnClick = N2Click

@@ -9,7 +9,7 @@ uses
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, wininet;
+  MConnect, SConnect, IdThread, wininet, util_utf8;
 
 type
   TForm1 = class(TForm)
@@ -338,6 +338,7 @@ type
     GroupBox35: TGroupBox;
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
+    CheckBox60: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -1254,15 +1255,26 @@ begin
             //Memo1.Lines.Add(TimeToStr(TimeBuf));
             if CheckBox3.Checked = True then
             begin
-                memo1.lines.add(rbufstr);
-
+                if (CheckBox60.Checked <> True) then
+                begin
+                    memo1.lines.add(rbufstr);
+                end
+                else
+                begin
+                    // utf8×ª»»ÏÔÊ¾
+                    memo1.lines.add(UTF8ToAnsi(rbufstr));
+                end;
             end
             else
             begin
-              Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
-              //memo1.Text := memo1.Text + rbufstr;
-              //Memo1.SelStart := Length(Memo1.Text);
-              //Memo1.SelLength:= Length(Memo1.Text);
+              if (CheckBox60.Checked <> True) then
+              begin
+                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
+              end
+              else
+              begin
+                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + UTF8ToAnsi(rbufstr);
+              end;
             end;
             writeWorkLog(rbufstr);
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')

@@ -767,11 +767,13 @@ var
   Namelst:TStrings;
   i,j:integer;
   str:string;
+  b:Boolean;
 begin
   Namelst:=TStringList.Create;
   reg:=TRegistry.Create;
   reg.RootKey :=HKEY_LOCAL_MACHINE;
-  reg.OpenKey('HARDWARE\DEVICEMAP\SERIALCOMM',true);
+  b := reg.OpenKey('HARDWARE\DEVICEMAP\SERIALCOMM',true);
+  //ShowMessage('open ='+ BoolToStr(b));
   reg.GetValueNames(Namelst);
   //Form1.memo1.Clear;
   //for i := 0  to Namelst.Count-1 do

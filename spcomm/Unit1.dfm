@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 397
-  Top = 84
-  Width = 805
+  Left = 0
+  Top = 65
+  Width = 800
   Height = 505
   Caption = 'Spcom V2.7'
   Color = clBtnFace
@@ -32,7 +32,7 @@ object Form1: TForm1
   object GroupBox3: TGroupBox
     Left = 193
     Top = 0
-    Width = 374
+    Width = 369
     Height = 454
     Align = alClient
     Caption = 'rec'
@@ -40,7 +40,7 @@ object Form1: TForm1
     object Memo1: TMemo
       Left = 2
       Top = 16
-      Width = 370
+      Width = 365
       Height = 436
       Align = alClient
       Font.Charset = ANSI_CHARSET
@@ -445,14 +445,14 @@ object Form1: TForm1
   object GroupBox5: TGroupBox
     Left = 0
     Top = 454
-    Width = 797
+    Width = 792
     Height = 17
     Align = alBottom
     TabOrder = 5
     object PageControl1: TPageControl
       Left = 2
       Top = -219
-      Width = 793
+      Width = 788
       Height = 215
       Align = alBottom
       TabOrder = 0
@@ -460,7 +460,7 @@ object Form1: TForm1
     object StatusBar1: TStatusBar
       Left = 2
       Top = -4
-      Width = 793
+      Width = 788
       Height = 19
       Panels = <
         item
@@ -484,7 +484,7 @@ object Form1: TForm1
     end
   end
   object GroupBox7: TGroupBox
-    Left = 567
+    Left = 562
     Top = 0
     Width = 230
     Height = 454

@@ -11,7 +11,7 @@ uses
   util_utf8 in 'util_utf8.pas';
 
 {$R *.res}
-
+{$R manage.res}
 begin
   Application.Initialize;
   Application.Title := 'Spcom V2.7';

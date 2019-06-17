@@ -339,6 +339,7 @@ type
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
     CheckBox60: TCheckBox;
+    Button63: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -488,6 +489,7 @@ type
     procedure RadioButton5Click(Sender: TObject);
     procedure RadioButton15Click(Sender: TObject);
     procedure RadioButton16Click(Sender: TObject);
+    procedure Button63Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -1728,11 +1730,12 @@ begin
         GroupBox7.Visible := True;
         Button13.Caption := '隐藏';
 
-
-        Types:=INTERNET_CONNECTION_MODEM+INTERNET_CONNECTION_LAN+INTERNET_CONNECTION_PROXY;
+        {Types:=INTERNET_CONNECTION_MODEM+INTERNET_CONNECTION_LAN+INTERNET_CONNECTION_PROXY;
         if internetGetConnectedState(@types,0)  then
         begin
+            ShowMessage('1 types='+inttostr(types));
             strIp := GetPublicIP;
+            ShowMessage('2 types='+strIp);
             if Length(strIp) > 0 then
             begin
               Label15.Caption := '服务器 :';
@@ -1746,10 +1749,11 @@ begin
         end
         else
         begin
+            ShowMessage('3 types='+inttostr(types));
             Label15.Caption := '本地IP :';
             Edit24.Text := IdIPWatch1.LocalIP;
         end;
-
+        }
         
     end
     else
@@ -4712,6 +4716,39 @@ procedure TForm1.RadioButton16Click(Sender: TObject);
 begin
     Edit58.Enabled := True;
     Edit58.Color := clWindow;
+end;
+
+procedure TForm1.Button63Click(Sender: TObject);
+var
+    strIp : string;
+    Types:integer;
+begin
+        if InternetCheckConnection('http://www.baidu.com/', 1, 0) then
+            //ShowMessage('connected')
+        else
+        begin
+            ShowMessage('No network');
+            Exit;
+        end;
+        if true  then
+        begin
+            strIp := GetPublicIP;
+            if Length(strIp) > 0 then
+            begin
+              Label15.Caption := '服务器 :';
+              Edit24.Text := strIp;
+            end
+            else
+            begin
+              Label15.Caption := '本地IP :';
+              Edit24.Text := IdIPWatch1.LocalIP;
+            end;
+        end
+        else
+        begin
+            Label15.Caption := '本地IP :';
+            Edit24.Text := IdIPWatch1.LocalIP;
+        end;
 end;
 
 end.

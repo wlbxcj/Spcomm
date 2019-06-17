@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 0
-  Top = 65
+  Left = 308
+  Top = 38
   Width = 800
   Height = 505
-  Caption = 'Spcom V2.7'
+  Caption = 'Spcom V2.8'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1662,15 +1662,15 @@ object Form1: TForm1
           object Edit15: TEdit
             Left = 64
             Top = 31
-            Width = 85
+            Width = 49
             Height = 22
             TabOrder = 0
             OnKeyPress = Edit15KeyPress
           end
           object Button9: TButton
-            Left = 162
+            Left = 168
             Top = 31
-            Width = 50
+            Width = 45
             Height = 21
             Caption = #24320#21551
             TabOrder = 1
@@ -1728,6 +1728,15 @@ object Form1: TForm1
             Height = 22
             TabOrder = 6
             Text = '255.255.255.255'
+          end
+          object Button63: TButton
+            Left = 117
+            Top = 31
+            Width = 49
+            Height = 21
+            Caption = #33719#21462'IP'
+            TabOrder = 7
+            OnClick = Button63Click
           end
         end
         object GroupBox13: TGroupBox

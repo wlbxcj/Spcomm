@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 308
-  Top = 38
+  Left = 293
+  Top = 51
   Width = 800
   Height = 505
-  Caption = 'Spcom V2.8'
+  Caption = 'Spcom V2.9'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -140,6 +140,7 @@ object Form1: TForm1
         '115200'
         '230400'
         '460800'
+        '921600'
         'Custom')
     end
     object ComboBox3: TComboBox

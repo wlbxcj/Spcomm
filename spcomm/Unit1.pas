@@ -1207,11 +1207,11 @@ end;
 procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
-    i,len:integer;
+    j,i,len:integer;
     rbufstr :string;
     TimeBuf : TDateTime;
     //rbuf    : string;
-    rbuf:array[0..5000] of byte;
+    rbuf:array[0..50000] of byte;
     //HexFile : file of Integer;
     datetimeSTR : string;
 begin
@@ -1230,7 +1230,7 @@ begin
         setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']');
+            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss:zzz',now) + ']');
             //Memo1.Lines.Add(TimeToStr(TimeBuf) + '  ');
         if HexShow = True then
         begin
@@ -1240,9 +1240,10 @@ begin
                  viewstring:= viewstring + inttohex(rbuf[i],2) + ' ' ;
                  if (i + 1) mod 16 = 0 then
                  begin
-                     memo1.lines.add(viewstring);
-                     writeWorkLog(viewstring);
-                     viewstring := '';
+                     j := Length(viewstring);
+                     viewstring[j]:=#13;
+                     viewstring[j+1] := #10;
+                     SetLength(viewstring, j+1);
                  end;
              end;
              if Length(viewstring) > 0 then
@@ -3827,11 +3828,11 @@ end;
 
 procedure TForm1.ComboBox2Click(Sender: TObject);
 begin
-      comboBox2.items[10] := 'Custom';
-     if ComboBox2.ItemIndex = 10 then
+      comboBox2.items[11] := 'Custom';
+     if ComboBox2.ItemIndex = 11 then
      begin
           comboBox2.items[ComboBox2.itemindex] := '';
-          ComboBox2.itemindex := 10;
+          ComboBox2.itemindex := 11;
      end;
      //ShowMessage('5 ' + IntToStr(ComboBox2.ItemIndex));
 end;

@@ -2560,7 +2560,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 60
+    ReadIntervalTimeout = 6
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0

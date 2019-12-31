@@ -112,8 +112,8 @@ RootDir=
 [Version Info]
 IncludeVerInfo=1
 AutoIncBuild=1
-MajorVer=2
-MinorVer=9
+MajorVer=3
+MinorVer=0
 Release=0
 Build=2
 Debug=0
@@ -126,7 +126,7 @@ CodePage=936
 [Version Info Keys]
 CompanyName=
 FileDescription=多功能小工具
-FileVersion=2.9.0.2
+FileVersion=3.0.0.2
 InternalName=
 LegalCopyright=
 LegalTrademarks=

@@ -14,53 +14,18 @@ uses
 type
   TForm1 = class(TForm)
     Comm1: TComm;
-    Button1: TButton;
     GroupBox1: TGroupBox;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
-    ComboBox4: TComboBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Shape1: TShape;
-    GroupBox2: TGroupBox;
-    SpeedButton1: TSpeedButton;
-    CheckBox1: TCheckBox;
-    Label5: TLabel;
-    BitBtn1: TBitBtn;
     GroupBox3: TGroupBox;
     Memo1: TMemo;
-    GroupBox4: TGroupBox;
-    Button2: TButton;
-    Memo2: TMemo;
-    CheckBox2: TCheckBox;
     GroupBox5: TGroupBox;
     PageControl1: TPageControl;
-    CheckBox3: TCheckBox;
-    Label6: TLabel;
-    GroupBox6: TGroupBox;
-    Edit1: TEdit;
-    Button3: TButton;
-    Button4: TButton;
     SaveDialog1: TSaveDialog;
-    Button5: TButton;
     OpenDialog1: TOpenDialog;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
-    Edit2: TEdit;
-    Label7: TLabel;
-    CheckBox4: TCheckBox;
     Timer2: TTimer;
-    CheckBox5: TCheckBox;
-    Label8: TLabel;
     PopupMenu1: TPopupMenu;
     N1: TMenuItem;
-    Button6: TButton;
-    Button7: TButton;
-    CheckBox6: TCheckBox;
-    CheckBox7: TCheckBox;
     GroupBox7: TGroupBox;
     PageControl2: TPageControl;
     TabSheet1: TTabSheet;
@@ -120,7 +85,6 @@ type
     Button37: TButton;
     Label10: TLabel;
     Label11: TLabel;
-    Button13: TButton;
     Timer3: TTimer;
     pm1: TPopupMenu;
     N2: TMenuItem;
@@ -259,7 +223,6 @@ type
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
     SkinData1: TSkinData;
-    Button54: TButton;
     ts2: TTabSheet;
     Label16: TLabel;
     GroupBox17: TGroupBox;
@@ -338,8 +301,37 @@ type
     GroupBox35: TGroupBox;
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
-    CheckBox60: TCheckBox;
     Button63: TButton;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
+    ComboBox4: TComboBox;
+    shape1: TShape;
+    Button1: TButton;
+    Memo2: TMemo;
+    CheckBox4: TCheckBox;
+    CheckBox2: TCheckBox;
+    Edit2: TEdit;
+    Label4: TLabel;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    GroupBox2: TGroupBox;
+    Edit1: TEdit;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button54: TButton;
+    Button2: TButton;
+    CheckBox3: TCheckBox;
+    CheckBox1: TCheckBox;
+    BitBtn1: TBitBtn;
+    Button13: TButton;
+    CheckBox5: TCheckBox;
+    CheckBox60: TCheckBox;
+    Button7: TButton;
+    Memo13: TMemo;
+    CheckBox61: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -870,7 +862,7 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-     if Button1.Caption = '打开串口' then
+     if Button1.Caption = 'Open' then
      begin
          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
          HaveOpenCom    := Comm1.CommName;
@@ -909,7 +901,7 @@ begin
          //if False <> Comm1.StartComm then
          begin
               Shape1.Brush.Color := clRed;
-              Button1.Caption := '关闭串口';
+              Button1.Caption := 'Close';
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
@@ -918,7 +910,7 @@ begin
      end
      else
      begin
-          Button1.Caption := '打开串口';
+          Button1.Caption := 'Open';
           Comm1.StopComm;
           HaveOpenCom    := '0';
           Shape1.Brush.Color := clGray;
@@ -1066,7 +1058,7 @@ end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
-     if SpeedButton1.Caption = '+' then
+     {if SpeedButton1.Caption = '+' then
      begin
           Memo1.Height := form1.Height - 35;
           SpeedButton1.Caption := '-';
@@ -1075,7 +1067,7 @@ begin
      begin
           Memo1.Height := 145;
           SpeedButton1.Caption := '+';
-     end;
+     end; }
 end;
 
 procedure TForm1.ComboBox1Change(Sender: TObject);
@@ -1488,8 +1480,8 @@ begin
     Inc(HexOrChar);
     ResultSun := 0;
     Resultxor := 0;
-    StrTemp := Memo2.Text;
-    if CheckBox2.Checked = True then
+    StrTemp := Memo13.Text;
+    if CheckBox61.Checked = True then
     begin
         strbuf := StringReplace(StrTemp, ' ', '', [rfReplaceAll]);
         EditLen := Length(strbuf);
@@ -1535,8 +1527,8 @@ begin
     Inc(HexOrChar);
     ResultSun := 0;
     Resultxor := 0;
-    StrTemp := Memo2.Text;
-    if CheckBox2.Checked = True then
+    StrTemp := Memo13.Text;
+    if CheckBox61.Checked = True then
     begin
        strbuf := StringReplace(StrTemp, #10, '', [rfReplaceAll]);
        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
@@ -3441,7 +3433,7 @@ var
     sendbuf,strbuf: string;
     ivtmp, iv : string;
 begin
-    strbuf :=Memo2.text;
+    strbuf :=Memo13.text;
     sendbuf := '';
     //if HexSendFlag = True then
     begin

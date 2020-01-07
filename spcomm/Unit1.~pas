@@ -33,58 +33,6 @@ type
     CheckBox8: TCheckBox;
     Edit3: TEdit;
     Label9: TLabel;
-    GroupBox9: TGroupBox;
-    chk1: TCheckBox;
-    lbl1: TLabel;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    Edit16: TEdit;
-    CheckBox9: TCheckBox;
-    CheckBox10: TCheckBox;
-    CheckBox11: TCheckBox;
-    CheckBox12: TCheckBox;
-    CheckBox13: TCheckBox;
-    CheckBox14: TCheckBox;
-    CheckBox15: TCheckBox;
-    CheckBox16: TCheckBox;
-    CheckBox17: TCheckBox;
-    CheckBox18: TCheckBox;
-    CheckBox19: TCheckBox;
-    CheckBox20: TCheckBox;
-    CheckBox21: TCheckBox;
-    CheckBox22: TCheckBox;
-    CheckBox23: TCheckBox;
-    Edit17: TEdit;
-    Edit18: TEdit;
-    Edit19: TEdit;
-    Edit20: TEdit;
-    Button22: TButton;
-    Button23: TButton;
-    Button24: TButton;
-    Button25: TButton;
-    Button26: TButton;
-    Button27: TButton;
-    Button28: TButton;
-    Button29: TButton;
-    Button30: TButton;
-    Button31: TButton;
-    Button32: TButton;
-    Button33: TButton;
-    Button34: TButton;
-    Button35: TButton;
-    Button36: TButton;
-    Button37: TButton;
-    Label10: TLabel;
-    Label11: TLabel;
     Timer3: TTimer;
     pm1: TPopupMenu;
     N2: TMenuItem;
@@ -143,82 +91,6 @@ type
     Memo6: TMemo;
     IdHTTP1: TIdHTTP;
     Edit24: TEdit;
-    Edit25: TEdit;
-    Edit26: TEdit;
-    Edit27: TEdit;
-    Edit28: TEdit;
-    Edit29: TEdit;
-    Edit30: TEdit;
-    Edit31: TEdit;
-    Edit32: TEdit;
-    Edit33: TEdit;
-    Edit34: TEdit;
-    Edit35: TEdit;
-    Button11: TButton;
-    Button14: TButton;
-    Button15: TButton;
-    Button16: TButton;
-    Button17: TButton;
-    Button18: TButton;
-    Button19: TButton;
-    Button20: TButton;
-    Button21: TButton;
-    Button38: TButton;
-    Button39: TButton;
-    Button40: TButton;
-    CheckBox28: TCheckBox;
-    CheckBox29: TCheckBox;
-    CheckBox30: TCheckBox;
-    CheckBox31: TCheckBox;
-    CheckBox32: TCheckBox;
-    CheckBox33: TCheckBox;
-    CheckBox34: TCheckBox;
-    CheckBox35: TCheckBox;
-    CheckBox36: TCheckBox;
-    CheckBox37: TCheckBox;
-    CheckBox38: TCheckBox;
-    Edit36: TEdit;
-    Edit37: TEdit;
-    Edit38: TEdit;
-    Edit39: TEdit;
-    Edit40: TEdit;
-    Edit41: TEdit;
-    Edit42: TEdit;
-    Edit43: TEdit;
-    Edit44: TEdit;
-    Edit45: TEdit;
-    Edit46: TEdit;
-    Edit47: TEdit;
-    Edit48: TEdit;
-    Edit49: TEdit;
-    Button41: TButton;
-    Button42: TButton;
-    Button43: TButton;
-    Button44: TButton;
-    Button45: TButton;
-    Button46: TButton;
-    Button47: TButton;
-    Button48: TButton;
-    Button49: TButton;
-    Button50: TButton;
-    Button51: TButton;
-    Button52: TButton;
-    Button53: TButton;
-    CheckBox39: TCheckBox;
-    CheckBox40: TCheckBox;
-    CheckBox41: TCheckBox;
-    CheckBox42: TCheckBox;
-    CheckBox43: TCheckBox;
-    CheckBox44: TCheckBox;
-    CheckBox45: TCheckBox;
-    CheckBox46: TCheckBox;
-    CheckBox47: TCheckBox;
-    CheckBox48: TCheckBox;
-    CheckBox49: TCheckBox;
-    CheckBox50: TCheckBox;
-    CheckBox51: TCheckBox;
-    CheckBox52: TCheckBox;
-    CheckBox54: TCheckBox;
     GroupBox16: TGroupBox;
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
@@ -332,6 +204,134 @@ type
     Button7: TButton;
     Memo13: TMemo;
     CheckBox61: TCheckBox;
+    ScrollBox1: TScrollBox;
+    GroupBox9: TGroupBox;
+    lbl1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    chk1: TCheckBox;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit16: TEdit;
+    CheckBox9: TCheckBox;
+    CheckBox10: TCheckBox;
+    CheckBox11: TCheckBox;
+    CheckBox12: TCheckBox;
+    CheckBox13: TCheckBox;
+    CheckBox14: TCheckBox;
+    CheckBox15: TCheckBox;
+    CheckBox16: TCheckBox;
+    CheckBox17: TCheckBox;
+    CheckBox18: TCheckBox;
+    CheckBox19: TCheckBox;
+    CheckBox20: TCheckBox;
+    CheckBox21: TCheckBox;
+    CheckBox22: TCheckBox;
+    CheckBox23: TCheckBox;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Button22: TButton;
+    Button23: TButton;
+    Button24: TButton;
+    Button25: TButton;
+    Button26: TButton;
+    Button27: TButton;
+    Button28: TButton;
+    Button29: TButton;
+    Button30: TButton;
+    Button31: TButton;
+    Button32: TButton;
+    Button33: TButton;
+    Button34: TButton;
+    Button35: TButton;
+    Button36: TButton;
+    Button37: TButton;
+    Edit25: TEdit;
+    Edit26: TEdit;
+    Edit27: TEdit;
+    Edit28: TEdit;
+    Edit29: TEdit;
+    Edit30: TEdit;
+    Edit31: TEdit;
+    Edit32: TEdit;
+    Edit33: TEdit;
+    Edit34: TEdit;
+    Edit35: TEdit;
+    Button11: TButton;
+    Button14: TButton;
+    Button15: TButton;
+    Button16: TButton;
+    Button17: TButton;
+    Button18: TButton;
+    Button19: TButton;
+    Button20: TButton;
+    Button21: TButton;
+    Button38: TButton;
+    Button39: TButton;
+    Button40: TButton;
+    CheckBox28: TCheckBox;
+    CheckBox29: TCheckBox;
+    CheckBox30: TCheckBox;
+    CheckBox31: TCheckBox;
+    CheckBox32: TCheckBox;
+    CheckBox33: TCheckBox;
+    CheckBox34: TCheckBox;
+    CheckBox35: TCheckBox;
+    CheckBox36: TCheckBox;
+    CheckBox37: TCheckBox;
+    CheckBox38: TCheckBox;
+    Edit36: TEdit;
+    Edit37: TEdit;
+    Edit38: TEdit;
+    Edit39: TEdit;
+    Edit40: TEdit;
+    Edit41: TEdit;
+    Edit42: TEdit;
+    Edit43: TEdit;
+    Edit44: TEdit;
+    Edit45: TEdit;
+    Edit46: TEdit;
+    Edit47: TEdit;
+    Edit48: TEdit;
+    Edit49: TEdit;
+    Button41: TButton;
+    Button42: TButton;
+    Button43: TButton;
+    Button44: TButton;
+    Button45: TButton;
+    Button46: TButton;
+    Button47: TButton;
+    Button48: TButton;
+    Button49: TButton;
+    Button50: TButton;
+    Button51: TButton;
+    Button52: TButton;
+    Button53: TButton;
+    CheckBox39: TCheckBox;
+    CheckBox40: TCheckBox;
+    CheckBox41: TCheckBox;
+    CheckBox42: TCheckBox;
+    CheckBox43: TCheckBox;
+    CheckBox44: TCheckBox;
+    CheckBox45: TCheckBox;
+    CheckBox46: TCheckBox;
+    CheckBox47: TCheckBox;
+    CheckBox48: TCheckBox;
+    CheckBox49: TCheckBox;
+    CheckBox50: TCheckBox;
+    CheckBox51: TCheckBox;
+    CheckBox52: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -862,7 +862,7 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-     if Button1.Caption = 'Open' then
+     if Button1.Caption = '打开串口' then
      begin
          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
          HaveOpenCom    := Comm1.CommName;
@@ -901,7 +901,7 @@ begin
          //if False <> Comm1.StartComm then
          begin
               Shape1.Brush.Color := clRed;
-              Button1.Caption := 'Close';
+              Button1.Caption := '关闭串口';
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
@@ -910,7 +910,7 @@ begin
      end
      else
      begin
-          Button1.Caption := 'Open';
+          Button1.Caption := '打开串口';
           Comm1.StopComm;
           HaveOpenCom    := '0';
           Shape1.Brush.Color := clGray;
@@ -1072,6 +1072,7 @@ end;
 
 procedure TForm1.ComboBox1Change(Sender: TObject);
 begin
+    //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
           Button1.Caption := '打开串口';
@@ -1093,6 +1094,7 @@ begin
      begin
           Exit
      end;
+     //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
           Shape1.Brush.Color := clGray;
@@ -1106,11 +1108,12 @@ begin
               Button1.Caption := '关闭串口'
          end;
      end;
-     //ShowMessage(IntToStr(ComboBox2.ItemIndex));
+      //ShowMessage(IntToStr(ComboBox2.ItemIndex));
 end;
 
 procedure TForm1.ComboBox3Change(Sender: TObject);
 begin
+  //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
           Shape1.Brush.Color := clGray;
@@ -1143,6 +1146,7 @@ end;
 
 procedure TForm1.ComboBox4Change(Sender: TObject);
 begin
+  //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
           Shape1.Brush.Color := clGray;

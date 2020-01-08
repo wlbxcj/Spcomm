@@ -1722,7 +1722,7 @@ var
 begin
     if ExtendFun = 0 then
     begin
-        form1.Width := 905;
+        form1.Width := 770;
         ExtendFun := 1;
         GroupBox7.Visible := True;
         Button13.Caption := 'Òþ²Ø';
@@ -1758,7 +1758,7 @@ begin
         ExtendFun := 0;
         Button13.Caption := 'À©Õ¹';
         GroupBox7.Visible := False;
-        form1.Width := 805;
+        form1.Width := 670;
     end;  
 
 end;

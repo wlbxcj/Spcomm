@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 200
-  Top = 0
-  Width = 794
-  Height = 587
+  Left = 356
+  Top = 77
+  Width = 670
+  Height = 570
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.1'
+  Caption = 'Spcom V3.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -35,15 +35,15 @@ object Form1: TForm1
   object GroupBox3: TGroupBox
     Left = 0
     Top = 0
-    Width = 543
-    Height = 412
+    Width = 419
+    Height = 395
     Align = alClient
     TabOrder = 1
     object Memo1: TMemo
       Left = 2
       Top = 16
-      Width = 539
-      Height = 394
+      Width = 415
+      Height = 377
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -59,8 +59,8 @@ object Form1: TForm1
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 412
-    Width = 786
+    Top = 395
+    Width = 662
     Height = 124
     Align = alBottom
     Font.Charset = ANSI_CHARSET
@@ -73,7 +73,7 @@ object Form1: TForm1
     object TGroupBox
       Left = 2
       Top = 5
-      Width = 286
+      Width = 275
       Height = 117
       Align = alLeft
       Font.Charset = ANSI_CHARSET
@@ -174,7 +174,7 @@ object Form1: TForm1
           'Even')
       end
       object Button1: TButton
-        Left = 206
+        Left = 195
         Top = 27
         Width = 73
         Height = 25
@@ -239,7 +239,7 @@ object Form1: TForm1
         TabOrder = 9
       end
       object Button2: TButton
-        Left = 204
+        Left = 193
         Top = 76
         Width = 73
         Height = 25
@@ -249,9 +249,9 @@ object Form1: TForm1
       end
     end
     object TGroupBox
-      Left = 288
+      Left = 277
       Top = 5
-      Width = 496
+      Width = 383
       Height = 117
       Align = alClient
       Font.Charset = ANSI_CHARSET
@@ -263,9 +263,9 @@ object Form1: TForm1
       TabOrder = 1
       object TGroupBox
         Left = 2
-        Top = 22
-        Width = 492
-        Height = 93
+        Top = 48
+        Width = 379
+        Height = 67
         Align = alBottom
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -277,8 +277,8 @@ object Form1: TForm1
         object Memo2: TMemo
           Left = 2
           Top = 16
-          Width = 488
-          Height = 75
+          Width = 375
+          Height = 49
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -309,7 +309,7 @@ object Form1: TForm1
         TabOrder = 1
       end
       object CheckBox1: TCheckBox
-        Left = 73
+        Left = 98
         Top = 11
         Width = 71
         Height = 17
@@ -318,8 +318,8 @@ object Form1: TForm1
         OnClick = CheckBox1Click
       end
       object BitBtn1: TBitBtn
-        Left = 379
-        Top = 10
+        Left = 262
+        Top = 30
         Width = 50
         Height = 18
         Caption = #28165#38500
@@ -327,8 +327,8 @@ object Form1: TForm1
         OnClick = BitBtn1Click
       end
       object Button13: TButton
-        Left = 432
-        Top = 10
+        Left = 320
+        Top = 30
         Width = 50
         Height = 18
         Caption = #25193#23637
@@ -336,7 +336,7 @@ object Form1: TForm1
         OnClick = Button13Click
       end
       object CheckBox5: TCheckBox
-        Left = 236
+        Left = 300
         Top = 11
         Width = 86
         Height = 17
@@ -344,16 +344,16 @@ object Form1: TForm1
         TabOrder = 5
       end
       object CheckBox60: TCheckBox
-        Left = 149
+        Left = 194
         Top = 11
-        Width = 86
+        Width = 81
         Height = 17
         Caption = 'UTF8'#26174#31034
         TabOrder = 6
       end
       object Button7: TButton
-        Left = 326
-        Top = 10
+        Left = 204
+        Top = 31
         Width = 50
         Height = 18
         Caption = #20445#23384
@@ -364,15 +364,15 @@ object Form1: TForm1
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 536
-    Width = 786
+    Top = 519
+    Width = 662
     Height = 17
     Align = alBottom
     TabOrder = 2
     object PageControl1: TPageControl
       Left = 2
       Top = -219
-      Width = 782
+      Width = 658
       Height = 215
       Align = alBottom
       TabOrder = 0
@@ -380,7 +380,7 @@ object Form1: TForm1
     object StatusBar1: TStatusBar
       Left = 2
       Top = -4
-      Width = 782
+      Width = 658
       Height = 19
       Panels = <
         item
@@ -404,10 +404,10 @@ object Form1: TForm1
     end
   end
   object GroupBox7: TGroupBox
-    Left = 543
+    Left = 419
     Top = 0
     Width = 243
-    Height = 412
+    Height = 395
     Align = alRight
     TabOrder = 3
     Visible = False
@@ -415,7 +415,7 @@ object Form1: TForm1
       Left = 2
       Top = 16
       Width = 239
-      Height = 394
+      Height = 377
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
@@ -465,7 +465,7 @@ object Form1: TForm1
           Left = 0
           Top = 28
           Width = 231
-          Height = 337
+          Height = 320
           VertScrollBar.Range = 925
           VertScrollBar.Smooth = True
           VertScrollBar.Tracking = True
@@ -1460,7 +1460,7 @@ object Form1: TForm1
         ImageIndex = 1
         object ReadBtn: TSpeedButton
           Left = 0
-          Top = 330
+          Top = 325
           Width = 81
           Height = 22
           AllowAllUp = True
@@ -1533,7 +1533,7 @@ object Form1: TForm1
         end
         object Button8: TButton
           Left = 160
-          Top = 330
+          Top = 325
           Width = 59
           Height = 25
           Caption = #21457#36865
@@ -1542,7 +1542,7 @@ object Form1: TForm1
         end
         object CheckBox24: TCheckBox
           Left = 112
-          Top = 334
+          Top = 329
           Width = 46
           Height = 17
           Caption = 'HEX'
@@ -1557,18 +1557,18 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 98
+          Height = 90
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
           TabOrder = 0
           object Label12: TLabel
-            Left = 1
+            Left = 8
             Top = 35
-            Width = 64
+            Width = 59
             Height = 14
             AutoSize = False
-            Caption = ' '#31471'  '#21475' '#65306
+            Caption = #31471'  '#21475' '#65306
           end
           object Label15: TLabel
             Left = 8
@@ -1633,10 +1633,11 @@ object Form1: TForm1
             TabStop = True
           end
           object CheckListBox1: TCheckListBox
-            Left = 8
-            Top = 55
-            Width = 205
+            Left = 2
+            Top = 59
+            Width = 227
             Height = 29
+            Align = alBottom
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -1667,9 +1668,9 @@ object Form1: TForm1
         end
         object GroupBox13: TGroupBox
           Left = 0
-          Top = 98
+          Top = 90
           Width = 231
-          Height = 66
+          Height = 57
           Align = alClient
           Caption = 'Client'
           TabOrder = 1
@@ -1722,7 +1723,7 @@ object Form1: TForm1
         end
         object GroupBox14: TGroupBox
           Left = 0
-          Top = 164
+          Top = 147
           Width = 231
           Height = 201
           Align = alBottom
@@ -1819,22 +1820,22 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 193
-          Align = alTop
+          Height = 136
+          Align = alClient
           Caption = 'data'
           TabOrder = 0
           object memo7: TMemo
             Left = 2
             Top = 16
             Width = 227
-            Height = 175
+            Height = 118
             Align = alClient
             TabOrder = 0
           end
         end
         object GroupBox18: TGroupBox
           Left = 0
-          Top = 153
+          Top = 136
           Width = 231
           Height = 212
           Align = alBottom
@@ -2004,14 +2005,14 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 365
+          Height = 348
           Align = alClient
           TabOrder = 0
           object GroupBox30: TGroupBox
             Left = 2
             Top = 16
             Width = 227
-            Height = 91
+            Height = 74
             Align = alClient
             Caption = 'data'
             TabOrder = 0
@@ -2019,14 +2020,14 @@ object Form1: TForm1
               Left = 2
               Top = 16
               Width = 223
-              Height = 73
+              Height = 56
               Align = alClient
               TabOrder = 0
             end
           end
           object GroupBox31: TGroupBox
             Left = 2
-            Top = 107
+            Top = 90
             Width = 227
             Height = 131
             Align = alBottom
@@ -2123,7 +2124,7 @@ object Form1: TForm1
           end
           object GroupBox32: TGroupBox
             Left = 2
-            Top = 238
+            Top = 221
             Width = 227
             Height = 125
             Align = alBottom
@@ -2228,7 +2229,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 171
+          Height = 154
           Align = alClient
           Caption = 'data'
           TabOrder = 0
@@ -2236,7 +2237,7 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 153
+            Height = 136
             Hint = 'Multiples of 16'
             Align = alClient
             TabOrder = 0
@@ -2244,7 +2245,7 @@ object Form1: TForm1
         end
         object GroupBox20: TGroupBox
           Left = 0
-          Top = 171
+          Top = 154
           Width = 231
           Height = 46
           Align = alBottom
@@ -2262,7 +2263,7 @@ object Form1: TForm1
         end
         object GroupBox21: TGroupBox
           Left = 0
-          Top = 264
+          Top = 247
           Width = 231
           Height = 101
           Align = alBottom
@@ -2332,7 +2333,7 @@ object Form1: TForm1
         end
         object GroupBox24: TGroupBox
           Left = 0
-          Top = 217
+          Top = 200
           Width = 231
           Height = 47
           Align = alBottom
@@ -2355,14 +2356,14 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 365
+          Height = 348
           Align = alClient
           TabOrder = 0
           object GroupBox26: TGroupBox
             Left = 2
             Top = 16
             Width = 227
-            Height = 269
+            Height = 252
             Align = alClient
             Caption = 'data'
             TabOrder = 0
@@ -2370,7 +2371,7 @@ object Form1: TForm1
               Left = 2
               Top = 16
               Width = 223
-              Height = 251
+              Height = 234
               Align = alClient
               ScrollBars = ssVertical
               TabOrder = 0
@@ -2378,7 +2379,7 @@ object Form1: TForm1
           end
           object GroupBox27: TGroupBox
             Left = 2
-            Top = 285
+            Top = 268
             Width = 227
             Height = 32
             Align = alBottom
@@ -2396,7 +2397,7 @@ object Form1: TForm1
           end
           object GroupBox28: TGroupBox
             Left = 2
-            Top = 317
+            Top = 300
             Width = 227
             Height = 46
             Align = alBottom
@@ -2430,7 +2431,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 365
+          Height = 348
           Align = alClient
           TabOrder = 0
           object Memo6: TMemo
@@ -2448,9 +2449,9 @@ object Form1: TForm1
           end
           object GroupBox16: TGroupBox
             Left = 2
-            Top = 72
+            Top = 64
             Width = 227
-            Height = 291
+            Height = 282
             Align = alBottom
             TabOrder = 1
             object CheckBox53: TCheckBox
@@ -2465,7 +2466,7 @@ object Form1: TForm1
             end
             object GroupBox2: TGroupBox
               Left = 2
-              Top = 18
+              Top = 9
               Width = 223
               Height = 271
               Align = alBottom
@@ -2473,7 +2474,7 @@ object Form1: TForm1
               object Edit1: TEdit
                 Left = 4
                 Top = 162
-                Width = 200
+                Width = 213
                 Height = 21
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
@@ -2530,15 +2531,16 @@ object Form1: TForm1
                 OnClick = Button54Click
               end
               object Memo13: TMemo
-                Left = 4
-                Top = 12
-                Width = 200
+                Left = 2
+                Top = 16
+                Width = 219
                 Height = 123
+                Align = alTop
                 TabOrder = 6
               end
               object CheckBox61: TCheckBox
                 Left = 6
-                Top = 138
+                Top = 140
                 Width = 73
                 Height = 17
                 Caption = 'HEX'
@@ -2646,8 +2648,8 @@ object Form1: TForm1
     OnDeviceChange = JvHidDeviceController1DeviceChange
     OnDeviceDataError = JvHidDeviceController1DeviceDataError
     OnRemoval = JvHidDeviceController1Removal
-    Left = 465
-    Top = 72
+    Left = 501
+    Top = 95
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <>
@@ -2699,8 +2701,8 @@ object Form1: TForm1
     end
   end
   object PopupMenu3: TPopupMenu
-    Left = 416
-    Top = 63
+    Left = 377
+    Top = 64
     object IP1: TMenuItem
       Caption = 'log:'#26174#31034'IP'
       OnClick = IP1Click

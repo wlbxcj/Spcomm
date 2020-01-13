@@ -1368,12 +1368,18 @@ end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
-     Memo1.Text := '';
-     SendLen := 0;
-     RecLen := 0;
-     StatusBar1.Panels[0].Text := 'S:0';
-     StatusBar1.Panels[1].Text := 'R:0';
-     StatusBar1.Panels[2].Text := ' Total Lines: 0'
+     if Memo1.Text <> '' then
+     begin
+        if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
+        begin
+            Memo1.Text := '';
+            SendLen := 0;
+            RecLen := 0;
+            StatusBar1.Panels[0].Text := 'S:0';
+            StatusBar1.Panels[1].Text := 'R:0';
+            StatusBar1.Panels[2].Text := ' Total Lines: 0'
+        end;
+     end;
 end;
 
 procedure TForm1.CheckBox2Click(Sender: TObject);
@@ -1419,49 +1425,90 @@ begin
     MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
     MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
-    MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
+    if Edit4.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
+    if Edit5.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
+    if Edit6.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
+    if Edit7.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
+    if Edit8.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
+    if Edit9.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
+    if Edit10.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
+    if Edit11.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
+    if Edit12.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
+    if Edit13.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
+    if Edit14.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
+    if Edit17.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
+    if Edit16.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
+    if Edit18.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
+    if Edit19.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
+    if Edit20.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
 
-    MyIniFile.WriteString('AUTOSEND', 'SEND17', Edit25.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND18', Edit26.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND19', Edit27.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND20', Edit28.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND21', Edit29.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND22', Edit30.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND23', Edit31.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND24', Edit32.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND25', Edit33.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND26', Edit34.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND27', Edit35.Text);
+    if Edit25.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND17', Edit25.Text);
+    if Edit26.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND18', Edit26.Text);
+    if Edit27.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND19', Edit27.Text);
+    if Edit28.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND20', Edit28.Text);
+    if Edit29.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND21', Edit29.Text);
+    if Edit30.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND22', Edit30.Text);
+    if Edit31.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND23', Edit31.Text);
+    if Edit32.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND24', Edit32.Text);
+    if Edit33.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND25', Edit33.Text);
+    if Edit34.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND26', Edit34.Text);
+    if Edit35.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND27', Edit35.Text);
 
-    MyIniFile.WriteString('AUTOSEND', 'SEND28', Edit36.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND29', Edit37.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND30', Edit38.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND31', Edit39.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND32', Edit40.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND33', Edit41.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND34', Edit42.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND35', Edit43.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND36', Edit44.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND37', Edit45.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND38', Edit46.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND39', Edit47.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND40', Edit48.Text);
-    MyIniFile.WriteString('AUTOSEND', 'SEND41', Edit49.Text);
+    if Edit36.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND28', Edit36.Text);
+    if Edit37.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND29', Edit37.Text);
+    if Edit38.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND30', Edit38.Text);
+    if Edit39.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND31', Edit39.Text);
+    if Edit40.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND32', Edit40.Text);
+    if Edit41.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND33', Edit41.Text);
+    if Edit42.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND34', Edit42.Text);
+    if Edit43.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND35', Edit43.Text);
+    if Edit44.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND36', Edit44.Text);
+    if Edit45.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND37', Edit45.Text);
+    if Edit46.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND38', Edit46.Text);
+    if Edit47.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND39', Edit47.Text);
+    if Edit48.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND40', Edit48.Text);
+    if Edit49.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND41', Edit49.Text);
 
     MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
@@ -1694,9 +1741,13 @@ end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 begin
-    SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
-    if SaveDialog1.Execute then
-        Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
+    if Memo1.Text <> '' then
+    begin
+      SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
+      if SaveDialog1.Execute then
+          Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
+
+    end;
 end;
 
 procedure TForm1.StatusBar1MouseMove(Sender: TObject; Shift: TShiftState;

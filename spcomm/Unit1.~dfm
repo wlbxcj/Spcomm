@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 356
-  Top = 77
+  Left = 296
+  Top = 82
   Width = 670
   Height = 570
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.2'
+  Caption = 'Spcom V3.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -336,9 +336,9 @@ object Form1: TForm1
         OnClick = Button13Click
       end
       object CheckBox5: TCheckBox
-        Left = 300
+        Left = 294
         Top = 11
-        Width = 86
+        Width = 77
         Height = 17
         Caption = #26242#20572#25509#25910
         TabOrder = 5
@@ -1460,9 +1460,9 @@ object Form1: TForm1
         ImageIndex = 1
         object ReadBtn: TSpeedButton
           Left = 0
-          Top = 325
-          Width = 81
-          Height = 22
+          Top = 323
+          Width = 68
+          Height = 20
           AllowAllUp = True
           GroupIndex = 1
           Caption = #30417#25511
@@ -1512,7 +1512,7 @@ object Form1: TForm1
           Left = 0
           Top = 212
           Width = 231
-          Height = 112
+          Height = 107
           Align = alTop
           Caption = 'Send'
           TabOrder = 2
@@ -1520,7 +1520,7 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 94
+            Height = 89
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1533,16 +1533,16 @@ object Form1: TForm1
         end
         object Button8: TButton
           Left = 160
-          Top = 325
-          Width = 59
-          Height = 25
+          Top = 323
+          Width = 68
+          Height = 20
           Caption = #21457#36865
           TabOrder = 3
           OnClick = Button8Click
         end
         object CheckBox24: TCheckBox
           Left = 112
-          Top = 329
+          Top = 326
           Width = 46
           Height = 17
           Caption = 'HEX'
@@ -2540,7 +2540,7 @@ object Form1: TForm1
               end
               object CheckBox61: TCheckBox
                 Left = 6
-                Top = 140
+                Top = 142
                 Width = 73
                 Height = 17
                 Caption = 'HEX'

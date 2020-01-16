@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 296
-  Top = 82
+  Left = 270
+  Top = 115
   Width = 670
   Height = 570
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.3'
+  Caption = 'Spcom V3.4'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -90,6 +90,7 @@ object Form1: TForm1
         Height = 22
         Brush.Color = clGray
         Shape = stCircle
+        OnMouseDown = shape1MouseDown
       end
       object Label4: TLabel
         Left = 144
@@ -2350,7 +2351,7 @@ object Form1: TForm1
         end
       end
       object TabSheet5: TTabSheet
-        Caption = 'HASH'
+        Caption = 'HASH/MD5'
         ImageIndex = 6
         object GroupBox25: TGroupBox
           Left = 0
@@ -2385,14 +2386,32 @@ object Form1: TForm1
             Align = alBottom
             TabOrder = 1
             object CheckBox58: TCheckBox
-              Left = 56
+              Left = 7
               Top = 11
-              Width = 97
+              Width = 60
               Height = 17
-              Caption = 'HEX INPUT'
+              Caption = 'HEX'
               Checked = True
               State = cbChecked
               TabOrder = 0
+            end
+            object RadioButton17: TRadioButton
+              Left = 101
+              Top = 11
+              Width = 55
+              Height = 17
+              Caption = 'HASH'
+              Checked = True
+              TabOrder = 1
+              TabStop = True
+            end
+            object RadioButton18: TRadioButton
+              Left = 167
+              Top = 11
+              Width = 45
+              Height = 17
+              Caption = 'MD5'
+              TabOrder = 2
             end
           end
           object GroupBox28: TGroupBox
@@ -2401,7 +2420,6 @@ object Form1: TForm1
             Width = 227
             Height = 46
             Align = alBottom
-            Caption = 'SHA256'
             TabOrder = 2
             object Button57: TButton
               Left = 17
@@ -5883,7 +5901,7 @@ object Form1: TForm1
   object Timer5: TTimer
     Interval = 3000
     OnTimer = Timer5Timer
-    Left = 441
-    Top = 304
+    Left = 363
+    Top = 298
   end
 end

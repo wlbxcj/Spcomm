@@ -9,7 +9,7 @@ uses
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, wininet, util_utf8;
+  MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest;
 
 type
   TForm1 = class(TForm)
@@ -332,6 +332,8 @@ type
     CheckBox50: TCheckBox;
     CheckBox51: TCheckBox;
     CheckBox52: TCheckBox;
+    RadioButton17: TRadioButton;
+    RadioButton18: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -482,6 +484,8 @@ type
     procedure RadioButton15Click(Sender: TObject);
     procedure RadioButton16Click(Sender: TObject);
     procedure Button63Click(Sender: TObject);
+    procedure shape1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
 
   private
     { Private declarations }
@@ -772,13 +776,13 @@ begin
   //Form1.memo1.Clear;
   //for i := 0  to Namelst.Count-1 do
   // Form1.memo1.Lines.Add(reg.ReadString(Namelst[i]));
-  //ShowMessage('namelst = ' + IntToStr(Namelst.Count) + 'totalcomnum = ' + IntToStr(TotalComNum));
+  //Form1.Memo1.Lines.add('namelst = ' + IntToStr(Namelst.Count) + 'totalcomnum = ' + IntToStr(TotalComNum));
   if Namelst.Count <> TotalComNum then
   begin
-      TotalComNum  := Namelst.Count;
       if HaveOpenCom = '0' then
       begin
-          //ShowMessage('123');
+          TotalComNum  := Namelst.Count;
+          //Form1.Memo1.Lines.add('com:' + HaveOpenCom);
           Form1.ComboBox1.Items.Clear;
           for i := 0  to Namelst.Count-1 do
           begin
@@ -798,11 +802,12 @@ begin
       end
       else
       begin
-          //ShowMessage('456');
+
+          //Form1.Memo1.Lines.add('>>com:' + HaveOpenCom);
           //ShowMessage('*******'+ HaveOpenCom);
           for i := 0  to Namelst.Count-1 do
           begin
-              //ShowMessage('-------' + reg.ReadString(Namelst[i]));
+              //Form1.Memo1.Lines.add('-------' + reg.ReadString(Namelst[i]));
               if HaveOpenCom = reg.ReadString(Namelst[i]) then
               begin
                   reg.CloseKey;
@@ -812,11 +817,28 @@ begin
                   //break;
               end;
           end;
+          TotalComNum  := Namelst.Count;
           //ShowMessage('i=' + IntToStr(i) + 'count=' + IntToStr(Namelst.Count));
-          if i = Namelst.Count then
+          //if i = Namelst.Count then
           begin
               //ShowMessage('close');
               Form1.Button1.Click;
+              Form1.ComboBox1.Items.Clear;
+              for i := 0  to Namelst.Count-1 do
+              begin
+                //ShowMessage(reg.ReadString(Namelst[i]));
+                Form1.ComboBox1.Items.Add(reg.ReadString(Namelst[i]));
+              end;
+            // 排序
+              for i := 0  to Namelst.Count-2 do
+                for j := i+1  to Namelst.Count-1 do
+                    if Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j] then
+                    begin
+                        str := Form1.ComboBox1.Items[i];
+                        Form1.ComboBox1.Items[i] := Form1.ComboBox1.Items[j];
+                        Form1.ComboBox1.Items[j] := str;
+                    end;
+              Form1.ComboBox1.itemindex := 0;
           end;
           //ShowMessage('***i=' + IntToStr(i) + 'count=' + IntToStr(Namelst.Count));
       end;
@@ -865,7 +887,6 @@ begin
      if Button1.Caption = '打开串口' then
      begin
          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
-         HaveOpenCom    := Comm1.CommName;
          //Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
          Comm1.BaudRate := StrToInt(ComboBox2.text);
          if ComboBox4.Items[ComboBox4.itemindex] = '5' then
@@ -900,12 +921,13 @@ begin
          Comm1.StartComm;
          //if False <> Comm1.StartComm then
          begin
+              HaveOpenCom    := Comm1.CommName;
               Shape1.Brush.Color := clRed;
               Button1.Caption := '关闭串口';
               Button2.Enabled := True;
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
-              Timer1.Interval := 6000;
+              Timer5.Interval := 6000;
          end;
      end
      else
@@ -922,7 +944,7 @@ begin
           CheckBox8.Checked := False;
           Timer3.Enabled := False;
           //TotalComNum := 0;
-          Timer1.Interval := 3000;
+          Timer5.Interval := 1000;
      end;
 end;
 
@@ -3816,6 +3838,8 @@ var
     hashout:THashOutArray;
     hashstr:string;
     n:LongInt;
+    mymd5:TIdHashMessageDigest5;
+    md5str:TStream;
 begin
     datastr := Memo11.Text;
 
@@ -3842,6 +3866,8 @@ begin
         datatmp := '';
         datatmp := TwoAsciiToHex(datastr);
         datalen := Length(datatmp);
+        datastr := '';
+        datastr := datatmp;
         if (datalen > 0) then
         begin
             for i:= 0 to datalen-1 do
@@ -3855,22 +3881,33 @@ begin
             exit;
         end;
     end;
-    SHA256Init();
-    SHA256Update(mydata, datalen);
-    hashout := SHA256Final();
-
-    hashstr := '';
-    Memo1.Lines.Add('hash256:');
-    for n:= 0 to 31 do
+    if RadioButton17.Checked = True then
     begin
-        hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
-        if n = 15 then
+        SHA256Init();
+        SHA256Update(mydata, datalen);
+        hashout := SHA256Final();
+
+        hashstr := '';
+        Memo1.Lines.Add('hash256:');
+        for n:= 0 to 31 do
         begin
+            hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
+            if n = 15 then
+            begin
               Memo1.Lines.Add(hashstr);
               hashstr := '';
-        end
-    end;
+            end
+        end;
     Memo1.Lines.Add(hashstr);
+    end
+    else
+    begin
+        Memo1.Lines.Add('MD5:');
+        mymd5:=TIdHashMessageDigest5.Create;
+        Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(datastr)));
+        mymd5.Free;
+    end;
+
 end;
 
 procedure TForm1.ComboBox2Click(Sender: TObject);
@@ -4690,35 +4727,52 @@ var
    hashout:THashOutArray;
    hashstr:string;
    n:LongInt;
+   mymd5:TIdHashMessageDigest5;
+   Stream : TFileStream;
 begin
      //SunLen := 0;
      //WriteArrToFile(@Memo1.text[1], RecLen, 'D:\abc.bin');
      if OpenDialog1.Execute then
      begin
-        Assignfile(pMyFile, OpenDialog1.FileName);
-        Reset(pMyFile, 1);
-        SHA256Init();
-        while not Eof(pMyFile) do
+        // HASH
+        if RadioButton17.Checked = True then
         begin
-            BlockRead(pMyFile, aucData, 1024, ReadLen);
-            SHA256Update(aucData, ReadLen);
-            next;
-        end;
-        CloseFile(pMyFile);
-        hashout := SHA256Final();
-        hashstr := '';
-
-        Memo1.Lines.Add('hash256:');
-        for n:= 0 to 31 do
-        begin
-            hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
-            if n = 15 then
+            Assignfile(pMyFile, OpenDialog1.FileName);
+            Reset(pMyFile, 1);
+            SHA256Init();
+            while not Eof(pMyFile) do
             begin
-                  Memo1.Lines.Add(hashstr);
-                  hashstr := '';
-            end
+                BlockRead(pMyFile, aucData, 1024, ReadLen);
+                SHA256Update(aucData, ReadLen);
+                next;
+            end;
+            CloseFile(pMyFile);
+            hashout := SHA256Final();
+            hashstr := '';
+
+            Memo1.Lines.Add('hash256:');
+            for n:= 0 to 31 do
+            begin
+                hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
+                if n = 15 then
+                begin
+                      Memo1.Lines.Add(hashstr);
+                      hashstr := '';
+                end
+            end;
+            Memo1.Lines.Add(hashstr);
+        end
+        // MD5
+        else if RadioButton18.Checked = True then
+        begin
+            Stream := TFileStream.Create(OpenDialog1.FileName,fmOpenRead);
+            mymd5:=TIdHashMessageDigest5.Create;
+            Memo1.Lines.Add('MD5:');
+            Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(Stream)));//计算文件MD5
+            Stream.Free;
+            mymd5.Free;
         end;
-        Memo1.Lines.Add(hashstr);
+
      end;
      //ShowMessage(IntToStr(SunLen));
 end;
@@ -4797,6 +4851,14 @@ begin
             Label15.Caption := '本地IP :';
             Edit24.Text := IdIPWatch1.LocalIP;
         end;
+end;
+
+procedure TForm1.shape1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+    Timer5.Enabled := False;
+    GetComListFromReg();
+    Timer5.Enabled := True;
 end;
 
 end.

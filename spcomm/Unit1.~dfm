@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 270
-  Top = 115
+  Left = 476
+  Top = 181
   Width = 670
   Height = 570
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.4'
+  Caption = 'Spcom V3.5'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1970,9 +1970,9 @@ object Form1: TForm1
             TabOrder = 10
           end
           object GroupBox35: TGroupBox
-            Left = 64
-            Top = 144
-            Width = 146
+            Left = 6
+            Top = 145
+            Width = 204
             Height = 27
             TabOrder = 11
             Visible = False
@@ -1988,9 +1988,9 @@ object Form1: TForm1
               OnClick = RadioButton15Click
             end
             object RadioButton16: TRadioButton
-              Left = 85
+              Left = 123
               Top = 7
-              Width = 113
+              Width = 67
               Height = 17
               Caption = '192bit'
               TabOrder = 1
@@ -2351,7 +2351,7 @@ object Form1: TForm1
         end
       end
       object TabSheet5: TTabSheet
-        Caption = 'HASH/MD5'
+        Caption = 'HASH/MD5/CRC'
         ImageIndex = 6
         object GroupBox25: TGroupBox
           Left = 0
@@ -2396,7 +2396,7 @@ object Form1: TForm1
               TabOrder = 0
             end
             object RadioButton17: TRadioButton
-              Left = 101
+              Left = 65
               Top = 11
               Width = 55
               Height = 17
@@ -2406,12 +2406,20 @@ object Form1: TForm1
               TabStop = True
             end
             object RadioButton18: TRadioButton
-              Left = 167
+              Left = 124
               Top = 11
               Width = 45
               Height = 17
               Caption = 'MD5'
               TabOrder = 2
+            end
+            object RadioButton19: TRadioButton
+              Left = 174
+              Top = 11
+              Width = 45
+              Height = 17
+              Caption = 'CRC'
+              TabOrder = 3
             end
           end
           object GroupBox28: TGroupBox

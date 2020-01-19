@@ -9,7 +9,7 @@ uses
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest;
+  MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC;
 
 type
   TForm1 = class(TForm)
@@ -334,6 +334,7 @@ type
     CheckBox52: TCheckBox;
     RadioButton17: TRadioButton;
     RadioButton18: TRadioButton;
+    RadioButton19: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -3840,6 +3841,9 @@ var
     n:LongInt;
     mymd5:TIdHashMessageDigest5;
     md5str:TStream;
+    crc: Word;
+    crc32: LongWord;
+    str: string;
 begin
     datastr := Memo11.Text;
 
@@ -3900,14 +3904,46 @@ begin
         end;
     Memo1.Lines.Add(hashstr);
     end
-    else
+    else if RadioButton18.Checked = True then
     begin
         Memo1.Lines.Add('MD5:');
         mymd5:=TIdHashMessageDigest5.Create;
         Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(datastr)));
         mymd5.Free;
-    end;
+    end
+    else if RadioButton19.Checked = True then
+    begin
+        Memo1.Lines.Add('CRC:');
+        crc := Unit_CRC.Calcu_crc_16($0000, datastr);
+        Memo1.Lines.Add('CRC-16:            0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
+        crc := Unit_CRC.OriginalCalcuCRC_16(datastr);
+        Memo1.Lines.Add('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_16($FFFF, datastr);
+        Memo1.Lines.Add('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_sick(datastr);
+        Memo1.Lines.Add('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_ccitt($0000, datastr);
+        Memo1.Lines.Add('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_ccitt($FFFF, datastr);
+        Memo1.Lines.Add('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_ccitt($1D0F, datastr);
+        Memo1.Lines.Add('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_kermit(datastr);
+        Memo1.Lines.Add('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc := Unit_CRC.Calcu_crc_dnp(datastr);
+        Memo1.Lines.Add('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+
+        crc32 := Unit_CRC.Calcu_crc_32(datastr);
+        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc) + ')');
+    end;
 end;
 
 procedure TForm1.ComboBox2Click(Sender: TObject);
@@ -4729,6 +4765,9 @@ var
    n:LongInt;
    mymd5:TIdHashMessageDigest5;
    Stream : TFileStream;
+   crc: Word;
+   crc32: LongWord;
+   str: string;
 begin
      //SunLen := 0;
      //WriteArrToFile(@Memo1.text[1], RecLen, 'D:\abc.bin');
@@ -4771,8 +4810,11 @@ begin
             Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(Stream)));//计算文件MD5
             Stream.Free;
             mymd5.Free;
+        end
+        else if RadioButton19.Checked = True then
+        begin
+            ShowMessage('暂不支持');
         end;
-
      end;
      //ShowMessage(IntToStr(SunLen));
 end;

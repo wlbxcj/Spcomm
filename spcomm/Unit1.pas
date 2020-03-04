@@ -3952,7 +3952,7 @@ begin
         Memo1.Lines.Add('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc32 := Unit_CRC.Calcu_crc_32(datastr);
-        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc) + ')');
+        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
     end;
 end;
 

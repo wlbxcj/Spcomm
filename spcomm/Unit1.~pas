@@ -3952,7 +3952,7 @@ begin
         Memo1.Lines.Add('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc32 := Unit_CRC.Calcu_crc_32(datastr);
-        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc) + ')');
+        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
     end;
 end;
 
@@ -4915,7 +4915,7 @@ end;
 
 procedure TForm1.Button64Click(Sender: TObject);
 var
-    EditLen1,EditLen2,j:Integer;
+    EditLen1,EditLen2,i,j:Integer;
     ResultSun:Integer;
     Resultxor:Integer;
     StrTemp1,StrTemp2: string;
@@ -4940,9 +4940,17 @@ begin
         strbuf2 := StringReplace(strbuf2, #9, '', [rfReplaceAll]);
         EditLen1 := Length(strbuf1);
         EditLen2 := Length(strbuf2);
+        i := 1;
+        while (i <= EditLen1) and (strbuf1[i] in ['0'..'9','A'..'F','a'..'f']) and (strbuf2[i] in ['0'..'9','A'..'F','a'..'f'])do
+                inc(i);
+          if i <= EditLen1 then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
         if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then
         begin
-            Memo1.Lines.Add('XOR:');
+            Memo1.Lines.Add('XOR:(HEX)');
             for j:=0 to (EditLen1 div 2 - 1) do
             begin
                 if (j mod 8 = 0) and (j <> 0) then
@@ -4971,7 +4979,7 @@ begin
         EditLen2 := Length(strbuf2);
         if (EditLen2 = EditLen1) then
         begin
-            Memo1.Lines.Add('XOR:');
+            Memo1.Lines.Add('XOR:(HEX)');
             for j:=0 to (EditLen1 - 1) do
             begin
                 if (j mod 8 = 0) and (j <> 0) then

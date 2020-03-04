@@ -335,6 +335,15 @@ type
     RadioButton17: TRadioButton;
     RadioButton18: TRadioButton;
     RadioButton19: TRadioButton;
+    TabSheet7: TTabSheet;
+    GroupBox4: TGroupBox;
+    GroupBox6: TGroupBox;
+    Memo14: TMemo;
+    Memo15: TMemo;
+    GroupBox36: TGroupBox;
+    GroupBox37: TGroupBox;
+    CheckBox54: TCheckBox;
+    Button64: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -487,6 +496,7 @@ type
     procedure Button63Click(Sender: TObject);
     procedure shape1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure Button64Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -4901,6 +4911,96 @@ begin
     Timer5.Enabled := False;
     GetComListFromReg();
     Timer5.Enabled := True;
+end;
+
+procedure TForm1.Button64Click(Sender: TObject);
+var
+    EditLen1,EditLen2,i,j:Integer;
+    ResultSun:Integer;
+    Resultxor:Integer;
+    StrTemp1,StrTemp2: string;
+    strbuf1,strbuf2, resultstr: string;
+begin
+    Inc(HexOrChar);
+    ResultSun := 0;
+    Resultxor := 0;
+    resultstr := '';
+    StrTemp1 := Memo14.Text;
+    StrTemp2 := Memo15.Text;
+    if CheckBox54.Checked = True then
+    begin
+        strbuf1 := StringReplace(StrTemp1, #10, '', [rfReplaceAll]);
+        strbuf1 := StringReplace(strbuf1, #13, '', [rfReplaceAll]);
+        strbuf1 := StringReplace(strbuf1, ' ', '', [rfReplaceAll]);
+        strbuf1 := StringReplace(strbuf1, #9, '', [rfReplaceAll]);
+
+        strbuf2 := StringReplace(StrTemp2, #10, '', [rfReplaceAll]);
+        strbuf2 := StringReplace(strbuf2, #13, '', [rfReplaceAll]);
+        strbuf2 := StringReplace(strbuf2, ' ', '', [rfReplaceAll]);
+        strbuf2 := StringReplace(strbuf2, #9, '', [rfReplaceAll]);
+        EditLen1 := Length(strbuf1);
+        EditLen2 := Length(strbuf2);
+        i := 1;
+        while (i <= EditLen1) and (strbuf1[i] in ['0'..'9','A'..'F','a'..'f']) and (strbuf2[i] in ['0'..'9','A'..'F','a'..'f'])do
+                inc(i);
+          if i <= EditLen1 then
+          begin
+               ShowMessage('非法的十六进制数');
+               Exit;
+          end;
+        if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then
+        begin
+            Memo1.Lines.Add('XOR:(HEX)');
+            for j:=0 to (EditLen1 div 2 - 1) do
+            begin
+                if (j mod 8 = 0) and (j <> 0) then
+                begin
+                    Memo1.Lines.Add(resultstr);
+                    resultstr := '';
+                end;
+                ResultSun := (StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0)) xor (StrToIntDef('$' + strbuf2[2*j + 1] + strbuf2[2*j + 2], 0));
+                 //Memo1.Lines.Add(IntToHex(ResultSun, 2));
+                resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
+                 
+            end;
+            Memo1.Lines.Add(resultstr);
+        end
+        else
+        begin
+            ShowMessage('数据长度有误或不一致');
+             //Edit1.Clear;
+        end;
+    end
+    else
+    begin
+        strbuf1 := Memo14.Text;
+        strbuf2 := Memo15.Text;
+        EditLen1 := Length(strbuf1);
+        EditLen2 := Length(strbuf2);
+        if (EditLen2 = EditLen1) then
+        begin
+            Memo1.Lines.Add('XOR:(HEX)');
+            for j:=0 to (EditLen1 - 1) do
+            begin
+                if (j mod 8 = 0) and (j <> 0) then
+                begin
+                    Memo1.Lines.Add(resultstr);
+                    resultstr := '';
+                end;
+                ResultSun := (Integer(strbuf1[j + 1])) xor (Integer(strbuf2[j + 1]));
+                 //Memo1.Lines.Add(IntToHex(ResultSun, 2));
+                resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
+                 
+            end;
+            Memo1.Lines.Add(resultstr);
+        end
+        else
+        begin
+            ShowMessage('数据长度有误或不一致');
+             //Edit1.Clear;
+        end;
+    end;
+
 end;
 
 end.

@@ -15,6 +15,9 @@ type
   function EncryStr(Str, Key: String): String;
   function DecryStr(Str, Key: String): String;
   function EncryStrHex(Str, Key: String): String;
+  function EncryStrHex_AnsiX9_9Mac(Str, Key: String): String;
+  function EncryStrHex_AnsiX9_19Mac(Str, Key: String): String;
+  function EncryStrHex_Pboc3DesMac(Str, Key: String): String;
   function DecryStrHex(StrHex, Key: String): String;
   function TwoAsciiToHex(Str: String): String;
   function des3_16(dataStr, key: String; mode : Integer): String;
@@ -390,6 +393,112 @@ begin
     StrResult := StrResult + Temp + ' ';
   end;
   Result := StrResult;
+end;
+
+function EncryStrHex_AnsiX9_9Mac(Str, Key: String): String;
+var
+  StrResult, TempResult, Temp: String;
+  I, cnt,j: Integer;
+begin
+    while Length(Str) mod 8 <> 0 do
+        Str := Str + Chr(0);
+    cnt := (Length(str) + 7) div 8;
+    Temp := '';
+    for j := 1 to 8 do
+      Temp := Temp + str[j];
+
+    for i := 1 to cnt do
+    begin
+        TempResult := EncryStr(Temp, Key);
+        if i <> cnt then
+        begin
+            Temp := '';
+            for j := 1 to 8 do
+              Temp := Temp + str[(i)*8+j];
+            Temp := axorb(Temp,TempResult, 8);
+        end;
+    end;
+    StrResult := '';
+    for I := 0 to Length(TempResult) - 1 do
+    begin
+        Temp := Format('%x', [Ord(TempResult[I + 1])]);
+        if Length(Temp) = 1 then Temp := '0' + Temp;
+        StrResult := StrResult + Temp + ' ';
+    end;
+    Result := StrResult;
+end;
+
+function EncryStrHex_AnsiX9_19Mac(Str, Key: String): String;
+var
+  StrResult, TempResult, Temp: String;
+  I, cnt,j: Integer;
+begin
+    while Length(Str) mod 8 <> 0 do
+        Str := Str + Chr(0);
+    cnt := (Length(str) + 7) div 8;
+    Temp := '';
+    for j := 1 to 8 do
+      Temp := Temp + str[j];
+
+    for i := 1 to cnt -1 do
+    begin
+        //ShowMessage('>');
+        TempResult := EncryStr(Temp, Key);
+        if i <> cnt then
+        begin
+            Temp := '';
+            for j := 1 to 8 do
+              Temp := Temp + str[(i)*8+j];
+            Temp := axorb(Temp,TempResult, 8);
+        end;
+    end;
+    Result := des3_16(Temp, Key, 1);
+end;
+
+function EncryStrHex_Pboc3DesMac(Str, Key: String): String;
+var
+  StrResult, TempResult, Temp: String;
+  I, cnt,j: Integer;
+  buf:array[0..8] of byte;
+begin
+    for j := 0 to 7 do
+          buf[j] := 0;
+    buf[0] := $80;
+    i := 0;
+    if (Length(Str) mod 8 <> 0 )then
+    begin
+        while Length(Str) mod 8 <> 0 do
+        begin
+            Str := Str + Chr(buf[i]);
+            inc(i);
+        end
+    end
+    else
+    begin
+        for j := 0 to 7 do
+        begin
+          //ShowMessage(IntTohex(buf[j], 2));
+          Str := Str + Chr(buf[j]);
+        end;
+    end;
+    cnt := (Length(str) + 7) div 8;
+    Temp := '';
+    for j := 1 to 8 do
+      Temp := Temp + str[j];
+
+    for i := 1 to cnt -1 do
+    begin
+        //ShowMessage('>');
+        TempResult := EncryStr(Temp, Key);
+        if i <> cnt then
+        begin
+            Temp := '';
+            for j := 1 to 8 do
+              Temp := Temp + str[(i)*8+j];
+            Temp := axorb(Temp,TempResult, 8);
+        end;
+    end;
+    Result := des3_16(Temp, Key, 1);
 end;
 
 function DecryStrHex(StrHex, Key: String): String;

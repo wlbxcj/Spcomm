@@ -88,7 +88,6 @@ type
     PopupMenu3: TPopupMenu;
     IP1: TMenuItem;
     GroupBox15: TGroupBox;
-    Memo6: TMemo;
     IdHTTP1: TIdHTTP;
     Edit24: TEdit;
     GroupBox16: TGroupBox;
@@ -344,6 +343,12 @@ type
     GroupBox37: TGroupBox;
     CheckBox54: TCheckBox;
     Button64: TButton;
+    RadioButton20: TRadioButton;
+    RadioButton21: TRadioButton;
+    RadioButton22: TRadioButton;
+    Button65: TButton;
+    RadioButton23: TRadioButton;
+    RadioButton24: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -497,6 +502,13 @@ type
     procedure shape1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure Button64Click(Sender: TObject);
+    procedure RadioButton20Click(Sender: TObject);
+    procedure Button65Click(Sender: TObject);
+    procedure RadioButton21Click(Sender: TObject);
+    procedure RadioButton22Click(Sender: TObject);
+    procedure Button66Click(Sender: TObject);
+    procedure RadioButton24Click(Sender: TObject);
+    procedure RadioButton23Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -544,6 +556,23 @@ implementation
 uses Unit5;
 
 {$R *.dfm}
+
+function IsHexDataStr(data:string):Boolean;
+var
+    i : Integer;
+    datalen : Integer;
+begin
+    datalen := Length(data);
+    i := 1;
+    while (i <= datalen) and (data[i] in ['0'..'9','A'..'F','a'..'f']) do
+            inc(i);
+    if i <= datalen then
+    begin
+        ShowMessage('非法的十六进制数');
+        Result := False;
+    end;
+    Result := True;
+end;
 
 function GetPublicIP: string;
 var
@@ -1576,7 +1605,7 @@ begin
                 ResultSun := ResultSun + (StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
             end;
             //resultsun := resultsun and $00FF;
-            Edit1.Text := IntToHex(ResultSun, 2);
+            Edit1.Text := 'Hex:  ' + IntToHex(ResultSun, 2);
         end
         else
         begin
@@ -1786,16 +1815,16 @@ end;
 procedure TForm1.StatusBar1MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
-    StatusBar1.Panels[3].Text := '大于50000行自动保存'
+    //StatusBar1.Panels[3].Text := '大于50000行自动保存'
 end;
 
 procedure TForm1.Memo1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-    if StatusBar1.Panels[3].Text <> '' then
+    {if StatusBar1.Panels[3].Text <> '' then
     begin
         StatusBar1.Panels[3].Text := '';
-    end;  
+    end; } 
 end;
 
 
@@ -3699,7 +3728,12 @@ begin
         if ivtmp <> '' then
           iv := TwoAsciiToHex(ivtmp);
         strbuf := Decry_cbc(sendbuf, keybuf, iv);
-    end;
+    end
+    else
+    begin
+        ShowMessage('不支持该操作');
+        Exit;
+    end;  
 
 
     Memo1.Lines.Add('解密:');
@@ -3742,7 +3776,8 @@ begin
           end;
       end; }
       keybuf := Edit50.Text;
-      if RadioButton5.Checked <> True then
+      if (RadioButton6.Checked = True) or (RadioButton6.Checked = True)
+        or (RadioButton21.Checked = True) or (RadioButton22.Checked = True) then
       begin
           if (Edit51.Text = '') then
           begin
@@ -3794,7 +3829,7 @@ begin
           Exit;
      end;
      //ShowMessage('Length(SendBuf) ' + IntToStr(Length(SendBuf)));
-     if Length(SendBuf) mod 8 <> 0 then
+     if (Length(SendBuf) mod 8 <> 0) and (RadioButton22.Checked = False) then
      begin
         ShowMessage('长度必需为8的整数倍');
         Exit;
@@ -3835,8 +3870,28 @@ begin
         if ivtmp <> '' then
           iv := TwoAsciiToHex(ivtmp);
         strbuf := Encrypt_cbc(sendbuf,keybuf, iv);
+    end
+    else if RadioButton20.Checked = True then
+    begin
+        strbuf := EncryStrHex_AnsiX9_9Mac(SendBuf, keybuf);
+        Memo1.Lines.Add('MAC:');
+        Memo1.Lines.Add(strbuf);
+        Exit;
+    end
+    else if RadioButton21.Checked = True then
+    begin
+        strbuf := EncryStrHex_AnsiX9_19Mac(SendBuf, keybuf);
+        Memo1.Lines.Add('MAC:');
+        Memo1.Lines.Add(strbuf);
+        Exit;
+    end
+    else if RadioButton22.Checked = True then
+    begin
+        strbuf := EncryStrHex_Pboc3DesMac(SendBuf, keybuf);
+        Memo1.Lines.Add('MAC:');
+        Memo1.Lines.Add(strbuf);
+        Exit;
     end;
-
     Memo1.Lines.Add('加密:');
     Memo1.Lines.Add(strbuf);
 end;
@@ -4838,6 +4893,8 @@ end;
 
 procedure TForm1.RadioButton7Click(Sender: TObject);
 begin
+    Edit51.Enabled := True;
+    Edit51.Color := clWindow;
     Edit57.Enabled := True;
     Edit57.Color := clWindow;
     GroupBox35.Visible := True;
@@ -4845,6 +4902,8 @@ end;
 
 procedure TForm1.RadioButton6Click(Sender: TObject);
 begin
+  Edit51.Enabled := True;
+  Edit51.Color := clWindow;
   Edit57.Enabled := False;
   Edit57.Color := clScrollBar;
   GroupBox35.Visible := True;
@@ -4852,6 +4911,8 @@ end;
 
 procedure TForm1.RadioButton5Click(Sender: TObject);
 begin
+  Edit51.Enabled := False;
+  Edit51.Color := clScrollBar;
   Edit57.Enabled := False;
   Edit57.Color := clScrollBar;
   GroupBox35.Visible := False;
@@ -4913,6 +4974,53 @@ begin
     Timer5.Enabled := True;
 end;
 
+function str_8byte_xor(data:string):string;
+var
+    EditLen,j,i, cnt:Integer;
+    ResultSun:Integer;
+    Resultxor:Integer;
+    StrTemp,strbuf, str1: string;
+begin
+    ResultSun := 0;
+    Resultxor := 0;
+    StrTemp := data;
+
+    begin
+        EditLen := Length(StrTemp);
+        if (EditLen div 8 < 0) or (EditLen mod 8 <> 0) then
+        begin
+            ShowMessage('数据长度不是8的整数倍');
+            Exit;
+        end;
+        cnt := editlen div 8;
+        strbuf := '00000000';
+        str1 := '00000000';
+        for j:= 1 to 8 do
+        begin
+            strbuf[j] := chr(0);
+            str1[j] := strtemp[j];
+        end;
+        for j:= 1 to cnt do
+        begin
+              //ShowMessage(str1);
+             strbuf := AxorB(strbuf, Str1, 8);
+             if (j <> cnt) then
+             begin
+                  //str1 := '';
+                  for i:= 1 to 8 do
+                  begin
+                      str1[i] := strtemp[j*8+i];
+                  end;
+             end;
+        end;
+    end;
+    Result := '';
+    for i:= 1 to 8 do
+    begin
+        Result := Result + inttohex(Integer(strbuf[i]), 2) + ' ';
+    end;
+end;
+
 procedure TForm1.Button64Click(Sender: TObject);
 var
     EditLen1,EditLen2,i,j:Integer;
@@ -4921,7 +5029,6 @@ var
     StrTemp1,StrTemp2: string;
     strbuf1,strbuf2, resultstr: string;
 begin
-    Inc(HexOrChar);
     ResultSun := 0;
     Resultxor := 0;
     resultstr := '';
@@ -4940,35 +5047,45 @@ begin
         strbuf2 := StringReplace(strbuf2, #9, '', [rfReplaceAll]);
         EditLen1 := Length(strbuf1);
         EditLen2 := Length(strbuf2);
-        i := 1;
-        while (i <= EditLen1) and (strbuf1[i] in ['0'..'9','A'..'F','a'..'f']) and (strbuf2[i] in ['0'..'9','A'..'F','a'..'f'])do
-                inc(i);
-          if i <= EditLen1 then
-          begin
-               ShowMessage('非法的十六进制数');
-               Exit;
-          end;
-        if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then
+        if (IsHexDataStr(strbuf1) = False) then
+            Exit;
+        Memo1.lines.Add('XOR:(HEX)');
+        if RadioButton23.Checked = True  then
         begin
-            Memo1.Lines.Add('XOR:(HEX)');
+            if (IsHexDataStr(strbuf2) = False) then
+                Exit;
+            if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then
+            begin
+                
+                for j:=0 to (EditLen1 div 2 - 1) do
+                begin
+                    if (j mod 8 = 0) and (j <> 0) then
+                    begin
+                        Memo1.Lines.Add(resultstr);
+                        resultstr := '';
+                    end;
+                    ResultSun := (StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0)) xor (StrToIntDef('$' + strbuf2[2*j + 1] + strbuf2[2*j + 2], 0));
+                     //Memo1.Lines.Add(IntToHex(ResultSun, 2));
+                    resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
+                 
+                end;
+                Memo1.Lines.Add(resultstr);
+            end
+            else
+            begin
+                ShowMessage('数据长度有误或不一致');
+                 //Edit1.Clear;
+            end;
+        end
+        else if RadioButton24.Checked = True then
+        begin
+            strbuf2 := '';
             for j:=0 to (EditLen1 div 2 - 1) do
             begin
-                if (j mod 8 = 0) and (j <> 0) then
-                begin
-                    Memo1.Lines.Add(resultstr);
-                    resultstr := '';
-                end;
-                ResultSun := (StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0)) xor (StrToIntDef('$' + strbuf2[2*j + 1] + strbuf2[2*j + 2], 0));
-                 //Memo1.Lines.Add(IntToHex(ResultSun, 2));
-                resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
-                 
+                  strbuf2 := strbuf2 + Char(StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0));
             end;
+            resultstr := str_8byte_xor(strbuf2);
             Memo1.Lines.Add(resultstr);
-        end
-        else
-        begin
-            ShowMessage('数据长度有误或不一致');
-             //Edit1.Clear;
         end;
     end
     else
@@ -4977,30 +5094,187 @@ begin
         strbuf2 := Memo15.Text;
         EditLen1 := Length(strbuf1);
         EditLen2 := Length(strbuf2);
-        if (EditLen2 = EditLen1) then
+
+        Memo1.Lines.Add('XOR:(HEX)');
+        if RadioButton23.Checked = True then
         begin
-            Memo1.Lines.Add('XOR:(HEX)');
-            for j:=0 to (EditLen1 - 1) do
+            if (EditLen2 = EditLen1) then
             begin
-                if (j mod 8 = 0) and (j <> 0) then
+                for j:=0 to (EditLen1 - 1) do
                 begin
-                    Memo1.Lines.Add(resultstr);
-                    resultstr := '';
-                end;
-                ResultSun := (Integer(strbuf1[j + 1])) xor (Integer(strbuf2[j + 1]));
-                 //Memo1.Lines.Add(IntToHex(ResultSun, 2));
-                resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
+                    if (j mod 8 = 0) and (j <> 0) then
+                    begin
+                        Memo1.Lines.Add(resultstr);
+                        resultstr := '';
+                    end;
+                    ResultSun := (Integer(strbuf1[j + 1])) xor (Integer(strbuf2[j + 1]));
+                     //Memo1.Lines.Add(IntToHex(ResultSun, 2));
+                    resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
                  
+                end;
+            end
+            else
+            begin
+                ShowMessage('数据长度有误或不一致');
+                 Exit;
             end;
-            Memo1.Lines.Add(resultstr);
         end
-        else
+        else if RadioButton24.Checked = True then
         begin
-            ShowMessage('数据长度有误或不一致');
-             //Edit1.Clear;
+            resultstr := str_8byte_xor(strbuf1);
+            //Memo1.Lines.Add(resultstr);
+        end;
+        Memo1.Lines.Add(resultstr);
+
+    end;
+
+end;
+
+procedure TForm1.RadioButton20Click(Sender: TObject);
+begin
+    Edit51.Enabled := False;
+    Edit51.Color := clScrollBar;
+    Edit57.Enabled := False;
+    Edit57.Color := clScrollBar;
+    GroupBox35.Visible := False;
+    Edit58.Enabled := False;
+    Edit58.Color := clScrollBar;
+    RadioButton15.Checked := True;
+end;
+
+procedure TForm1.Button65Click(Sender: TObject);
+var
+    str1,str2,str3:string;
+begin
+    str1 := 'ANSI X9.9 MAC算法'+ #13+#10+
+    '1）该算法只使用单倍长密钥，也就是8字节密钥；'+ #13+#10+
+    '2）MAC数据按8字节分组，尾部以字节00补齐；'+ #13+#10+
+    '3）用MAC密钥加密第一个8字节分组，加密结果与第二个8字节分组异或，然后再用MAC密钥加密，重复该步骤，直至所有分组结束，取最后结果的左半部作为MAC。'+ #13+#10 ;
+    str2 := 'ANSI X9.19 MAC算法'+ #13+#10+
+    '1) 只使用双倍长密钥，也就是16字节密钥；'+ #13+#10+
+    '2) 将BLOCK1用MAC密钥前8字节做DES加密，加密结果与BLOCK2进行逐位异或后再用MAC密钥前8字节做DES加密，依次进行得到8字节的加密结果，直到最后一次采用TDES加密。'+ #13+#10;
+    str3 := 'PBOC 3DES MAC算法(符合ISO9797Alg3Mac标准)'+ #13+#10+
+    '1) 在数据末尾添加十六进制数（8000000000000000）直至补成8的整数倍，如果原数据已经是8的整数倍，则全部补全；' + #13+#10+
+    '2) 将BLOCK1用MAC密钥前8字节做DES加密，加密结果与BLOCK2进行逐位异或后再用MAC密钥前8字节做DES加密，依次进行得到8字节的加密结果，直到最后一次采用TDES加密。'+ #13+#10;
+    Memo1.Lines.Add(str1);
+    Memo1.Lines.Add(str2);
+    Memo1.Lines.Add(str3);
+end;
+
+procedure TForm1.RadioButton21Click(Sender: TObject);
+begin
+    Edit51.Enabled := True;
+    Edit51.Color := clWindow;
+    Edit57.Enabled := False;
+    Edit57.Color := clScrollBar;
+    GroupBox35.Visible := True;
+end;
+
+procedure TForm1.RadioButton22Click(Sender: TObject);
+begin
+    Edit51.Enabled := True;
+    Edit51.Color := clWindow;
+    Edit57.Enabled := False;
+    Edit57.Color := clScrollBar;
+    GroupBox35.Visible := True;
+end;
+
+procedure TForm1.Button66Click(Sender: TObject);
+var
+    EditLen,j,i, cnt:Integer;
+    ResultSun:Integer;
+    Resultxor:Integer;
+    StrTemp,strbuf, str1: string;
+begin
+    ResultSun := 0;
+    Resultxor := 0;
+    StrTemp := Memo13.Text;
+    if CheckBox61.Checked = True then
+    begin
+        strbuf := StringReplace(StrTemp, #10, '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
+        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+        StrTemp := '';
+        EditLen := Length(strbuf);
+        i:=1;
+        while (i <= EditLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
+            inc(i);
+        if i <= EditLen then
+        begin
+            ShowMessage('非法的十六进制数');
+            Exit;
+        end;
+        for j:=0 to (EditLen div 2 - 1) do
+        begin
+            StrTemp := StrTemp + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
         end;
     end;
 
+    //begin
+        EditLen := Length(StrTemp);
+        if (EditLen >= 8) and (EditLen mod 8 <> 0) then
+        begin
+            ShowMessage('数据长度不是8的整数倍');
+            Exit;
+        end;
+        cnt := editlen div 8;
+        strbuf := '00000000';
+        str1 := '00000000';
+        for j:= 1 to 8 do
+        begin
+            strbuf[j] := chr(0);
+            str1[j] := strtemp[j];
+        end;
+        for j:= 1 to cnt do
+        begin
+              //ShowMessage(str1);
+             strbuf := AxorB(strbuf, Str1, 8);
+             if (j <> cnt) then
+             begin
+                  //str1 := '';
+                  for i:= 1 to 8 do
+                  begin
+                      str1[i] := strtemp[j*8+i];
+                  end;
+             end;
+        end;
+    //end;
+    str1 := '';
+    for i:= 1 to 8 do
+    begin
+        str1 := str1 + inttohex(Integer(strbuf[i]), 2) + ' ';
+    end;
+    Memo1.Lines.Add('xor:');
+    Memo1.Lines.Add(str1);
+end;
+
+procedure TForm1.RadioButton24Click(Sender: TObject);
+begin
+    if RadioButton24.Checked = True then
+    begin
+        Memo15.Visible := False;
+        Memo15.Enabled := False;
+        Memo14.Align := alClient;
+        GroupBox6.Caption := 'data';
+    end;
+end;
+
+procedure TForm1.RadioButton23Click(Sender: TObject);
+begin
+    if RadioButton23.Checked = True then
+    begin
+        Memo15.Visible := True;
+        Memo15.Enabled := True;
+        Memo14.Align := alCustom;
+        Memo14.Height := 75;
+
+        Memo15.Align := alClient;
+        Memo15.Height := 75;
+
+        Memo14.Align := alTop;
+        GroupBox6.Caption := 'data1/data2';
+    end;
 end;
 
 end.

@@ -5034,6 +5034,11 @@ begin
     resultstr := '';
     StrTemp1 := Memo14.Text;
     StrTemp2 := Memo15.Text;
+    if (Length(StrTemp1) = 0) then
+    begin
+        ShowMessage('请输入数据');
+        Exit;
+    end;
     if CheckBox54.Checked = True then
     begin
         strbuf1 := StringReplace(StrTemp1, #10, '', [rfReplaceAll]);
@@ -5052,6 +5057,11 @@ begin
         Memo1.lines.Add('XOR:(HEX)');
         if RadioButton23.Checked = True  then
         begin
+            if (Length(strbuf2) = 0) then
+            begin
+                ShowMessage('请输入数据');
+                Exit;
+            end;
             if (IsHexDataStr(strbuf2) = False) then
                 Exit;
             if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then

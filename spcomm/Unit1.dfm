@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 612
-  Top = 57
+  Left = 614
+  Top = 86
   Width = 670
   Height = 570
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.7'
+  Caption = 'Spcom V3.8'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -85,7 +85,7 @@ object Form1: TForm1
       TabOrder = 0
       object shape1: TShape
         Left = 171
-        Top = 28
+        Top = 14
         Width = 20
         Height = 22
         Brush.Color = clGray
@@ -145,7 +145,7 @@ object Form1: TForm1
       end
       object ComboBox3: TComboBox
         Left = 11
-        Top = 40
+        Top = 43
         Width = 73
         Height = 22
         ItemHeight = 14
@@ -161,7 +161,7 @@ object Form1: TForm1
       end
       object ComboBox4: TComboBox
         Left = 91
-        Top = 40
+        Top = 43
         Width = 73
         Height = 22
         ItemHeight = 14
@@ -176,9 +176,9 @@ object Form1: TForm1
       end
       object Button1: TButton
         Left = 195
-        Top = 27
+        Top = 16
         Width = 73
-        Height = 25
+        Height = 20
         Caption = #25171#24320#20018#21475
         TabOrder = 4
         OnClick = Button1Click
@@ -243,7 +243,7 @@ object Form1: TForm1
         Left = 193
         Top = 76
         Width = 73
-        Height = 25
+        Height = 20
         Caption = #21457#36865
         TabOrder = 10
         OnClick = Button2Click
@@ -262,11 +262,11 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      object TGroupBox
+      object GroupBoxinput: TGroupBox
         Left = 2
-        Top = 48
+        Top = 43
         Width = 379
-        Height = 67
+        Height = 72
         Align = alBottom
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -279,7 +279,7 @@ object Form1: TForm1
           Left = 2
           Top = 16
           Width = 375
-          Height = 49
+          Height = 54
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -295,7 +295,7 @@ object Form1: TForm1
       end
       object CheckBox3: TCheckBox
         Left = 11
-        Top = 11
+        Top = 7
         Width = 62
         Height = 17
         Caption = #26102#38388#25139
@@ -311,7 +311,7 @@ object Form1: TForm1
       end
       object CheckBox1: TCheckBox
         Left = 98
-        Top = 11
+        Top = 7
         Width = 71
         Height = 17
         Caption = 'HEX'#26174#31034
@@ -319,26 +319,26 @@ object Form1: TForm1
         OnClick = CheckBox1Click
       end
       object BitBtn1: TBitBtn
-        Left = 262
-        Top = 30
+        Left = 266
+        Top = 24
         Width = 50
-        Height = 18
+        Height = 17
         Caption = #28165#38500
         TabOrder = 3
         OnClick = BitBtn1Click
       end
       object Button13: TButton
         Left = 320
-        Top = 30
+        Top = 24
         Width = 50
-        Height = 18
+        Height = 17
         Caption = #25193#23637
         TabOrder = 4
         OnClick = Button13Click
       end
       object CheckBox5: TCheckBox
         Left = 294
-        Top = 11
+        Top = 7
         Width = 77
         Height = 17
         Caption = #26242#20572#25509#25910
@@ -346,20 +346,29 @@ object Form1: TForm1
       end
       object CheckBox60: TCheckBox
         Left = 194
-        Top = 11
+        Top = 7
         Width = 81
         Height = 17
         Caption = 'UTF8'#26174#31034
         TabOrder = 6
       end
       object Button7: TButton
-        Left = 204
-        Top = 31
+        Left = 211
+        Top = 24
         Width = 50
-        Height = 18
+        Height = 17
         Caption = #20445#23384
         TabOrder = 7
         OnClick = Button7Click
+      end
+      object Button66: TButton
+        Left = 157
+        Top = 24
+        Width = 50
+        Height = 17
+        Caption = #25240#21472
+        TabOrder = 8
+        OnClick = Button66Click
       end
     end
   end
@@ -456,9 +465,9 @@ object Form1: TForm1
           end
           object Edit3: TEdit
             Left = 150
-            Top = 4
+            Top = 6
             Width = 40
-            Height = 22
+            Height = 15
             TabOrder = 1
             Text = '1000'
             OnKeyPress = Edit3KeyPress
@@ -1674,7 +1683,7 @@ object Form1: TForm1
           Top = 90
           Width = 231
           Height = 57
-          Align = alClient
+          Align = alTop
           Caption = 'Client'
           TabOrder = 1
           object Label13: TLabel
@@ -1729,7 +1738,7 @@ object Form1: TForm1
           Top = 147
           Width = 231
           Height = 201
-          Align = alBottom
+          Align = alClient
           Caption = 'Send'
           TabOrder = 2
           object Label19: TLabel
@@ -2530,7 +2539,7 @@ object Form1: TForm1
             Top = 184
             Width = 227
             Height = 49
-            Align = alClient
+            Align = alTop
             TabOrder = 1
             object CheckBox54: TCheckBox
               Left = 9
@@ -2546,7 +2555,7 @@ object Form1: TForm1
             Top = 233
             Width = 227
             Height = 113
-            Align = alBottom
+            Align = alClient
             TabOrder = 2
             object Button64: TButton
               Left = 16

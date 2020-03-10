@@ -349,9 +349,10 @@ type
     Button65: TButton;
     RadioButton23: TRadioButton;
     RadioButton24: TRadioButton;
+    Button66: TButton;
+    GroupBoxinput: TGroupBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
@@ -1116,20 +1117,6 @@ begin
 
      InitializeCriticalSection(CS);  //初始化
 
-end;
-
-procedure TForm1.SpeedButton1Click(Sender: TObject);
-begin
-     {if SpeedButton1.Caption = '+' then
-     begin
-          Memo1.Height := form1.Height - 35;
-          SpeedButton1.Caption := '-';
-     end
-     else
-     begin
-          Memo1.Height := 145;
-          SpeedButton1.Caption := '+';
-     end; }
 end;
 
 procedure TForm1.ComboBox1Change(Sender: TObject);
@@ -5190,73 +5177,21 @@ begin
 end;
 
 procedure TForm1.Button66Click(Sender: TObject);
-var
-    EditLen,j,i, cnt:Integer;
-    ResultSun:Integer;
-    Resultxor:Integer;
-    StrTemp,strbuf, str1: string;
 begin
-    ResultSun := 0;
-    Resultxor := 0;
-    StrTemp := Memo13.Text;
-    if CheckBox61.Checked = True then
-    begin
-        strbuf := StringReplace(StrTemp, #10, '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
-        StrTemp := '';
-        EditLen := Length(strbuf);
-        i:=1;
-        while (i <= EditLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-            inc(i);
-        if i <= EditLen then
-        begin
-            ShowMessage('非法的十六进制数');
-            Exit;
-        end;
-        for j:=0 to (EditLen div 2 - 1) do
-        begin
-            StrTemp := StrTemp + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-        end;
-    end;
-
-    //begin
-        EditLen := Length(StrTemp);
-        if (EditLen >= 8) and (EditLen mod 8 <> 0) then
-        begin
-            ShowMessage('数据长度不是8的整数倍');
-            Exit;
-        end;
-        cnt := editlen div 8;
-        strbuf := '00000000';
-        str1 := '00000000';
-        for j:= 1 to 8 do
-        begin
-            strbuf[j] := chr(0);
-            str1[j] := strtemp[j];
-        end;
-        for j:= 1 to cnt do
-        begin
-              //ShowMessage(str1);
-             strbuf := AxorB(strbuf, Str1, 8);
-             if (j <> cnt) then
-             begin
-                  //str1 := '';
-                  for i:= 1 to 8 do
-                  begin
-                      str1[i] := strtemp[j*8+i];
-                  end;
-             end;
-        end;
-    //end;
-    str1 := '';
-    for i:= 1 to 8 do
-    begin
-        str1 := str1 + inttohex(Integer(strbuf[i]), 2) + ' ';
-    end;
-    Memo1.Lines.Add('xor:');
-    Memo1.Lines.Add(str1);
+     if Button66.Caption = '折叠' then
+     begin
+        GroupBox1.Height := 50;
+        Button66.Caption := '展开';
+        GroupBoxinput.Visible := False;
+     end
+     else
+     begin
+        Button66.Caption := '折叠';
+        GroupBox1.Height := 124;
+        GroupBox1.Align := alTop;
+        GroupBox1.Align := alBottom;
+        GroupBoxinput.Visible := True;
+     end;
 end;
 
 procedure TForm1.RadioButton24Click(Sender: TObject);

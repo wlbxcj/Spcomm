@@ -6,7 +6,7 @@ object Form1: TForm1
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.8'
+  Caption = 'Spcom V3.9'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -467,7 +467,7 @@ object Form1: TForm1
             Left = 150
             Top = 6
             Width = 40
-            Height = 15
+            Height = 22
             TabOrder = 1
             Text = '1000'
             OnKeyPress = Edit3KeyPress

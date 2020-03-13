@@ -477,7 +477,7 @@ begin
     begin
         for j := 0 to 7 do
         begin
-          ShowMessage(IntTohex(buf[j], 2));
+          //ShowMessage(IntTohex(buf[j], 2));
           Str := Str + Chr(buf[j]);
         end;
     end;

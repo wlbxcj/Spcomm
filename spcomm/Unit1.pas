@@ -3617,7 +3617,8 @@ begin
           end;
       end;}
      keybuf := Edit50.Text;
-     if RadioButton5.Checked <> True then
+     if (RadioButton6.Checked = True) or (RadioButton7.Checked = True)
+        or (RadioButton21.Checked = True) or (RadioButton22.Checked = True) then
       begin
           if (Edit51.Text = '') then
           begin
@@ -3763,7 +3764,7 @@ begin
           end;
       end; }
       keybuf := Edit50.Text;
-      if (RadioButton6.Checked = True) or (RadioButton6.Checked = True)
+      if (RadioButton6.Checked = True) or (RadioButton7.Checked = True)
         or (RadioButton21.Checked = True) or (RadioButton22.Checked = True) then
       begin
           if (Edit51.Text = '') then
@@ -3852,10 +3853,17 @@ begin
     end
     else if RadioButton7.Checked = True then    // cbc
     begin
-        iv := '';
+        iv := Edit57.Text;
         ivtmp := Edit57.Text;
-        if ivtmp <> '' then
+        if (ivtmp <> '') and (CheckBox56.Checked = True) then
+        begin
           iv := TwoAsciiToHex(ivtmp);
+        end;
+        if (iv <> '') and (Length(iv) <> 8) then
+        begin
+            ShowMessage('IV长度不为8');
+            Exit;
+        end;
         strbuf := Encrypt_cbc(sendbuf,keybuf, iv);
     end
     else if RadioButton20.Checked = True then

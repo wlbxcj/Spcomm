@@ -740,7 +740,7 @@ begin
     form1.Memo1.Lines.Add(strtmp);
     RecLen := RecLen + DataLen;
     form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    form1.StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(form1.Memo1.Lines.Count);
+    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
 end;
 
 
@@ -1330,7 +1330,7 @@ begin
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-        StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 
         Timer5.Enabled := True;
 
@@ -1417,18 +1417,18 @@ end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
-     if Memo1.Text <> '' then
-     begin
+    if Memo1.Text <> '' then
+    begin
         if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
         begin
             Memo1.Text := '';
-            SendLen := 0;
-            RecLen := 0;
-            StatusBar1.Panels[0].Text := 'S:0';
-            StatusBar1.Panels[1].Text := 'R:0';
-            StatusBar1.Panels[2].Text := ' Total Lines: 0'
         end;
-     end;
+    end;
+    SendLen := 0;
+    RecLen := 0;
+    StatusBar1.Panels[0].Text := 'S:0';
+    StatusBar1.Panels[1].Text := 'R:0';
+    StatusBar1.Panels[2].Text := ' Lines: 0'
 end;
 
 procedure TForm1.CheckBox2Click(Sender: TObject);
@@ -1674,8 +1674,12 @@ var
    ReadLen:Integer;
    //SunLen :Integer;
 begin
-     //SunLen := 0;
-     //WriteArrToFile(@Memo1.text[1], RecLen, 'D:\abc.bin');
+     if HaveOpenCom = '0'then
+     begin
+        ShowMessage('串口未打开');
+        Exit;
+     end;
+     Form1.Memo1.Lines.Add('1k一包，间隔1ms');
      if OpenDialog1.Execute then
      begin
         Assignfile(pMyFile, OpenDialog1.FileName);
@@ -1689,12 +1693,14 @@ begin
             SendLen:= SendLen + ReadLen;
             //ShowMessage(pStr);
             comm1.WriteCommData(aucData, readlen);
-            //Sleep(300);
+            StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+            Sleep(1);
             next;
         end;
         CloseFile(pMyFile);
      end;
-     //ShowMessage(IntToStr(SunLen));
+     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+     Form1.Memo1.Lines.Add('发送完成');
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -1716,7 +1722,7 @@ begin
         end;
         Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
         Memo1.Clear;
-        StatusBar1.Panels[2].Text := ' Total Lines: 0';
+        StatusBar1.Panels[2].Text := ' Lines: 0';
         SendLen := 0;
         StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
         RecLen := 0;
@@ -1778,7 +1784,7 @@ procedure TForm1.Memo1Change(Sender: TObject);
 begin
     if (LinesCount <> Memo1.Lines.Count) then
     begin
-        StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
         LinesCount := Memo1.Lines.Count;
     end;
 end;
@@ -2053,6 +2059,7 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit4.Text <> '' then
         begin
+           Form1.Edit4.SetFocus;
            Form1.Button22.Click;
            HaveData := 1;
            Exit;
@@ -2064,9 +2071,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit5.Text <> '' then
         begin
-           Form1.Button23.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit5.SetFocus;
+            Form1.Button23.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2075,6 +2083,7 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit6.Text <> '' then
         begin
+            Form1.Edit6.SetFocus;
            Form1.Button24.Click;
            HaveData := 1;
            Exit;
@@ -2086,9 +2095,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit7.Text <> '' then
         begin
-           Form1.Button25.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit7.SetFocus;
+            Form1.Button25.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
     //
@@ -2097,9 +2107,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit8.Text <> '' then
         begin
-           Form1.Button26.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit8.SetFocus;
+            Form1.Button26.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2108,9 +2119,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit9.Text <> '' then
         begin
-           Form1.Button27.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit9.SetFocus;
+            Form1.Button27.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2119,9 +2131,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit10.Text <> '' then
         begin
-           Form1.Button28.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit10.SetFocus;
+            Form1.Button28.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2130,9 +2143,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit11.Text <> '' then
         begin
-           Form1.Button29.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit11.SetFocus;
+            Form1.Button29.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2141,9 +2155,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit12.Text <> '' then
         begin
-           Form1.Button30.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit12.SetFocus;
+            Form1.Button30.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2152,9 +2167,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit13.Text <> '' then
         begin
-           Form1.Button31.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit13.SetFocus;
+            Form1.Button31.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2163,9 +2179,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit14.Text <> '' then
         begin
-           Form1.Button32.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit14.SetFocus;
+            Form1.Button32.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2174,9 +2191,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit17.Text <> '' then
         begin
-           Form1.Button33.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit17.SetFocus;
+            Form1.Button33.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2185,9 +2203,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit16.Text <> '' then
         begin
-           Form1.Button34.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit16.SetFocus;
+            Form1.Button34.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2196,9 +2215,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit18.Text <> '' then
         begin
-           Form1.Button35.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit18.SetFocus;
+            Form1.Button35.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2207,9 +2227,10 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit19.Text <> '' then
         begin
-           Form1.Button36.Click;
-           HaveData := 1;
-           Exit;
+            Form1.Edit19.SetFocus;
+            Form1.Button36.Click;
+            HaveData := 1;
+            Exit;
         end;
     end;
 
@@ -2218,8 +2239,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit20.Text <> '' then
         begin
-           Form1.Button37.Click;
-           Exit;
+            Form1.Edit20.SetFocus;
+            Form1.Button37.Click;
+            Exit;
         end
     end;
 
@@ -2228,8 +2250,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit25.Text <> '' then
         begin
-           Form1.Button11.Click;
-           Exit;
+            Form1.Edit25.SetFocus;
+            Form1.Button11.Click;
+            Exit;
         end
     end;
 
@@ -2238,8 +2261,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit26.Text <> '' then
         begin
-           Form1.Button14.Click;
-           Exit;
+            Form1.Edit26.SetFocus;
+            Form1.Button14.Click;
+            Exit;
         end
     end;
 
@@ -2248,8 +2272,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit27.Text <> '' then
         begin
-           Form1.Button15.Click;
-           Exit;
+            Form1.Edit27.SetFocus;
+            Form1.Button15.Click;
+            Exit;
         end
     end;
 
@@ -2258,8 +2283,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit28.Text <> '' then
         begin
-           Form1.Button16.Click;
-           Exit;
+            Form1.Edit28.SetFocus;
+            Form1.Button16.Click;
+            Exit;
         end
     end;
 
@@ -2268,8 +2294,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit29.Text <> '' then
         begin
-           Form1.Button17.Click;
-           Exit;
+            Form1.Edit29.SetFocus;
+            Form1.Button17.Click;
+            Exit;
         end
     end;
 
@@ -2278,8 +2305,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit30.Text <> '' then
         begin
-           Form1.Button18.Click;
-           Exit;
+            Form1.Edit30.SetFocus;
+            Form1.Button18.Click;
+            Exit;
         end
     end;
 
@@ -2288,8 +2316,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit31.Text <> '' then
         begin
-           Form1.Button19.Click;
-           Exit;
+            Form1.Edit31.SetFocus;
+            Form1.Button19.Click;
+            Exit;
         end
     end;
 
@@ -2298,8 +2327,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit32.Text <> '' then
         begin
-           Form1.Button20.Click;
-           Exit;
+            Form1.Edit32.SetFocus;
+            Form1.Button20.Click;
+            Exit;
         end
     end;
 
@@ -2308,8 +2338,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit33.Text <> '' then
         begin
-           Form1.Button21.Click;
-           Exit;
+            Form1.Edit33.SetFocus;
+            Form1.Button21.Click;
+            Exit;
         end
     end;
 
@@ -2318,8 +2349,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit34.Text <> '' then
         begin
-           Form1.Button38.Click;
-           Exit;
+            Form1.Edit34.SetFocus;
+            Form1.Button38.Click;
+            Exit;
         end
     end;
 {-------------------------------------------------------------------}
@@ -2328,8 +2360,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit35.Text <> '' then
         begin
-           Form1.Button39.Click;
-           Exit;
+            Form1.Edit35.SetFocus;
+            Form1.Button39.Click;
+            Exit;
         end
     end;
 
@@ -2338,8 +2371,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit36.Text <> '' then
         begin
-           Form1.Button40.Click;
-           Exit;
+            Form1.Edit36.SetFocus;
+            Form1.Button40.Click;
+            Exit;
         end
     end;
 
@@ -2348,8 +2382,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit37.Text <> '' then
         begin
-           Form1.Button41.Click;
-           Exit;
+            Form1.Edit37.SetFocus;
+            Form1.Button41.Click;
+            Exit;
         end
     end;
 
@@ -2358,8 +2393,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit38.Text <> '' then
         begin
-           Form1.Button42.Click;
-           Exit;
+            Form1.Edit38.SetFocus;
+            Form1.Button42.Click;
+            Exit;
         end
     end;
 
@@ -2368,8 +2404,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit39.Text <> '' then
         begin
-           Form1.Button43.Click;
-           Exit;
+            Form1.Edit39.SetFocus;
+            Form1.Button43.Click;
+            Exit;
         end
     end;
 
@@ -2378,8 +2415,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit40.Text <> '' then
         begin
-           Form1.Button44.Click;
-           Exit;
+            Form1.Edit40.SetFocus;
+            Form1.Button44.Click;
+            Exit;
         end
     end;
 
@@ -2388,8 +2426,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit41.Text <> '' then
         begin
-           Form1.Button45.Click;
-           Exit;
+            Form1.Edit41.SetFocus;
+            Form1.Button45.Click;
+            Exit;
         end
     end;
 
@@ -2398,8 +2437,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit42.Text <> '' then
         begin
-           Form1.Button46.Click;
-           Exit;
+            Form1.Edit42.SetFocus;
+            Form1.Button46.Click;
+            Exit;
         end
     end;
 
@@ -2408,8 +2448,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit43.Text <> '' then
         begin
-           Form1.Button47.Click;
-           Exit;
+            Form1.Edit43.SetFocus;
+            Form1.Button47.Click;
+            Exit;
         end
     end;
 
@@ -2418,8 +2459,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit44.Text <> '' then
         begin
-           Form1.Button48.Click;
-           Exit;
+            Form1.Edit44.SetFocus;
+            Form1.Button48.Click;
+            Exit;
         end
     end;
 
@@ -2428,8 +2470,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit45.Text <> '' then
         begin
-           Form1.Button49.Click;
-           Exit;
+            Form1.Edit45.SetFocus;
+            Form1.Button49.Click;
+            Exit;
         end
     end;
 
@@ -2438,8 +2481,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit46.Text <> '' then
         begin
-           Form1.Button50.Click;
-           Exit;
+            Form1.Edit46.SetFocus;
+            Form1.Button50.Click;
+            Exit;
         end
     end;
 
@@ -2448,8 +2492,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit47.Text <> '' then
         begin
-           Form1.Button51.Click;
-           Exit;
+            Form1.Edit47.SetFocus;
+            Form1.Button51.Click;
+            Exit;
         end
     end;
 
@@ -2458,8 +2503,9 @@ begin
         Inc(AutoLoopSend);
         if Form1.Edit48.Text <> '' then
         begin
-           Form1.Button52.Click;
-           Exit;
+            Form1.Edit48.SetFocus;
+            Form1.Button52.Click;
+            Exit;
         end
     end;
 
@@ -2468,8 +2514,9 @@ begin
         AutoLoopSend := 0;
         if Form1.Edit49.Text <> '' then
         begin
-           Form1.Button53.Click;
-           Exit;
+            Form1.Edit49.SetFocus;
+            Form1.Button53.Click;
+            Exit;
         end
         else
         begin
@@ -3297,7 +3344,7 @@ begin
 
     RecLen := RecLen + DataLen;
     StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    StatusBar1.Panels[2].Text := ' Total Lines: ' + IntToStr(Memo1.Lines.Count);
+    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 end;
 
 procedure TForm1.N5Click(Sender: TObject);

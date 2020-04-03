@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 614
-  Top = 86
+  Left = 577
+  Top = 91
   Width = 670
-  Height = 570
+  Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V3.9'
+  Caption = 'Spcom V4.0'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -36,14 +36,14 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 419
-    Height = 395
+    Height = 398
     Align = alClient
     TabOrder = 1
     object Memo1: TMemo
       Left = 2
       Top = 16
       Width = 415
-      Height = 377
+      Height = 380
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -59,7 +59,7 @@ object Form1: TForm1
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 395
+    Top = 398
     Width = 662
     Height = 124
     Align = alBottom
@@ -245,6 +245,7 @@ object Form1: TForm1
         Width = 73
         Height = 20
         Caption = #21457#36865
+        Enabled = False
         TabOrder = 10
         OnClick = Button2Click
       end
@@ -374,42 +375,46 @@ object Form1: TForm1
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 519
+    Top = 522
     Width = 662
     Height = 17
     Align = alBottom
     TabOrder = 2
     object PageControl1: TPageControl
       Left = 2
-      Top = -219
+      Top = -23
       Width = 658
-      Height = 215
+      Height = 20
       Align = alBottom
       TabOrder = 0
     end
     object StatusBar1: TStatusBar
       Left = 2
-      Top = -4
+      Top = -3
       Width = 658
-      Height = 19
+      Height = 18
       Panels = <
         item
           Text = 'S:0'
-          Width = 97
+          Width = 90
         end
         item
           Text = 'R:0'
-          Width = 98
+          Width = 90
         end
         item
-          Text = ' Total Lines: 0'
-          Width = 180
+          Text = ' Lines: 0'
+          Width = 100
+        end
+        item
+          Text = #21452#20987#21457#36865#21306#21487#21457#25991#20214
+          Width = 140
         end
         item
           BiDiMode = bdLeftToRight
           ParentBiDiMode = False
-          Text = #26368#26032#29256#26412#65306'https://github.com/wlbxcj/Spcomm'
-          Width = 500
+          Text = 'https://github.com/wlbxcj/Spcomm'
+          Width = 100
         end>
       SimpleText = 'werrqwer'
       OnMouseMove = StatusBar1MouseMove
@@ -419,7 +424,7 @@ object Form1: TForm1
     Left = 419
     Top = 0
     Width = 243
-    Height = 395
+    Height = 398
     Align = alRight
     TabOrder = 3
     Visible = False
@@ -427,7 +432,7 @@ object Form1: TForm1
       Left = 2
       Top = 16
       Width = 239
-      Height = 377
+      Height = 380
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
@@ -477,7 +482,7 @@ object Form1: TForm1
           Left = 0
           Top = 28
           Width = 231
-          Height = 320
+          Height = 323
           VertScrollBar.Range = 925
           VertScrollBar.Smooth = True
           VertScrollBar.Tracking = True
@@ -1569,7 +1574,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 90
+          Height = 93
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
           Caption = 'Server'
@@ -1646,7 +1651,7 @@ object Form1: TForm1
           end
           object CheckListBox1: TCheckListBox
             Left = 2
-            Top = 59
+            Top = 62
             Width = 227
             Height = 29
             Align = alBottom
@@ -1680,7 +1685,7 @@ object Form1: TForm1
         end
         object GroupBox13: TGroupBox
           Left = 0
-          Top = 90
+          Top = 93
           Width = 231
           Height = 57
           Align = alTop
@@ -1735,7 +1740,7 @@ object Form1: TForm1
         end
         object GroupBox14: TGroupBox
           Left = 0
-          Top = 147
+          Top = 150
           Width = 231
           Height = 201
           Align = alClient
@@ -1849,7 +1854,7 @@ object Form1: TForm1
           Left = 0
           Top = 106
           Width = 231
-          Height = 242
+          Height = 245
           Align = alClient
           Caption = 'operation'
           TabOrder = 1
@@ -1883,7 +1888,7 @@ object Form1: TForm1
           end
           object Button55: TButton
             Left = 24
-            Top = 219
+            Top = 218
             Width = 75
             Height = 17
             Caption = #35299#23494
@@ -1892,7 +1897,7 @@ object Form1: TForm1
           end
           object Button56: TButton
             Left = 136
-            Top = 219
+            Top = 218
             Width = 75
             Height = 17
             Caption = #21152#23494

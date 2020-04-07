@@ -18,7 +18,6 @@ type
     GroupBox3: TGroupBox;
     Memo1: TMemo;
     GroupBox5: TGroupBox;
-    PageControl1: TPageControl;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
     StatusBar1: TStatusBar;
@@ -351,6 +350,7 @@ type
     RadioButton24: TRadioButton;
     Button66: TButton;
     GroupBoxinput: TGroupBox;
+    Label1: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -521,7 +521,6 @@ type
     myThread: TThread;
     ID: DWORD;
     MythreadHandle : THandle;
-    
 
     CurrentDevice: TJvHidDevice;
     procedure AddToHistory(Str: string);
@@ -1671,19 +1670,30 @@ var
    pMyFile:file;
    pStr : string;
    aucData: array[0..1152] of Char;
-   ReadLen:Integer;
-   //SunLen :Integer;
+   ReadLen, totalsendlen:Integer;
+   fsize : DWORD;
 begin
      if HaveOpenCom = '0'then
      begin
         ShowMessage('串口未打开');
         Exit;
      end;
+
+     Label1.Color := clBlue;
+     Label1.AutoSize := False;
+     Label1.Caption:=''; //label1不显示标题
+     Label1.Transparent:=false; //透明要关闭
+     Label1.Width := 0;
+     Label1.Left := StatusBar1.Left;
+     Label1.Height := StatusBar1.Height;
+     totalsendlen := 0;
      Form1.Memo1.Lines.Add('1k一包，间隔1ms');
      if OpenDialog1.Execute then
      begin
         Assignfile(pMyFile, OpenDialog1.FileName);
         Reset(pMyFile, 1);
+        fsize := FileSize(pMyFile);
+        Form1.Memo1.Lines.Add('size=' + IntToStr(fsize));
         while not Eof(pMyFile) do
         begin
              BlockRead(pMyFile, aucData, 1024, ReadLen);
@@ -1691,14 +1701,17 @@ begin
             //fn_DelStock(pStr); //使用读取的字符串相关语句
             //ReadLen := Length(pStr);
             SendLen:= SendLen + ReadLen;
-            //ShowMessage(pStr);
+            totalsendlen := totalsendlen + ReadLen;
             comm1.WriteCommData(aucData, readlen);
             StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+            Label1.Width:= StatusBar1.Width * totalsendlen div fsize;
+            application.ProcessMessages; //及时处理消息
             Sleep(1);
             next;
         end;
         CloseFile(pMyFile);
      end;
+     Label1.Width := 0;
      StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
      Form1.Memo1.Lines.Add('发送完成');
 end;

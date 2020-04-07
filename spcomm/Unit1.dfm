@@ -380,13 +380,12 @@ object Form1: TForm1
     Height = 17
     Align = alBottom
     TabOrder = 2
-    object PageControl1: TPageControl
-      Left = 2
-      Top = -23
-      Width = 658
-      Height = 20
-      Align = alBottom
-      TabOrder = 0
+    object Label1: TLabel
+      Left = 469
+      Top = 3
+      Width = 42
+      Height = 14
+      Caption = 'Label1'
     end
     object StatusBar1: TStatusBar
       Left = 2

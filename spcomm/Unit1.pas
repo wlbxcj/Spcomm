@@ -16,7 +16,6 @@ type
     Comm1: TComm;
     GroupBox1: TGroupBox;
     GroupBox3: TGroupBox;
-    Memo1: TMemo;
     GroupBox5: TGroupBox;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
@@ -51,9 +50,6 @@ type
     IdTCPServer1: TIdTCPServer;
     GroupBox12: TGroupBox;
     GroupBox13: TGroupBox;
-    Edit15: TEdit;
-    Label12: TLabel;
-    Button9: TButton;
     IdTCPClient1: TIdTCPClient;
     Label13: TLabel;
     Label14: TLabel;
@@ -61,17 +57,12 @@ type
     Button10: TButton;
     Edit21: TEdit;
     IdIPWatch1: TIdIPWatch;
-    Label15: TLabel;
-    CheckBox25: TCheckBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
     GroupBox14: TGroupBox;
     Memo5: TMemo;
     Button12: TButton;
     RadioButton3: TRadioButton;
     RadioButton4: TRadioButton;
     CheckBox26: TCheckBox;
-    CheckListBox1: TCheckListBox;
     CheckBox27: TCheckBox;
     Edit23: TEdit;
     Label19: TLabel;
@@ -79,7 +70,6 @@ type
     Timer4: TTimer;
     TabSheet3: TTabSheet;
     Shape2: TShape;
-    Shape3: TShape;
     Shape4: TShape;
     IdAntiFreeze1: TIdAntiFreeze;
     PopupMenu2: TPopupMenu;
@@ -88,7 +78,6 @@ type
     IP1: TMenuItem;
     GroupBox15: TGroupBox;
     IdHTTP1: TIdHTTP;
-    Edit24: TEdit;
     GroupBox16: TGroupBox;
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
@@ -171,7 +160,6 @@ type
     GroupBox35: TGroupBox;
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
-    Button63: TButton;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
@@ -351,6 +339,20 @@ type
     Button66: TButton;
     GroupBoxinput: TGroupBox;
     Label1: TLabel;
+    RichEdit1: TRichEdit;
+    GroupBox38: TGroupBox;
+    CheckBox25: TCheckBox;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    GroupBox40: TGroupBox;
+    Label15: TLabel;
+    Edit24: TEdit;
+    Shape3: TShape;
+    Button9: TButton;
+    Button63: TButton;
+    Edit15: TEdit;
+    Label12: TLabel;
+    CheckListBox1: TCheckListBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -657,7 +659,7 @@ var
   N: Integer;
 begin
     if ExtendFun = 1 then
-        Memo1.Lines.Add(Str);
+        RichEdit1.Lines.Add(Str);
 end;
 
 function TFORM1.DeviceName(HidDev: TJvHidDevice): string;
@@ -727,19 +729,19 @@ begin
 
     if form1.CheckBox3.Checked = True then
         if IfDisIp = False then
-            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']')
+            RichEdit1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ']')
         else
-            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ' ' + disIP + ']')
+            RichEdit1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss',now) + ' ' + disIP + ']')
     else
     begin
         if IfDisIp = True then
-            Memo1.Lines.Add('[' + disIP + ']')
+            RichEdit1.Lines.Add('[' + disIP + ']')
     end;
 
-    form1.Memo1.Lines.Add(strtmp);
+    form1.RichEdit1.Lines.Add(strtmp);
     RecLen := RecLen + DataLen;
     form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
+    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.RichEdit1.Lines.Count);
 end;
 
 
@@ -762,7 +764,7 @@ begin
             //form1.Memo1.Lines.Add(IntToStr(readlen));
             if 0 < readlen then
             begin
-                Form1.Memo1.Lines.Add(IntToStr(RecLen));
+                Form1.RichEdit1.Lines.Add(IntToStr(RecLen));
                 Form1.IdTCPClient1.ReadBuffer(buf, readlen);
             end
             else
@@ -1115,7 +1117,6 @@ begin
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
 
      InitializeCriticalSection(CS);  //初始化
-
 end;
 
 procedure TForm1.ComboBox1Change(Sender: TObject);
@@ -1253,11 +1254,11 @@ procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
 var
     j,i,len:integer;
     rbufstr :string;
-    TimeBuf : TDateTime;
     //rbuf    : string;
     rbuf:array[0..50000] of byte;
     //HexFile : file of Integer;
-    datetimeSTR : string;
+    sbuf:String;
+    pc:PChar;
 begin
     if CheckBox5.Checked = True then
     begin
@@ -1267,15 +1268,13 @@ begin
     begin
         Timer5.Enabled := False;
 
-        viewstring:='' ;
-        TimeBuf := Now;
-        datetimeSTR := DateToStr(Now);
+        viewstring := '' ;
         len:=BufferLength;
         setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            Memo1.Lines.Add('[' + formatdatetime('yy/mm/dd hh:mm:ss:zzz',now) + ']');
-            //Memo1.Lines.Add(TimeToStr(TimeBuf) + '  ');
+            RichEdit1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
+
         if HexShow = True then
         begin
              move(buffer^, pchar(@rbuf)^, len);
@@ -1292,51 +1291,60 @@ begin
              end;
              if Length(viewstring) > 0 then
              begin
-                  Memo1.Lines.Add(viewstring);
+                  RichEdit1.Lines.Add(viewstring);
                   writeWorkLog(viewstring);
              end;
         end
         else
         begin
-            move(buffer^, pchar(rbufstr)^, bufferlength);
-            //Memo1.Lines.Add('1 >> ' +  pchar(buffer));
-            //Memo1.Lines.Add('2 >> ' +  rbufstr);
-            //Memo1.Lines.Add(TimeToStr(TimeBuf));
-            if CheckBox3.Checked = True then
+            pc:=PChar(Buffer);
+            //move(buffer^, pchar(rbufstr)^, bufferlength);
+            if CheckBox3.Checked = True then      // time
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    memo1.lines.add(rbufstr);
+                    RichEdit1.Lines.Add(String(pc));
                 end
-                else
+                else                                // UTF8
                 begin
                     // utf8转换显示
-                    memo1.lines.add(UTF8ToAnsi(rbufstr));
+                    RichEdit1.Lines.Add('');
+                    RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));
                 end;
             end
             else
             begin
-              if (CheckBox60.Checked <> True) then
-              begin
-                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + rbufstr;
-              end
-              else
-              begin
-                  Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + UTF8ToAnsi(rbufstr);
-              end;
+                if (CheckBox60.Checked <> True) then
+                begin
+                    if (RichEdit1.Lines.Count = 0) then
+                    begin
+                        RichEdit1.Lines.Add(String(pc));
+                    end
+                    else
+                        RichEdit1.Lines[RichEdit1.Lines.Count-1] := RichEdit1.Lines[RichEdit1.Lines.Count-1] + String(pc);
+                end
+                else                                    // UTF8
+                begin
+                    if (RichEdit1.Lines.Count = 0) then
+                    begin
+                        RichEdit1.Lines[0] := '' + UTF8ToAnsi(String(pc));
+                    end
+                    else
+                        RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));
+                end;
             end;
-            writeWorkLog(rbufstr);
+            //writeWorkLog(rbufstr);
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
 
         Timer5.Enabled := True;
 
-        if Memo1.Lines.Count >= 50000 then           // 大于50000行自动保存
+        if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
         begin
-            CheckBox5.Checked := True;
-            Timer1.Interval := 100;
+            //CheckBox5.Checked := True;
+            //Timer1.Interval := 100;
         end;
     end;
 end;
@@ -1416,11 +1424,11 @@ end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
-    if Memo1.Text <> '' then
+    if RichEdit1.Text <> '' then
     begin
         if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
         begin
-            Memo1.Text := '';
+            RichEdit1.Text := '';
         end;
     end;
     SendLen := 0;
@@ -1670,7 +1678,7 @@ var
    pMyFile:file;
    pStr : string;
    aucData: array[0..1152] of Char;
-   ReadLen, totalsendlen:Integer;
+   ReadLen, totalsendlen:DWORD;
    fsize : DWORD;
 begin
      if HaveOpenCom = '0'then
@@ -1687,13 +1695,13 @@ begin
      Label1.Left := StatusBar1.Left;
      Label1.Height := StatusBar1.Height;
      totalsendlen := 0;
-     Form1.Memo1.Lines.Add('1k一包，间隔1ms');
+     Form1.RichEdit1.Lines.Add('1k一包，间隔1ms');
      if OpenDialog1.Execute then
      begin
         Assignfile(pMyFile, OpenDialog1.FileName);
         Reset(pMyFile, 1);
         fsize := FileSize(pMyFile);
-        Form1.Memo1.Lines.Add('size=' + IntToStr(fsize));
+        Form1.RichEdit1.Lines.Add('size=' + IntToStr(fsize));
         while not Eof(pMyFile) do
         begin
              BlockRead(pMyFile, aucData, 1024, ReadLen);
@@ -1704,7 +1712,8 @@ begin
             totalsendlen := totalsendlen + ReadLen;
             comm1.WriteCommData(aucData, readlen);
             StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
-            Label1.Width:= StatusBar1.Width * totalsendlen div fsize;
+            //Label1.Width:= StatusBar1.Width * totalsendlen div fsize;
+            Label1.Width:= (GroupBox5.Width * totalsendlen) div fsize;
             application.ProcessMessages; //及时处理消息
             Sleep(1);
             next;
@@ -1713,7 +1722,7 @@ begin
      end;
      Label1.Width := 0;
      StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
-     Form1.Memo1.Lines.Add('发送完成');
+     Form1.RichEdit1.Lines.Add('发送完成');
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -1724,7 +1733,7 @@ begin
 
     //GetComListFromReg();
 
-    if Memo1.Lines.Count >= 50000 then           // 大于50000行自动保存
+    if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
     begin
         CheckBox5.Checked := True;
 
@@ -1733,8 +1742,8 @@ begin
         begin
             ForceDirectories(path);
         end;
-        Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
-        Memo1.Clear;
+        RichEdit1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
+        RichEdit1.Clear;
         StatusBar1.Panels[2].Text := ' Lines: 0';
         SendLen := 0;
         StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
@@ -1790,15 +1799,15 @@ end;
 procedure TForm1.N1Click(Sender: TObject);
 begin
      if SaveDialog1.Execute then
-        Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
+        RichEdit1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
 end;
 
 procedure TForm1.Memo1Change(Sender: TObject);
 begin
-    if (LinesCount <> Memo1.Lines.Count) then
+    if (LinesCount <> RichEdit1.Lines.Count) then
     begin
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
-        LinesCount := Memo1.Lines.Count;
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
+        LinesCount := RichEdit1.Lines.Count;
     end;
 end;
 
@@ -1809,11 +1818,11 @@ end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 begin
-    if Memo1.Text <> '' then
+    if RichEdit1.Text <> '' then
     begin
       SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
       if SaveDialog1.Execute then
-          Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
+          RichEdit1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
 
     end;
 end;
@@ -1841,43 +1850,17 @@ var
 begin
     if ExtendFun = 0 then
     begin
-        form1.Width := 770;
+        //form1.Width := 770;
         ExtendFun := 1;
         GroupBox7.Visible := True;
         Button13.Caption := '隐藏';
-
-        {Types:=INTERNET_CONNECTION_MODEM+INTERNET_CONNECTION_LAN+INTERNET_CONNECTION_PROXY;
-        if internetGetConnectedState(@types,0)  then
-        begin
-            ShowMessage('1 types='+inttostr(types));
-            strIp := GetPublicIP;
-            ShowMessage('2 types='+strIp);
-            if Length(strIp) > 0 then
-            begin
-              Label15.Caption := '服务器 :';
-              Edit24.Text := strIp;
-            end
-            else
-            begin
-              Label15.Caption := '本地IP :';
-              Edit24.Text := IdIPWatch1.LocalIP;
-            end;
-        end
-        else
-        begin
-            ShowMessage('3 types='+inttostr(types));
-            Label15.Caption := '本地IP :';
-            Edit24.Text := IdIPWatch1.LocalIP;
-        end;
-        }
-        
     end
     else
     begin
         ExtendFun := 0;
         Button13.Caption := '扩展';
         GroupBox7.Visible := False;
-        form1.Width := 670;
+        //form1.Width := 670;
     end;  
 
 end;
@@ -2839,7 +2822,7 @@ end;
 procedure TForm1.JvHidDeviceController1DeviceDataError(
   HidDev: TJvHidDevice; Error: Cardinal);
 begin
-    AddToHistory(Format('READ ERROR: %s (%x)', [SysErrorMessage(Error), Error])); 
+    AddToHistory(Format('READ ERROR: %s (%x)', [SysErrorMessage(Error), Error]));
 end;
 
 function TForm1.JvHidDeviceController1Enumerate(HidDev: TJvHidDevice;
@@ -2976,7 +2959,7 @@ begin
         IdTCPServer1.Bindings.Clear;
         IdTCPServer1.DefaultPort := StrToInt(Edit15.Text);
         IdTCPServer1.Active :=True; //开启服务器
-        Memo1.Lines.Add('服务器已开启');
+        RichEdit1.Lines.Add('服务器已开启');
         Shape3.Brush.Color := clRed;
         Button9.Caption := '停止';
         //Label16.Caption := (IdIPWatch1.LocalIP);
@@ -3004,7 +2987,7 @@ begin
         IdTCPServer1.Active :=False; //开启服务器
         CheckListBox1.Items.Clear;
         Button9.Caption := '开启';
-        Memo1.Lines.Add('服务器已停止');
+        RichEdit1.Lines.Add('服务器已停止');
         Shape3.Brush.Color := clGray;
     end;
 end;
@@ -3124,7 +3107,7 @@ begin
     clientIP := AThread.Connection.Socket.Binding.PeerIP;
     clientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
     dis := clientIP + ' -- ' + ClientPort;
-    Memo1.Lines.Add('用户 ' + clientIP + ':' + clientPort + ' 连接');
+    RichEdit1.Lines.Add('用户 ' + clientIP + ':' + clientPort + ' 连接');
     //Memo1.Lines.Add('用户 ' + clientIP + ' 连接');
     CheckListBox1.Items.Add(dis);
     //CheckListBox1.Items.Add(AThread);
@@ -3158,7 +3141,7 @@ begin
     ClientIP := AThread.Connection.Socket.Binding.PeerIP;
     ClientPort := IntToStr(AThread.Connection.Socket.Binding.PeerPort);
     dis := clientIP + ' -- ' + ClientPort;
-    Memo1.Lines.Add('用户 ' + ClientIP + ':' + ClientPort + ' 断开');
+    RichEdit1.Lines.Add('用户 ' + ClientIP + ':' + ClientPort + ' 断开');
     
     for i:=0 to CheckListBox1.Items.Count do
     begin
@@ -3279,7 +3262,7 @@ begin
 
         if clientIP = '' then
         begin
-            Memo1.Lines.Add('请在客户端勾选要发送的对象');
+            RichEdit1.Lines.Add('请在客户端勾选要发送的对象');
         end;
     end
     else      // client
@@ -3293,7 +3276,7 @@ begin
         end
         else
         begin
-            Memo1.Lines.Add('请先连接服务器');
+            RichEdit1.Lines.Add('请先连接服务器');
         end;
         //TcpClient1.SendBuf(aucBuf[0], TextLen)
     end;
@@ -3352,12 +3335,12 @@ procedure TForm1.TcpClient1Receive(Sender: TObject; Buf: PAnsiChar;
   var DataLen: Integer);
 begin
     //ShowMessage(IntToStr(DataLen) + ' : '  + Buf);
-    Memo1.Lines.Add(Edit21.Text + ':') ;
-    Memo1.Lines.Add(Buf);
+    RichEdit1.Lines.Add(Edit21.Text + ':') ;
+    RichEdit1.Lines.Add(Buf);
 
     RecLen := RecLen + DataLen;
     StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
+    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
 end;
 
 procedure TForm1.N5Click(Sender: TObject);
@@ -3420,7 +3403,7 @@ end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-    if Memo1.Text <> '' then
+    if RichEdit1.Text <> '' then
     begin
         if (IDYES = Application.MessageBox('确定要退出吗？数据是否已保存?','提示',MB_YesNo+MB_IconQuestion)) then
             CanClose:=TRUE
@@ -3629,8 +3612,8 @@ begin
                  TextLen := (TextLen div 2) + 1;
             end;
             //Memo1.Lines.Add('The len after change is ' + inttostr(TextLen));
-            Memo1.Lines.Add('');
-            Memo1.Lines.Add(SendBuf);
+            RichEdit1.Lines.Add('');
+            RichEdit1.Lines.Add(SendBuf);
         end;
     end
 end;
@@ -3752,7 +3735,7 @@ begin
     end
     else if RadioButton6.Checked = True then
     begin
-        Memo1.Lines.Add('解密:');
+        RichEdit1.Lines.Add('解密:');
         strbuf := '';
         for j := 0 to Length(SendBuf) div 8 -1 do
         begin
@@ -3765,7 +3748,7 @@ begin
                 strbuf := des3_24(sendtemp, keybuf, 0)
             else
                 strbuf := des3_16(sendtemp, keybuf, 0);
-            Memo1.Lines.Add(strbuf);
+            RichEdit1.Lines.Add(strbuf);
         end;
         exit;
     end
@@ -3784,8 +3767,8 @@ begin
     end;  
 
 
-    Memo1.Lines.Add('解密:');
-    Memo1.Lines.Add(strbuf);
+    RichEdit1.Lines.Add('解密:');
+    RichEdit1.Lines.Add(strbuf);
 end;
 
 // 加密
@@ -3892,7 +3875,7 @@ begin
     begin
         //ShowMessage('22222222');
         //strbuf := des3_16(SendBuf, keybuf, 1);
-        Memo1.Lines.Add('加密:');
+        RichEdit1.Lines.Add('加密:');
         strbuf := '';
         for j := 0 to Length(SendBuf) div 8 -1 do
         begin
@@ -3907,7 +3890,7 @@ begin
             else
                 strbuf := des3_16(sendtemp, keybuf, 1);
             //ShowMessage('3333333');
-            Memo1.Lines.Add(strbuf);
+            RichEdit1.Lines.Add(strbuf);
         end;
         exit;
     end
@@ -3929,26 +3912,26 @@ begin
     else if RadioButton20.Checked = True then
     begin
         strbuf := EncryStrHex_AnsiX9_9Mac(SendBuf, keybuf);
-        Memo1.Lines.Add('MAC:');
-        Memo1.Lines.Add(strbuf);
+        RichEdit1.Lines.Add('MAC:');
+        RichEdit1.Lines.Add(strbuf);
         Exit;
     end
     else if RadioButton21.Checked = True then
     begin
         strbuf := EncryStrHex_AnsiX9_19Mac(SendBuf, keybuf);
-        Memo1.Lines.Add('MAC:');
-        Memo1.Lines.Add(strbuf);
+        RichEdit1.Lines.Add('MAC:');
+        RichEdit1.Lines.Add(strbuf);
         Exit;
     end
     else if RadioButton22.Checked = True then
     begin
         strbuf := EncryStrHex_Pboc3DesMac(SendBuf, keybuf);
-        Memo1.Lines.Add('MAC:');
-        Memo1.Lines.Add(strbuf);
+        RichEdit1.Lines.Add('MAC:');
+        RichEdit1.Lines.Add(strbuf);
         Exit;
     end;
-    Memo1.Lines.Add('加密:');
-    Memo1.Lines.Add(strbuf);
+    RichEdit1.Lines.Add('加密:');
+    RichEdit1.Lines.Add(strbuf);
 end;
 
 procedure TForm1.Button57Click(Sender: TObject);
@@ -4012,57 +3995,57 @@ begin
         hashout := SHA256Final();
 
         hashstr := '';
-        Memo1.Lines.Add('hash256:');
+        RichEdit1.Lines.Add('hash256:');
         for n:= 0 to 31 do
         begin
             hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
             if n = 15 then
             begin
-              Memo1.Lines.Add(hashstr);
+              RichEdit1.Lines.Add(hashstr);
               hashstr := '';
             end
         end;
-    Memo1.Lines.Add(hashstr);
+    RichEdit1.Lines.Add(hashstr);
     end
     else if RadioButton18.Checked = True then
     begin
-        Memo1.Lines.Add('MD5:');
+        RichEdit1.Lines.Add('MD5:');
         mymd5:=TIdHashMessageDigest5.Create;
-        Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(datastr)));
+        RichEdit1.Lines.Add(mymd5.AsHex(mymd5.HashValue(datastr)));
         mymd5.Free;
     end
     else if RadioButton19.Checked = True then
     begin
-        Memo1.Lines.Add('CRC:');
+        RichEdit1.Lines.Add('CRC:');
         crc := Unit_CRC.Calcu_crc_16($0000, datastr);
-        Memo1.Lines.Add('CRC-16:            0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-16:            0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.OriginalCalcuCRC_16(datastr);
-        Memo1.Lines.Add('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_16($FFFF, datastr);
-        Memo1.Lines.Add('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_sick(datastr);
-        Memo1.Lines.Add('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_ccitt($0000, datastr);
-        Memo1.Lines.Add('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_ccitt($FFFF, datastr);
-        Memo1.Lines.Add('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_ccitt($1D0F, datastr);
-        Memo1.Lines.Add('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_kermit(datastr);
-        Memo1.Lines.Add('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc := Unit_CRC.Calcu_crc_dnp(datastr);
-        Memo1.Lines.Add('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+        RichEdit1.Lines.Add('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
 
         crc32 := Unit_CRC.Calcu_crc_32(datastr);
-        Memo1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
+        RichEdit1.Lines.Add('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
     end;
 end;
 
@@ -4197,7 +4180,7 @@ begin
 
     if RadioButton8.Checked = True then   // ecb加密
     begin
-        Memo1.Lines.Add('ECB ENC:');
+        RichEdit1.Lines.Add('ECB ENC:');
         finish_len := 0;
         while (finish_len < datalen) do
         begin
@@ -4211,7 +4194,7 @@ begin
           begin
               keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
           end;
-          Memo1.Lines.Add(keytemp2);
+          RichEdit1.Lines.Add(keytemp2);
         end;
 
     end
@@ -4267,17 +4250,17 @@ begin
 
         cbcout := sm4_crypt_cbc(1, mykey, mydata, datalen, myiv);
         keytemp2 := '';
-        Memo1.Lines.Add('CBC ENC:');
+        RichEdit1.Lines.Add('CBC ENC:');
         for i:= 0 to datalen-1 do
         begin
             if ((i mod 16) = 0) and (i <> 0) then
             begin
-                Memo1.Lines.Add(keytemp2);
+                RichEdit1.Lines.Add(keytemp2);
                 keytemp2 := '';
             end;
             keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
         end;
-        Memo1.Lines.Add(keytemp2);
+        RichEdit1.Lines.Add(keytemp2);
     end;
 
 end;
@@ -4389,7 +4372,7 @@ begin
 
     if RadioButton8.Checked = True then   // ecb解密
     begin
-        Memo1.Lines.Add('ECB DEC:');
+        RichEdit1.Lines.Add('ECB DEC:');
         finish_len := 0;
         while (finish_len < datalen) do
         begin
@@ -4403,7 +4386,7 @@ begin
           begin
               keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
           end;
-          Memo1.Lines.Add(keytemp2);
+          RichEdit1.Lines.Add(keytemp2);
         end;
 
     end
@@ -4458,18 +4441,18 @@ begin
         end;
 
         cbcout := sm4_crypt_cbc(0, mykey, mydata, datalen, myiv);
-        Memo1.Lines.Add('CBC DEC:');
+        RichEdit1.Lines.Add('CBC DEC:');
         keytemp2 := '';
         for i:= 0 to datalen-1 do
         begin
             if ((i mod 16) = 0) and (i <> 0) then
             begin
-                Memo1.Lines.Add(keytemp2);
+                RichEdit1.Lines.Add(keytemp2);
                 keytemp2 := '';
             end;
             keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
         end;
-        Memo1.Lines.Add(keytemp2);
+        RichEdit1.Lines.Add(keytemp2);
     end;
 end;
 
@@ -4602,7 +4585,7 @@ begin
         end;
     end;
 
-    Memo1.Lines.Add('AES ENC:'+RegCode);
+    RichEdit1.Lines.Add('AES ENC:'+RegCode);
 end;
 
 procedure TForm1.RadioButton10Click(Sender: TObject);
@@ -4726,7 +4709,7 @@ begin
         end;
     end;
 
-    Memo1.Lines.Add('AES ENC:'+RegCode);}
+    RichEdit1.Lines.Add('AES ENC:'+RegCode);}
 var
   Source: TStringStream;
   Dest: TStringStream;
@@ -4859,7 +4842,7 @@ begin
         end;
     end;
 
-    Memo1.Lines.Add('AES DEC:'+RegCode);
+    RichEdit1.Lines.Add('AES DEC:'+RegCode);
 end;
 
 procedure TForm1.RadioButton13Click(Sender: TObject);
@@ -4909,25 +4892,25 @@ begin
             hashout := SHA256Final();
             hashstr := '';
 
-            Memo1.Lines.Add('hash256:');
+            RichEdit1.Lines.Add('hash256:');
             for n:= 0 to 31 do
             begin
                 hashstr := hashstr + IntToHex(hashout[n], 2) + ' ';
                 if n = 15 then
                 begin
-                      Memo1.Lines.Add(hashstr);
+                      RichEdit1.Lines.Add(hashstr);
                       hashstr := '';
                 end
             end;
-            Memo1.Lines.Add(hashstr);
+            RichEdit1.Lines.Add(hashstr);
         end
         // MD5
         else if RadioButton18.Checked = True then
         begin
             Stream := TFileStream.Create(OpenDialog1.FileName,fmOpenRead);
             mymd5:=TIdHashMessageDigest5.Create;
-            Memo1.Lines.Add('MD5:');
-            Memo1.Lines.Add(mymd5.AsHex(mymd5.HashValue(Stream)));//计算文件MD5
+            RichEdit1.Lines.Add('MD5:');
+            RichEdit1.Lines.Add(mymd5.AsHex(mymd5.HashValue(Stream)));//计算文件MD5
             Stream.Free;
             mymd5.Free;
         end
@@ -5109,7 +5092,7 @@ begin
         EditLen2 := Length(strbuf2);
         if (IsHexDataStr(strbuf1) = False) then
             Exit;
-        Memo1.lines.Add('XOR:(HEX)');
+        RichEdit1.lines.Add('XOR:(HEX)');
         if RadioButton23.Checked = True  then
         begin
             if (Length(strbuf2) = 0) then
@@ -5126,7 +5109,7 @@ begin
                 begin
                     if (j mod 8 = 0) and (j <> 0) then
                     begin
-                        Memo1.Lines.Add(resultstr);
+                        RichEdit1.Lines.Add(resultstr);
                         resultstr := '';
                     end;
                     ResultSun := (StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0)) xor (StrToIntDef('$' + strbuf2[2*j + 1] + strbuf2[2*j + 2], 0));
@@ -5134,7 +5117,7 @@ begin
                     resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
                  
                 end;
-                Memo1.Lines.Add(resultstr);
+                RichEdit1.Lines.Add(resultstr);
             end
             else
             begin
@@ -5150,7 +5133,7 @@ begin
                   strbuf2 := strbuf2 + Char(StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0));
             end;
             resultstr := str_8byte_xor(strbuf2);
-            Memo1.Lines.Add(resultstr);
+            RichEdit1.Lines.Add(resultstr);
         end;
     end
     else
@@ -5160,7 +5143,7 @@ begin
         EditLen1 := Length(strbuf1);
         EditLen2 := Length(strbuf2);
 
-        Memo1.Lines.Add('XOR:(HEX)');
+        RichEdit1.Lines.Add('XOR:(HEX)');
         if RadioButton23.Checked = True then
         begin
             if (EditLen2 = EditLen1) then
@@ -5169,7 +5152,7 @@ begin
                 begin
                     if (j mod 8 = 0) and (j <> 0) then
                     begin
-                        Memo1.Lines.Add(resultstr);
+                        RichEdit1.Lines.Add(resultstr);
                         resultstr := '';
                     end;
                     ResultSun := (Integer(strbuf1[j + 1])) xor (Integer(strbuf2[j + 1]));
@@ -5189,7 +5172,7 @@ begin
             resultstr := str_8byte_xor(strbuf1);
             //Memo1.Lines.Add(resultstr);
         end;
-        Memo1.Lines.Add(resultstr);
+        RichEdit1.Lines.Add(resultstr);
 
     end;
 
@@ -5221,9 +5204,9 @@ begin
     str3 := 'PBOC 3DES MAC算法(符合ISO9797Alg3Mac标准)'+ #13+#10+
     '1) 在数据末尾添加十六进制数（8000000000000000）直至补成8的整数倍，如果原数据已经是8的整数倍，则全部补全；' + #13+#10+
     '2) 将BLOCK1用MAC密钥前8字节做DES加密，加密结果与BLOCK2进行逐位异或后再用MAC密钥前8字节做DES加密，依次进行得到8字节的加密结果，直到最后一次采用TDES加密。'+ #13+#10;
-    Memo1.Lines.Add(str1);
-    Memo1.Lines.Add(str2);
-    Memo1.Lines.Add(str3);
+    RichEdit1.Lines.Add(str1);
+    RichEdit1.Lines.Add(str2);
+    RichEdit1.Lines.Add(str3);
 end;
 
 procedure TForm1.RadioButton21Click(Sender: TObject);

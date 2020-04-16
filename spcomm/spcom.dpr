@@ -14,7 +14,7 @@ uses
 {$R manage.res}
 begin
   Application.Initialize;
-  Application.Title := 'Spcom V4.0';
+  Application.Title := 'Spcom V4.1';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm6, Form6);

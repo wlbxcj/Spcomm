@@ -6,7 +6,7 @@ object Form1: TForm1
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.0'
+  Caption = 'Spcom V4.1'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -45,14 +45,14 @@ object Form1: TForm1
       Width = 415
       Height = 380
       Align = alClient
-      Font.Charset = GB2312_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -12
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
       PlainText = True
-      ScrollBars = ssBoth
+      ScrollBars = ssVertical
       TabOrder = 0
     end
   end
@@ -433,7 +433,7 @@ object Form1: TForm1
       Top = 16
       Width = 239
       Height = 380
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
@@ -1574,87 +1574,120 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 93
+          Height = 148
           Align = alTop
           Anchors = [akLeft, akTop, akRight, akBottom]
-          Caption = 'Server'
           TabOrder = 0
-          object Label12: TLabel
-            Left = 8
-            Top = 35
-            Width = 59
-            Height = 14
-            AutoSize = False
-            Caption = #31471'  '#21475' '#65306
-          end
-          object Label15: TLabel
-            Left = 8
-            Top = 13
-            Width = 63
-            Height = 14
-            Caption = #26412#26426'IP '#65306
-          end
-          object Shape3: TShape
-            Left = 188
-            Top = 9
-            Width = 25
-            Height = 17
-            Brush.Color = clGray
-            Shape = stCircle
-          end
-          object Edit15: TEdit
-            Left = 64
-            Top = 31
-            Width = 49
-            Height = 22
+          object GroupBox38: TGroupBox
+            Left = 2
+            Top = 114
+            Width = 227
+            Height = 32
+            Align = alBottom
             TabOrder = 0
-            OnKeyPress = Edit15KeyPress
+            object CheckBox25: TCheckBox
+              Left = 8
+              Top = 11
+              Width = 73
+              Height = 17
+              Caption = #33258#21160#22238#22797
+              Checked = True
+              State = cbChecked
+              TabOrder = 0
+              OnClick = CheckBox25Click
+            end
+            object RadioButton1: TRadioButton
+              Left = 98
+              Top = 11
+              Width = 55
+              Height = 17
+              Caption = #25968#25454
+              TabOrder = 1
+              OnClick = RadioButton1Click
+            end
+            object RadioButton2: TRadioButton
+              Left = 161
+              Top = 11
+              Width = 54
+              Height = 17
+              Caption = #36879#26126
+              Checked = True
+              TabOrder = 2
+              TabStop = True
+            end
           end
-          object Button9: TButton
-            Left = 168
-            Top = 31
-            Width = 45
-            Height = 21
-            Caption = #24320#21551
+          object GroupBox40: TGroupBox
+            Left = 2
+            Top = 16
+            Width = 227
+            Height = 57
+            Align = alTop
+            Caption = 'Server'
             TabOrder = 1
-            OnClick = Button9Click
-          end
-          object CheckBox25: TCheckBox
-            Left = 8
-            Top = 107
-            Width = 73
-            Height = 17
-            Caption = #33258#21160#22238#22797
-            Checked = True
-            State = cbChecked
-            TabOrder = 2
-            OnClick = CheckBox25Click
-          end
-          object RadioButton1: TRadioButton
-            Left = 98
-            Top = 107
-            Width = 55
-            Height = 17
-            Caption = #25968#25454
-            TabOrder = 3
-            OnClick = RadioButton1Click
-          end
-          object RadioButton2: TRadioButton
-            Left = 161
-            Top = 107
-            Width = 54
-            Height = 17
-            Caption = #36879#26126
-            Checked = True
-            TabOrder = 4
-            TabStop = True
+            object Label15: TLabel
+              Left = 8
+              Top = 13
+              Width = 63
+              Height = 14
+              Caption = #26412#26426'IP '#65306
+            end
+            object Shape3: TShape
+              Left = 193
+              Top = 9
+              Width = 25
+              Height = 17
+              Brush.Color = clGray
+              Shape = stCircle
+            end
+            object Label12: TLabel
+              Left = 8
+              Top = 35
+              Width = 59
+              Height = 14
+              AutoSize = False
+              Caption = #31471'  '#21475' '#65306
+            end
+            object Edit24: TEdit
+              Left = 65
+              Top = 8
+              Width = 113
+              Height = 22
+              TabOrder = 0
+              Text = '255.255.255.255'
+            end
+            object Button9: TButton
+              Left = 176
+              Top = 31
+              Width = 45
+              Height = 21
+              Caption = #24320#21551
+              TabOrder = 1
+              OnClick = Button9Click
+            end
+            object Button63: TButton
+              Left = 117
+              Top = 31
+              Width = 49
+              Height = 21
+              Caption = #33719#21462'IP'
+              TabOrder = 2
+              OnClick = Button63Click
+            end
+            object Edit15: TEdit
+              Left = 64
+              Top = 31
+              Width = 49
+              Height = 22
+              TabOrder = 3
+              OnKeyPress = Edit15KeyPress
+            end
           end
           object CheckListBox1: TCheckListBox
             Left = 2
-            Top = 62
+            Top = 73
             Width = 227
-            Height = 29
-            Align = alBottom
+            Height = 41
+            Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -1663,29 +1696,12 @@ object Form1: TForm1
             ItemHeight = 14
             ParentFont = False
             PopupMenu = PopupMenu2
-            TabOrder = 5
-          end
-          object Edit24: TEdit
-            Left = 64
-            Top = 8
-            Width = 113
-            Height = 22
-            TabOrder = 6
-            Text = '255.255.255.255'
-          end
-          object Button63: TButton
-            Left = 117
-            Top = 31
-            Width = 49
-            Height = 21
-            Caption = #33719#21462'IP'
-            TabOrder = 7
-            OnClick = Button63Click
+            TabOrder = 2
           end
         end
         object GroupBox13: TGroupBox
           Left = 0
-          Top = 93
+          Top = 148
           Width = 231
           Height = 57
           Align = alTop
@@ -1740,22 +1756,22 @@ object Form1: TForm1
         end
         object GroupBox14: TGroupBox
           Left = 0
-          Top = 150
+          Top = 205
           Width = 231
-          Height = 201
+          Height = 146
           Align = alClient
           Caption = 'Send'
           TabOrder = 2
           object Label19: TLabel
             Left = 98
-            Top = 157
+            Top = 105
             Width = 35
             Height = 14
             Caption = #38388#38548':'
           end
           object Label20: TLabel
             Left = 194
-            Top = 156
+            Top = 104
             Width = 14
             Height = 14
             Caption = #31186
@@ -1764,7 +1780,7 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 125
+            Height = 80
             Align = alTop
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1777,7 +1793,7 @@ object Form1: TForm1
           end
           object Button12: TButton
             Left = 164
-            Top = 176
+            Top = 124
             Width = 50
             Height = 21
             Caption = #21457#36865
@@ -1786,7 +1802,7 @@ object Form1: TForm1
           end
           object RadioButton3: TRadioButton
             Left = 5
-            Top = 178
+            Top = 126
             Width = 73
             Height = 17
             Caption = 'Server'
@@ -1796,7 +1812,7 @@ object Form1: TForm1
           end
           object RadioButton4: TRadioButton
             Left = 65
-            Top = 179
+            Top = 127
             Width = 55
             Height = 17
             Caption = 'Client'
@@ -1804,7 +1820,7 @@ object Form1: TForm1
           end
           object CheckBox26: TCheckBox
             Left = 123
-            Top = 179
+            Top = 127
             Width = 41
             Height = 17
             Caption = 'HEX'
@@ -1812,7 +1828,7 @@ object Form1: TForm1
           end
           object CheckBox27: TCheckBox
             Left = 8
-            Top = 155
+            Top = 103
             Width = 73
             Height = 17
             Caption = #33258#21160#21457#36865
@@ -1821,7 +1837,7 @@ object Form1: TForm1
           end
           object Edit23: TEdit
             Left = 134
-            Top = 152
+            Top = 100
             Width = 59
             Height = 22
             TabOrder = 6

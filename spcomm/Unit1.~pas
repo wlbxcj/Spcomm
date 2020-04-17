@@ -50,9 +50,6 @@ type
     IdTCPServer1: TIdTCPServer;
     GroupBox12: TGroupBox;
     GroupBox13: TGroupBox;
-    Edit15: TEdit;
-    Label12: TLabel;
-    Button9: TButton;
     IdTCPClient1: TIdTCPClient;
     Label13: TLabel;
     Label14: TLabel;
@@ -60,17 +57,12 @@ type
     Button10: TButton;
     Edit21: TEdit;
     IdIPWatch1: TIdIPWatch;
-    Label15: TLabel;
-    CheckBox25: TCheckBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
     GroupBox14: TGroupBox;
     Memo5: TMemo;
     Button12: TButton;
     RadioButton3: TRadioButton;
     RadioButton4: TRadioButton;
     CheckBox26: TCheckBox;
-    CheckListBox1: TCheckListBox;
     CheckBox27: TCheckBox;
     Edit23: TEdit;
     Label19: TLabel;
@@ -78,7 +70,6 @@ type
     Timer4: TTimer;
     TabSheet3: TTabSheet;
     Shape2: TShape;
-    Shape3: TShape;
     Shape4: TShape;
     IdAntiFreeze1: TIdAntiFreeze;
     PopupMenu2: TPopupMenu;
@@ -87,7 +78,6 @@ type
     IP1: TMenuItem;
     GroupBox15: TGroupBox;
     IdHTTP1: TIdHTTP;
-    Edit24: TEdit;
     GroupBox16: TGroupBox;
     CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
@@ -170,7 +160,6 @@ type
     GroupBox35: TGroupBox;
     RadioButton15: TRadioButton;
     RadioButton16: TRadioButton;
-    Button63: TButton;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
@@ -351,6 +340,19 @@ type
     GroupBoxinput: TGroupBox;
     Label1: TLabel;
     RichEdit1: TRichEdit;
+    GroupBox38: TGroupBox;
+    CheckBox25: TCheckBox;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    GroupBox40: TGroupBox;
+    Label15: TLabel;
+    Edit24: TEdit;
+    Shape3: TShape;
+    Button9: TButton;
+    Button63: TButton;
+    Edit15: TEdit;
+    Label12: TLabel;
+    CheckListBox1: TCheckListBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -1339,7 +1341,7 @@ begin
 
         Timer5.Enabled := True;
 
-        if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
+        if RecLen >= 10485760 then           // 大于10M Byte自动保存
         begin
             //CheckBox5.Checked := True;
             //Timer1.Interval := 100;
@@ -1731,9 +1733,9 @@ begin
 
     //GetComListFromReg();
 
-    if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
+    if RecLen >= 10485760  then           // 大于10 M byte行自动保存
     begin
-        CheckBox5.Checked := True;
+        CheckBox5.Checked := True;        // stop rec
 
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
@@ -1750,8 +1752,8 @@ begin
 
         CheckBox5.Checked := False;
     end;
-    Timer1.Interval := 3000;
-    Timer1.Enabled := True;
+    //Timer1.Interval := 3000;
+    //Timer1.Enabled := True;
 end;
 
 procedure TForm1.CheckBox4Click(Sender: TObject);
@@ -1848,43 +1850,17 @@ var
 begin
     if ExtendFun = 0 then
     begin
-        form1.Width := 770;
+        //form1.Width := 770;
         ExtendFun := 1;
         GroupBox7.Visible := True;
         Button13.Caption := '隐藏';
-
-        {Types:=INTERNET_CONNECTION_MODEM+INTERNET_CONNECTION_LAN+INTERNET_CONNECTION_PROXY;
-        if internetGetConnectedState(@types,0)  then
-        begin
-            ShowMessage('1 types='+inttostr(types));
-            strIp := GetPublicIP;
-            ShowMessage('2 types='+strIp);
-            if Length(strIp) > 0 then
-            begin
-              Label15.Caption := '服务器 :';
-              Edit24.Text := strIp;
-            end
-            else
-            begin
-              Label15.Caption := '本地IP :';
-              Edit24.Text := IdIPWatch1.LocalIP;
-            end;
-        end
-        else
-        begin
-            ShowMessage('3 types='+inttostr(types));
-            Label15.Caption := '本地IP :';
-            Edit24.Text := IdIPWatch1.LocalIP;
-        end;
-        }
-        
     end
     else
     begin
         ExtendFun := 0;
         Button13.Caption := '扩展';
         GroupBox7.Visible := False;
-        form1.Width := 670;
+        //form1.Width := 670;
     end;  
 
 end;

@@ -512,6 +512,7 @@ type
     procedure Button66Click(Sender: TObject);
     procedure RadioButton24Click(Sender: TObject);
     procedure RadioButton23Click(Sender: TObject);
+    procedure CheckBox5Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -1262,7 +1263,10 @@ var
 begin
     if CheckBox5.Checked = True then
     begin
-
+        if CheckBox5.Font.Color = clRed then
+            CheckBox5.Font.Color := clBlue
+        else
+            CheckBox5.Font.Color := clRed;
     end
     else
     begin
@@ -1341,10 +1345,11 @@ begin
 
         Timer5.Enabled := True;
 
-        if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
+        if RecLen >= 10485760 then           // 大于10M Byte自动保存
         begin
-            //CheckBox5.Checked := True;
-            //Timer1.Interval := 100;
+            CheckBox5.Checked := True;
+            Timer1.Interval := 1;
+            Timer1.Enabled := True;
         end;
     end;
 end;
@@ -1733,9 +1738,9 @@ begin
 
     //GetComListFromReg();
 
-    if RichEdit1.Lines.Count >= 50000 then           // 大于50000行自动保存
+    if RecLen >= 10485760  then           // 大于10 M byte行自动保存
     begin
-        CheckBox5.Checked := True;
+        CheckBox5.Checked := True;        // stop rec
 
         path := ExtractFilePath(Paramstr(0)) +'log\';
         if not DirectoryExists(path) then
@@ -1752,8 +1757,8 @@ begin
 
         CheckBox5.Checked := False;
     end;
-    Timer1.Interval := 3000;
-    Timer1.Enabled := True;
+    //Timer1.Interval := 3000;
+    //Timer1.Enabled := True;
 end;
 
 procedure TForm1.CheckBox4Click(Sender: TObject);
@@ -5271,6 +5276,14 @@ begin
         Memo14.Align := alTop;
         GroupBox6.Caption := 'data1/data2';
     end;
+end;
+
+procedure TForm1.CheckBox5Click(Sender: TObject);
+begin
+    if CheckBox5.Checked = True then
+        CheckBox5.Font.Color := clRed
+    else
+        CheckBox5.Font.Color := clWindowText;
 end;
 
 end.

@@ -45,14 +45,14 @@ object Form1: TForm1
       Width = 415
       Height = 380
       Align = alClient
-      Font.Charset = GB2312_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -12
       Font.Name = 'Courier New'
       Font.Style = []
       ParentFont = False
       PlainText = True
-      ScrollBars = ssBoth
+      ScrollBars = ssVertical
       TabOrder = 0
     end
   end
@@ -343,6 +343,7 @@ object Form1: TForm1
         Height = 17
         Caption = #26242#20572#25509#25910
         TabOrder = 5
+        OnClick = CheckBox5Click
       end
       object CheckBox60: TCheckBox
         Left = 194

@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 514
-  Top = 92
+  Left = 600
+  Top = 100
   Width = 670
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.1'
+  Caption = 'Spcom V4.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -31,30 +31,6 @@ object Form1: TForm1
     Width = 49
     Height = 14
     Caption = 'Label16'
-  end
-  object GroupBox3: TGroupBox
-    Left = 0
-    Top = 0
-    Width = 419
-    Height = 398
-    Align = alClient
-    TabOrder = 1
-    object RichEdit1: TRichEdit
-      Left = 2
-      Top = 16
-      Width = 415
-      Height = 380
-      Align = alClient
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Courier New'
-      Font.Style = []
-      ParentFont = False
-      PlainText = True
-      ScrollBars = ssVertical
-      TabOrder = 0
-    end
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -379,7 +355,7 @@ object Form1: TForm1
     Width = 662
     Height = 17
     Align = alBottom
-    TabOrder = 2
+    TabOrder = 1
     object Label1: TLabel
       Left = 1
       Top = 3
@@ -427,7 +403,7 @@ object Form1: TForm1
     Width = 243
     Height = 398
     Align = alRight
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
     object PageControl2: TPageControl
       Left = 2
@@ -2618,114 +2594,106 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 348
+          Height = 351
           Align = alClient
           TabOrder = 0
-          object GroupBox16: TGroupBox
+          object Memo13: TMemo
             Left = 2
             Top = 16
             Width = 227
-            Height = 330
-            Align = alClient
+            Height = 221
+            Align = alTop
             TabOrder = 0
-            object CheckBox53: TCheckBox
-              Left = 7
-              Top = 11
-              Width = 97
-              Height = 17
-              Caption = #23454#26102#20445#23384
-              TabOrder = 0
-              Visible = False
-              OnClick = CheckBox53Click
-            end
-            object GroupBox2: TGroupBox
-              Left = 2
-              Top = 16
-              Width = 223
-              Height = 312
-              Align = alClient
-              TabOrder = 1
-              object Edit1: TEdit
-                Left = 4
-                Top = 162
-                Width = 213
-                Height = 21
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Microsoft Sans Serif'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 0
-              end
-              object Button3: TButton
-                Left = 116
-                Top = 189
-                Width = 91
-                Height = 21
-                Caption = #32047#21152#21644
-                TabOrder = 1
-                OnClick = Button3Click
-              end
-              object Button4: TButton
-                Left = 4
-                Top = 189
-                Width = 91
-                Height = 21
-                Caption = #24322#25110#21644
-                TabOrder = 2
-                OnClick = Button4Click
-              end
-              object Button5: TButton
-                Left = 0
-                Top = 247
-                Width = 75
-                Height = 17
-                Caption = 'SendFile'
-                TabOrder = 3
-                Visible = False
-                OnClick = Button5Click
-              end
-              object Button6: TButton
-                Left = 116
-                Top = 222
-                Width = 91
-                Height = 21
-                Caption = 'ASCII'#30721#34920
-                TabOrder = 4
-                OnClick = Button6Click
-              end
-              object Button54: TButton
-                Left = 4
-                Top = 222
-                Width = 91
-                Height = 21
-                Caption = 'HexToAscii'
-                TabOrder = 5
-                OnClick = Button54Click
-              end
-              object Memo13: TMemo
-                Left = 2
-                Top = 16
-                Width = 219
-                Height = 123
-                Align = alTop
-                TabOrder = 6
-              end
-              object CheckBox61: TCheckBox
-                Left = 6
-                Top = 142
-                Width = 73
-                Height = 17
-                Caption = 'HEX'
-                TabOrder = 7
-                OnClick = CheckBox2Click
-              end
-            end
+          end
+          object Edit1: TEdit
+            Left = 4
+            Top = 260
+            Width = 226
+            Height = 21
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Microsoft Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+          end
+          object CheckBox61: TCheckBox
+            Left = 6
+            Top = 240
+            Width = 73
+            Height = 17
+            Caption = 'HEX'
+            TabOrder = 2
+            OnClick = CheckBox2Click
+          end
+          object Button6: TButton
+            Left = 116
+            Top = 320
+            Width = 91
+            Height = 21
+            Caption = 'ASCII'#30721#34920
+            TabOrder = 3
+            OnClick = Button6Click
+          end
+          object Button54: TButton
+            Left = 4
+            Top = 320
+            Width = 91
+            Height = 21
+            Caption = 'HexToAscii'
+            TabOrder = 4
+            OnClick = Button54Click
+          end
+          object Button5: TButton
+            Left = 152
+            Top = 243
+            Width = 75
+            Height = 17
+            Caption = 'SendFile'
+            TabOrder = 5
+            Visible = False
+            OnClick = Button5Click
+          end
+          object Button4: TButton
+            Left = 4
+            Top = 287
+            Width = 91
+            Height = 21
+            Caption = #24322#25110#21644
+            TabOrder = 6
+            OnClick = Button4Click
+          end
+          object Button3: TButton
+            Left = 116
+            Top = 287
+            Width = 91
+            Height = 21
+            Caption = #32047#21152#21644
+            TabOrder = 7
+            OnClick = Button3Click
           end
         end
       end
     end
+  end
+  object RichEdit1: TRichEdit
+    Left = 0
+    Top = 0
+    Width = 419
+    Height = 398
+    Align = alClient
+    Font.Charset = GB2312_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    PlainText = True
+    PopupMenu = PopupMenu1
+    ScrollBars = ssBoth
+    TabOrder = 3
+    WordWrap = False
   end
   object Comm1: TComm
     CommName = 'COM1'
@@ -2749,13 +2717,13 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 6
+    ReadIntervalTimeout = 3
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0
     WriteTotalTimeoutConstant = 0
     OnReceiveData = Comm1ReceiveData
-    Left = 161
+    Left = 163
     Top = 232
   end
   object SaveDialog1: TSaveDialog
@@ -2783,9 +2751,45 @@ object Form1: TForm1
   object PopupMenu1: TPopupMenu
     Left = 256
     Top = 160
-    object N1: TMenuItem
-      Caption = #20445#23384
-      OnClick = N1Click
+    object N9: TMenuItem
+      Caption = #22797#21046
+      OnClick = N9Click
+    end
+    object N10: TMenuItem
+      Caption = #20840#36873
+      OnClick = N10Click
+    end
+    object N4: TMenuItem
+      Caption = #23383#20307'/'#39068#33394'/'#22823#23567
+      OnClick = N4Click
+    end
+    object N11: TMenuItem
+      Caption = #32972#26223#39068#33394
+      OnClick = N11Click
+    end
+    object N12: TMenuItem
+      Caption = #36824#21407#23383#20307'/'#32972#26223#35774#32622
+      OnClick = N12Click
+    end
+    object RawBackUp: TMenuItem
+      Caption = #25509#25910#26102#21407#22987#25968#25454#22791#20221
+      object N1: TMenuItem
+        Caption = #19981#22791#20221
+        Checked = True
+        Default = True
+        RadioItem = True
+        OnClick = N1Click
+      end
+      object N10M1: TMenuItem
+        Caption = #26368#22823'10M'
+        RadioItem = True
+        OnClick = N10M1Click
+      end
+      object N20M1: TMenuItem
+        Caption = #26368#22823'20M'
+        RadioItem = True
+        OnClick = N20M1Click
+      end
     end
   end
   object Timer3: TTimer
@@ -2805,9 +2809,6 @@ object Form1: TForm1
       Caption = #22238#36710#21457#36865
       OnClick = N3Click
     end
-    object N4: TMenuItem
-      Caption = #21452#20987#36755#20837#31383#21475#21457#36865#23567#25991#20214
-    end
     object F1: TMenuItem
       Caption = #22797#21046
       OnClick = F1Click
@@ -2815,6 +2816,41 @@ object Form1: TForm1
     object N6: TMenuItem
       Caption = #31896#36148
       OnClick = N6Click
+    end
+    object N7: TMenuItem
+      Caption = #21457#36865#25991#20214#35774#32622
+      RadioItem = True
+      object N8: TMenuItem
+        AutoCheck = True
+        Caption = #36830#32493#21457#36865
+        RadioItem = True
+        OnClick = N8Click
+      end
+      object N1K1ms1: TMenuItem
+        AutoCheck = True
+        Caption = #27599'1K'#24310#26102'1ms'
+        Checked = True
+        RadioItem = True
+        OnClick = N1K1ms1Click
+      end
+      object N1K10ms1: TMenuItem
+        AutoCheck = True
+        Caption = #27599'1K'#24310#26102'10ms'
+        RadioItem = True
+        OnClick = N1K10ms1Click
+      end
+      object N1K50ms1: TMenuItem
+        AutoCheck = True
+        Caption = #27599'1K'#24310#26102'50ms'
+        RadioItem = True
+        OnClick = N1K50ms1Click
+      end
+      object N1K100ms1: TMenuItem
+        AutoCheck = True
+        Caption = #27599'1K'#24310#26102'100ms'
+        RadioItem = True
+        OnClick = N1K100ms1Click
+      end
     end
   end
   object JvHidDeviceController1: TJvHidDeviceController
@@ -6060,5 +6096,9 @@ object Form1: TForm1
     OnTimer = Timer5Timer
     Left = 363
     Top = 298
+  end
+  object ColorDialog1: TColorDialog
+    Left = 130
+    Top = 57
   end
 end

@@ -15,7 +15,6 @@ type
   TForm1 = class(TForm)
     Comm1: TComm;
     GroupBox1: TGroupBox;
-    GroupBox3: TGroupBox;
     GroupBox5: TGroupBox;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
@@ -23,7 +22,7 @@ type
     Timer1: TTimer;
     Timer2: TTimer;
     PopupMenu1: TPopupMenu;
-    N1: TMenuItem;
+    RawBackUp: TMenuItem;
     GroupBox7: TGroupBox;
     PageControl2: TPageControl;
     TabSheet1: TTabSheet;
@@ -35,7 +34,6 @@ type
     pm1: TPopupMenu;
     N2: TMenuItem;
     N3: TMenuItem;
-    N4: TMenuItem;
     JvHidDeviceController1: TJvHidDeviceController;
     ts1: TTabSheet;
     DevListBox: TListBox;
@@ -78,8 +76,6 @@ type
     IP1: TMenuItem;
     GroupBox15: TGroupBox;
     IdHTTP1: TIdHTTP;
-    GroupBox16: TGroupBox;
-    CheckBox53: TCheckBox;
     SaveDialog2: TSaveDialog;
     SkinData1: TSkinData;
     ts2: TTabSheet;
@@ -173,13 +169,6 @@ type
     Label4: TLabel;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
-    GroupBox2: TGroupBox;
-    Edit1: TEdit;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button54: TButton;
     Button2: TButton;
     CheckBox3: TCheckBox;
     CheckBox1: TCheckBox;
@@ -188,8 +177,6 @@ type
     CheckBox5: TCheckBox;
     CheckBox60: TCheckBox;
     Button7: TButton;
-    Memo13: TMemo;
-    CheckBox61: TCheckBox;
     ScrollBox1: TScrollBox;
     GroupBox9: TGroupBox;
     lbl1: TLabel;
@@ -339,7 +326,6 @@ type
     Button66: TButton;
     GroupBoxinput: TGroupBox;
     Label1: TLabel;
-    RichEdit1: TRichEdit;
     GroupBox38: TGroupBox;
     CheckBox25: TCheckBox;
     RadioButton1: TRadioButton;
@@ -353,6 +339,30 @@ type
     Edit15: TEdit;
     Label12: TLabel;
     CheckListBox1: TCheckListBox;
+    N7: TMenuItem;
+    N8: TMenuItem;
+    N1K1ms1: TMenuItem;
+    N1K10ms1: TMenuItem;
+    N1K50ms1: TMenuItem;
+    N1K100ms1: TMenuItem;
+    RichEdit1: TRichEdit;
+    N1: TMenuItem;
+    N10M1: TMenuItem;
+    N20M1: TMenuItem;
+    N4: TMenuItem;
+    N9: TMenuItem;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    ColorDialog1: TColorDialog;
+    N12: TMenuItem;
+    Memo13: TMemo;
+    Edit1: TEdit;
+    CheckBox61: TCheckBox;
+    Button6: TButton;
+    Button54: TButton;
+    Button5: TButton;
+    Button4: TButton;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -373,7 +383,6 @@ type
     procedure CheckBox4Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Timer2Timer(Sender: TObject);
-    procedure N1Click(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
@@ -513,6 +522,19 @@ type
     procedure RadioButton24Click(Sender: TObject);
     procedure RadioButton23Click(Sender: TObject);
     procedure CheckBox5Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure N1K1ms1Click(Sender: TObject);
+    procedure N1K10ms1Click(Sender: TObject);
+    procedure N1K50ms1Click(Sender: TObject);
+    procedure N1K100ms1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N10M1Click(Sender: TObject);
+    procedure N20M1Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N10Click(Sender: TObject);
+    procedure N11Click(Sender: TObject);
+    procedure N12Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -552,6 +574,11 @@ var
   RealLogFile : TextFile;
   LinesCount :DWORD = 0;
   CS:TRTLCriticalSection;  //全局临界区变量
+  FileSendDelay : Integer; // 默认1MS
+  pRawData :PChar;
+  RawBackUpFlag : Integer;
+  RawDataSize : Integer;
+  RawDatalen : Integer;
 
 
 implementation
@@ -559,6 +586,70 @@ implementation
 uses Unit5;
 
 {$R *.dfm}
+
+procedure save_raw_data(name : string);
+var
+    Len, totallen, FileId: Integer;
+    p2 : PChar;
+begin
+    if RawBackUpFlag <> 1 then
+        Exit;
+    p2 := pRawData;
+    FileId := FileCreate(name);
+    if RawDatalen > RawDataSize then
+        totallen := RawDataSize
+    else
+        totallen := RawDatalen;
+    try
+        len := 0;
+        while len < totallen do
+        begin
+            if RawDatalen - len > 10240 then
+            begin
+                FileWrite(FileId, p2^, 10240);
+                len := len + 10240;
+                inc(p2, 10240);
+            end
+            else
+            begin
+                FileWrite(FileId, p2^, totallen - len);
+                len := totallen;
+            end;
+        end;
+    finally
+        FileClose(FileId);
+    end;
+end;
+
+procedure put_raw_data(Buffer: Pointer; BufferLength: Word);
+var
+    pc:PChar;
+begin
+    if RawBackUpFlag <> 1 then
+        Exit;
+    if (RawDatalen < RawDataSize) and (pRawData <> nil) then
+    begin
+        pc := pRawData;
+        Inc(pc, RawDatalen);
+        if (RawDatalen + BufferLength) < RawDataSize then
+        begin
+            move(buffer^, Pc^, BufferLength);
+            RawDatalen := RawDatalen +  BufferLength;
+        end
+        else
+        begin
+            move(buffer^, Pc^, RawDataSize - RawDatalen);
+            RawDatalen := RawDataSize;
+        end;
+    end;
+end;
+
+procedure clr_raw_data();
+begin
+    if RawBackUpFlag <> 1 then
+        Exit;
+    RawDatalen := 0;
+end;
 
 function IsHexDataStr(data:string):Boolean;
 var
@@ -999,6 +1090,7 @@ var
 begin
      SendLen := 0;
      RecLen  := 0;
+     FileSendDelay := 1;
      FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
      if not FileExists(FileName) then
      begin
@@ -1111,10 +1203,16 @@ begin
           Edit15.Text := MyIniFile.ReadString('TCP', 'SERVER_PORT',  '');
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
           Edit22.Text := MyIniFile.ReadString('TCP', 'CLIENT_PORT',  '');
+
+          RichEdit1.Font.name := MyIniFile.ReadString('DIS_PARA', 'font_name', 'Courier New');
+          RichEdit1.Font.size := MyIniFile.ReadInteger('DIS_PARA', 'font_size', 9);
+          RichEdit1.Font.style:=  TfontStyles(Byte(MyIniFile.ReadInteger('DIS_PARA', 'font_style', 0)));
+          RichEdit1.Font.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'font_color', 'clWindowText'));
+          RichEdit1.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'back_color', 'clWindow'));
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
-
+     //ShowMessage('RichEdit1.Font.style = ' + IntToStr(BYte(RichEdit1.Font.style)));
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
 
      InitializeCriticalSection(CS);  //初始化
@@ -1224,12 +1322,12 @@ begin
 end;
 
 procedure writeWorkLog(sqlstr: string);
-var
+{var
     filev: TextFile;
     ss: string;
-    log : string;
+    log : string;}
 begin
-    if Form1.CheckBox53.Checked = True then
+    {if Form1.CheckBox53.Checked = True then
     begin
         log := '[' + DateTimeToStr(Now) + '] ' + sqlstr;
         //ss:='c:\ErpRunLog.txt';
@@ -1245,8 +1343,8 @@ begin
             ReWrite(filev);
             writeln(filev, sqlstr);
         end;}
-        CloseFile(RealLogFile);
-    end;
+        {CloseFile(RealLogFile);
+    end;}
 end;
 
 
@@ -1255,10 +1353,7 @@ procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
 var
     j,i,len:integer;
     rbufstr :string;
-    //rbuf    : string;
-    rbuf:array[0..50000] of byte;
-    //HexFile : file of Integer;
-    sbuf:String;
+    rbuf:array[0..5000] of byte;
     pc:PChar;
 begin
     if CheckBox5.Checked = True then
@@ -1267,9 +1362,13 @@ begin
             CheckBox5.Font.Color := clBlue
         else
             CheckBox5.Font.Color := clRed;
+
+        //Flashwindow(handle,true);
     end
     else
     begin
+        put_raw_data(Buffer, BufferLength);   // 原始数据保存
+
         Timer5.Enabled := False;
 
         viewstring := '' ;
@@ -1296,7 +1395,7 @@ begin
              if Length(viewstring) > 0 then
              begin
                   RichEdit1.Lines.Add(viewstring);
-                  writeWorkLog(viewstring);
+                  //writeWorkLog(viewstring);
              end;
         end
         else
@@ -1307,12 +1406,14 @@ begin
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    RichEdit1.Lines.Add(String(pc));
+                    //RichEdit1.Lines.Add(String(pc));
+                    RichEdit1.Lines.Add('');
+                    RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + String(pc);
                 end
                 else                                // UTF8
                 begin
                     // utf8转换显示
-                    RichEdit1.Lines.Add('');
+                    //RichEdit1.Lines.Add('');
                     RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));
                 end;
             end
@@ -1322,10 +1423,13 @@ begin
                 begin
                     if (RichEdit1.Lines.Count = 0) then
                     begin
-                        RichEdit1.Lines.Add(String(pc));
+                        //RichEdit1.Lines.Add(String(pc));
+                        RichEdit1.Text := RichEdit1.Text +String(pc);
                     end
                     else
+                    begin
                         RichEdit1.Lines[RichEdit1.Lines.Count-1] := RichEdit1.Lines[RichEdit1.Lines.Count-1] + String(pc);
+                    end;
                 end
                 else                                    // UTF8
                 begin
@@ -1429,18 +1533,20 @@ end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
-    if RichEdit1.Text <> '' then
+    //if RichEdit1.Text <> '' then
     begin
         if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
         begin
             RichEdit1.Text := '';
+            SendLen := 0;
+            RecLen := 0;
+            StatusBar1.Panels[0].Text := 'S:0';
+            StatusBar1.Panels[1].Text := 'R:0';
+            StatusBar1.Panels[2].Text := ' Lines: 0';
+            clr_raw_data();
         end;
     end;
-    SendLen := 0;
-    RecLen := 0;
-    StatusBar1.Panels[0].Text := 'S:0';
-    StatusBar1.Panels[1].Text := 'R:0';
-    StatusBar1.Panels[2].Text := ' Lines: 0'
+
 end;
 
 procedure TForm1.CheckBox2Click(Sender: TObject);
@@ -1479,6 +1585,8 @@ var
     MyIniFile : TIniFile;
     FileName : string;
 begin
+    FreeMemory(pRawData);
+
     FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
     MyIniFile := TIniFile.Create(FileName);
     MyIniFile.WriteInteger('COM', 'CommName', ComboBox1.itemindex);
@@ -1574,6 +1682,12 @@ begin
     MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_PORT', Edit22.Text);
+
+    MyIniFile.WriteString('DIS_PARA', 'font_name', RichEdit1.Font.name);
+    MyIniFile.WriteInteger('DIS_PARA', 'font_size', RichEdit1.Font.size);
+    MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(RichEdit1.Font.Color));
+    MyIniFile.WriteInteger('DIS_PARA', 'font_style', BYte(RichEdit1.Font.style));
+    MyIniFile.WriteString('DIS_PARA', 'back_color', ColorToString(RichEdit1.Color));
 
     MyIniFile.Destroy;
 
@@ -1700,7 +1814,7 @@ begin
      Label1.Left := StatusBar1.Left;
      Label1.Height := StatusBar1.Height;
      totalsendlen := 0;
-     Form1.RichEdit1.Lines.Add('1k一包，间隔1ms');
+     Form1.RichEdit1.Lines.Add('1k一包，间隔'+inttostr(FileSendDelay) +'ms');
      if OpenDialog1.Execute then
      begin
         Assignfile(pMyFile, OpenDialog1.FileName);
@@ -1720,7 +1834,8 @@ begin
             //Label1.Width:= StatusBar1.Width * totalsendlen div fsize;
             Label1.Width:= (GroupBox5.Width * totalsendlen) div fsize;
             application.ProcessMessages; //及时处理消息
-            Sleep(1);
+            if FileSendDelay <> 0 then
+                Sleep(FileSendDelay);
             next;
         end;
         CloseFile(pMyFile);
@@ -1801,12 +1916,6 @@ begin
      Button2.Click;
 end;
 
-procedure TForm1.N1Click(Sender: TObject);
-begin
-     if SaveDialog1.Execute then
-        RichEdit1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
-end;
-
 procedure TForm1.Memo1Change(Sender: TObject);
 begin
     if (LinesCount <> RichEdit1.Lines.Count) then
@@ -1828,7 +1937,7 @@ begin
       SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
       if SaveDialog1.Execute then
           RichEdit1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
-
+          save_raw_data(SaveDialog1.FileName+'.dat');
     end;
 end;
 
@@ -3544,11 +3653,11 @@ begin
 end;
 
 procedure TForm1.CheckBox53Click(Sender: TObject);
-var
+{var
     curfile : string;
-    sqlstr : string;
+    sqlstr : string;}
 begin
-    if CheckBox53.Checked = True then
+    {if CheckBox53.Checked = True then
     begin
         if SaveDialog2.Execute then
         begin
@@ -3574,7 +3683,7 @@ begin
         begin
             CheckBox53.Checked := False;
         end;
-    end;
+    end;}
 end;
 
 procedure TForm1.Button54Click(Sender: TObject);
@@ -5284,6 +5393,136 @@ begin
         CheckBox5.Font.Color := clRed
     else
         CheckBox5.Font.Color := clWindowText;
+end;
+
+procedure TForm1.N8Click(Sender: TObject);
+begin
+    FileSendDelay := 0;
+end;
+
+procedure TForm1.N1K1ms1Click(Sender: TObject);
+begin
+    FileSendDelay := 1;
+end;
+
+procedure TForm1.N1K10ms1Click(Sender: TObject);
+begin
+    FileSendDelay := 10;
+end;
+
+procedure TForm1.N1K50ms1Click(Sender: TObject);
+begin
+    FileSendDelay := 50;
+end;
+
+procedure TForm1.N1K100ms1Click(Sender: TObject);
+begin
+    FileSendDelay := 100;
+end;
+
+procedure TForm1.N1Click(Sender: TObject);
+begin
+    if N1.Checked <> True then
+    begin
+        N1.Checked := True;
+        if nil <> pRawData then
+        begin
+            FreeMemory(pRawData);
+            pRawData := nil;
+        end;
+        RawBackUpFlag := 0;
+        RawDatalen := 0;
+    end;
+end;
+
+procedure TForm1.N10M1Click(Sender: TObject);
+begin
+    if N10M1.Checked <> True then
+    begin
+        N10M1.Checked := True;
+        if nil <> pRawData then
+        begin
+            FreeMemory(pRawData);
+            pRawData := nil;
+        end;
+        RawBackUpFlag := 1;
+        RawDatalen := 0;
+        RawDataSize := 10 * 1024 * 1024;
+        pRawData := GetMemory(RawDataSize);
+        if pRawData = nil then
+        begin
+            RawBackUpFlag := 0;
+            N10M1.Checked := False;
+            ShowMessage('申请内存失败');
+        end;
+    end;
+end;
+
+procedure TForm1.N20M1Click(Sender: TObject);
+begin
+    if N20M1.Checked <> True then
+    begin
+        N20M1.Checked := True;
+
+        if nil <> pRawData then
+        begin
+            FreeMemory(pRawData);
+            pRawData := nil;
+        end;
+        RawBackUpFlag := 1;
+        RawDatalen := 0;
+        RawDataSize := 20 * 1024 * 1024;
+        pRawData := GetMemory(RawDataSize);
+        if pRawData = nil then
+        begin
+            RawBackUpFlag := 0;
+            N20M1.Checked := False;
+            ShowMessage('申请内存失败');
+        end;
+    end;
+end;
+
+procedure TForm1.N4Click(Sender: TObject);
+
+begin
+    with TFontDialog.Create(nil) do
+    begin
+        Font := RichEdit1.Font;
+        Options := [fdApplyButton] - [fdEffects];
+        if Execute() then
+        begin
+            RichEdit1.Font := Font;
+        end;
+    end;
+end;
+
+procedure TForm1.N9Click(Sender: TObject);
+begin
+    RichEdit1.CopyToClipboard;
+    RichEdit1.SetFocus;
+end;
+
+procedure TForm1.N10Click(Sender: TObject);
+begin
+    RichEdit1.SelectAll;
+end;
+
+procedure TForm1.N11Click(Sender: TObject);
+begin
+    if colorDialog1.Execute then
+        RichEdit1.Color := colorDialog1.Color;
+end;
+
+procedure TForm1.N12Click(Sender: TObject);
+begin
+    if (IDYES = Application.MessageBox('确定要还原吗？','提示',MB_YesNo+MB_IconQuestion)) then
+    begin
+        RichEdit1.Font.name := 'Courier New';
+        RichEdit1.Font.size := 9;
+        RichEdit1.Font.style:=  TfontStyles(Byte(StrToInt('$'+'0')));
+        RichEdit1.Font.Color := StringToColor('clWindowText');
+        RichEdit1.Color := StringToColor('clWindow');
+    end;
 end;
 
 end.

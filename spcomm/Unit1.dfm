@@ -318,6 +318,8 @@ object Form1: TForm1
         Width = 77
         Height = 17
         Caption = #26242#20572#25509#25910
+        Color = clBtnFace
+        ParentColor = False
         TabOrder = 5
         OnClick = CheckBox5Click
       end
@@ -2691,6 +2693,7 @@ object Form1: TForm1
     ParentFont = False
     PlainText = True
     PopupMenu = PopupMenu1
+    ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 3
     WordWrap = False
@@ -2760,8 +2763,12 @@ object Form1: TForm1
       OnClick = N10Click
     end
     object N4: TMenuItem
-      Caption = #23383#20307'/'#39068#33394'/'#22823#23567
+      Caption = #23383#20307'/'#23383#22411'/'#22823#23567
       OnClick = N4Click
+    end
+    object N16: TMenuItem
+      Caption = #23383#20307#39068#33394
+      OnClick = N16Click
     end
     object N11: TMenuItem
       Caption = #32972#26223#39068#33394
@@ -2770,6 +2777,20 @@ object Form1: TForm1
     object N12: TMenuItem
       Caption = #36824#21407#23383#20307'/'#32972#26223#35774#32622
       OnClick = N12Click
+    end
+    object N13: TMenuItem
+      Caption = #26085#24535#21487#35835#20889#27169#24335
+      object N14: TMenuItem
+        Caption = #21482#35835
+        Checked = True
+        RadioItem = True
+        OnClick = N14Click
+      end
+      object N15: TMenuItem
+        Caption = #21487#20889
+        RadioItem = True
+        OnClick = N15Click
+      end
     end
     object RawBackUp: TMenuItem
       Caption = #25509#25910#26102#21407#22987#25968#25454#22791#20221

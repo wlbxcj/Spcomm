@@ -318,6 +318,8 @@ object Form1: TForm1
         Width = 77
         Height = 17
         Caption = #26242#20572#25509#25910
+        Color = clBtnFace
+        ParentColor = False
         TabOrder = 5
         OnClick = CheckBox5Click
       end
@@ -410,7 +412,7 @@ object Form1: TForm1
       Top = 16
       Width = 239
       Height = 380
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
@@ -2597,107 +2599,81 @@ object Form1: TForm1
           Height = 351
           Align = alClient
           TabOrder = 0
-          object GroupBox16: TGroupBox
+          object Memo13: TMemo
             Left = 2
             Top = 16
             Width = 227
-            Height = 333
-            Align = alClient
+            Height = 221
+            Align = alTop
             TabOrder = 0
-            object CheckBox53: TCheckBox
-              Left = 7
-              Top = 11
-              Width = 97
-              Height = 17
-              Caption = #23454#26102#20445#23384
-              TabOrder = 0
-              Visible = False
-              OnClick = CheckBox53Click
-            end
-            object GroupBox2: TGroupBox
-              Left = 2
-              Top = 16
-              Width = 223
-              Height = 315
-              Align = alClient
-              TabOrder = 1
-              object Edit1: TEdit
-                Left = 4
-                Top = 162
-                Width = 213
-                Height = 21
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Microsoft Sans Serif'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 0
-              end
-              object Button3: TButton
-                Left = 116
-                Top = 189
-                Width = 91
-                Height = 21
-                Caption = #32047#21152#21644
-                TabOrder = 1
-                OnClick = Button3Click
-              end
-              object Button4: TButton
-                Left = 4
-                Top = 189
-                Width = 91
-                Height = 21
-                Caption = #24322#25110#21644
-                TabOrder = 2
-                OnClick = Button4Click
-              end
-              object Button5: TButton
-                Left = 0
-                Top = 247
-                Width = 75
-                Height = 17
-                Caption = 'SendFile'
-                TabOrder = 3
-                Visible = False
-                OnClick = Button5Click
-              end
-              object Button6: TButton
-                Left = 116
-                Top = 222
-                Width = 91
-                Height = 21
-                Caption = 'ASCII'#30721#34920
-                TabOrder = 4
-                OnClick = Button6Click
-              end
-              object Button54: TButton
-                Left = 4
-                Top = 222
-                Width = 91
-                Height = 21
-                Caption = 'HexToAscii'
-                TabOrder = 5
-                OnClick = Button54Click
-              end
-              object Memo13: TMemo
-                Left = 2
-                Top = 16
-                Width = 219
-                Height = 123
-                Align = alTop
-                TabOrder = 6
-              end
-              object CheckBox61: TCheckBox
-                Left = 6
-                Top = 142
-                Width = 73
-                Height = 17
-                Caption = 'HEX'
-                TabOrder = 7
-                OnClick = CheckBox2Click
-              end
-            end
+          end
+          object Edit1: TEdit
+            Left = 4
+            Top = 260
+            Width = 226
+            Height = 21
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Microsoft Sans Serif'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+          end
+          object CheckBox61: TCheckBox
+            Left = 6
+            Top = 240
+            Width = 73
+            Height = 17
+            Caption = 'HEX'
+            TabOrder = 2
+            OnClick = CheckBox2Click
+          end
+          object Button6: TButton
+            Left = 116
+            Top = 320
+            Width = 91
+            Height = 21
+            Caption = 'ASCII'#30721#34920
+            TabOrder = 3
+            OnClick = Button6Click
+          end
+          object Button54: TButton
+            Left = 4
+            Top = 320
+            Width = 91
+            Height = 21
+            Caption = 'HexToAscii'
+            TabOrder = 4
+            OnClick = Button54Click
+          end
+          object Button5: TButton
+            Left = 152
+            Top = 243
+            Width = 75
+            Height = 17
+            Caption = 'SendFile'
+            TabOrder = 5
+            Visible = False
+            OnClick = Button5Click
+          end
+          object Button4: TButton
+            Left = 4
+            Top = 287
+            Width = 91
+            Height = 21
+            Caption = #24322#25110#21644
+            TabOrder = 6
+            OnClick = Button4Click
+          end
+          object Button3: TButton
+            Left = 116
+            Top = 287
+            Width = 91
+            Height = 21
+            Caption = #32047#21152#21644
+            TabOrder = 7
+            OnClick = Button3Click
           end
         end
       end
@@ -2717,6 +2693,7 @@ object Form1: TForm1
     ParentFont = False
     PlainText = True
     PopupMenu = PopupMenu1
+    ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 3
     WordWrap = False
@@ -2786,8 +2763,12 @@ object Form1: TForm1
       OnClick = N10Click
     end
     object N4: TMenuItem
-      Caption = #23383#20307'/'#39068#33394'/'#22823#23567
+      Caption = #23383#20307'/'#23383#22411'/'#22823#23567
       OnClick = N4Click
+    end
+    object N16: TMenuItem
+      Caption = #23383#20307#39068#33394
+      OnClick = N16Click
     end
     object N11: TMenuItem
       Caption = #32972#26223#39068#33394
@@ -2796,6 +2777,20 @@ object Form1: TForm1
     object N12: TMenuItem
       Caption = #36824#21407#23383#20307'/'#32972#26223#35774#32622
       OnClick = N12Click
+    end
+    object N13: TMenuItem
+      Caption = #26085#24535#21487#35835#20889#27169#24335
+      object N14: TMenuItem
+        Caption = #21482#35835
+        Checked = True
+        RadioItem = True
+        OnClick = N14Click
+      end
+      object N15: TMenuItem
+        Caption = #21487#20889
+        RadioItem = True
+        OnClick = N15Click
+      end
     end
     object RawBackUp: TMenuItem
       Caption = #25509#25910#26102#21407#22987#25968#25454#22791#20221

@@ -1359,12 +1359,11 @@ begin
     end;}
 end;
 
-
 procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
     j,i,len:integer;
-    rbufstr :string;
+    rbufstr:string;
     rbuf:array[0..5000] of byte;
     pc:PChar;
 begin
@@ -1434,8 +1433,7 @@ begin
                 begin
                     if (RichEdit1.Lines.Count = 0) then
                     begin
-                        //RichEdit1.Lines.Add(String(pc));
-                        RichEdit1.Text := RichEdit1.Text +String(pc);
+                        RichEdit1.Text := RichEdit1.Text + String(pc);
                     end
                     else
                     begin
@@ -1446,7 +1444,7 @@ begin
                 begin
                     if (RichEdit1.Lines.Count = 0) then
                     begin
-                        RichEdit1.Lines[0] := '' + UTF8ToAnsi(String(pc));
+                        RichEdit1.Text := RichEdit1.Text + UTF8ToAnsi(String(pc));
                     end
                     else
                         RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));

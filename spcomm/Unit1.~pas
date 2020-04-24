@@ -5503,8 +5503,7 @@ begin
     with TFontDialog.Create(nil) do
     begin
         Font := RichEdit1.Font;
-        //Options := [fdApplyButton] - [fdEffects];
-        Options := [fdAnsiOnly];// - [fdApplyButton];
+        Options := [fdApplyButton] - [fdEffects];
         if Execute() then
         begin
             RichEdit1.Font := Font;

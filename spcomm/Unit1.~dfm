@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 600
-  Top = 100
+  Left = 580
+  Top = 32
   Width = 670
   Height = 573
   HorzScrollBar.Range = 633
@@ -2679,24 +2679,18 @@ object Form1: TForm1
       end
     end
   end
-  object RichEdit1: TRichEdit
+  object Memo1: TMemo
     Left = 0
     Top = 0
     Width = 419
     Height = 398
     Align = alClient
-    Font.Charset = GB2312_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Courier New'
-    Font.Style = []
-    ParentFont = False
-    PlainText = True
     PopupMenu = PopupMenu1
     ReadOnly = True
-    ScrollBars = ssBoth
+    ScrollBars = ssVertical
     TabOrder = 3
     WordWrap = False
+    OnChange = Memo1Change
   end
   object Comm1: TComm
     CommName = 'COM1'

@@ -104,14 +104,12 @@ type
     Button58: TButton;
     Button59: TButton;
     Memo8: TMemo;
-    Memo9: TMemo;
     GroupBox22: TGroupBox;
     CheckBox57: TCheckBox;
     GroupBox23: TGroupBox;
     RadioButton8: TRadioButton;
     RadioButton9: TRadioButton;
     GroupBox24: TGroupBox;
-    Memo10: TMemo;
     TabSheet5: TTabSheet;
     GroupBox25: TGroupBox;
     GroupBox26: TGroupBox;
@@ -345,7 +343,6 @@ type
     N1K10ms1: TMenuItem;
     N1K50ms1: TMenuItem;
     N1K100ms1: TMenuItem;
-    RichEdit1: TRichEdit;
     N1: TMenuItem;
     N10M1: TMenuItem;
     N20M1: TMenuItem;
@@ -367,6 +364,9 @@ type
     N14: TMenuItem;
     N15: TMenuItem;
     N16: TMenuItem;
+    Memo1: TMemo;
+    Edit59: TEdit;
+    Edit60: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -542,6 +542,8 @@ type
     procedure N14Click(Sender: TObject);
     procedure N15Click(Sender: TObject);
     procedure N16Click(Sender: TObject);
+    procedure Edit59Change(Sender: TObject);
+    procedure Edit60Change(Sender: TObject);
 
   private
     { Private declarations }
@@ -593,10 +595,37 @@ implementation
 uses Unit5;
 
 {$R *.dfm}
+
+function GetTwoAsciiToHexLen(Str: String): Integer;
+var
+  temp,s : string;
+  buf : string;
+  Len ,i, j: Integer;
+begin
+    Result := 0;
+    temp := str;
+    temp := StringReplace(temp, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    Len := Length(temp);
+    i:=1;
+    while (i <= Len) and (temp[i] in ['0'..'9','A'..'F','a'..'f']) do
+          inc(i);
+    if i <= Len then
+    begin
+         //ShowMessage('非法的十六进制数 !!');
+         Result := 0;
+         Exit;
+    end;
+
+    Result := Len div 2;
+end;
+
 procedure Display_Info(str : string);
 begin
-    Form1.RichEdit1.Lines.Add('');
-    Form1.RichEdit1.Lines[Form1.RichEdit1.Lines.Count -1] := Form1.RichEdit1.Lines[Form1.RichEdit1.Lines.Count -1] + str;
+    Form1.Memo1.Lines.Add(str);
+    //Form1.Memo1.Lines[Form1.RichEdit1.Lines.Count -1] := Form1.RichEdit1.Lines[Form1.RichEdit1.Lines.Count -1] + str;
 end;
 
 procedure save_raw_data(name : string);
@@ -845,7 +874,7 @@ begin
     Display_info(strtmp);
     RecLen := RecLen + DataLen;
     form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.RichEdit1.Lines.Count);
+    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
 end;
 
 
@@ -1216,11 +1245,11 @@ begin
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
           Edit22.Text := MyIniFile.ReadString('TCP', 'CLIENT_PORT',  '');
 
-          RichEdit1.Font.name := MyIniFile.ReadString('DIS_PARA', 'font_name', 'Courier New');
-          RichEdit1.Font.size := MyIniFile.ReadInteger('DIS_PARA', 'font_size', 9);
-          RichEdit1.Font.style:=  TfontStyles(Byte(MyIniFile.ReadInteger('DIS_PARA', 'font_style', 0)));
-          RichEdit1.Font.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'font_color', 'clWindowText'));
-          RichEdit1.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'back_color', 'clWindow'));
+          Memo1.Font.name := MyIniFile.ReadString('DIS_PARA', 'font_name', 'Courier New');
+          Memo1.Font.size := MyIniFile.ReadInteger('DIS_PARA', 'font_size', 9);
+          Memo1.Font.style:=  TfontStyles(Byte(MyIniFile.ReadInteger('DIS_PARA', 'font_style', 0)));
+          Memo1.Font.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'font_color', 'clWindowText'));
+          Memo1.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'back_color', 'clWindow'));
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
@@ -1367,6 +1396,7 @@ var
     rbuf:array[0..5000] of byte;
     pc:PChar;
 begin
+    put_raw_data(Buffer, BufferLength);   // 原始数据保存
     if CheckBox5.Checked = True then
     begin
         if CheckBox5.Font.Color = clRed then
@@ -1378,7 +1408,6 @@ begin
     end
     else
     begin
-        put_raw_data(Buffer, BufferLength);   // 原始数据保存
         Timer5.Enabled := False;
 
         viewstring := '' ;
@@ -1386,7 +1415,7 @@ begin
         setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            RichEdit1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']'+#13+#10);
+            Memo1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
 
         if HexShow = True then
         begin
@@ -1404,7 +1433,7 @@ begin
              end;
              if Length(viewstring) > 0 then
              begin
-                  RichEdit1.Lines.Add(viewstring);
+                  Memo1.Lines.Add(viewstring);
                   //writeWorkLog(viewstring);
              end;
         end
@@ -1416,45 +1445,30 @@ begin
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    //RichEdit1.Lines.Add(String(pc));
-                    //RichEdit1.Lines.Add('');
-                    RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + String(pc);
+                    Memo1.Lines.Add(String(pc));
                 end
                 else                                // UTF8
                 begin
                     // utf8转换显示
-                    //RichEdit1.Lines.Add('');
-                    RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));
+                    memo1.lines.add(UTF8ToAnsi(String(pc)));
                 end;
             end
             else
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    if (RichEdit1.Lines.Count = 0) then
-                    begin
-                        RichEdit1.Text := RichEdit1.Text + String(pc);
-                    end
-                    else
-                    begin
-                        RichEdit1.Lines[RichEdit1.Lines.Count-1] := RichEdit1.Lines[RichEdit1.Lines.Count-1] + String(pc);
-                    end;
+                    Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
                 end
                 else                                    // UTF8
                 begin
-                    if (RichEdit1.Lines.Count = 0) then
-                    begin
-                        RichEdit1.Text := RichEdit1.Text + UTF8ToAnsi(String(pc));
-                    end
-                    else
-                        RichEdit1.Lines[RichEdit1.Lines.Count -1] := RichEdit1.Lines[RichEdit1.Lines.Count -1] + UTF8ToAnsi(String(pc));
+                    Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + UTF8ToAnsi(String(pc));
                 end;
             end;
             //writeWorkLog(rbufstr);
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 
         Timer5.Enabled := True;
 
@@ -1546,7 +1560,7 @@ begin
     begin
         if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
         begin
-            RichEdit1.Text := '';
+            Memo1.Text := '';
             SendLen := 0;
             RecLen := 0;
             StatusBar1.Panels[0].Text := 'S:0';
@@ -1692,11 +1706,11 @@ begin
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_PORT', Edit22.Text);
 
-    MyIniFile.WriteString('DIS_PARA', 'font_name', RichEdit1.Font.name);
-    MyIniFile.WriteInteger('DIS_PARA', 'font_size', RichEdit1.Font.size);
-    MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(RichEdit1.Font.Color));
-    MyIniFile.WriteInteger('DIS_PARA', 'font_style', BYte(RichEdit1.Font.style));
-    MyIniFile.WriteString('DIS_PARA', 'back_color', ColorToString(RichEdit1.Color));
+    MyIniFile.WriteString('DIS_PARA', 'font_name', Memo1.Font.name);
+    MyIniFile.WriteInteger('DIS_PARA', 'font_size', Memo1.Font.size);
+    MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(Memo1.Font.Color));
+    MyIniFile.WriteInteger('DIS_PARA', 'font_style', BYte(Memo1.Font.style));
+    MyIniFile.WriteString('DIS_PARA', 'back_color', ColorToString(Memo1.Color));
 
     MyIniFile.Destroy;
 
@@ -1871,8 +1885,8 @@ begin
         begin
             ForceDirectories(path);
         end;
-        RichEdit1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
-        RichEdit1.Clear;
+        Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
+        Memo1.Clear;
         StatusBar1.Panels[2].Text := ' Lines: 0';
         SendLen := 0;
         StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
@@ -1927,10 +1941,10 @@ end;
 
 procedure TForm1.Memo1Change(Sender: TObject);
 begin
-    if (LinesCount <> RichEdit1.Lines.Count) then
+    if (LinesCount <> Memo1.Lines.Count) then
     begin
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
-        LinesCount := RichEdit1.Lines.Count;
+        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
+        LinesCount := Memo1.Lines.Count;
     end;
 end;
 
@@ -1941,11 +1955,11 @@ end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 begin
-    if RichEdit1.Text <> '' then
+    if Memo1.Text <> '' then
     begin
       SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
       if SaveDialog1.Execute then
-          RichEdit1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
+          Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
           save_raw_data(SaveDialog1.FileName+'.dat');
     end;
 end;
@@ -3463,7 +3477,7 @@ begin
 
     RecLen := RecLen + DataLen;
     StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(RichEdit1.Lines.Count);
+    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 end;
 
 procedure TForm1.N5Click(Sender: TObject);
@@ -3526,7 +3540,7 @@ end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-    if RichEdit1.Text <> '' then
+    if Memo1.Text <> '' then
     begin
         if (IDYES = Application.MessageBox('确定要退出吗？数据是否已保存?','提示',MB_YesNo+MB_IconQuestion)) then
             CanClose:=TRUE
@@ -4210,7 +4224,7 @@ var
     cbcout :TMyArray4096Byte;
 begin
     datastr := Memo8.Text;
-    keystr := Memo9.Text;
+    keystr := Edit59.Text;
 
     if datastr = '' then
     begin
@@ -4321,7 +4335,7 @@ begin
     end
     else  // cbc 加密
     begin
-        IVSTR :=  Memo10.Text;
+        IVSTR :=  Edit60.Text;
         if IVSTR = '' then    // 为空的话，默认全为0
         begin
             for i := 0 to 15 do
@@ -4402,7 +4416,7 @@ var
     cbcout :TMyArray4096Byte;
 begin
     datastr := Memo8.Text;
-    keystr := Memo9.Text;
+    keystr := Edit59.Text;
 
     if datastr = '' then
     begin
@@ -4513,7 +4527,7 @@ begin
     end
     else  // cbc 解密
     begin
-        IVSTR :=  Memo10.Text;
+        IVSTR :=  Edit60.Text;
         if IVSTR = '' then    // 为空的话，默认全为0
         begin
             for i := 0 to 15 do
@@ -5500,41 +5514,41 @@ procedure TForm1.N4Click(Sender: TObject);
 begin
     with TFontDialog.Create(nil) do
     begin
-        Font := RichEdit1.Font;
+        Font := Memo1.Font;
         Options := [fdApplyButton] - [fdEffects];
         if Execute() then
         begin
-            RichEdit1.Font := Font;
+            Memo1.Font := Font;
         end;
     end;
 end;
 
 procedure TForm1.N9Click(Sender: TObject);
 begin
-    RichEdit1.CopyToClipboard;
-    RichEdit1.SetFocus;
+    Memo1.CopyToClipboard;
+    Memo1.SetFocus;
 end;
 
 procedure TForm1.N10Click(Sender: TObject);
 begin
-    RichEdit1.SelectAll;
+    Memo1.SelectAll;
 end;
 
 procedure TForm1.N11Click(Sender: TObject);
 begin
     if colorDialog1.Execute then
-        RichEdit1.Color := colorDialog1.Color;
+        Memo1.Color := colorDialog1.Color;
 end;
 
 procedure TForm1.N12Click(Sender: TObject);
 begin
     if (IDYES = Application.MessageBox('确定要还原吗？','提示',MB_YesNo+MB_IconQuestion)) then
     begin
-        RichEdit1.Font.name := 'Courier New';
-        RichEdit1.Font.size := 9;
-        RichEdit1.Font.style:=  TfontStyles(Byte(StrToInt('$'+'0')));
-        RichEdit1.Font.Color := StringToColor('clWindowText');
-        RichEdit1.Color := StringToColor('clWindow');
+        Memo1.Font.name := 'Courier New';
+        Memo1.Font.size := 9;
+        Memo1.Font.style:=  TfontStyles(Byte(StrToInt('$'+'0')));
+        Memo1.Font.Color := StringToColor('clWindowText');
+        Memo1.Color := StringToColor('clWindow');
     end;
 end;
 
@@ -5543,7 +5557,7 @@ begin
     if N14.Checked <> True then
     begin
         N14.Checked := True;
-        RichEdit1.ReadOnly := True;
+        Memo1.ReadOnly := True;
     end;
 end;
 
@@ -5552,14 +5566,38 @@ begin
     if N15.Checked <> True then
     begin
         N15.Checked := True;
-        RichEdit1.ReadOnly := False;
+        Memo1.ReadOnly := False;
     end;
 end;
 
 procedure TForm1.N16Click(Sender: TObject);
 begin
     if colorDialog1.Execute then
-        RichEdit1.Font.Color := colorDialog1.Color;
+        Memo1.Font.Color := colorDialog1.Color;
+end;
+
+procedure TForm1.Edit59Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox20.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit59.text))+')';
+    end
+    else
+    begin
+        GroupBox20.Caption := 'key (cur len: ' + IntToStr(Length(Edit59.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit60Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox24.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
+    end
+    else
+    begin
+        GroupBox24.Caption := 'key (cur len: ' + IntToStr(Length(Edit60.text))+')';
+    end;
 end;
 
 end.

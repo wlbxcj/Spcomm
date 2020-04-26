@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 600
-  Top = 100
+  Left = 580
+  Top = 32
   Width = 670
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.2'
+  Caption = 'Spcom V4.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2055,14 +2055,14 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 348
+          Height = 351
           Align = alClient
           TabOrder = 0
           object GroupBox30: TGroupBox
             Left = 2
             Top = 16
             Width = 227
-            Height = 74
+            Height = 77
             Align = alClient
             Caption = 'data'
             TabOrder = 0
@@ -2070,14 +2070,14 @@ object Form1: TForm1
               Left = 2
               Top = 16
               Width = 223
-              Height = 56
+              Height = 59
               Align = alClient
               TabOrder = 0
             end
           end
           object GroupBox31: TGroupBox
             Left = 2
-            Top = 90
+            Top = 93
             Width = 227
             Height = 131
             Align = alBottom
@@ -2174,7 +2174,7 @@ object Form1: TForm1
           end
           object GroupBox32: TGroupBox
             Left = 2
-            Top = 221
+            Top = 224
             Width = 227
             Height = 125
             Align = alBottom
@@ -2279,7 +2279,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 154
+          Height = 157
           Align = alClient
           Caption = 'data'
           TabOrder = 0
@@ -2287,7 +2287,7 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 136
+            Height = 139
             Hint = 'Multiples of 16'
             Align = alClient
             TabOrder = 0
@@ -2295,25 +2295,24 @@ object Form1: TForm1
         end
         object GroupBox20: TGroupBox
           Left = 0
-          Top = 154
+          Top = 157
           Width = 231
           Height = 46
           Align = alBottom
           Caption = 'key'
           TabOrder = 1
-          object Memo9: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 28
-            Hint = '16 bytes'
-            Align = alClient
+          object Edit59: TEdit
+            Left = 1
+            Top = 17
+            Width = 229
+            Height = 22
             TabOrder = 0
+            OnChange = Edit59Change
           end
         end
         object GroupBox21: TGroupBox
           Left = 0
-          Top = 247
+          Top = 250
           Width = 231
           Height = 101
           Align = alBottom
@@ -2383,19 +2382,19 @@ object Form1: TForm1
         end
         object GroupBox24: TGroupBox
           Left = 0
-          Top = 200
+          Top = 203
           Width = 231
           Height = 47
           Align = alBottom
           Caption = 'IV'
           TabOrder = 3
-          object Memo10: TMemo
+          object Edit60: TEdit
             Left = 2
             Top = 16
-            Width = 227
-            Height = 29
-            Align = alClient
+            Width = 229
+            Height = 22
             TabOrder = 0
+            OnChange = Edit60Change
           end
         end
       end
@@ -2679,24 +2678,18 @@ object Form1: TForm1
       end
     end
   end
-  object RichEdit1: TRichEdit
+  object Memo1: TMemo
     Left = 0
     Top = 0
     Width = 419
     Height = 398
     Align = alClient
-    Font.Charset = GB2312_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Courier New'
-    Font.Style = []
-    ParentFont = False
-    PlainText = True
     PopupMenu = PopupMenu1
     ReadOnly = True
-    ScrollBars = ssBoth
+    ScrollBars = ssVertical
     TabOrder = 3
     WordWrap = False
+    OnChange = Memo1Change
   end
   object Comm1: TComm
     CommName = 'COM1'

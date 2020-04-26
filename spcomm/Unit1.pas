@@ -5682,7 +5682,7 @@ procedure TForm1.N9ms1Click(Sender: TObject);
 begin
     if N9ms1.Checked <> True then
     begin
-        N1ms1.Checked := True;
+        N9ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
             Button1.Caption := '打开串口';

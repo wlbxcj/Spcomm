@@ -367,6 +367,12 @@ type
     Memo1: TMemo;
     Edit59: TEdit;
     Edit60: TEdit;
+    N17: TMenuItem;
+    N1ms1: TMenuItem;
+    N3ms1: TMenuItem;
+    N6ms1: TMenuItem;
+    N9ms1: TMenuItem;
+    N20ms1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -544,6 +550,11 @@ type
     procedure N16Click(Sender: TObject);
     procedure Edit59Change(Sender: TObject);
     procedure Edit60Change(Sender: TObject);
+    procedure N1ms1Click(Sender: TObject);
+    procedure N3ms1Click(Sender: TObject);
+    procedure N6ms1Click(Sender: TObject);
+    procedure N9ms1Click(Sender: TObject);
+    procedure N20ms1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -5595,6 +5606,121 @@ begin
     else
     begin
         GroupBox24.Caption := 'key (cur len: ' + IntToStr(Length(Edit60.text))+')';
+    end;
+end;
+
+procedure TForm1.N1ms1Click(Sender: TObject);
+begin
+    if N1ms1.Checked <> True then
+    begin
+        N1ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Caption := '打开串口';
+            Shape1.Brush.Color := clGray;
+            Comm1.StopComm;
+            Comm1.ReadIntervalTimeout := 1;
+            //if False <>
+            Comm1.StartComm;// then
+            begin
+                Shape1.Brush.Color := clRed;
+                Button1.Caption := '关闭串口'
+            end;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 1;
+    end;
+end;
+
+procedure TForm1.N3ms1Click(Sender: TObject);
+begin
+    if N3ms1.Checked <> True then
+    begin
+        N3ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Caption := '打开串口';
+            Shape1.Brush.Color := clGray;
+            Comm1.StopComm;
+            Comm1.ReadIntervalTimeout := 3;
+            //if False <>
+            Comm1.StartComm;// then
+            begin
+                Shape1.Brush.Color := clRed;
+                Button1.Caption := '关闭串口'
+            end;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 3;
+    end;
+end;
+
+procedure TForm1.N6ms1Click(Sender: TObject);
+begin
+    if N6ms1.Checked <> True then
+    begin
+        N6ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Caption := '打开串口';
+            Shape1.Brush.Color := clGray;
+            Comm1.StopComm;
+            Comm1.ReadIntervalTimeout := 6;
+            //if False <>
+            Comm1.StartComm;// then
+            begin
+                Shape1.Brush.Color := clRed;
+                Button1.Caption := '关闭串口'
+            end;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 6;
+    end;
+end;
+
+procedure TForm1.N9ms1Click(Sender: TObject);
+begin
+    if N9ms1.Checked <> True then
+    begin
+        N1ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Caption := '打开串口';
+            Shape1.Brush.Color := clGray;
+            Comm1.StopComm;
+            Comm1.ReadIntervalTimeout := 9;
+            //if False <>
+            Comm1.StartComm;// then
+            begin
+                Shape1.Brush.Color := clRed;
+                Button1.Caption := '关闭串口'
+            end;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 9;
+    end;
+end;
+
+procedure TForm1.N20ms1Click(Sender: TObject);
+begin
+    if N20ms1.Checked <> True then
+    begin
+        N20ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Caption := '打开串口';
+            Shape1.Brush.Color := clGray;
+            Comm1.StopComm;
+            Comm1.ReadIntervalTimeout := 20;
+            //if False <>
+            Comm1.StartComm;// then
+            begin
+                Shape1.Brush.Color := clRed;
+                Button1.Caption := '关闭串口'
+            end;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 20;
     end;
 end;
 

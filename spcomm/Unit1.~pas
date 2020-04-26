@@ -104,14 +104,12 @@ type
     Button58: TButton;
     Button59: TButton;
     Memo8: TMemo;
-    Memo9: TMemo;
     GroupBox22: TGroupBox;
     CheckBox57: TCheckBox;
     GroupBox23: TGroupBox;
     RadioButton8: TRadioButton;
     RadioButton9: TRadioButton;
     GroupBox24: TGroupBox;
-    Memo10: TMemo;
     TabSheet5: TTabSheet;
     GroupBox25: TGroupBox;
     GroupBox26: TGroupBox;
@@ -367,6 +365,8 @@ type
     N15: TMenuItem;
     N16: TMenuItem;
     Memo1: TMemo;
+    Edit59: TEdit;
+    Edit60: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -542,6 +542,8 @@ type
     procedure N14Click(Sender: TObject);
     procedure N15Click(Sender: TObject);
     procedure N16Click(Sender: TObject);
+    procedure Edit59Change(Sender: TObject);
+    procedure Edit60Change(Sender: TObject);
 
   private
     { Private declarations }
@@ -593,6 +595,33 @@ implementation
 uses Unit5;
 
 {$R *.dfm}
+
+function GetTwoAsciiToHexLen(Str: String): Integer;
+var
+  temp,s : string;
+  buf : string;
+  Len ,i, j: Integer;
+begin
+    Result := 0;
+    temp := str;
+    temp := StringReplace(temp, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    Len := Length(temp);
+    i:=1;
+    while (i <= Len) and (temp[i] in ['0'..'9','A'..'F','a'..'f']) do
+          inc(i);
+    if i <= Len then
+    begin
+         //ShowMessage('非法的十六进制数 !!');
+         Result := 0;
+         Exit;
+    end;
+
+    Result := Len div 2;
+end;
+
 procedure Display_Info(str : string);
 begin
     Form1.Memo1.Lines.Add(str);
@@ -4195,7 +4224,7 @@ var
     cbcout :TMyArray4096Byte;
 begin
     datastr := Memo8.Text;
-    keystr := Memo9.Text;
+    keystr := Edit59.Text;
 
     if datastr = '' then
     begin
@@ -4306,7 +4335,7 @@ begin
     end
     else  // cbc 加密
     begin
-        IVSTR :=  Memo10.Text;
+        IVSTR :=  Edit60.Text;
         if IVSTR = '' then    // 为空的话，默认全为0
         begin
             for i := 0 to 15 do
@@ -4387,7 +4416,7 @@ var
     cbcout :TMyArray4096Byte;
 begin
     datastr := Memo8.Text;
-    keystr := Memo9.Text;
+    keystr := Edit59.Text;
 
     if datastr = '' then
     begin
@@ -4498,7 +4527,7 @@ begin
     end
     else  // cbc 解密
     begin
-        IVSTR :=  Memo10.Text;
+        IVSTR :=  Edit60.Text;
         if IVSTR = '' then    // 为空的话，默认全为0
         begin
             for i := 0 to 15 do
@@ -5545,6 +5574,30 @@ procedure TForm1.N16Click(Sender: TObject);
 begin
     if colorDialog1.Execute then
         Memo1.Font.Color := colorDialog1.Color;
+end;
+
+procedure TForm1.Edit59Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox20.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit59.text))+')';
+    end
+    else
+    begin
+        GroupBox20.Caption := 'key (cur len: ' + IntToStr(Length(Edit59.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit60Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox24.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
+    end
+    else
+    begin
+        GroupBox24.Caption := 'key (cur len: ' + IntToStr(Length(Edit60.text))+')';
+    end;
 end;
 
 end.

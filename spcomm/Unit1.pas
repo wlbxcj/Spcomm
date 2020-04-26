@@ -585,9 +585,9 @@ var
   CS:TRTLCriticalSection;  //全局临界区变量
   FileSendDelay : Integer; // 默认1MS
   pRawData :PChar;
-  RawBackUpFlag : Integer;
-  RawDataSize : Integer;
-  RawDatalen : Integer;
+  RawBackUpFlag : Integer = 0;
+  RawDataSize : Integer = 0;
+  RawDatalen : Integer = 0;
 
 
 implementation
@@ -1412,30 +1412,27 @@ begin
 
         viewstring := '' ;
         len:=BufferLength;
-        setlength(rbufstr, len);
+        //setlength(rbufstr, len);
         RecLen := RecLen + len;
         if CheckBox3.Checked = True then
-            Memo1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
+        begin
+            //Memo1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
+            rbufstr:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']' + #13 + #10;
+        end;
 
         if HexShow = True then
         begin
+             Memo1.Lines.Add(rbufstr);
              move(buffer^, pchar(@rbuf)^, len);
              for i:=0 to len - 1 do
              begin
                  viewstring:= viewstring + inttohex(rbuf[i],2) + ' ' ;
                  if (i + 1) mod 16 = 0 then
                  begin
-                     j := Length(viewstring);
-                     viewstring[j]:=#13;
-                     viewstring[j+1] := #10;
-                     SetLength(viewstring, j+1);
+                     viewstring:= viewstring + #13 + #10;
                  end;
              end;
-             if Length(viewstring) > 0 then
-             begin
-                  Memo1.Lines.Add(viewstring);
-                  //writeWorkLog(viewstring);
-             end;
+             Memo1.Lines.Add(viewstring);
         end
         else
         begin
@@ -1445,12 +1442,13 @@ begin
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    Memo1.Lines.Add(String(pc));
+                    Memo1.Lines.Add(rbufstr + String(pc));
+                    //Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
                 end
                 else                                // UTF8
                 begin
                     // utf8转换显示
-                    memo1.lines.add(UTF8ToAnsi(String(pc)));
+                    memo1.lines.add(rbufstr + UTF8ToAnsi(String(pc)));
                 end;
             end
             else
@@ -1468,7 +1466,7 @@ begin
             //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
+        //StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 
         Timer5.Enabled := True;
 

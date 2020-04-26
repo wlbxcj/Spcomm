@@ -2405,14 +2405,14 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 348
+          Height = 351
           Align = alClient
           TabOrder = 0
           object GroupBox26: TGroupBox
             Left = 2
             Top = 16
             Width = 227
-            Height = 252
+            Height = 255
             Align = alClient
             Caption = 'data'
             TabOrder = 0
@@ -2420,7 +2420,7 @@ object Form1: TForm1
               Left = 2
               Top = 16
               Width = 223
-              Height = 234
+              Height = 237
               Align = alClient
               ScrollBars = ssVertical
               TabOrder = 0
@@ -2428,7 +2428,7 @@ object Form1: TForm1
           end
           object GroupBox27: TGroupBox
             Left = 2
-            Top = 268
+            Top = 271
             Width = 227
             Height = 32
             Align = alBottom
@@ -2472,7 +2472,7 @@ object Form1: TForm1
           end
           object GroupBox28: TGroupBox
             Left = 2
-            Top = 300
+            Top = 303
             Width = 227
             Height = 46
             Align = alBottom
@@ -2505,7 +2505,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 231
-          Height = 348
+          Height = 351
           Align = alClient
           TabOrder = 0
           object GroupBox6: TGroupBox
@@ -2553,7 +2553,7 @@ object Form1: TForm1
             Left = 2
             Top = 233
             Width = 227
-            Height = 113
+            Height = 116
             Align = alClient
             TabOrder = 2
             object Button64: TButton

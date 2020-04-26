@@ -2713,7 +2713,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 3
+    ReadIntervalTimeout = 6
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0
@@ -2783,6 +2783,35 @@ object Form1: TForm1
         Caption = #21487#20889
         RadioItem = True
         OnClick = N15Click
+      end
+    end
+    object N17: TMenuItem
+      Caption = #35774#32622#21253#38388#38548#26102#38388
+      object N1ms1: TMenuItem
+        Caption = '1ms'
+        RadioItem = True
+        OnClick = N1ms1Click
+      end
+      object N3ms1: TMenuItem
+        Caption = '3ms'
+        RadioItem = True
+        OnClick = N3ms1Click
+      end
+      object N6ms1: TMenuItem
+        Caption = '6ms'
+        Checked = True
+        RadioItem = True
+        OnClick = N6ms1Click
+      end
+      object N9ms1: TMenuItem
+        Caption = '9ms'
+        RadioItem = True
+        OnClick = N9ms1Click
+      end
+      object N20ms1: TMenuItem
+        Caption = '20ms'
+        RadioItem = True
+        OnClick = N20ms1Click
       end
     end
     object RawBackUp: TMenuItem

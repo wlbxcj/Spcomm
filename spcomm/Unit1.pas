@@ -373,6 +373,18 @@ type
     N6ms1: TMenuItem;
     N9ms1: TMenuItem;
     N20ms1: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -555,6 +567,33 @@ type
     procedure N6ms1Click(Sender: TObject);
     procedure N9ms1Click(Sender: TObject);
     procedure N20ms1Click(Sender: TObject);
+    procedure N19Click(Sender: TObject);
+    procedure N20Click(Sender: TObject);
+    procedure CheckBox57Click(Sender: TObject);
+    procedure Memo8Change(Sender: TObject);
+    procedure memo7Change(Sender: TObject);
+    procedure Edit50Change(Sender: TObject);
+    procedure Edit51Change(Sender: TObject);
+    procedure Edit58Change(Sender: TObject);
+    procedure Edit57Change(Sender: TObject);
+    procedure CheckBox55Click(Sender: TObject);
+    procedure CheckBox56Click(Sender: TObject);
+    procedure Memo12Change(Sender: TObject);
+    procedure Edit52Change(Sender: TObject);
+    procedure Edit53Change(Sender: TObject);
+    procedure Edit54Change(Sender: TObject);
+    procedure Edit55Change(Sender: TObject);
+    procedure Edit56Change(Sender: TObject);
+    procedure CheckBox59Click(Sender: TObject);
+    procedure Memo11Change(Sender: TObject);
+    procedure CheckBox58Click(Sender: TObject);
+    procedure Memo13Change(Sender: TObject);
+    procedure CheckBox61Click(Sender: TObject);
+    procedure CheckBox26Click(Sender: TObject);
+    procedure Memo5Change(Sender: TObject);
+    procedure Memo14Change(Sender: TObject);
+    procedure CheckBox54Click(Sender: TObject);
+    procedure Memo15Change(Sender: TObject);
 
   private
     { Private declarations }
@@ -1403,7 +1442,7 @@ procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
     j,i,len:integer;
-    rbufstr:string;
+    date_str, data_str:string;
     rbuf:array[0..5000] of byte;
     pc:PChar;
 begin
@@ -1428,12 +1467,12 @@ begin
         if CheckBox3.Checked = True then
         begin
             //Memo1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
-            rbufstr:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']' + #13 + #10;
+            date_str:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ';// + #13 + #10;
         end;
 
         if HexShow = True then
         begin
-             Memo1.Lines.Add(rbufstr);
+             Memo1.Lines.Add(date_str);
              move(buffer^, pchar(@rbuf)^, len);
              for i:=0 to len - 1 do
              begin
@@ -1453,13 +1492,14 @@ begin
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    Memo1.Lines.Add(rbufstr + String(pc));
+                    data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
+                    Memo1.Lines.Add(date_str + data_str);
                     //Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
                 end
                 else                                // UTF8
                 begin
                     // utf8×ª»»ÏÔÊ¾
-                    memo1.lines.add(rbufstr + UTF8ToAnsi(String(pc)));
+                    memo1.lines.add(date_str + UTF8ToAnsi(String(pc)));
                 end;
             end
             else
@@ -5398,6 +5438,7 @@ begin
         Memo14.Align := alClient;
         GroupBox6.Caption := 'data';
     end;
+    CheckBox54.OnClick(Sender);
 end;
 
 procedure TForm1.RadioButton23Click(Sender: TObject);
@@ -5415,6 +5456,7 @@ begin
         Memo14.Align := alTop;
         GroupBox6.Caption := 'data1/data2';
     end;
+    CheckBox54.OnClick(Sender);
 end;
 
 procedure TForm1.CheckBox5Click(Sender: TObject);
@@ -5601,11 +5643,11 @@ procedure TForm1.Edit60Change(Sender: TObject);
 begin
     if CheckBox57.Checked = True then // hex
     begin
-        GroupBox24.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
+        GroupBox24.Caption := 'IV (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
     end
     else
     begin
-        GroupBox24.Caption := 'key (cur len: ' + IntToStr(Length(Edit60.text))+')';
+        GroupBox24.Caption := 'IV (cur len: ' + IntToStr(Length(Edit60.text))+')';
     end;
 end;
 
@@ -5721,6 +5763,314 @@ begin
         end
         else
             Comm1.ReadIntervalTimeout := 20;
+    end;
+end;
+
+procedure TForm1.N19Click(Sender: TObject);
+begin
+    if N19.Checked <> True then
+    begin
+        Memo1.ScrollBars := ssBoth;
+        N19.Checked := true;
+    end
+end;
+
+procedure TForm1.N20Click(Sender: TObject);
+begin
+    if N20.Checked <> True then
+    begin
+        Memo1.ScrollBars := ssVertical;
+        N20.Checked := true;
+    end;
+end;
+
+procedure TForm1.CheckBox57Click(Sender: TObject);
+begin
+    Edit59.OnChange(Sender);
+    Edit60.OnChange(Sender);
+    Memo8.OnChange(Sender);
+end;
+
+procedure TForm1.Memo8Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox19.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo8.text))+')';
+    end
+    else
+    begin
+        GroupBox19.Caption := 'data (cur len: ' + IntToStr(Length(Memo8.text))+')';
+    end;
+end;
+
+procedure TForm1.memo7Change(Sender: TObject);
+begin
+    if CheckBox55.Checked = True then // hex
+    begin
+        GroupBox17.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo7.text))+')';
+    end
+    else
+    begin
+        GroupBox17.Caption := 'data (cur len: ' + IntToStr(Length(Memo7.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit50Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label2.Caption := IntToStr(GetTwoAsciiToHexLen(Edit50.text));
+    end
+    else
+    begin
+        Label2.Caption := IntToStr(Length(Edit50.text));
+    end;
+end;
+
+procedure TForm1.Edit51Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label3.Caption := IntToStr(GetTwoAsciiToHexLen(Edit51.text));
+    end
+    else
+    begin
+        Label3.Caption := IntToStr(Length(Edit51.text));
+    end;
+end;
+
+procedure TForm1.Edit58Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label5.Caption := IntToStr(GetTwoAsciiToHexLen(Edit58.text));
+    end
+    else
+    begin
+        Label5.Caption := IntToStr(Length(Edit58.text));
+    end;
+end;
+
+    procedure TForm1.Edit57Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label6.Caption := IntToStr(GetTwoAsciiToHexLen(Edit57.text));
+    end
+    else
+    begin
+        Label6.Caption := IntToStr(Length(Edit57.text));
+    end;
+end;
+
+procedure TForm1.CheckBox55Click(Sender: TObject);
+begin
+    Edit50.OnChange(Sender);
+    Edit51.OnChange(Sender);
+    Edit58.OnChange(Sender);
+    Edit57.OnChange(Sender);
+    memo7.OnChange(Sender);
+end;
+
+procedure TForm1.CheckBox56Click(Sender: TObject);
+begin
+    Edit50.OnChange(Sender);
+    Edit51.OnChange(Sender);
+    Edit58.OnChange(Sender);
+    Edit57.OnChange(Sender);
+    memo7.OnChange(Sender);
+end;
+
+procedure TForm1.Memo12Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        GroupBox30.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo12.text))+')';
+    end
+    else
+    begin
+        GroupBox30.Caption := 'data (cur len: ' + IntToStr(Length(Memo12.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit52Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label7.Caption := IntToStr(GetTwoAsciiToHexLen(Edit52.text));
+    end
+    else
+    begin
+        Label7.Caption := IntToStr(Length(Edit52.text));
+    end;
+end;
+
+procedure TForm1.Edit53Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label8.Caption := IntToStr(GetTwoAsciiToHexLen(Edit53.text));
+    end
+    else
+    begin
+        Label8.Caption := IntToStr(Length(Edit53.text));
+    end;
+end;
+
+procedure TForm1.Edit54Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label29.Caption := IntToStr(GetTwoAsciiToHexLen(Edit54.text));
+    end
+    else
+    begin
+        Label29.Caption := IntToStr(Length(Edit54.text));
+    end;
+end;
+
+procedure TForm1.Edit55Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label30.Caption := IntToStr(GetTwoAsciiToHexLen(Edit55.text));
+    end
+    else
+    begin
+        Label30.Caption := IntToStr(Length(Edit55.text));
+    end;
+end;
+
+procedure TForm1.Edit56Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label31.Caption := IntToStr(GetTwoAsciiToHexLen(Edit56.text));
+    end
+    else
+    begin
+        Label31.Caption := IntToStr(Length(Edit56.text));
+    end;
+end;
+
+procedure TForm1.CheckBox59Click(Sender: TObject);
+begin
+    Edit52.OnChange(Sender);
+    Edit53.OnChange(Sender);
+    Edit54.OnChange(Sender);
+    Edit55.OnChange(Sender);
+    Edit56.OnChange(Sender);
+    Memo12.OnChange(Sender);
+end;
+
+procedure TForm1.Memo11Change(Sender: TObject);
+begin
+    if CheckBox58.Checked = True then // hex
+    begin
+        GroupBox26.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo11.text))+')';
+    end
+    else
+    begin
+        GroupBox26.Caption := 'data (cur len: ' + IntToStr(Length(Memo11.text))+')';
+    end;
+end;
+
+procedure TForm1.CheckBox58Click(Sender: TObject);
+begin
+    Memo11.OnChange(Sender);
+end;
+
+procedure TForm1.Memo13Change(Sender: TObject);
+begin
+    if CheckBox61.Checked = True then // hex
+    begin
+        GroupBox15.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo13.text))+')';
+    end
+    else
+    begin
+        GroupBox15.Caption := 'data (cur len: ' + IntToStr(Length(Memo13.text))+')';
+    end;
+end;
+
+procedure TForm1.CheckBox61Click(Sender: TObject);
+begin
+     Memo13.OnChange(Sender);
+     if CheckBox61.Checked = True then
+        TwoAsciiToHex(Memo13.Text);
+end;
+
+procedure TForm1.CheckBox26Click(Sender: TObject);
+begin
+    Memo5.OnChange(Sender);
+    if CheckBox26.Checked = True then
+      TwoAsciiToHex(Memo5.Text);
+end;
+
+procedure TForm1.Memo5Change(Sender: TObject);
+begin
+    if CheckBox26.Checked = True then // hex
+    begin
+        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo5.text))+')';
+    end
+    else
+    begin
+        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(Length(Memo5.text))+')';
+    end;
+end;
+
+procedure TForm1.Memo14Change(Sender: TObject);
+var
+    d1,d2 : string;
+begin
+    if CheckBox54.Checked = True then // hex
+    begin
+        d1 := 'd1(' + IntToStr(GetTwoAsciiToHexLen(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(GetTwoAsciiToHexLen(Memo15.text))+')';
+    end
+    else
+    begin
+        d1 := 'd1(' + IntToStr(Length(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(Length(Memo15.text))+')';
+    end;
+
+    if RadioButton24.Checked = True then
+    begin
+        GroupBox6.Caption := d1;
+    end
+    else
+    begin
+        GroupBox6.Caption := d1 + '/' + d2;
+    end;
+end;
+
+procedure TForm1.CheckBox54Click(Sender: TObject);
+begin
+    Memo14.OnChange(Sender);
+    Memo15.OnChange(Sender);
+end;
+
+procedure TForm1.Memo15Change(Sender: TObject);
+var
+    d1,d2 : string;
+begin
+    if CheckBox54.Checked = True then // hex
+    begin
+        d1 := 'd1(' + IntToStr(GetTwoAsciiToHexLen(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(GetTwoAsciiToHexLen(Memo15.text))+')';
+    end
+    else
+    begin
+        d1 := 'd1(' + IntToStr(Length(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(Length(Memo15.text))+')';
+    end;
+
+    if RadioButton24.Checked = True then
+    begin
+        GroupBox6.Caption := d1;
+    end
+    else
+    begin
+        GroupBox6.Caption := d1 + '/' + d2;
     end;
 end;
 

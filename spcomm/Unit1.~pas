@@ -373,6 +373,9 @@ type
     N6ms1: TMenuItem;
     N9ms1: TMenuItem;
     N20ms1: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -555,6 +558,8 @@ type
     procedure N6ms1Click(Sender: TObject);
     procedure N9ms1Click(Sender: TObject);
     procedure N20ms1Click(Sender: TObject);
+    procedure N19Click(Sender: TObject);
+    procedure N20Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -1403,7 +1408,7 @@ procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
     j,i,len:integer;
-    rbufstr:string;
+    date_str, data_str:string;
     rbuf:array[0..5000] of byte;
     pc:PChar;
 begin
@@ -1428,12 +1433,12 @@ begin
         if CheckBox3.Checked = True then
         begin
             //Memo1.Lines.Add('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']');
-            rbufstr:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + ']' + #13 + #10;
+            date_str:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ';// + #13 + #10;
         end;
 
         if HexShow = True then
         begin
-             Memo1.Lines.Add(rbufstr);
+             Memo1.Lines.Add(date_str);
              move(buffer^, pchar(@rbuf)^, len);
              for i:=0 to len - 1 do
              begin
@@ -1453,13 +1458,14 @@ begin
             begin
                 if (CheckBox60.Checked <> True) then
                 begin
-                    Memo1.Lines.Add(rbufstr + String(pc));
+                    data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
+                    Memo1.Lines.Add(date_str + data_str);
                     //Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
                 end
                 else                                // UTF8
                 begin
                     // utf8转换显示
-                    memo1.lines.add(rbufstr + UTF8ToAnsi(String(pc)));
+                    memo1.lines.add(date_str + UTF8ToAnsi(String(pc)));
                 end;
             end
             else
@@ -5682,7 +5688,7 @@ procedure TForm1.N9ms1Click(Sender: TObject);
 begin
     if N9ms1.Checked <> True then
     begin
-        N1ms1.Checked := True;
+        N9ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
             Button1.Caption := '打开串口';
@@ -5721,6 +5727,24 @@ begin
         end
         else
             Comm1.ReadIntervalTimeout := 20;
+    end;
+end;
+
+procedure TForm1.N19Click(Sender: TObject);
+begin
+    if N19.Checked <> True then
+    begin
+        Memo1.ScrollBars := ssBoth;
+        N19.Checked := true;
+    end
+end;
+
+procedure TForm1.N20Click(Sender: TObject);
+begin
+    if N20.Checked <> True then
+    begin
+        Memo1.ScrollBars := ssVertical;
+        N20.Checked := true;
     end;
 end;
 

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 580
-  Top = 32
+  Left = 590
+  Top = 75
   Width = 670
   Height = 573
   HorzScrollBar.Range = 633
@@ -216,9 +216,9 @@ object Form1: TForm1
       end
       object Button2: TButton
         Left = 193
-        Top = 76
+        Top = 80
         Width = 73
-        Height = 20
+        Height = 16
         Caption = #21457#36865
         Enabled = False
         TabOrder = 10
@@ -1769,6 +1769,7 @@ object Form1: TForm1
             MaxLength = 32767
             ParentFont = False
             TabOrder = 0
+            OnChange = Memo5Change
           end
           object Button12: TButton
             Left = 164
@@ -1804,6 +1805,7 @@ object Form1: TForm1
             Height = 17
             Caption = 'HEX'
             TabOrder = 4
+            OnClick = CheckBox26Click
           end
           object CheckBox27: TCheckBox
             Left = 8
@@ -1843,6 +1845,7 @@ object Form1: TForm1
             Height = 88
             Align = alClient
             TabOrder = 0
+            OnChange = memo7Change
           end
         end
         object GroupBox18: TGroupBox
@@ -1856,16 +1859,16 @@ object Form1: TForm1
           object Label17: TLabel
             Left = 8
             Top = 37
-            Width = 28
+            Width = 14
             Height = 14
-            Caption = 'KEY1'
+            Caption = 'K1'
           end
           object Label18: TLabel
             Left = 8
             Top = 62
-            Width = 28
+            Width = 14
             Height = 14
-            Caption = 'KEY2'
+            Caption = 'K2'
           end
           object Label27: TLabel
             Left = 8
@@ -1877,9 +1880,33 @@ object Form1: TForm1
           object Label28: TLabel
             Left = 8
             Top = 86
-            Width = 28
+            Width = 14
             Height = 14
-            Caption = 'KEY3'
+            Caption = 'K3'
+          end
+          object Label2: TLabel
+            Left = 202
+            Top = 37
+            Width = 7
+            Height = 14
+          end
+          object Label3: TLabel
+            Left = 202
+            Top = 62
+            Width = 7
+            Height = 14
+          end
+          object Label5: TLabel
+            Left = 202
+            Top = 86
+            Width = 7
+            Height = 14
+          end
+          object Label6: TLabel
+            Left = 202
+            Top = 109
+            Width = 7
+            Height = 14
           end
           object Button55: TButton
             Left = 24
@@ -1900,20 +1927,22 @@ object Form1: TForm1
             OnClick = Button56Click
           end
           object Edit50: TEdit
-            Left = 40
-            Top = 33
+            Left = 28
+            Top = 32
             Width = 169
             Height = 22
             TabOrder = 2
+            OnChange = Edit50Change
           end
           object Edit51: TEdit
-            Left = 40
+            Left = 27
             Top = 57
             Width = 169
             Height = 22
             Color = clScrollBar
             Enabled = False
             TabOrder = 3
+            OnChange = Edit51Change
           end
           object CheckBox55: TCheckBox
             Left = 8
@@ -1924,6 +1953,7 @@ object Form1: TForm1
             Checked = True
             State = cbChecked
             TabOrder = 4
+            OnClick = CheckBox55Click
           end
           object RadioButton5: TRadioButton
             Left = 5
@@ -1954,6 +1984,7 @@ object Form1: TForm1
             Checked = True
             State = cbChecked
             TabOrder = 7
+            OnClick = CheckBox56Click
           end
           object RadioButton7: TRadioButton
             Left = 150
@@ -1965,22 +1996,24 @@ object Form1: TForm1
             OnClick = RadioButton7Click
           end
           object Edit57: TEdit
-            Left = 40
+            Left = 27
             Top = 105
             Width = 169
             Height = 22
             Color = clScrollBar
             Enabled = False
             TabOrder = 9
+            OnChange = Edit57Change
           end
           object Edit58: TEdit
-            Left = 40
+            Left = 27
             Top = 81
             Width = 169
             Height = 22
             Color = clScrollBar
             Enabled = False
             TabOrder = 10
+            OnChange = Edit58Change
           end
           object GroupBox35: TGroupBox
             Left = 6
@@ -2073,6 +2106,7 @@ object Form1: TForm1
               Height = 59
               Align = alClient
               TabOrder = 0
+              OnChange = Memo12Change
             end
           end
           object GroupBox31: TGroupBox
@@ -2083,25 +2117,25 @@ object Form1: TForm1
             Align = alBottom
             TabOrder = 1
             object Label21: TLabel
-              Left = 11
+              Left = 8
               Top = 13
-              Width = 28
+              Width = 14
               Height = 14
-              Caption = 'KEY1'
+              Caption = 'K1'
             end
             object Label22: TLabel
-              Left = 10
+              Left = 7
               Top = 37
-              Width = 28
+              Width = 14
               Height = 14
-              Caption = 'KEY2'
+              Caption = 'K2'
             end
             object Label23: TLabel
-              Left = 10
+              Left = 7
               Top = 61
-              Width = 28
+              Width = 14
               Height = 14
-              Caption = 'KEY3'
+              Caption = 'K3'
             end
             object Label24: TLabel
               Left = 40
@@ -2111,38 +2145,70 @@ object Form1: TForm1
               Caption = 'KEY1'
             end
             object Label25: TLabel
-              Left = 11
+              Left = 8
               Top = 84
-              Width = 28
+              Width = 14
               Height = 14
-              Caption = 'KEY4'
+              Caption = 'K4'
             end
             object Label26: TLabel
-              Left = 16
+              Left = 8
               Top = 108
               Width = 14
               Height = 14
               Caption = 'IV'
             end
+            object Label7: TLabel
+              Left = 208
+              Top = 13
+              Width = 7
+              Height = 14
+            end
+            object Label8: TLabel
+              Left = 208
+              Top = 37
+              Width = 7
+              Height = 14
+            end
+            object Label29: TLabel
+              Left = 208
+              Top = 60
+              Width = 7
+              Height = 14
+            end
+            object Label30: TLabel
+              Left = 208
+              Top = 84
+              Width = 7
+              Height = 14
+            end
+            object Label31: TLabel
+              Left = 208
+              Top = 108
+              Width = 7
+              Height = 14
+            end
             object Edit52: TEdit
-              Left = 40
+              Left = 28
               Top = 8
-              Width = 175
+              Width = 177
               Height = 22
               Hint = '8 bytes'
               TabOrder = 0
+              OnChange = Edit52Change
             end
             object Edit53: TEdit
-              Left = 40
+              Left = 28
               Top = 32
-              Width = 175
+              Width = 177
               Height = 22
               TabOrder = 1
+              OnChange = Edit53Change
             end
             object Edit54: TEdit
-              Left = 40
+              Left = 28
               Top = 56
-              Width = 175
+              Width = 177
               Height = 22
               Hint = '8 bytes'
               Color = clScrollBar
@@ -2150,19 +2216,21 @@ object Form1: TForm1
               ParentShowHint = False
               ShowHint = True
               TabOrder = 2
+              OnChange = Edit54Change
             end
             object Edit55: TEdit
-              Left = 40
+              Left = 28
               Top = 80
-              Width = 175
+              Width = 177
               Height = 22
               Color = clScrollBar
               Enabled = False
               TabOrder = 3
               Text = #27599#20010'KEY  8'#23383#33410
+              OnChange = Edit55Change
             end
             object Edit56: TEdit
-              Left = 40
+              Left = 28
               Top = 104
               Width = 177
               Height = 22
@@ -2170,6 +2238,7 @@ object Form1: TForm1
               Enabled = False
               TabOrder = 4
               Text = '16'#23383#33410#21021#22987#21270#21521#37327
+              OnChange = Edit56Change
             end
           end
           object GroupBox32: TGroupBox
@@ -2268,6 +2337,7 @@ object Form1: TForm1
               Height = 17
               Caption = 'HEX INPUT'
               TabOrder = 4
+              OnClick = CheckBox59Click
             end
           end
         end
@@ -2291,6 +2361,7 @@ object Form1: TForm1
             Hint = 'Multiples of 16'
             Align = alClient
             TabOrder = 0
+            OnChange = Memo8Change
           end
         end
         object GroupBox20: TGroupBox
@@ -2351,6 +2422,7 @@ object Form1: TForm1
               Checked = True
               State = cbChecked
               TabOrder = 0
+              OnClick = CheckBox57Click
             end
           end
           object GroupBox23: TGroupBox
@@ -2424,6 +2496,7 @@ object Form1: TForm1
               Align = alClient
               ScrollBars = ssVertical
               TabOrder = 0
+              OnChange = Memo11Change
             end
           end
           object GroupBox27: TGroupBox
@@ -2442,6 +2515,7 @@ object Form1: TForm1
               Checked = True
               State = cbChecked
               TabOrder = 0
+              OnClick = CheckBox58Click
             end
             object RadioButton17: TRadioButton
               Left = 65
@@ -2523,6 +2597,7 @@ object Form1: TForm1
               Height = 75
               Align = alTop
               TabOrder = 0
+              OnChange = Memo14Change
             end
             object Memo15: TMemo
               Left = 2
@@ -2531,6 +2606,7 @@ object Form1: TForm1
               Height = 75
               Align = alClient
               TabOrder = 1
+              OnChange = Memo15Change
             end
           end
           object GroupBox36: TGroupBox
@@ -2547,6 +2623,7 @@ object Form1: TForm1
               Height = 17
               Caption = 'hex'
               TabOrder = 0
+              OnClick = CheckBox54Click
             end
           end
           object GroupBox37: TGroupBox
@@ -2597,6 +2674,7 @@ object Form1: TForm1
           Width = 231
           Height = 351
           Align = alClient
+          Caption = 'data'
           TabOrder = 0
           object Memo13: TMemo
             Left = 2
@@ -2605,6 +2683,7 @@ object Form1: TForm1
             Height = 221
             Align = alTop
             TabOrder = 0
+            OnChange = Memo13Change
           end
           object Edit1: TEdit
             Left = 4
@@ -2626,7 +2705,7 @@ object Form1: TForm1
             Height = 17
             Caption = 'HEX'
             TabOrder = 2
-            OnClick = CheckBox2Click
+            OnClick = CheckBox61Click
           end
           object Button6: TButton
             Left = 116
@@ -2783,6 +2862,20 @@ object Form1: TForm1
         Caption = #21487#20889
         RadioItem = True
         OnClick = N15Click
+      end
+    end
+    object N18: TMenuItem
+      Caption = #26085#24535#27700#24179#28378#21160#26465
+      object N19: TMenuItem
+        Caption = #24320#21551
+        RadioItem = True
+        OnClick = N19Click
+      end
+      object N20: TMenuItem
+        Caption = #20851#38381
+        Checked = True
+        RadioItem = True
+        OnClick = N20Click
       end
     end
     object N17: TMenuItem

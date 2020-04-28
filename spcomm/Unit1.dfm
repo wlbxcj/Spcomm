@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 590
-  Top = 75
+  Left = 465
+  Top = 73
   Width = 670
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.3'
+  Caption = 'Spcom V4.4'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -63,8 +63,11 @@ object Form1: TForm1
         Top = 14
         Width = 20
         Height = 22
+        Hint = #21047#26032#20018#21475#21015#34920
         Brush.Color = clGray
+        ParentShowHint = False
         Shape = stCircle
+        ShowHint = True
         OnMouseDown = shape1MouseDown
       end
       object Label4: TLabel
@@ -265,6 +268,7 @@ object Form1: TForm1
           ParentFont = False
           PopupMenu = pm1
           TabOrder = 0
+          OnChange = Memo2Change
           OnDblClick = Memo2DblClick
           OnKeyPress = Memo2KeyPress
         end
@@ -308,7 +312,7 @@ object Form1: TForm1
         Top = 24
         Width = 50
         Height = 17
-        Caption = #25193#23637
+        Caption = #25193#23637#8594
         TabOrder = 4
         OnClick = Button13Click
       end
@@ -330,6 +334,7 @@ object Form1: TForm1
         Height = 17
         Caption = 'UTF8'#26174#31034
         TabOrder = 6
+        Visible = False
       end
       object Button7: TButton
         Left = 211
@@ -345,9 +350,18 @@ object Form1: TForm1
         Top = 24
         Width = 50
         Height = 17
-        Caption = #25240#21472
+        Caption = #25240#21472#8595
         TabOrder = 8
         OnClick = Button66Click
+      end
+      object CheckBox53: TCheckBox
+        Left = 11
+        Top = 27
+        Width = 65
+        Height = 17
+        Caption = #32622#39030
+        TabOrder = 9
+        OnClick = CheckBox53Click
       end
     end
   end
@@ -375,21 +389,23 @@ object Form1: TForm1
       Panels = <
         item
           Text = 'S:0'
-          Width = 90
+          Width = 80
         end
         item
           Text = 'R:0'
-          Width = 90
+          Width = 80
         end
         item
-          Text = ' Lines: 0'
-          Width = 100
+          Text = 'COM '#26410#25171#24320
+          Width = 160
         end
         item
+          Alignment = taCenter
           Text = #21452#20987#21457#36865#21306#21487#21457#25991#20214
-          Width = 140
+          Width = 130
         end
         item
+          Alignment = taCenter
           BiDiMode = bdLeftToRight
           ParentBiDiMode = False
           Text = 'https://github.com/wlbxcj/Spcomm'
@@ -425,7 +441,7 @@ object Form1: TForm1
           Align = alTop
           TabOrder = 0
           object Label9: TLabel
-            Left = 190
+            Left = 136
             Top = 8
             Width = 14
             Height = 14
@@ -434,9 +450,9 @@ object Form1: TForm1
           object CheckBox8: TCheckBox
             Left = 4
             Top = 8
-            Width = 149
+            Width = 83
             Height = 15
-            Caption = #33258#21160#24490#29615#21457#36865'    '#38388#38548
+            Caption = #24490#29615#21457#36865
             Enabled = False
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -448,13 +464,22 @@ object Form1: TForm1
             OnClick = CheckBox8Click
           end
           object Edit3: TEdit
-            Left = 150
+            Left = 95
             Top = 6
             Width = 40
             Height = 22
             TabOrder = 1
             Text = '1000'
             OnKeyPress = Edit3KeyPress
+          end
+          object BitBtn2: TBitBtn
+            Left = 167
+            Top = 9
+            Width = 58
+            Height = 15
+            Caption = #20840#28165
+            TabOrder = 2
+            OnClick = BitBtn2Click
           end
         end
         object ScrollBox1: TScrollBox
@@ -468,6 +493,7 @@ object Form1: TForm1
           Align = alClient
           AutoScroll = False
           TabOrder = 1
+          OnMouseWheel = ScrollBox1MouseWheel
           object GroupBox9: TGroupBox
             Left = 0
             Top = 0
@@ -512,84 +538,84 @@ object Form1: TForm1
               Height = 17
               TabOrder = 0
             end
-            object Edit4: TEdit
+            object TESEND01: TEdit
               Left = 24
               Top = 22
               Width = 168
               Height = 22
               TabOrder = 1
             end
-            object Edit5: TEdit
+            object TESEND02: TEdit
               Left = 24
               Top = 44
               Width = 168
               Height = 22
               TabOrder = 2
             end
-            object Edit6: TEdit
+            object TESEND03: TEdit
               Left = 24
               Top = 66
               Width = 168
               Height = 22
               TabOrder = 3
             end
-            object Edit7: TEdit
+            object TESEND04: TEdit
               Left = 24
               Top = 88
               Width = 168
               Height = 22
               TabOrder = 4
             end
-            object Edit8: TEdit
+            object TESEND05: TEdit
               Left = 24
               Top = 110
               Width = 168
               Height = 22
               TabOrder = 5
             end
-            object Edit9: TEdit
+            object TESEND06: TEdit
               Left = 24
               Top = 132
               Width = 168
               Height = 22
               TabOrder = 6
             end
-            object Edit10: TEdit
+            object TESEND07: TEdit
               Left = 24
               Top = 154
               Width = 168
               Height = 22
               TabOrder = 7
             end
-            object Edit11: TEdit
+            object TESEND08: TEdit
               Left = 24
               Top = 176
               Width = 168
               Height = 22
               TabOrder = 8
             end
-            object Edit12: TEdit
+            object TESEND09: TEdit
               Left = 24
               Top = 198
               Width = 168
               Height = 22
               TabOrder = 9
             end
-            object Edit13: TEdit
+            object TESEND10: TEdit
               Left = 24
               Top = 220
               Width = 168
               Height = 22
               TabOrder = 10
             end
-            object Edit14: TEdit
+            object TESEND11: TEdit
               Left = 24
               Top = 242
               Width = 168
               Height = 22
               TabOrder = 11
             end
-            object Edit16: TEdit
+            object TESEND13: TEdit
               Left = 24
               Top = 286
               Width = 168
@@ -701,362 +727,362 @@ object Form1: TForm1
               Height = 17
               TabOrder = 27
             end
-            object Edit17: TEdit
+            object TESEND12: TEdit
               Left = 24
               Top = 264
               Width = 168
               Height = 22
               TabOrder = 28
             end
-            object Edit18: TEdit
+            object TESEND14: TEdit
               Left = 24
               Top = 308
               Width = 168
               Height = 22
               TabOrder = 29
             end
-            object Edit19: TEdit
+            object TESEND15: TEdit
               Left = 24
               Top = 330
               Width = 168
               Height = 22
               TabOrder = 30
             end
-            object Edit20: TEdit
+            object TESEND16: TEdit
               Left = 24
               Top = 352
               Width = 168
               Height = 22
               TabOrder = 31
             end
-            object Button22: TButton
+            object BTSEND01: TButton
               Left = 192
               Top = 22
               Width = 22
               Height = 22
               Caption = '1'
               TabOrder = 32
-              OnClick = Button22Click
+              OnClick = BTSEND01Click
             end
-            object Button23: TButton
+            object BTSEND02: TButton
               Left = 192
               Top = 44
               Width = 22
               Height = 22
               Caption = '2'
               TabOrder = 33
-              OnClick = Button23Click
+              OnClick = BTSEND02Click
             end
-            object Button24: TButton
+            object BTSEND03: TButton
               Left = 192
               Top = 66
               Width = 22
               Height = 22
               Caption = '3'
               TabOrder = 34
-              OnClick = Button24Click
+              OnClick = BTSEND03Click
             end
-            object Button25: TButton
+            object BTSEND04: TButton
               Left = 192
               Top = 88
               Width = 22
               Height = 22
               Caption = '4'
               TabOrder = 35
-              OnClick = Button25Click
+              OnClick = BTSEND04Click
             end
-            object Button26: TButton
+            object BTSEND05: TButton
               Left = 192
               Top = 110
               Width = 22
               Height = 22
               Caption = '5'
               TabOrder = 36
-              OnClick = Button26Click
+              OnClick = BTSEND05Click
             end
-            object Button27: TButton
+            object BTSEND06: TButton
               Left = 192
               Top = 132
               Width = 22
               Height = 22
               Caption = '6'
               TabOrder = 37
-              OnClick = Button27Click
+              OnClick = BTSEND06Click
             end
-            object Button28: TButton
+            object BTSEND07: TButton
               Left = 192
               Top = 154
               Width = 22
               Height = 22
               Caption = '7'
               TabOrder = 38
-              OnClick = Button28Click
+              OnClick = BTSEND07Click
             end
-            object Button29: TButton
+            object BTSEND08: TButton
               Left = 192
               Top = 176
               Width = 22
               Height = 22
               Caption = '8'
               TabOrder = 39
-              OnClick = Button29Click
+              OnClick = BTSEND08Click
             end
-            object Button30: TButton
+            object BTSEND09: TButton
               Left = 192
               Top = 198
               Width = 22
               Height = 22
               Caption = '9'
               TabOrder = 40
-              OnClick = Button30Click
+              OnClick = BTSEND09Click
             end
-            object Button31: TButton
+            object BTSEND10: TButton
               Left = 192
               Top = 220
               Width = 22
               Height = 22
               Caption = '10'
               TabOrder = 41
-              OnClick = Button31Click
+              OnClick = BTSEND10Click
             end
-            object Button32: TButton
+            object BTSEND11: TButton
               Left = 192
               Top = 242
               Width = 22
               Height = 22
               Caption = '11'
               TabOrder = 42
-              OnClick = Button32Click
+              OnClick = BTSEND11Click
             end
-            object Button33: TButton
+            object BTSEND12: TButton
               Left = 192
               Top = 264
               Width = 22
               Height = 22
               Caption = '12'
               TabOrder = 43
-              OnClick = Button33Click
+              OnClick = BTSEND12Click
             end
-            object Button34: TButton
+            object BTSEND13: TButton
               Left = 192
               Top = 286
               Width = 22
               Height = 22
               Caption = '13'
               TabOrder = 44
-              OnClick = Button34Click
+              OnClick = BTSEND13Click
             end
-            object Button35: TButton
+            object BTSEND14: TButton
               Left = 192
               Top = 308
               Width = 22
               Height = 22
               Caption = '14'
               TabOrder = 45
-              OnClick = Button35Click
+              OnClick = BTSEND14Click
             end
-            object Button36: TButton
+            object BTSEND15: TButton
               Left = 192
               Top = 330
               Width = 22
               Height = 22
               Caption = '15'
               TabOrder = 46
-              OnClick = Button36Click
+              OnClick = BTSEND15Click
             end
-            object Button37: TButton
+            object BTSEND16: TButton
               Left = 192
               Top = 352
               Width = 22
               Height = 22
               Caption = '16'
               TabOrder = 47
-              OnClick = Button37Click
+              OnClick = BTSEND16Click
             end
-            object Edit25: TEdit
+            object TESEND17: TEdit
               Left = 24
               Top = 374
               Width = 168
               Height = 22
               TabOrder = 48
             end
-            object Edit26: TEdit
+            object TESEND18: TEdit
               Left = 24
               Top = 396
               Width = 168
               Height = 22
               TabOrder = 49
             end
-            object Edit27: TEdit
+            object TESEND19: TEdit
               Left = 24
               Top = 418
               Width = 168
               Height = 22
               TabOrder = 50
             end
-            object Edit28: TEdit
+            object TESEND20: TEdit
               Left = 24
               Top = 440
               Width = 168
               Height = 22
               TabOrder = 51
             end
-            object Edit29: TEdit
+            object TESEND21: TEdit
               Left = 24
               Top = 462
               Width = 168
               Height = 22
               TabOrder = 52
             end
-            object Edit30: TEdit
+            object TESEND22: TEdit
               Left = 24
               Top = 484
               Width = 168
               Height = 22
               TabOrder = 53
             end
-            object Edit31: TEdit
+            object TESEND23: TEdit
               Left = 24
               Top = 506
               Width = 168
               Height = 22
               TabOrder = 54
             end
-            object Edit32: TEdit
+            object TESEND24: TEdit
               Left = 24
               Top = 528
               Width = 168
               Height = 22
               TabOrder = 55
             end
-            object Edit33: TEdit
+            object TESEND25: TEdit
               Left = 24
               Top = 550
               Width = 168
               Height = 22
               TabOrder = 56
             end
-            object Edit34: TEdit
+            object TESEND26: TEdit
               Left = 24
               Top = 572
               Width = 168
               Height = 22
               TabOrder = 57
             end
-            object Edit35: TEdit
+            object TESEND27: TEdit
               Left = 24
               Top = 594
               Width = 168
               Height = 22
               TabOrder = 58
             end
-            object Button11: TButton
+            object BTSEND17: TButton
               Left = 192
               Top = 374
               Width = 22
               Height = 22
               Caption = '17'
               TabOrder = 59
-              OnClick = Button11Click
+              OnClick = BTSEND17Click
             end
-            object Button14: TButton
+            object BTSEND18: TButton
               Left = 192
               Top = 396
               Width = 22
               Height = 22
               Caption = '18'
               TabOrder = 60
-              OnClick = Button14Click
+              OnClick = BTSEND18Click
             end
-            object Button15: TButton
+            object BTSEND19: TButton
               Left = 192
               Top = 418
               Width = 22
               Height = 22
               Caption = '19'
               TabOrder = 61
-              OnClick = Button15Click
+              OnClick = BTSEND19Click
             end
-            object Button16: TButton
+            object BTSEND20: TButton
               Left = 192
               Top = 440
               Width = 22
               Height = 22
               Caption = '20'
               TabOrder = 62
-              OnClick = Button16Click
+              OnClick = BTSEND20Click
             end
-            object Button17: TButton
-              Left = 192
-              Top = 462
+            object BTSEND21: TButton
+              Left = 193
+              Top = 463
               Width = 22
               Height = 22
               Caption = '21'
               TabOrder = 63
-              OnClick = Button17Click
+              OnClick = BTSEND21Click
             end
-            object Button18: TButton
+            object BTSEND22: TButton
               Left = 192
               Top = 484
               Width = 22
               Height = 22
               Caption = '22'
               TabOrder = 64
-              OnClick = Button18Click
+              OnClick = BTSEND22Click
             end
-            object Button19: TButton
+            object BTSEND23: TButton
               Left = 192
               Top = 506
               Width = 22
               Height = 22
               Caption = '23'
               TabOrder = 65
-              OnClick = Button19Click
+              OnClick = BTSEND23Click
             end
-            object Button20: TButton
+            object BTSEND24: TButton
               Left = 192
               Top = 528
               Width = 22
               Height = 22
               Caption = '24'
               TabOrder = 66
-              OnClick = Button20Click
+              OnClick = BTSEND24Click
             end
-            object Button21: TButton
+            object BTSEND25: TButton
               Left = 192
               Top = 550
               Width = 22
               Height = 22
               Caption = '25'
               TabOrder = 67
-              OnClick = Button21Click
+              OnClick = BTSEND25Click
             end
-            object Button38: TButton
+            object BTSEND26: TButton
               Left = 192
               Top = 572
               Width = 22
               Height = 22
               Caption = '26'
               TabOrder = 68
-              OnClick = Button38Click
+              OnClick = BTSEND26Click
             end
-            object Button39: TButton
+            object BTSEND27: TButton
               Left = 192
               Top = 594
               Width = 22
               Height = 22
               Caption = '27'
               TabOrder = 69
-              OnClick = Button39Click
+              OnClick = BTSEND27Click
             end
-            object Button40: TButton
+            object BTSEND28: TButton
               Left = 192
               Top = 616
               Width = 22
               Height = 22
               Caption = '28'
               TabOrder = 70
-              OnClick = Button40Click
+              OnClick = BTSEND28Click
             end
             object CheckBox28: TCheckBox
               Left = 6
@@ -1135,220 +1161,220 @@ object Form1: TForm1
               Height = 17
               TabOrder = 81
             end
-            object Edit36: TEdit
+            object TESEND28: TEdit
               Left = 24
               Top = 616
               Width = 168
               Height = 22
               TabOrder = 82
             end
-            object Edit37: TEdit
+            object TESEND29: TEdit
               Left = 24
               Top = 638
               Width = 168
               Height = 22
               TabOrder = 83
             end
-            object Edit38: TEdit
+            object TESEND30: TEdit
               Left = 24
               Top = 660
               Width = 168
               Height = 22
               TabOrder = 84
             end
-            object Edit39: TEdit
+            object TESEND31: TEdit
               Left = 24
               Top = 682
               Width = 168
               Height = 22
               TabOrder = 85
             end
-            object Edit40: TEdit
+            object TESEND32: TEdit
               Left = 24
               Top = 704
               Width = 168
               Height = 22
               TabOrder = 86
             end
-            object Edit41: TEdit
+            object TESEND33: TEdit
               Left = 24
               Top = 726
               Width = 168
               Height = 22
               TabOrder = 87
             end
-            object Edit42: TEdit
+            object TESEND34: TEdit
               Left = 24
               Top = 748
               Width = 168
               Height = 22
               TabOrder = 88
             end
-            object Edit43: TEdit
+            object TESEND35: TEdit
               Left = 24
               Top = 770
               Width = 168
               Height = 22
               TabOrder = 89
             end
-            object Edit44: TEdit
+            object TESEND36: TEdit
               Left = 24
               Top = 792
               Width = 168
               Height = 22
               TabOrder = 90
             end
-            object Edit45: TEdit
+            object TESEND37: TEdit
               Left = 24
               Top = 814
               Width = 168
               Height = 22
               TabOrder = 91
             end
-            object Edit46: TEdit
+            object TESEND38: TEdit
               Left = 24
               Top = 836
               Width = 168
               Height = 22
               TabOrder = 92
             end
-            object Edit47: TEdit
+            object TESEND39: TEdit
               Left = 24
               Top = 858
               Width = 168
               Height = 22
               TabOrder = 93
             end
-            object Edit48: TEdit
+            object TESEND40: TEdit
               Left = 24
               Top = 880
               Width = 168
               Height = 22
               TabOrder = 94
             end
-            object Edit49: TEdit
+            object TESEND41: TEdit
               Left = 24
               Top = 904
               Width = 168
               Height = 22
               TabOrder = 95
             end
-            object Button41: TButton
+            object BTSEND29: TButton
               Left = 192
               Top = 638
               Width = 22
               Height = 22
               Caption = '29'
               TabOrder = 96
-              OnClick = Button41Click
+              OnClick = BTSEND29Click
             end
-            object Button42: TButton
+            object BTSEND30: TButton
               Left = 192
               Top = 660
               Width = 22
               Height = 22
               Caption = '30'
               TabOrder = 97
-              OnClick = Button42Click
+              OnClick = BTSEND30Click
             end
-            object Button43: TButton
+            object BTSEND31: TButton
               Left = 192
               Top = 682
               Width = 22
               Height = 22
               Caption = '31'
               TabOrder = 98
-              OnClick = Button43Click
+              OnClick = BTSEND31Click
             end
-            object Button44: TButton
+            object BTSEND32: TButton
               Left = 192
               Top = 704
               Width = 22
               Height = 22
               Caption = '32'
               TabOrder = 99
-              OnClick = Button44Click
+              OnClick = BTSEND32Click
             end
-            object Button45: TButton
+            object BTSEND33: TButton
               Left = 192
               Top = 726
               Width = 22
               Height = 22
               Caption = '33'
               TabOrder = 100
-              OnClick = Button45Click
+              OnClick = BTSEND33Click
             end
-            object Button46: TButton
+            object BTSEND34: TButton
               Left = 192
               Top = 748
               Width = 22
               Height = 22
               Caption = '34'
               TabOrder = 101
-              OnClick = Button46Click
+              OnClick = BTSEND34Click
             end
-            object Button47: TButton
+            object BTSEND35: TButton
               Left = 192
               Top = 770
               Width = 22
               Height = 22
               Caption = '35'
               TabOrder = 102
-              OnClick = Button47Click
+              OnClick = BTSEND35Click
             end
-            object Button48: TButton
+            object BTSEND36: TButton
               Left = 192
               Top = 792
               Width = 22
               Height = 22
               Caption = '36'
               TabOrder = 103
-              OnClick = Button48Click
+              OnClick = BTSEND36Click
             end
-            object Button49: TButton
+            object BTSEND37: TButton
               Left = 192
               Top = 814
               Width = 22
               Height = 22
               Caption = '37'
               TabOrder = 104
-              OnClick = Button49Click
+              OnClick = BTSEND37Click
             end
-            object Button50: TButton
+            object BTSEND38: TButton
               Left = 192
               Top = 836
               Width = 22
               Height = 22
               Caption = '38'
               TabOrder = 105
-              OnClick = Button50Click
+              OnClick = BTSEND38Click
             end
-            object Button51: TButton
+            object BTSEND39: TButton
               Left = 192
               Top = 858
               Width = 22
               Height = 22
               Caption = '39'
               TabOrder = 106
-              OnClick = Button51Click
+              OnClick = BTSEND39Click
             end
-            object Button52: TButton
-              Left = 192
+            object BTSEND40: TButton
+              Left = 193
               Top = 880
               Width = 22
               Height = 22
               Caption = '40'
               TabOrder = 107
-              OnClick = Button52Click
+              OnClick = BTSEND40Click
             end
-            object Button53: TButton
+            object BTSEND41: TButton
               Left = 192
               Top = 904
               Width = 22
               Height = 22
               Caption = '41'
               TabOrder = 108
-              OnClick = Button53Click
+              OnClick = BTSEND41Click
             end
             object CheckBox39: TCheckBox
               Left = 6
@@ -2680,14 +2706,14 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 221
+            Height = 191
             Align = alTop
             TabOrder = 0
             OnChange = Memo13Change
           end
           object Edit1: TEdit
             Left = 4
-            Top = 260
+            Top = 234
             Width = 226
             Height = 21
             Font.Charset = ANSI_CHARSET
@@ -2700,7 +2726,7 @@ object Form1: TForm1
           end
           object CheckBox61: TCheckBox
             Left = 6
-            Top = 240
+            Top = 214
             Width = 73
             Height = 17
             Caption = 'HEX'
@@ -2708,8 +2734,8 @@ object Form1: TForm1
             OnClick = CheckBox61Click
           end
           object Button6: TButton
-            Left = 116
-            Top = 320
+            Left = 133
+            Top = 294
             Width = 91
             Height = 21
             Caption = 'ASCII'#30721#34920
@@ -2718,7 +2744,7 @@ object Form1: TForm1
           end
           object Button54: TButton
             Left = 4
-            Top = 320
+            Top = 294
             Width = 91
             Height = 21
             Caption = 'HexToAscii'
@@ -2727,7 +2753,7 @@ object Form1: TForm1
           end
           object Button5: TButton
             Left = 152
-            Top = 243
+            Top = 217
             Width = 75
             Height = 17
             Caption = 'SendFile'
@@ -2737,7 +2763,7 @@ object Form1: TForm1
           end
           object Button4: TButton
             Left = 4
-            Top = 287
+            Top = 261
             Width = 91
             Height = 21
             Caption = #24322#25110#21644
@@ -2745,13 +2771,22 @@ object Form1: TForm1
             OnClick = Button4Click
           end
           object Button3: TButton
-            Left = 116
-            Top = 287
+            Left = 133
+            Top = 261
             Width = 91
             Height = 21
             Caption = #32047#21152#21644
             TabOrder = 7
             OnClick = Button3Click
+          end
+          object Button67: TButton
+            Left = 4
+            Top = 323
+            Width = 91
+            Height = 21
+            Caption = 'UTF8'#26174#31034
+            TabOrder = 8
+            OnClick = Button67Click
           end
         end
       end
@@ -2763,12 +2798,13 @@ object Form1: TForm1
     Width = 419
     Height = 398
     Align = alClient
+    ParentShowHint = False
     PopupMenu = PopupMenu1
     ReadOnly = True
     ScrollBars = ssVertical
+    ShowHint = False
     TabOrder = 3
     WordWrap = False
-    OnChange = Memo1Change
   end
   object Comm1: TComm
     CommName = 'COM1'

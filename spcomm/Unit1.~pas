@@ -181,18 +181,18 @@ type
     Label10: TLabel;
     Label11: TLabel;
     chk1: TCheckBox;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    Edit16: TEdit;
+    TESEND01: TEdit;
+    TESEND02: TEdit;
+    TESEND03: TEdit;
+    TESEND04: TEdit;
+    TESEND05: TEdit;
+    TESEND06: TEdit;
+    TESEND07: TEdit;
+    TESEND08: TEdit;
+    TESEND09: TEdit;
+    TESEND10: TEdit;
+    TESEND11: TEdit;
+    TESEND13: TEdit;
     CheckBox9: TCheckBox;
     CheckBox10: TCheckBox;
     CheckBox11: TCheckBox;
@@ -208,49 +208,49 @@ type
     CheckBox21: TCheckBox;
     CheckBox22: TCheckBox;
     CheckBox23: TCheckBox;
-    Edit17: TEdit;
-    Edit18: TEdit;
-    Edit19: TEdit;
-    Edit20: TEdit;
-    Button22: TButton;
-    Button23: TButton;
-    Button24: TButton;
-    Button25: TButton;
-    Button26: TButton;
-    Button27: TButton;
-    Button28: TButton;
-    Button29: TButton;
-    Button30: TButton;
-    Button31: TButton;
-    Button32: TButton;
-    Button33: TButton;
-    Button34: TButton;
-    Button35: TButton;
-    Button36: TButton;
-    Button37: TButton;
-    Edit25: TEdit;
-    Edit26: TEdit;
-    Edit27: TEdit;
-    Edit28: TEdit;
-    Edit29: TEdit;
-    Edit30: TEdit;
-    Edit31: TEdit;
-    Edit32: TEdit;
-    Edit33: TEdit;
-    Edit34: TEdit;
-    Edit35: TEdit;
-    Button11: TButton;
-    Button14: TButton;
-    Button15: TButton;
-    Button16: TButton;
-    Button17: TButton;
-    Button18: TButton;
-    Button19: TButton;
-    Button20: TButton;
-    Button21: TButton;
-    Button38: TButton;
-    Button39: TButton;
-    Button40: TButton;
+    TESEND12: TEdit;
+    TESEND14: TEdit;
+    TESEND15: TEdit;
+    TESEND16: TEdit;
+    BTSEND01: TButton;
+    BTSEND02: TButton;
+    BTSEND03: TButton;
+    BTSEND04: TButton;
+    BTSEND05: TButton;
+    BTSEND06: TButton;
+    BTSEND07: TButton;
+    BTSEND08: TButton;
+    BTSEND09: TButton;
+    BTSEND10: TButton;
+    BTSEND11: TButton;
+    BTSEND12: TButton;
+    BTSEND13: TButton;
+    BTSEND14: TButton;
+    BTSEND15: TButton;
+    BTSEND16: TButton;
+    TESEND17: TEdit;
+    TESEND18: TEdit;
+    TESEND19: TEdit;
+    TESEND20: TEdit;
+    TESEND21: TEdit;
+    TESEND22: TEdit;
+    TESEND23: TEdit;
+    TESEND24: TEdit;
+    TESEND25: TEdit;
+    TESEND26: TEdit;
+    TESEND27: TEdit;
+    BTSEND17: TButton;
+    BTSEND18: TButton;
+    BTSEND19: TButton;
+    BTSEND20: TButton;
+    BTSEND21: TButton;
+    BTSEND22: TButton;
+    BTSEND23: TButton;
+    BTSEND24: TButton;
+    BTSEND25: TButton;
+    BTSEND26: TButton;
+    BTSEND27: TButton;
+    BTSEND28: TButton;
     CheckBox28: TCheckBox;
     CheckBox29: TCheckBox;
     CheckBox30: TCheckBox;
@@ -262,33 +262,33 @@ type
     CheckBox36: TCheckBox;
     CheckBox37: TCheckBox;
     CheckBox38: TCheckBox;
-    Edit36: TEdit;
-    Edit37: TEdit;
-    Edit38: TEdit;
-    Edit39: TEdit;
-    Edit40: TEdit;
-    Edit41: TEdit;
-    Edit42: TEdit;
-    Edit43: TEdit;
-    Edit44: TEdit;
-    Edit45: TEdit;
-    Edit46: TEdit;
-    Edit47: TEdit;
-    Edit48: TEdit;
-    Edit49: TEdit;
-    Button41: TButton;
-    Button42: TButton;
-    Button43: TButton;
-    Button44: TButton;
-    Button45: TButton;
-    Button46: TButton;
-    Button47: TButton;
-    Button48: TButton;
-    Button49: TButton;
-    Button50: TButton;
-    Button51: TButton;
-    Button52: TButton;
-    Button53: TButton;
+    TESEND28: TEdit;
+    TESEND29: TEdit;
+    TESEND30: TEdit;
+    TESEND31: TEdit;
+    TESEND32: TEdit;
+    TESEND33: TEdit;
+    TESEND34: TEdit;
+    TESEND35: TEdit;
+    TESEND36: TEdit;
+    TESEND37: TEdit;
+    TESEND38: TEdit;
+    TESEND39: TEdit;
+    TESEND40: TEdit;
+    TESEND41: TEdit;
+    BTSEND29: TButton;
+    BTSEND30: TButton;
+    BTSEND31: TButton;
+    BTSEND32: TButton;
+    BTSEND33: TButton;
+    BTSEND34: TButton;
+    BTSEND35: TButton;
+    BTSEND36: TButton;
+    BTSEND37: TButton;
+    BTSEND38: TButton;
+    BTSEND39: TButton;
+    BTSEND40: TButton;
+    BTSEND41: TButton;
     CheckBox39: TCheckBox;
     CheckBox40: TCheckBox;
     CheckBox41: TCheckBox;
@@ -376,6 +376,18 @@ type
     N18: TMenuItem;
     N19: TMenuItem;
     N20: TMenuItem;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    CheckBox53: TCheckBox;
+    Button67: TButton;
+    BitBtn2: TBitBtn;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -396,7 +408,6 @@ type
     procedure CheckBox4Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Timer2Timer(Sender: TObject);
-    procedure Memo1Change(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure StatusBar1MouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -404,41 +415,25 @@ type
     procedure Memo1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure Button13Click(Sender: TObject);
-    procedure Button22Click(Sender: TObject);
-    procedure Button23Click(Sender: TObject);
-    procedure Button24Click(Sender: TObject);
-    procedure Button25Click(Sender: TObject);
-    procedure Button26Click(Sender: TObject);
-    procedure Button27Click(Sender: TObject);
-    procedure Button28Click(Sender: TObject);
-    procedure Button29Click(Sender: TObject);
-    procedure Button30Click(Sender: TObject);
-    procedure Button31Click(Sender: TObject);
-    procedure Button32Click(Sender: TObject);
-    procedure Button33Click(Sender: TObject);
-    procedure Button34Click(Sender: TObject);
-    procedure Button37Click(Sender: TObject);
-    procedure Button36Click(Sender: TObject);
-    procedure Button35Click(Sender: TObject);
+    procedure BTSEND01Click(Sender: TObject);
+    procedure BTSEND02Click(Sender: TObject);
+    procedure BTSEND03Click(Sender: TObject);
+    procedure BTSEND04Click(Sender: TObject);
+    procedure BTSEND05Click(Sender: TObject);
+    procedure BTSEND06Click(Sender: TObject);
+    procedure BTSEND07Click(Sender: TObject);
+    procedure BTSEND08Click(Sender: TObject);
+    procedure BTSEND09Click(Sender: TObject);
+    procedure BTSEND10Click(Sender: TObject);
+    procedure BTSEND11Click(Sender: TObject);
+    procedure BTSEND12Click(Sender: TObject);
+    procedure BTSEND13Click(Sender: TObject);
+    procedure BTSEND16Click(Sender: TObject);
+    procedure BTSEND15Click(Sender: TObject);
+    procedure BTSEND14Click(Sender: TObject);
     procedure CheckBox8Click(Sender: TObject);
     procedure Edit3KeyPress(Sender: TObject; var Key: Char);
     procedure Timer3Timer(Sender: TObject);
-    procedure Edit4Change(Sender: TObject);
-    procedure Edit5Change(Sender: TObject);
-    procedure Edit6Change(Sender: TObject);
-    procedure Edit7Change(Sender: TObject);
-    procedure Edit8Change(Sender: TObject);
-    procedure Edit9Change(Sender: TObject);
-    procedure Edit10Change(Sender: TObject);
-    procedure Edit11Change(Sender: TObject);
-    procedure Edit12Change(Sender: TObject);
-    procedure Edit13Change(Sender: TObject);
-    procedure Edit14Change(Sender: TObject);
-    procedure Edit17Change(Sender: TObject);
-    procedure Edit16Change(Sender: TObject);
-    procedure Edit18Change(Sender: TObject);
-    procedure Edit19Change(Sender: TObject);
-    procedure Edit20Change(Sender: TObject);
     procedure N2Click(Sender: TObject);
     procedure N3Click(Sender: TObject);
     procedure Memo2KeyPress(Sender: TObject; var Key: Char);
@@ -474,31 +469,31 @@ type
     procedure RadioButton1Click(Sender: TObject);
     procedure IP1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure Button11Click(Sender: TObject);
-    procedure Button14Click(Sender: TObject);
-    procedure Button15Click(Sender: TObject);
-    procedure Button16Click(Sender: TObject);
-    procedure Button17Click(Sender: TObject);
-    procedure Button18Click(Sender: TObject);
-    procedure Button19Click(Sender: TObject);
-    procedure Button20Click(Sender: TObject);
-    procedure Button21Click(Sender: TObject);
-    procedure Button38Click(Sender: TObject);
-    procedure Button39Click(Sender: TObject);
-    procedure Button40Click(Sender: TObject);
-    procedure Button41Click(Sender: TObject);
-    procedure Button42Click(Sender: TObject);
-    procedure Button43Click(Sender: TObject);
-    procedure Button44Click(Sender: TObject);
-    procedure Button45Click(Sender: TObject);
-    procedure Button46Click(Sender: TObject);
-    procedure Button47Click(Sender: TObject);
-    procedure Button48Click(Sender: TObject);
-    procedure Button49Click(Sender: TObject);
-    procedure Button50Click(Sender: TObject);
-    procedure Button51Click(Sender: TObject);
-    procedure Button52Click(Sender: TObject);
-    procedure Button53Click(Sender: TObject);
+    procedure BTSEND17Click(Sender: TObject);
+    procedure BTSEND18Click(Sender: TObject);
+    procedure BTSEND19Click(Sender: TObject);
+    procedure BTSEND20Click(Sender: TObject);
+    procedure BTSEND21Click(Sender: TObject);
+    procedure BTSEND22Click(Sender: TObject);
+    procedure BTSEND23Click(Sender: TObject);
+    procedure BTSEND24Click(Sender: TObject);
+    procedure BTSEND25Click(Sender: TObject);
+    procedure BTSEND26Click(Sender: TObject);
+    procedure BTSEND27Click(Sender: TObject);
+    procedure BTSEND28Click(Sender: TObject);
+    procedure BTSEND29Click(Sender: TObject);
+    procedure BTSEND30Click(Sender: TObject);
+    procedure BTSEND31Click(Sender: TObject);
+    procedure BTSEND32Click(Sender: TObject);
+    procedure BTSEND33Click(Sender: TObject);
+    procedure BTSEND34Click(Sender: TObject);
+    procedure BTSEND35Click(Sender: TObject);
+    procedure BTSEND36Click(Sender: TObject);
+    procedure BTSEND37Click(Sender: TObject);
+    procedure BTSEND38Click(Sender: TObject);
+    procedure BTSEND39Click(Sender: TObject);
+    procedure BTSEND40Click(Sender: TObject);
+    procedure BTSEND41Click(Sender: TObject);
     procedure CheckBox53Click(Sender: TObject);
     procedure Button54Click(Sender: TObject);
     procedure Button55Click(Sender: TObject);
@@ -560,6 +555,36 @@ type
     procedure N20ms1Click(Sender: TObject);
     procedure N19Click(Sender: TObject);
     procedure N20Click(Sender: TObject);
+    procedure CheckBox57Click(Sender: TObject);
+    procedure Memo8Change(Sender: TObject);
+    procedure memo7Change(Sender: TObject);
+    procedure Edit50Change(Sender: TObject);
+    procedure Edit51Change(Sender: TObject);
+    procedure Edit58Change(Sender: TObject);
+    procedure Edit57Change(Sender: TObject);
+    procedure CheckBox55Click(Sender: TObject);
+    procedure CheckBox56Click(Sender: TObject);
+    procedure Memo12Change(Sender: TObject);
+    procedure Edit52Change(Sender: TObject);
+    procedure Edit53Change(Sender: TObject);
+    procedure Edit54Change(Sender: TObject);
+    procedure Edit55Change(Sender: TObject);
+    procedure Edit56Change(Sender: TObject);
+    procedure CheckBox59Click(Sender: TObject);
+    procedure Memo11Change(Sender: TObject);
+    procedure CheckBox58Click(Sender: TObject);
+    procedure Memo13Change(Sender: TObject);
+    procedure CheckBox61Click(Sender: TObject);
+    procedure CheckBox26Click(Sender: TObject);
+    procedure Memo5Change(Sender: TObject);
+    procedure Memo14Change(Sender: TObject);
+    procedure CheckBox54Click(Sender: TObject);
+    procedure Memo15Change(Sender: TObject);
+    procedure Button67Click(Sender: TObject);
+    procedure Memo2Change(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 
   private
     { Private declarations }
@@ -592,12 +617,12 @@ var
   HaveOpenCom : string = '0';
   TotalComNum : Integer = 0;
   ExtendFun   : Integer = 0;
-  AutoLoopSend: Integer = 0;
+  AutoLoopSend: Integer = 1;
   HaveData : Integer;
   EnterSend : Integer = 0;
   IfDisIp : Boolean = False;
   RealLogFile : TextFile;
-  LinesCount :DWORD = 0;
+  //LinesCount :DWORD = 0;
   CS:TRTLCriticalSection;  //全局临界区变量
   FileSendDelay : Integer; // 默认1MS
   pRawData :PChar;
@@ -890,7 +915,7 @@ begin
     Display_info(strtmp);
     RecLen := RecLen + DataLen;
     form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
+    //form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
 end;
 
 
@@ -1119,6 +1144,7 @@ begin
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
               Timer5.Interval := 6000;
+              StatusBar1.Panels[2].Text := Comm1.CommName + ' 已打开 ' +  ComboBox2.text +','+ComboBox4.Items[ComboBox4.itemindex]+','+ ComboBox3.Items[ComboBox3.itemindex];
          end;
      end
      else
@@ -1136,6 +1162,7 @@ begin
           Timer3.Enabled := False;
           //TotalComNum := 0;
           Timer5.Interval := 1000;
+          StatusBar1.Panels[2].Text := Comm1.CommName + ' 已关闭 ' +  ComboBox2.text +','+ComboBox4.Items[ComboBox4.itemindex]+','+ ComboBox3.Items[ComboBox3.itemindex];
      end;
 end;
 
@@ -1157,49 +1184,49 @@ begin
           MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
           MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
-          MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND1', TESEND01.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND2', TESEND02.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND3', TESEND03.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND4', TESEND04.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND5', TESEND05.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND6', TESEND06.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND7', TESEND07.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND8', TESEND08.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND9', TESEND09.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND10', TESEND10.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND11', TESEND11.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND12', TESEND12.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND13', TESEND13.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND14', TESEND14.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND15', TESEND15.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND16', TESEND16.Text);
 
-          MyIniFile.WriteString('AUTOSEND', 'SEND17', Edit25.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND18', Edit26.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND19', Edit27.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND20', Edit28.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND21', Edit29.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND22', Edit30.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND23', Edit31.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND24', Edit32.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND25', Edit33.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND26', Edit34.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND27', Edit35.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND17', TESEND17.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND18', TESEND18.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND19', TESEND19.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND20', TESEND20.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND21', TESEND21.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND22', TESEND22.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND23', TESEND23.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND24', TESEND24.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND25', TESEND25.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND26', TESEND26.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND27', TESEND27.Text);
 
-          MyIniFile.WriteString('AUTOSEND', 'SEND28', Edit36.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND29', Edit37.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND30', Edit38.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND31', Edit39.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND32', Edit40.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND33', Edit41.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND34', Edit42.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND35', Edit43.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND36', Edit44.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND37', Edit45.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND38', Edit46.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND39', Edit47.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND40', Edit48.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND41', Edit49.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND28', TESEND28.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND29', TESEND29.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND30', TESEND30.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND31', TESEND31.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND32', TESEND32.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND33', TESEND33.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND34', TESEND34.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND35', TESEND35.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND36', TESEND36.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND37', TESEND37.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND38', TESEND38.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND39', TESEND39.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND40', TESEND40.Text);
+          MyIniFile.WriteString('AUTOSEND', 'SEND41', TESEND41.Text);
 
           MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
           MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
@@ -1213,49 +1240,49 @@ begin
           ComboBox3.itemindex := MyIniFile.ReadInteger('COM', 'ByteSize', 0);
           ComboBox4.itemindex := MyIniFile.ReadInteger('COM', 'Parity', 0);
 
-          Edit4.Text := MyIniFile.ReadString('AUTOSEND', 'SEND1', '');
-          Edit5.Text := MyIniFile.ReadString('AUTOSEND', 'SEND2',  '');
-          Edit6.Text := MyIniFile.ReadString('AUTOSEND', 'SEND3',  '');
-          Edit7.Text := MyIniFile.ReadString('AUTOSEND', 'SEND4',  '');
-          Edit8.Text := MyIniFile.ReadString('AUTOSEND', 'SEND5',  '');
-          Edit9.Text := MyIniFile.ReadString('AUTOSEND', 'SEND6',  '');
-          Edit10.Text := MyIniFile.ReadString('AUTOSEND', 'SEND7',  '');
-          Edit11.Text := MyIniFile.ReadString('AUTOSEND', 'SEND8',  '');
-          Edit12.Text := MyIniFile.ReadString('AUTOSEND', 'SEND9',  '');
-          Edit13.Text := MyIniFile.ReadString('AUTOSEND', 'SEND10',  '');
-          Edit14.Text := MyIniFile.ReadString('AUTOSEND', 'SEND11',  '');
-          Edit17.Text := MyIniFile.ReadString('AUTOSEND', 'SEND12',  '');
-          Edit16.Text := MyIniFile.ReadString('AUTOSEND', 'SEND13',  '');
-          Edit18.Text := MyIniFile.ReadString('AUTOSEND', 'SEND14',  '');
-          Edit19.Text := MyIniFile.ReadString('AUTOSEND', 'SEND15',  '');
-          Edit20.Text := MyIniFile.ReadString('AUTOSEND', 'SEND16',  '');
+          TESEND01.Text := MyIniFile.ReadString('AUTOSEND', 'SEND1', '');
+          TESEND02.Text := MyIniFile.ReadString('AUTOSEND', 'SEND2',  '');
+          TESEND03.Text := MyIniFile.ReadString('AUTOSEND', 'SEND3',  '');
+          TESEND04.Text := MyIniFile.ReadString('AUTOSEND', 'SEND4',  '');
+          TESEND05.Text := MyIniFile.ReadString('AUTOSEND', 'SEND5',  '');
+          TESEND06.Text := MyIniFile.ReadString('AUTOSEND', 'SEND6',  '');
+          TESEND07.Text := MyIniFile.ReadString('AUTOSEND', 'SEND7',  '');
+          TESEND08.Text := MyIniFile.ReadString('AUTOSEND', 'SEND8',  '');
+          TESEND09.Text := MyIniFile.ReadString('AUTOSEND', 'SEND9',  '');
+          TESEND10.Text := MyIniFile.ReadString('AUTOSEND', 'SEND10',  '');
+          TESEND11.Text := MyIniFile.ReadString('AUTOSEND', 'SEND11',  '');
+          TESEND12.Text := MyIniFile.ReadString('AUTOSEND', 'SEND12',  '');
+          TESEND13.Text := MyIniFile.ReadString('AUTOSEND', 'SEND13',  '');
+          TESEND14.Text := MyIniFile.ReadString('AUTOSEND', 'SEND14',  '');
+          TESEND15.Text := MyIniFile.ReadString('AUTOSEND', 'SEND15',  '');
+          TESEND16.Text := MyIniFile.ReadString('AUTOSEND', 'SEND16',  '');
 
-          Edit25.Text := MyIniFile.ReadString('AUTOSEND', 'SEND17', '');
-          Edit26.Text := MyIniFile.ReadString('AUTOSEND', 'SEND18', '');
-          Edit27.Text := MyIniFile.ReadString('AUTOSEND', 'SEND19', '');
-          Edit28.Text := MyIniFile.ReadString('AUTOSEND', 'SEND20', '');
-          Edit29.Text := MyIniFile.ReadString('AUTOSEND', 'SEND21', '');
-          Edit30.Text := MyIniFile.ReadString('AUTOSEND', 'SEND22', '');
-          Edit31.Text := MyIniFile.ReadString('AUTOSEND', 'SEND23', '');
-          Edit32.Text := MyIniFile.ReadString('AUTOSEND', 'SEND24', '');
-          Edit33.Text := MyIniFile.ReadString('AUTOSEND', 'SEND25', '');
-          Edit34.Text := MyIniFile.ReadString('AUTOSEND', 'SEND26', '');
-          Edit35.Text := MyIniFile.ReadString('AUTOSEND', 'SEND27', '');
+          TESEND17.Text := MyIniFile.ReadString('AUTOSEND', 'SEND17', '');
+          TESEND18.Text := MyIniFile.ReadString('AUTOSEND', 'SEND18', '');
+          TESEND19.Text := MyIniFile.ReadString('AUTOSEND', 'SEND19', '');
+          TESEND20.Text := MyIniFile.ReadString('AUTOSEND', 'SEND20', '');
+          TESEND21.Text := MyIniFile.ReadString('AUTOSEND', 'SEND21', '');
+          TESEND22.Text := MyIniFile.ReadString('AUTOSEND', 'SEND22', '');
+          TESEND23.Text := MyIniFile.ReadString('AUTOSEND', 'SEND23', '');
+          TESEND24.Text := MyIniFile.ReadString('AUTOSEND', 'SEND24', '');
+          TESEND25.Text := MyIniFile.ReadString('AUTOSEND', 'SEND25', '');
+          TESEND26.Text := MyIniFile.ReadString('AUTOSEND', 'SEND26', '');
+          TESEND27.Text := MyIniFile.ReadString('AUTOSEND', 'SEND27', '');
 
-          Edit36.Text := MyIniFile.ReadString('AUTOSEND', 'SEND28', '');
-          Edit37.Text := MyIniFile.ReadString('AUTOSEND', 'SEND29', '');
-          Edit38.Text := MyIniFile.ReadString('AUTOSEND', 'SEND30', '');
-          Edit39.Text := MyIniFile.ReadString('AUTOSEND', 'SEND31', '');
-          Edit40.Text := MyIniFile.ReadString('AUTOSEND', 'SEND32', '');
-          Edit41.Text := MyIniFile.ReadString('AUTOSEND', 'SEND33', '');
-          Edit42.Text := MyIniFile.ReadString('AUTOSEND', 'SEND34', '');
-          Edit43.Text := MyIniFile.ReadString('AUTOSEND', 'SEND35', '');
-          Edit44.Text := MyIniFile.ReadString('AUTOSEND', 'SEND36', '');
-          Edit45.Text := MyIniFile.ReadString('AUTOSEND', 'SEND37', '');
-          Edit46.Text := MyIniFile.ReadString('AUTOSEND', 'SEND38', '');
-          Edit47.Text := MyIniFile.ReadString('AUTOSEND', 'SEND39', '');
-          Edit48.Text := MyIniFile.ReadString('AUTOSEND', 'SEND40', '');
-          Edit49.Text := MyIniFile.ReadString('AUTOSEND', 'SEND41', '');
+          TESEND28.Text := MyIniFile.ReadString('AUTOSEND', 'SEND28', '');
+          TESEND29.Text := MyIniFile.ReadString('AUTOSEND', 'SEND29', '');
+          TESEND30.Text := MyIniFile.ReadString('AUTOSEND', 'SEND30', '');
+          TESEND31.Text := MyIniFile.ReadString('AUTOSEND', 'SEND31', '');
+          TESEND32.Text := MyIniFile.ReadString('AUTOSEND', 'SEND32', '');
+          TESEND33.Text := MyIniFile.ReadString('AUTOSEND', 'SEND33', '');
+          TESEND34.Text := MyIniFile.ReadString('AUTOSEND', 'SEND34', '');
+          TESEND35.Text := MyIniFile.ReadString('AUTOSEND', 'SEND35', '');
+          TESEND36.Text := MyIniFile.ReadString('AUTOSEND', 'SEND36', '');
+          TESEND37.Text := MyIniFile.ReadString('AUTOSEND', 'SEND37', '');
+          TESEND38.Text := MyIniFile.ReadString('AUTOSEND', 'SEND38', '');
+          TESEND39.Text := MyIniFile.ReadString('AUTOSEND', 'SEND39', '');
+          TESEND40.Text := MyIniFile.ReadString('AUTOSEND', 'SEND40', '');
+          TESEND41.Text := MyIniFile.ReadString('AUTOSEND', 'SEND41', '');
 
           Edit15.Text := MyIniFile.ReadString('TCP', 'SERVER_PORT',  '');
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
@@ -1280,16 +1307,8 @@ begin
     //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
-          Button1.Caption := '打开串口';
-          Shape1.Brush.Color := clGray;
-          Comm1.StopComm;
-          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
-          //if False <>
-          Comm1.StartComm;// then
-          begin
-              Shape1.Brush.Color := clRed;
-              Button1.Caption := '关闭串口'
-          end;
+        Button1.Click;
+        Button1.Click;
      end
 end;
 
@@ -1302,16 +1321,8 @@ begin
      //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
-          Shape1.Brush.Color := clGray;
-          Button1.Caption := '打开串口';
-          Comm1.StopComm;
-         Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
-         //if False <>
-         Comm1.StartComm;// then
-         begin
-              Shape1.Brush.Color := clRed;
-              Button1.Caption := '关闭串口'
-         end;
+        Button1.Click;
+        Button1.Click;
      end;
       //ShowMessage(IntToStr(ComboBox2.ItemIndex));
 end;
@@ -1321,31 +1332,8 @@ begin
   //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
-          Shape1.Brush.Color := clGray;
-          Button1.Caption := '打开串口';
-          Comm1.StopComm;
-         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
-         begin
-              Comm1.ByteSize := _5;
-         end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
-         begin
-              Comm1.ByteSize := _6;
-         end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
-         begin
-              Comm1.ByteSize := _7;
-         end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
-         begin
-              Comm1.ByteSize := _8;
-         end;
-         //if False <>
-         Comm1.StartComm;// then
-         begin
-              Shape1.Brush.Color := clRed;
-              Button1.Caption := '关闭串口'
-         end;
+        Button1.Click;
+        Button1.Click;
      end
 end;
 
@@ -1354,27 +1342,8 @@ begin
   //ShowMessage(Button1.Caption);
      if Button1.Caption = '关闭串口' then
      begin
-          Shape1.Brush.Color := clGray;
-          Button1.Caption := '打开串口';
-          Comm1.StopComm;
-           if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
-           begin
-                Comm1.Parity := None;
-           end
-           else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
-           begin
-                Comm1.Parity := Even;
-           end
-           else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
-           begin
-                Comm1.Parity := Odd;
-           end;
-           //if False <>
-           Comm1.StartComm;// then
-           begin
-              Shape1.Brush.Color := clRed;
-              Button1.Caption := '关闭串口'
-           end;
+        Button1.Click;
+        Button1.Click;
      end
 end;
 
@@ -1456,34 +1425,15 @@ begin
             //move(buffer^, pchar(rbufstr)^, bufferlength);
             if CheckBox3.Checked = True then      // time
             begin
-                if (CheckBox60.Checked <> True) then
-                begin
-                    data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
-                    Memo1.Lines.Add(date_str + data_str);
-                    //Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
-                end
-                else                                // UTF8
-                begin
-                    // utf8转换显示
-                    memo1.lines.add(date_str + UTF8ToAnsi(String(pc)));
-                end;
+                data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
+                Memo1.Lines.Add(date_str + data_str);
             end
             else
             begin
-                if (CheckBox60.Checked <> True) then
-                begin
-                    Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
-                end
-                else                                    // UTF8
-                begin
-                    Memo1.Lines[Memo1.Lines.Count -1] := Memo1.Lines[Memo1.Lines.Count -1] + UTF8ToAnsi(String(pc));
-                end;
+                Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
             end;
-            //writeWorkLog(rbufstr);
-            //WriteArrToFile(buffer, bufferlength, 'D:\' + datetimeSTR + '.bin')
         end;
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-        //StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 
         Timer5.Enabled := True;
 
@@ -1571,7 +1521,7 @@ end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
-    //if RichEdit1.Text <> '' then
+    if Memo1.Text <> '' then
     begin
         if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
         begin
@@ -1580,9 +1530,19 @@ begin
             RecLen := 0;
             StatusBar1.Panels[0].Text := 'S:0';
             StatusBar1.Panels[1].Text := 'R:0';
-            StatusBar1.Panels[2].Text := ' Lines: 0';
+            //StatusBar1.Panels[2].Text := ' Lines: 0';
             clr_raw_data();
         end;
+    end
+    else
+    begin
+        Memo1.Text := '';
+        SendLen := 0;
+        RecLen := 0;
+        StatusBar1.Panels[0].Text := 'S:0';
+        StatusBar1.Panels[1].Text := 'R:0';
+        //StatusBar1.Panels[2].Text := ' Lines: 0';
+        clr_raw_data();
     end;
 
 end;
@@ -1592,6 +1552,8 @@ var
    i ,j,TextLen: Integer;
    strbuf : string;
 begin
+     Memo2.oNChange(Sender);
+
      strbuf :=Memo2.text;
      if CheckBox2.Checked = True then
      begin
@@ -1632,90 +1594,91 @@ begin
     MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
     MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
-    if Edit4.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
-    if Edit5.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
-    if Edit6.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
-    if Edit7.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
-    if Edit8.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
-    if Edit9.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
-    if Edit10.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
-    if Edit11.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
-    if Edit12.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
-    if Edit13.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
-    if Edit14.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
-    if Edit17.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
-    if Edit16.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
-    if Edit18.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
-    if Edit19.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
-    if Edit20.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
+    if TESEND01.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND1', TESEND01.Text);
+    if TESEND02.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND2', TESEND02.Text);
+    if TESEND03.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND3', TESEND03.Text);
+    if TESEND04.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND4', TESEND04.Text);
+    if TESEND05.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND5', TESEND05.Text);
+    if TESEND06.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND6', TESEND06.Text);
+    if TESEND07.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND7', TESEND07.Text);
+    if TESEND08.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND8', TESEND08.Text);
+    if TESEND09.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND9', TESEND09.Text);
 
-    if Edit25.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND17', Edit25.Text);
-    if Edit26.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND18', Edit26.Text);
-    if Edit27.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND19', Edit27.Text);
-    if Edit28.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND20', Edit28.Text);
-    if Edit29.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND21', Edit29.Text);
-    if Edit30.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND22', Edit30.Text);
-    if Edit31.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND23', Edit31.Text);
-    if Edit32.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND24', Edit32.Text);
-    if Edit33.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND25', Edit33.Text);
-    if Edit34.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND26', Edit34.Text);
-    if Edit35.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND27', Edit35.Text);
+    if TESEND10.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND10', TESEND10.Text);
+    if TESEND11.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND11', TESEND11.Text);
+    if TESEND12.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND12', TESEND12.Text);
+    if TESEND13.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND13', TESEND13.Text);
+    if TESEND14.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND14', TESEND14.Text);
+    if TESEND15.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND15', TESEND15.Text);
+    if TESEND16.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND16', TESEND16.Text);
+    if TESEND17.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND17', TESEND17.Text);
+    if TESEND18.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND18', TESEND18.Text);
+    if TESEND19.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND19', TESEND19.Text);
 
-    if Edit36.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND28', Edit36.Text);
-    if Edit37.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND29', Edit37.Text);
-    if Edit38.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND30', Edit38.Text);
-    if Edit39.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND31', Edit39.Text);
-    if Edit40.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND32', Edit40.Text);
-    if Edit41.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND33', Edit41.Text);
-    if Edit42.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND34', Edit42.Text);
-    if Edit43.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND35', Edit43.Text);
-    if Edit44.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND36', Edit44.Text);
-    if Edit45.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND37', Edit45.Text);
-    if Edit46.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND38', Edit46.Text);
-    if Edit47.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND39', Edit47.Text);
-    if Edit48.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND40', Edit48.Text);
-    if Edit49.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND41', Edit49.Text);
+    if TESEND20.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND20', TESEND20.Text);
+    if TESEND21.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND21', TESEND21.Text);
+    if TESEND22.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND22', TESEND22.Text);
+    if TESEND23.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND23', TESEND23.Text);
+    if TESEND24.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND24', TESEND24.Text);
+    if TESEND25.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND25', TESEND25.Text);
+    if TESEND26.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND26', TESEND26.Text);
+    if TESEND27.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND27', TESEND27.Text);
+    if TESEND28.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND28', TESEND28.Text);
+    if TESEND29.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND29', TESEND29.Text);
+
+    if TESEND30.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND30', TESEND30.Text);
+    if TESEND31.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND31', TESEND31.Text);
+    if TESEND32.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND32', TESEND32.Text);
+    if TESEND33.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND33', TESEND33.Text);
+    if TESEND34.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND34', TESEND34.Text);
+    if TESEND35.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND35', TESEND35.Text);
+    if TESEND36.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND36', TESEND36.Text);
+    if TESEND37.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND37', TESEND37.Text);
+    if TESEND38.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND38', TESEND38.Text);
+    if TESEND39.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND39', TESEND39.Text);
+    if TESEND40.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND40', TESEND40.Text);
+    if TESEND41.Text <> '' then
+        MyIniFile.WriteString('AUTOSEND', 'SEND41', TESEND41.Text);
 
     MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
@@ -1902,7 +1865,7 @@ begin
         end;
         Memo1.Lines.SaveToFile(path + HaveOpenCom + '-' + formatdatetime('yymmdd-hhmmss',now) + '.txt');
         Memo1.Clear;
-        StatusBar1.Panels[2].Text := ' Lines: 0';
+        //StatusBar1.Panels[2].Text := ' Lines: 0';
         SendLen := 0;
         StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
         RecLen := 0;
@@ -1954,15 +1917,6 @@ begin
      Button2.Click;
 end;
 
-procedure TForm1.Memo1Change(Sender: TObject);
-begin
-    if (LinesCount <> Memo1.Lines.Count) then
-    begin
-        StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
-        LinesCount := Memo1.Lines.Count;
-    end;
-end;
-
 procedure TForm1.Button6Click(Sender: TObject);
 begin
     form2.Show;//Modal;
@@ -2005,12 +1959,12 @@ begin
         //form1.Width := 770;
         ExtendFun := 1;
         GroupBox7.Visible := True;
-        Button13.Caption := '隐藏';
+        Button13.Caption := '隐藏←';
     end
     else
     begin
         ExtendFun := 0;
-        Button13.Caption := '扩展';
+        Button13.Caption := '扩展→';
         GroupBox7.Visible := False;
         //form1.Width := 670;
     end;  
@@ -2085,84 +2039,84 @@ begin
      Form1.StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
 
-procedure TForm1.Button22Click(Sender: TObject);
+procedure TForm1.BTSEND01Click(Sender: TObject);
 begin
-    button_send(edit4.text, chk1);
+    button_send(TESEND01.text, chk1);
 end;
 
-procedure TForm1.Button23Click(Sender: TObject);
+procedure TForm1.BTSEND02Click(Sender: TObject);
 begin
-    button_send(edit5.text, CheckBox9);
+    button_send(TESEND02.text, CheckBox9);
 end;
 
-procedure TForm1.Button24Click(Sender: TObject);
+procedure TForm1.BTSEND03Click(Sender: TObject);
 begin
-    button_send(edit6.text, CheckBox10);
+    button_send(TESEND03.text, CheckBox10);
 end;
 
-procedure TForm1.Button25Click(Sender: TObject);
+procedure TForm1.BTSEND04Click(Sender: TObject);
 begin
-    button_send(edit7.text, CheckBox11);
+    button_send(TESEND04.text, CheckBox11);
 end;
 
-procedure TForm1.Button26Click(Sender: TObject);
+procedure TForm1.BTSEND05Click(Sender: TObject);
 begin
-    button_send(edit8.text, CheckBox12);
+    button_send(TESEND05.text, CheckBox12);
 end;
 
-procedure TForm1.Button27Click(Sender: TObject);
+procedure TForm1.BTSEND06Click(Sender: TObject);
 begin
-    button_send(edit9.text, CheckBox13);
+    button_send(TESEND06.text, CheckBox13);
 end;
 
-procedure TForm1.Button28Click(Sender: TObject);
+procedure TForm1.BTSEND07Click(Sender: TObject);
 begin
-    button_send(edit10.text, CheckBox14);
+    button_send(TESEND07.text, CheckBox14);
 end;
 
-procedure TForm1.Button29Click(Sender: TObject);
+procedure TForm1.BTSEND08Click(Sender: TObject);
 begin
-    button_send(edit11.text, CheckBox15);
+    button_send(TESEND08.text, CheckBox15);
 end;
 
-procedure TForm1.Button30Click(Sender: TObject);
+procedure TForm1.BTSEND09Click(Sender: TObject);
 begin
-    button_send(edit12.text, CheckBox16);
+    button_send(TESEND09.text, CheckBox16);
 end;
 
-procedure TForm1.Button31Click(Sender: TObject);
+procedure TForm1.BTSEND10Click(Sender: TObject);
 begin
-    button_send(edit13.text, CheckBox17);
+    button_send(TESEND10.text, CheckBox17);
 end;
 
-procedure TForm1.Button32Click(Sender: TObject);
+procedure TForm1.BTSEND11Click(Sender: TObject);
 begin
-    button_send(edit14.text, CheckBox18);
+    button_send(TESEND11.text, CheckBox18);
 end;
 
-procedure TForm1.Button33Click(Sender: TObject);
+procedure TForm1.BTSEND12Click(Sender: TObject);
 begin
-    button_send(edit17.text, CheckBox19);
+    button_send(TESEND12.text, CheckBox19);
 end;
 
-procedure TForm1.Button34Click(Sender: TObject);
+procedure TForm1.BTSEND13Click(Sender: TObject);
 begin
-    button_send(edit16.text, CheckBox20);
+    button_send(TESEND13.text, CheckBox20);
 end;
 
-procedure TForm1.Button37Click(Sender: TObject);
+procedure TForm1.BTSEND16Click(Sender: TObject);
 begin
-    button_send(edit20.text, CheckBox23);
+    button_send(TESEND16.text, CheckBox23);
 end;
 
-procedure TForm1.Button36Click(Sender: TObject);
+procedure TForm1.BTSEND15Click(Sender: TObject);
 begin
-    button_send(edit19.text, CheckBox22);
+    button_send(TESEND15.text, CheckBox22);
 end;
 
-procedure TForm1.Button35Click(Sender: TObject);
+procedure TForm1.BTSEND14Click(Sender: TObject);
 begin
-    button_send(edit18.text, CheckBox21);
+    button_send(TESEND14.text, CheckBox21);
 end;
 
 procedure TForm1.CheckBox8Click(Sender: TObject);
@@ -2174,7 +2128,7 @@ begin
                Timer3.Interval := StrToInt(Edit3.Text);
                Timer3.Enabled := True;
                Edit3.Enabled := False;
-               AutoLoopSend := 0;
+               AutoLoopSend := 1;
                //Button2.Enabled := False;
           end
           else
@@ -2201,480 +2155,42 @@ begin
 end;
 
 procedure autosend();
+var
+  i: integer;
+  btn, TEname, BTname:string;
+  cp:TComponent;
 begin
-    if AutoLoopSend = 0 then
+    if (AutoLoopSend < 10) then
+        TEname := 'TESEND0'+ IntToStr(AutoLoopSend)
+    else
+        TEname := 'TESEND'+ IntToStr(AutoLoopSend);
+    for i := 0 to Form1.GroupBox9.ControlCount - 1 do
     begin
-        Inc(AutoLoopSend);
-        if Form1.Edit4.Text <> '' then
+        if Form1.GroupBox9.Controls[i].ClassType = tedit then
         begin
-           Form1.Edit4.SetFocus;
-           Form1.Button22.Click;
-           HaveData := 1;
-           Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 1 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit5.Text <> '' then
-        begin
-            Form1.Edit5.SetFocus;
-            Form1.Button23.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 2 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit6.Text <> '' then
-        begin
-            Form1.Edit6.SetFocus;
-           Form1.Button24.Click;
-           HaveData := 1;
-           Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 3 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit7.Text <> '' then
-        begin
-            Form1.Edit7.SetFocus;
-            Form1.Button25.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-    //
-    if AutoLoopSend = 4 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit8.Text <> '' then
-        begin
-            Form1.Edit8.SetFocus;
-            Form1.Button26.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 5 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit9.Text <> '' then
-        begin
-            Form1.Edit9.SetFocus;
-            Form1.Button27.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 6 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit10.Text <> '' then
-        begin
-            Form1.Edit10.SetFocus;
-            Form1.Button28.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 7 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit11.Text <> '' then
-        begin
-            Form1.Edit11.SetFocus;
-            Form1.Button29.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 8 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit12.Text <> '' then
-        begin
-            Form1.Edit12.SetFocus;
-            Form1.Button30.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 9 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit13.Text <> '' then
-        begin
-            Form1.Edit13.SetFocus;
-            Form1.Button31.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 10 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit14.Text <> '' then
-        begin
-            Form1.Edit14.SetFocus;
-            Form1.Button32.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 11 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit17.Text <> '' then
-        begin
-            Form1.Edit17.SetFocus;
-            Form1.Button33.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 12 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit16.Text <> '' then
-        begin
-            Form1.Edit16.SetFocus;
-            Form1.Button34.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 13 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit18.Text <> '' then
-        begin
-            Form1.Edit18.SetFocus;
-            Form1.Button35.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 14 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit19.Text <> '' then
-        begin
-            Form1.Edit19.SetFocus;
-            Form1.Button36.Click;
-            HaveData := 1;
-            Exit;
-        end;
-    end;
-
-    if AutoLoopSend = 15 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit20.Text <> '' then
-        begin
-            Form1.Edit20.SetFocus;
-            Form1.Button37.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 16 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit25.Text <> '' then
-        begin
-            Form1.Edit25.SetFocus;
-            Form1.Button11.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 17 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit26.Text <> '' then
-        begin
-            Form1.Edit26.SetFocus;
-            Form1.Button14.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 18 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit27.Text <> '' then
-        begin
-            Form1.Edit27.SetFocus;
-            Form1.Button15.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 19 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit28.Text <> '' then
-        begin
-            Form1.Edit28.SetFocus;
-            Form1.Button16.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 20 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit29.Text <> '' then
-        begin
-            Form1.Edit29.SetFocus;
-            Form1.Button17.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 21 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit30.Text <> '' then
-        begin
-            Form1.Edit30.SetFocus;
-            Form1.Button18.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 22 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit31.Text <> '' then
-        begin
-            Form1.Edit31.SetFocus;
-            Form1.Button19.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 23 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit32.Text <> '' then
-        begin
-            Form1.Edit32.SetFocus;
-            Form1.Button20.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 24 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit33.Text <> '' then
-        begin
-            Form1.Edit33.SetFocus;
-            Form1.Button21.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 25 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit34.Text <> '' then
-        begin
-            Form1.Edit34.SetFocus;
-            Form1.Button38.Click;
-            Exit;
-        end
-    end;
-{-------------------------------------------------------------------}
-    if AutoLoopSend = 26 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit35.Text <> '' then
-        begin
-            Form1.Edit35.SetFocus;
-            Form1.Button39.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 27 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit36.Text <> '' then
-        begin
-            Form1.Edit36.SetFocus;
-            Form1.Button40.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 28 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit37.Text <> '' then
-        begin
-            Form1.Edit37.SetFocus;
-            Form1.Button41.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 29 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit38.Text <> '' then
-        begin
-            Form1.Edit38.SetFocus;
-            Form1.Button42.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 30 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit39.Text <> '' then
-        begin
-            Form1.Edit39.SetFocus;
-            Form1.Button43.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 31 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit40.Text <> '' then
-        begin
-            Form1.Edit40.SetFocus;
-            Form1.Button44.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 32 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit41.Text <> '' then
-        begin
-            Form1.Edit41.SetFocus;
-            Form1.Button45.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 33 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit42.Text <> '' then
-        begin
-            Form1.Edit42.SetFocus;
-            Form1.Button46.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 34 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit43.Text <> '' then
-        begin
-            Form1.Edit43.SetFocus;
-            Form1.Button47.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 35 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit44.Text <> '' then
-        begin
-            Form1.Edit44.SetFocus;
-            Form1.Button48.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 36 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit45.Text <> '' then
-        begin
-            Form1.Edit45.SetFocus;
-            Form1.Button49.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 37 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit46.Text <> '' then
-        begin
-            Form1.Edit46.SetFocus;
-            Form1.Button50.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 38 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit47.Text <> '' then
-        begin
-            Form1.Edit47.SetFocus;
-            Form1.Button51.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 39 then
-    begin
-        Inc(AutoLoopSend);
-        if Form1.Edit48.Text <> '' then
-        begin
-            Form1.Edit48.SetFocus;
-            Form1.Button52.Click;
-            Exit;
-        end
-    end;
-
-    if AutoLoopSend = 40 then
-    begin
-        AutoLoopSend := 0;
-        if Form1.Edit49.Text <> '' then
-        begin
-            Form1.Edit49.SetFocus;
-            Form1.Button53.Click;
-            Exit;
-        end
-        else
-        begin
-            //ShowMessage('4444444444444='+IntToStr(HaveData));
-            if HaveData = 1 then
+            if ((Form1.GroupBox9.Controls[i] as tedit).Name = TEname)then
             begin
-                HaveData := 0;
-                //ShowMessage('HaveData='+IntToStr(HaveData));
-                autosend;
-                //ShowMessage('22222222');
+                if (Form1.GroupBox9.Controls[i] as tedit).Text <> '' then
+                begin
+                    (Form1.GroupBox9.Controls[i] as tedit).SetFocus;
+                    BTname := StringReplace(TEname, 'TE', 'BT', [rfReplaceAll]);
+                    cp   :=  Form1.FindComponent(BTname);
+                    TButton(cp).Click();
+                    inc(AutoLoopSend);
+                    if (AutoLoopSend > 41) then
+                       AutoLoopSend := 1;
+                    Exit;
+                end
+                else
+                begin
+                    inc(AutoLoopSend);
+                    if (AutoLoopSend > 41) then
+                       AutoLoopSend := 1;
+                    if (AutoLoopSend < 10) then
+                        TEname := 'TESEND0'+ IntToStr(AutoLoopSend)
+                    else
+                        TEname := 'TESEND'+ IntToStr(AutoLoopSend);
+                end;
             end;
         end;
     end;
@@ -2683,182 +2199,6 @@ end;
 procedure TForm1.Timer3Timer(Sender: TObject);
 begin
     autosend;
-end;
-
-procedure TForm1.Edit4Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND1', Edit4.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit5Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND2', Edit5.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit6Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND3', Edit6.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit7Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND4', Edit7.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit8Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND5', Edit8.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit9Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND6', Edit9.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit10Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND7', Edit10.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit11Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND8', Edit11.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit12Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND9', Edit12.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit13Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND10', Edit13.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit14Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND11', Edit14.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit17Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND12', Edit17.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit16Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND13', Edit16.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit18Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND14', Edit18.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit19Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND15', Edit19.Text);
-    MyIniFile.Destroy;
-end;
-
-procedure TForm1.Edit20Change(Sender: TObject);
-var
-    MyIniFile : TIniFile;
-    FileName : string;
-begin
-    FileName := ExtractFilePath(ParamStr(0)) + 'System.ini';
-    MyIniFile := TIniFile.Create(FileName);
-    MyIniFile.WriteString('AUTOSEND', 'SEND16', Edit20.Text);
-    MyIniFile.Destroy;
 end;
 
 procedure TForm1.N2Click(Sender: TObject);
@@ -3492,7 +2832,7 @@ begin
 
     RecLen := RecLen + DataLen;
     StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
+    //StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(Memo1.Lines.Count);
 end;
 
 procedure TForm1.N5Click(Sender: TObject);
@@ -3564,164 +2904,138 @@ begin
     end;
 end;
 
-procedure TForm1.Button11Click(Sender: TObject);
+procedure TForm1.BTSEND17Click(Sender: TObject);
 
 begin
-    button_send(edit25.text, CheckBox28);
+    button_send(TESEND17.text, CheckBox28);
 end;
 
-procedure TForm1.Button14Click(Sender: TObject);
+procedure TForm1.BTSEND18Click(Sender: TObject);
 begin
-    button_send(edit26.text, CheckBox29);
+    button_send(TESEND18.text, CheckBox29);
 end;
 
-procedure TForm1.Button15Click(Sender: TObject);
+procedure TForm1.BTSEND19Click(Sender: TObject);
 begin
-    button_send(edit27.text, CheckBox30);
+    button_send(TESEND19.text, CheckBox30);
 end;
 
-procedure TForm1.Button16Click(Sender: TObject);
+procedure TForm1.BTSEND20Click(Sender: TObject);
 begin
-    button_send(edit28.text, CheckBox31);
+    button_send(TESEND20.text, CheckBox31);
 end;
 
-procedure TForm1.Button17Click(Sender: TObject);
+procedure TForm1.BTSEND21Click(Sender: TObject);
 begin
-    button_send(edit29.text, CheckBox32);
+    button_send(TESEND21.text, CheckBox32);
 end;
 
-procedure TForm1.Button18Click(Sender: TObject);
+procedure TForm1.BTSEND22Click(Sender: TObject);
 begin
-    button_send(edit30.text, CheckBox33);
+    button_send(TESEND22.text, CheckBox33);
 end;
 
-procedure TForm1.Button19Click(Sender: TObject);
+procedure TForm1.BTSEND23Click(Sender: TObject);
 begin
-    button_send(edit31.text, CheckBox34);
+    button_send(TESEND23.text, CheckBox34);
 end;
 
-procedure TForm1.Button20Click(Sender: TObject);
+procedure TForm1.BTSEND24Click(Sender: TObject);
 begin
-    button_send(edit32.text, CheckBox35);
+    button_send(TESEND24.text, CheckBox35);
 end;
 
-procedure TForm1.Button21Click(Sender: TObject);
+procedure TForm1.BTSEND25Click(Sender: TObject);
 begin
-    button_send(edit33.text, CheckBox36);
+    button_send(TESEND25.text, CheckBox36);
 end;
 
-procedure TForm1.Button38Click(Sender: TObject);
+procedure TForm1.BTSEND26Click(Sender: TObject);
 begin
-    button_send(edit34.text, CheckBox37);
+    button_send(TESEND26.text, CheckBox37);
 end;
 
-procedure TForm1.Button39Click(Sender: TObject);
+procedure TForm1.BTSEND27Click(Sender: TObject);
 begin
-    button_send(edit35.text, CheckBox38);
+    button_send(TESEND27.text, CheckBox38);
 end;
 
-procedure TForm1.Button40Click(Sender: TObject);
+procedure TForm1.BTSEND28Click(Sender: TObject);
 begin
-    button_send(Edit36.Text, checkbox39);
+    button_send(TESEND28.Text, checkbox39);
 end;
 
-procedure TForm1.Button41Click(Sender: TObject);
+procedure TForm1.BTSEND29Click(Sender: TObject);
 begin
-    button_send(Edit37.Text, checkbox40);
+    button_send(TESEND29.Text, checkbox40);
 end;
 
-procedure TForm1.Button42Click(Sender: TObject);
+procedure TForm1.BTSEND30Click(Sender: TObject);
 begin
-    button_send(Edit38.Text, checkbox41);
+    button_send(TESEND30.Text, checkbox41);
 end;
 
-procedure TForm1.Button43Click(Sender: TObject);
+procedure TForm1.BTSEND31Click(Sender: TObject);
 begin
-    button_send(Edit39.Text, checkbox42);
+    button_send(TESEND31.Text, checkbox42);
 end;
 
-procedure TForm1.Button44Click(Sender: TObject);
+procedure TForm1.BTSEND32Click(Sender: TObject);
 begin
-    button_send(Edit40.Text, checkbox43);
+    button_send(TESEND32.Text, checkbox43);
 end;
 
-procedure TForm1.Button45Click(Sender: TObject);
+procedure TForm1.BTSEND33Click(Sender: TObject);
 begin
-    button_send(Edit41.Text, checkbox44);
+    button_send(TESEND33.Text, checkbox44);
 end;
 
-procedure TForm1.Button46Click(Sender: TObject);
+procedure TForm1.BTSEND34Click(Sender: TObject);
 begin
-    button_send(Edit42.Text, checkbox45);
+    button_send(TESEND34.Text, checkbox45);
 end;
 
-procedure TForm1.Button47Click(Sender: TObject);
+procedure TForm1.BTSEND35Click(Sender: TObject);
 begin
-    button_send(Edit43.Text, checkbox46);
+    button_send(TESEND35.Text, checkbox46);
 end;
 
-procedure TForm1.Button48Click(Sender: TObject);
+procedure TForm1.BTSEND36Click(Sender: TObject);
 begin
-    button_send(Edit44.Text, checkbox47);
+    button_send(TESEND36.Text, checkbox47);
 end;
 
-procedure TForm1.Button49Click(Sender: TObject);
+procedure TForm1.BTSEND37Click(Sender: TObject);
 begin
-    button_send(Edit45.Text, checkbox48);
+    button_send(TESEND37.Text, checkbox48);
 end;
 
-procedure TForm1.Button50Click(Sender: TObject);
+procedure TForm1.BTSEND38Click(Sender: TObject);
 begin
-    button_send(Edit46.Text, checkbox49);
+    button_send(TESEND38.Text, checkbox49);
 end;
 
-procedure TForm1.Button51Click(Sender: TObject);
+procedure TForm1.BTSEND39Click(Sender: TObject);
 begin
-    button_send(Edit47.Text, checkbox50);
+    button_send(TESEND39.Text, checkbox50);
 end;
 
-procedure TForm1.Button52Click(Sender: TObject);
+procedure TForm1.BTSEND40Click(Sender: TObject);
 begin
-    button_send(Edit48.Text, checkbox51);
+    button_send(TESEND40.Text, checkbox51);
 end;
 
-procedure TForm1.Button53Click(Sender: TObject);
+procedure TForm1.BTSEND41Click(Sender: TObject);
 begin
-    button_send(Edit49.Text, checkbox52);
+    button_send(TESEND41.Text, checkbox52);
 end;
 
 procedure TForm1.CheckBox53Click(Sender: TObject);
-{var
-    curfile : string;
-    sqlstr : string;}
 begin
-    {if CheckBox53.Checked = True then
-    begin
-        if SaveDialog2.Execute then
-        begin
-            //ShowMessage(SaveDialog2.FileName);
-
-            sqlstr :='[' + DateTimeToStr(Now) + ']';
-            curfile:= SaveDialog2.FileName + '.log';
-            if FileExists(curfile) then
-            begin
-                AssignFile(RealLogFile, curfile);
-                append(RealLogFile);
-                writeln(RealLogFile, sqlstr);
-            end
-            else
-            begin
-                AssignFile(RealLogFile, curfile);
-                ReWrite(RealLogFile);
-                writeln(RealLogFile, sqlstr);
-            end;
-            CloseFile(RealLogFile);
-        end
-        else
-        begin
-            CheckBox53.Checked := False;
-        end;
-    end;}
+    if CheckBox53.Checked = True then
+        SetWindowPos(self.handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE OR SWP_NOSIZE OR SWP_SHOWWINDOW)
+    else
+        setwindowpos(self.handle,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE or SWP_NOSIZE);//取消窗口置顶
 end;
 
 procedure TForm1.Button54Click(Sender: TObject);
@@ -5379,15 +4693,15 @@ end;
 
 procedure TForm1.Button66Click(Sender: TObject);
 begin
-     if Button66.Caption = '折叠' then
+     if Button66.Caption = '折叠↓' then
      begin
         GroupBox1.Height := 50;
-        Button66.Caption := '展开';
+        Button66.Caption := '展开↑';
         GroupBoxinput.Visible := False;
      end
      else
      begin
-        Button66.Caption := '折叠';
+        Button66.Caption := '折叠↓';
         GroupBox1.Height := 124;
         GroupBox1.Align := alTop;
         GroupBox1.Align := alBottom;
@@ -5404,6 +4718,7 @@ begin
         Memo14.Align := alClient;
         GroupBox6.Caption := 'data';
     end;
+    CheckBox54.OnClick(Sender);
 end;
 
 procedure TForm1.RadioButton23Click(Sender: TObject);
@@ -5421,6 +4736,7 @@ begin
         Memo14.Align := alTop;
         GroupBox6.Caption := 'data1/data2';
     end;
+    CheckBox54.OnClick(Sender);
 end;
 
 procedure TForm1.CheckBox5Click(Sender: TObject);
@@ -5607,11 +4923,11 @@ procedure TForm1.Edit60Change(Sender: TObject);
 begin
     if CheckBox57.Checked = True then // hex
     begin
-        GroupBox24.Caption := 'key (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
+        GroupBox24.Caption := 'IV (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Edit60.text))+')';
     end
     else
     begin
-        GroupBox24.Caption := 'key (cur len: ' + IntToStr(Length(Edit60.text))+')';
+        GroupBox24.Caption := 'IV (cur len: ' + IntToStr(Length(Edit60.text))+')';
     end;
 end;
 
@@ -5622,16 +4938,9 @@ begin
         N1ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
-            Button1.Caption := '打开串口';
-            Shape1.Brush.Color := clGray;
-            Comm1.StopComm;
+            Button1.Click;
             Comm1.ReadIntervalTimeout := 1;
-            //if False <>
-            Comm1.StartComm;// then
-            begin
-                Shape1.Brush.Color := clRed;
-                Button1.Caption := '关闭串口'
-            end;
+            Button1.Click;
         end
         else
             Comm1.ReadIntervalTimeout := 1;
@@ -5645,16 +4954,9 @@ begin
         N3ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
-            Button1.Caption := '打开串口';
-            Shape1.Brush.Color := clGray;
-            Comm1.StopComm;
+            Button1.Click;
             Comm1.ReadIntervalTimeout := 3;
-            //if False <>
-            Comm1.StartComm;// then
-            begin
-                Shape1.Brush.Color := clRed;
-                Button1.Caption := '关闭串口'
-            end;
+            Button1.Click;
         end
         else
             Comm1.ReadIntervalTimeout := 3;
@@ -5668,16 +4970,9 @@ begin
         N6ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
-            Button1.Caption := '打开串口';
-            Shape1.Brush.Color := clGray;
-            Comm1.StopComm;
+            Button1.Click;
             Comm1.ReadIntervalTimeout := 6;
-            //if False <>
-            Comm1.StartComm;// then
-            begin
-                Shape1.Brush.Color := clRed;
-                Button1.Caption := '关闭串口'
-            end;
+            Button1.Click;
         end
         else
             Comm1.ReadIntervalTimeout := 6;
@@ -5691,16 +4986,9 @@ begin
         N9ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
-            Button1.Caption := '打开串口';
-            Shape1.Brush.Color := clGray;
-            Comm1.StopComm;
+            Button1.Click;
             Comm1.ReadIntervalTimeout := 9;
-            //if False <>
-            Comm1.StartComm;// then
-            begin
-                Shape1.Brush.Color := clRed;
-                Button1.Caption := '关闭串口'
-            end;
+            Button1.Click;
         end
         else
             Comm1.ReadIntervalTimeout := 9;
@@ -5714,16 +5002,9 @@ begin
         N20ms1.Checked := True;
         if Button1.Caption = '关闭串口' then
         begin
-            Button1.Caption := '打开串口';
-            Shape1.Brush.Color := clGray;
-            Comm1.StopComm;
+            Button1.Click;
             Comm1.ReadIntervalTimeout := 20;
-            //if False <>
-            Comm1.StartComm;// then
-            begin
-                Shape1.Brush.Color := clRed;
-                Button1.Caption := '关闭串口'
-            end;
+            Button1.Click;
         end
         else
             Comm1.ReadIntervalTimeout := 20;
@@ -5746,6 +5027,343 @@ begin
         Memo1.ScrollBars := ssVertical;
         N20.Checked := true;
     end;
+end;
+
+procedure TForm1.CheckBox57Click(Sender: TObject);
+begin
+    Edit59.OnChange(Sender);
+    Edit60.OnChange(Sender);
+    Memo8.OnChange(Sender);
+end;
+
+procedure TForm1.Memo8Change(Sender: TObject);
+begin
+    if CheckBox57.Checked = True then // hex
+    begin
+        GroupBox19.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo8.text))+')';
+    end
+    else
+    begin
+        GroupBox19.Caption := 'data (cur len: ' + IntToStr(Length(Memo8.text))+')';
+    end;
+end;
+
+procedure TForm1.memo7Change(Sender: TObject);
+begin
+    if CheckBox55.Checked = True then // hex
+    begin
+        GroupBox17.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo7.text))+')';
+    end
+    else
+    begin
+        GroupBox17.Caption := 'data (cur len: ' + IntToStr(Length(Memo7.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit50Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label2.Caption := IntToStr(GetTwoAsciiToHexLen(Edit50.text));
+    end
+    else
+    begin
+        Label2.Caption := IntToStr(Length(Edit50.text));
+    end;
+end;
+
+procedure TForm1.Edit51Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label3.Caption := IntToStr(GetTwoAsciiToHexLen(Edit51.text));
+    end
+    else
+    begin
+        Label3.Caption := IntToStr(Length(Edit51.text));
+    end;
+end;
+
+procedure TForm1.Edit58Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label5.Caption := IntToStr(GetTwoAsciiToHexLen(Edit58.text));
+    end
+    else
+    begin
+        Label5.Caption := IntToStr(Length(Edit58.text));
+    end;
+end;
+
+    procedure TForm1.Edit57Change(Sender: TObject);
+begin
+    if CheckBox56.Checked = True then // hex
+    begin
+        Label6.Caption := IntToStr(GetTwoAsciiToHexLen(Edit57.text));
+    end
+    else
+    begin
+        Label6.Caption := IntToStr(Length(Edit57.text));
+    end;
+end;
+
+procedure TForm1.CheckBox55Click(Sender: TObject);
+begin
+    Edit50.OnChange(Sender);
+    Edit51.OnChange(Sender);
+    Edit58.OnChange(Sender);
+    Edit57.OnChange(Sender);
+    memo7.OnChange(Sender);
+end;
+
+procedure TForm1.CheckBox56Click(Sender: TObject);
+begin
+    Edit50.OnChange(Sender);
+    Edit51.OnChange(Sender);
+    Edit58.OnChange(Sender);
+    Edit57.OnChange(Sender);
+    memo7.OnChange(Sender);
+end;
+
+procedure TForm1.Memo12Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        GroupBox30.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo12.text))+')';
+    end
+    else
+    begin
+        GroupBox30.Caption := 'data (cur len: ' + IntToStr(Length(Memo12.text))+')';
+    end;
+end;
+
+procedure TForm1.Edit52Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label7.Caption := IntToStr(GetTwoAsciiToHexLen(Edit52.text));
+    end
+    else
+    begin
+        Label7.Caption := IntToStr(Length(Edit52.text));
+    end;
+end;
+
+procedure TForm1.Edit53Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label8.Caption := IntToStr(GetTwoAsciiToHexLen(Edit53.text));
+    end
+    else
+    begin
+        Label8.Caption := IntToStr(Length(Edit53.text));
+    end;
+end;
+
+procedure TForm1.Edit54Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label29.Caption := IntToStr(GetTwoAsciiToHexLen(Edit54.text));
+    end
+    else
+    begin
+        Label29.Caption := IntToStr(Length(Edit54.text));
+    end;
+end;
+
+procedure TForm1.Edit55Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label30.Caption := IntToStr(GetTwoAsciiToHexLen(Edit55.text));
+    end
+    else
+    begin
+        Label30.Caption := IntToStr(Length(Edit55.text));
+    end;
+end;
+
+procedure TForm1.Edit56Change(Sender: TObject);
+begin
+    if CheckBox59.Checked = True then // hex
+    begin
+        Label31.Caption := IntToStr(GetTwoAsciiToHexLen(Edit56.text));
+    end
+    else
+    begin
+        Label31.Caption := IntToStr(Length(Edit56.text));
+    end;
+end;
+
+procedure TForm1.CheckBox59Click(Sender: TObject);
+begin
+    Edit52.OnChange(Sender);
+    Edit53.OnChange(Sender);
+    Edit54.OnChange(Sender);
+    Edit55.OnChange(Sender);
+    Edit56.OnChange(Sender);
+    Memo12.OnChange(Sender);
+end;
+
+procedure TForm1.Memo11Change(Sender: TObject);
+begin
+    if CheckBox58.Checked = True then // hex
+    begin
+        GroupBox26.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo11.text))+')';
+    end
+    else
+    begin
+        GroupBox26.Caption := 'data (cur len: ' + IntToStr(Length(Memo11.text))+')';
+    end;
+end;
+
+procedure TForm1.CheckBox58Click(Sender: TObject);
+begin
+    Memo11.OnChange(Sender);
+end;
+
+procedure TForm1.Memo13Change(Sender: TObject);
+begin
+    if CheckBox61.Checked = True then // hex
+    begin
+        GroupBox15.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo13.text))+')';
+    end
+    else
+    begin
+        GroupBox15.Caption := 'data (cur len: ' + IntToStr(Length(Memo13.text))+')';
+    end;
+end;
+
+procedure TForm1.CheckBox61Click(Sender: TObject);
+begin
+     Memo13.OnChange(Sender);
+     if CheckBox61.Checked = True then
+        TwoAsciiToHex(Memo13.Text);
+end;
+
+procedure TForm1.CheckBox26Click(Sender: TObject);
+begin
+    Memo5.OnChange(Sender);
+    if CheckBox26.Checked = True then
+      TwoAsciiToHex(Memo5.Text);
+end;
+
+procedure TForm1.Memo5Change(Sender: TObject);
+begin
+    if CheckBox26.Checked = True then // hex
+    begin
+        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo5.text))+')';
+    end
+    else
+    begin
+        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(Length(Memo5.text))+')';
+    end;
+end;
+
+procedure TForm1.Memo14Change(Sender: TObject);
+var
+    d1,d2 : string;
+begin
+    if CheckBox54.Checked = True then // hex
+    begin
+        d1 := 'd1(' + IntToStr(GetTwoAsciiToHexLen(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(GetTwoAsciiToHexLen(Memo15.text))+')';
+    end
+    else
+    begin
+        d1 := 'd1(' + IntToStr(Length(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(Length(Memo15.text))+')';
+    end;
+
+    if RadioButton24.Checked = True then
+    begin
+        GroupBox6.Caption := d1;
+    end
+    else
+    begin
+        GroupBox6.Caption := d1 + '/' + d2;
+    end;
+end;
+
+procedure TForm1.CheckBox54Click(Sender: TObject);
+begin
+    Memo14.OnChange(Sender);
+    Memo15.OnChange(Sender);
+end;
+
+procedure TForm1.Memo15Change(Sender: TObject);
+var
+    d1,d2 : string;
+begin
+    if CheckBox54.Checked = True then // hex
+    begin
+        d1 := 'd1(' + IntToStr(GetTwoAsciiToHexLen(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(GetTwoAsciiToHexLen(Memo15.text))+')';
+    end
+    else
+    begin
+        d1 := 'd1(' + IntToStr(Length(Memo14.text))+')';
+        d2 := 'd2(' + IntToStr(Length(Memo15.text))+')';
+    end;
+
+    if RadioButton24.Checked = True then
+    begin
+        GroupBox6.Caption := d1;
+    end
+    else
+    begin
+        GroupBox6.Caption := d1 + '/' + d2;
+    end;
+end;
+
+procedure TForm1.Button67Click(Sender: TObject);
+var
+    StrTemp,strbuf: string;
+begin
+    StrTemp := Memo13.Text;
+    if CheckBox61.Checked = True then
+    begin
+        StrTemp := TwoAsciiToHex(StrTemp);
+    end;
+
+    Display_Info(UTF8ToAnsi(StrTemp));
+end;
+
+procedure TForm1.Memo2Change(Sender: TObject);
+begin
+    if CheckBox2.Checked = True then // hex
+    begin
+        GroupBoxinput.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo2.text))+')';
+    end
+    else
+    begin
+        GroupBoxinput.Caption := 'data (cur len: ' + IntToStr(Length(Memo2.text))+')';
+    end;
+end;
+
+procedure TForm1.BitBtn2Click(Sender: TObject);
+var
+  i: integer;
+begin
+    for i := 0 to GroupBox9.ControlCount - 1 do
+    begin
+        if GroupBox9.Controls[i].ClassType = tedit then
+        begin
+            (GroupBox9.Controls[i] as tedit).Text := '';
+        end;
+    end;
+end;
+
+procedure TForm1.ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+    if WheelDelta < 0 then
+        ScrollBox1.Perform(WM_VSCROLL,SB_LINEDOWN,0)
+    else
+        ScrollBox1.Perform(WM_VSCROLL,SB_LINEUP,0);
 end;
 
 end.

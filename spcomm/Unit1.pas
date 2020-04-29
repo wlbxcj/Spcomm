@@ -173,7 +173,6 @@ type
     BitBtn1: TBitBtn;
     Button13: TButton;
     CheckBox5: TCheckBox;
-    CheckBox60: TCheckBox;
     Button7: TButton;
     ScrollBox1: TScrollBox;
     GroupBox9: TGroupBox;
@@ -388,6 +387,13 @@ type
     CheckBox53: TCheckBox;
     Button67: TButton;
     BitBtn2: TBitBtn;
+    Label32: TLabel;
+    Edit4: TEdit;
+    Label33: TLabel;
+    ComboBox5: TComboBox;
+    CheckBox60: TCheckBox;
+    Label34: TLabel;
+    check_result: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -585,6 +591,10 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+    procedure ComboBox5Change(Sender: TObject);
+    procedure CheckBox60Click(Sender: TObject);
+    procedure Edit4Change(Sender: TObject);
+    procedure Edit4KeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -733,6 +743,121 @@ begin
     RawDatalen := 0;
 end;
 
+function Swap16(const Value: Word): Word;
+begin
+    Result := Swap(Value);
+end;
+
+function Swap32(const Value: DWord): DWord;
+begin
+    Result := (DWord(Swap(Word(Value))) shl 16) + Swap(Word(Value shr 16));
+    {Result := (DWord(Swap(Word(Value))) shl 16);
+    ShowMessage(IntToHex(Result, 4));
+    ShowMessage(IntToHex(Swap(DWord(Value) shr 16), 4));
+    Result := Result + Swap(dWord(Value) shr 16);}
+end;
+{
+0-None
+1-Xor
+2-Add
+3-CRC16
+4-CRC16(8005)
+5-CRC16(Modbus)
+6-CRC-CCITT(Sick)
+7-CRC-CCITT(XModem)
+8-CRC-CCITT(0xFFFF)
+9-CRC-CCITT(0x1D0F)
+10-CRC-CCITT(Kermit)
+11-CRC-DNP
+12-CRC-32
+}
+//mode 是否大小端切换， 0：不切换，其它则切换
+function get_check_value(id:Integer; data_str:string; offset:Integer; mode:Boolean):DWORD;
+var
+    i,j,data_len : DWORD;
+begin
+    data_len := Length(data_str);
+    if offset > 1 then
+        data_str := Copy(data_str, offset, data_len - offset + 1);
+    data_len := Length(data_str);
+    Result := 0;
+    if id = 1 then     //xor
+    begin
+        for j:= 1 to data_len do
+        begin
+             //ShowMessage(StrTemp[j]);
+            Result := Result xor Integer(data_str[j]);
+            Result := Result and $00ff;
+        end
+    end
+    else if id = 2 then     //add
+    begin
+        for j:= 1 to data_len do
+        begin
+             //ShowMessage(StrTemp[j]);
+            Result := Result + Integer(data_str[j]);
+            Result := Result and $00ff;
+        end
+    end
+    else if id = 3 then     //CRC16
+    begin
+        Result := Unit_CRC.Calcu_crc_16($0000, data_str);
+    end
+    else if id = 4 then     //CRC16(8005)
+    begin
+        Result := Unit_CRC.OriginalCalcuCRC_16(data_str);
+        //Display_Info('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 5 then     //CRC16(Modbus)
+    begin
+        Result := Unit_CRC.Calcu_crc_16($FFFF, data_str);
+        //Display_Info('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 6 then     //CRC-CCITT(Sick)
+    begin
+        Result := Unit_CRC.Calcu_crc_sick(data_str);
+        //Display_Info('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 7 then     //CRC-CCITT(XModem)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($0000, data_str);
+        //Display_Info('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 8 then     //CRC-CCITT(0xFFFF)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($FFFF, data_str);
+        //Display_Info('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 9 then     //CRC-CCITT(0x1D0F)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($1D0F, data_str);
+        //Display_Info('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 10 then     //CRC-CCITT(Kermit)
+    begin
+        Result := Unit_CRC.Calcu_crc_kermit(data_str);
+        //Display_Info('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 11 then     //CRC-DNP
+    begin
+        Result := Unit_CRC.Calcu_crc_dnp(data_str);
+        //Display_Info('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 12 then     //CRC32
+    begin
+        Result := Unit_CRC.Calcu_crc_32(data_str);
+        //Display_Info('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
+    end;
+
+    if (mode <> False) then
+    begin
+        if (id > 2) and (id < 12) then
+            Result := Swap16(Result)
+        else if id = 12 then
+            Result := Swap32(Result);
+    end;
+    //Display_Info('id:'+inttostr(id)+' result:'+inttohex(Result, 2));
+end;
 function IsHexDataStr(data:string):Boolean;
 var
     i : Integer;
@@ -1099,38 +1224,42 @@ end;
 
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+    str_tmp : string;
 begin
+     str_tmp := ComboBox4.Items[ComboBox4.itemindex];
+     SetLength(str_tmp, 1);
      if Button1.Caption = '打开串口' then
      begin
          Comm1.CommName := ComboBox1.items[ComboBox1.itemindex];
          //Comm1.BaudRate := StrToInt(ComboBox2.items[ComboBox2.itemindex]);
          Comm1.BaudRate := StrToInt(ComboBox2.text);
-         if ComboBox4.Items[ComboBox4.itemindex] = '5' then
+         if ComboBox3.Items[ComboBox3.itemindex] = '5' then
          begin
               Comm1.ByteSize := _5;
          end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '6' then
+         else if  ComboBox3.Items[ComboBox4.itemindex] = '6' then
          begin
               Comm1.ByteSize := _6;
          end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '7' then
+         else if  ComboBox3.Items[ComboBox3.itemindex] = '7' then
          begin
               Comm1.ByteSize := _7;
          end
-         else if  ComboBox4.Items[ComboBox4.itemindex] = '8' then
+         else if  ComboBox3.Items[ComboBox3.itemindex] = '8' then
          begin
               Comm1.ByteSize := _8;
          end;
 
-         if ComboBox3.Items[ComboBox3.itemindex] = 'None' then
+         if ComboBox4.Items[ComboBox4.itemindex] = 'None' then
          begin
               Comm1.Parity := None;
          end
-         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Even' then
+         else if  ComboBox4.Items[ComboBox4.itemindex] = 'Even' then
          begin
               Comm1.Parity := Even;
          end
-         else if  ComboBox3.Items[ComboBox3.itemindex] = 'Odd' then
+         else if  ComboBox3.Items[ComboBox4.itemindex] = 'Odd' then
          begin
               Comm1.Parity := Odd;
          end;
@@ -1144,7 +1273,8 @@ begin
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
               Timer5.Interval := 6000;
-              StatusBar1.Panels[2].Text := Comm1.CommName + ' 已打开 ' +  ComboBox2.text +','+ComboBox4.Items[ComboBox4.itemindex]+','+ ComboBox3.Items[ComboBox3.itemindex];
+
+              StatusBar1.Panels[2].Text := Comm1.CommName + ' 已打开 ' +  ComboBox2.text +','+ComboBox3.Items[ComboBox3.itemindex]+','+ str_tmp+',1';
          end;
      end
      else
@@ -1162,7 +1292,7 @@ begin
           Timer3.Enabled := False;
           //TotalComNum := 0;
           Timer5.Interval := 1000;
-          StatusBar1.Panels[2].Text := Comm1.CommName + ' 已关闭 ' +  ComboBox2.text +','+ComboBox4.Items[ComboBox4.itemindex]+','+ ComboBox3.Items[ComboBox3.itemindex];
+          StatusBar1.Panels[2].Text := Comm1.CommName + ' 已关闭 ' +  ComboBox2.text +','+ComboBox3.Items[ComboBox3.itemindex]+','+ str_tmp+',1';
      end;
 end;
 
@@ -1452,6 +1582,7 @@ var
    //aucBuf : array[0..4096] of byte;
    SendBuf : string;
    strbuf : string;
+   result : DWORD;
 begin
      strbuf :=Memo2.text;
      sendbuf := '';
@@ -1482,31 +1613,59 @@ begin
                    //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
                    SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
               end;
-              //comm1.writecommdata(@aucBuf, TextLen div 2 + textLen mod 2);
-              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
-              //ShowMessage(IntToStr(TextLen div 2 + TextLen mod 2));
+              //comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
               SendLen := SendLen + TextLen div 2 + textLen mod 2;
+              TextLen := TextLen div 2 + textLen mod 2;
           end;
      end
      else
      begin
          if Length(Memo2.Text) > 0 then
          begin
-              comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
-         end;
-         if CheckBox6.Checked = true then
-         begin
-              strbuf := #13;
-              comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
-         end;
-         if CheckBox7.Checked = true then
-         begin
-              strbuf := #10;
-              comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
+            sendbuf := Memo2.text;
+            TextLen := Length(Memo2.Text);
+              //comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
          end;
          SendLen := SendLen + Length(Memo2.Text);
+     end;
+
+     if ComboBox5.ItemIndex > 0 then
+     begin
+         Result := get_check_value(ComboBox5.ItemIndex, sendbuf, StrToInt(Edit4.Text), checkbox60.checked);
+         if (ComboBox5.ItemIndex > 0) and (ComboBox5.ItemIndex < 3) then
+         begin
+            sendbuf := sendbuf +  Char(Result);
+            SendLen := SendLen + 1;
+            TextLen := TextLen + 1;
+            check_result.caption :=  inttohex(Result, 2);
+         end
+         else if (ComboBox5.ItemIndex > 2) and (ComboBox5.ItemIndex < 12) then
+         begin
+             sendbuf := sendbuf + Char(Result shr 8) + Char(Result);
+             SendLen := SendLen + 2;
+             TextLen := TextLen + 2;
+             check_result.caption :=  inttohex(Result, 4);
+         end
+         else if (ComboBox5.ItemIndex = 12) then
+         begin
+             sendbuf := sendbuf + Char(Result shr 24) + Char(Result shr 16) + Char(Result shr 8) + Char(Result);
+             SendLen := SendLen + 4;
+             TextLen := TextLen + 4;
+             check_result.caption :=  inttohex(Result, 8);
+         end;
+     end;
+     comm1.writecommdata(pchar(sendbuf), TextLen);
+     if CheckBox6.Checked = true then
+     begin
+          strbuf := #13;
+          comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
+     end;
+     if CheckBox7.Checked = true then
+     begin
+          strbuf := #10;
+          comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
      end;
      StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
@@ -1553,7 +1712,7 @@ var
    strbuf : string;
 begin
      Memo2.oNChange(Sender);
-
+     Edit4.OnChange(Sender);
      strbuf :=Memo2.text;
      if CheckBox2.Checked = True then
      begin
@@ -5338,11 +5497,11 @@ procedure TForm1.Memo2Change(Sender: TObject);
 begin
     if CheckBox2.Checked = True then // hex
     begin
-        GroupBoxinput.Caption := 'data (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo2.text))+')';
+        GroupBoxinput.Caption := 'data (len: ' + IntToStr(GetTwoAsciiToHexLen(Memo2.text))+')';
     end
     else
     begin
-        GroupBoxinput.Caption := 'data (cur len: ' + IntToStr(Length(Memo2.text))+')';
+        GroupBoxinput.Caption := 'data (len: ' + IntToStr(Length(Memo2.text))+')';
     end;
 end;
 
@@ -5366,6 +5525,73 @@ begin
         ScrollBox1.Perform(WM_VSCROLL,SB_LINEDOWN,0)
     else
         ScrollBox1.Perform(WM_VSCROLL,SB_LINEUP,0);
+end;
+
+procedure TForm1.ComboBox5Change(Sender: TObject);
+var
+    data_str : string;
+    result, show_len, offset, len: dword;
+    mode : Boolean;
+begin
+    if (ComboBox5.itemindex <> 0) and (Memo2.Text <> '')then
+    begin
+        data_str := Memo2.Text;
+        offset := StrToInt(Edit4.Text);
+
+        if HexSendFlag = True then
+            data_str := TwoAsciiToHex(data_str);
+        //len := Length(data_str);
+        //data_str := Copy(data_str, offset, len - offset + 1);
+        mode := CheckBox60.Checked;
+        Result := get_check_value(ComboBox5.itemindex, data_str, offset, mode);
+        if ComboBox5.itemindex <= 2 then
+            show_len := 2
+        else if ComboBox5.ItemIndex = 12 then
+            show_len := 8
+        else
+            show_len := 4;
+        check_result.caption :=  inttohex(Result, show_len);
+    end
+    else
+    begin
+        check_result.caption :=  '';
+    end;
+end;
+
+procedure TForm1.CheckBox60Click(Sender: TObject);
+begin
+    ComboBox5.OnChange(Sender);
+end;
+
+procedure TForm1.Edit4Change(Sender: TObject);
+var
+    data_len, input_len : Integer;
+    str_tmp : string;
+begin
+    str_tmp := Memo2.Text;
+    if CheckBox2.Checked = True then
+        str_tmp := TwoAsciiToHex(Memo2.Text);
+
+    data_len := Length(str_tmp);
+    input_len := StrToInt(Edit4.Text);
+    if data_len = 0 then
+        Edit4.Text := '0';
+    if (data_len > 0) then
+    begin
+        if input_len > data_len then
+            Edit4.Text := IntToStr(Length(str_tmp));
+        if input_len = 0 then
+            Edit4.Text := '1';
+    end;
+end;
+
+procedure TForm1.Edit4KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+    begin
+        //ShowMessage('请输入0..9');
+        Key := char(0);
+    end;
 end;
 
 end.

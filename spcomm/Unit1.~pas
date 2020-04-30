@@ -595,6 +595,8 @@ type
     procedure CheckBox60Click(Sender: TObject);
     procedure Edit4Change(Sender: TObject);
     procedure Edit4KeyPress(Sender: TObject; var Key: Char);
+    procedure CheckBox6Click(Sender: TObject);
+    procedure CheckBox7Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -1086,8 +1088,8 @@ begin
 end;
 
 procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
-begin 
-    case   Msg.WParam   of 
+begin
+    case   Msg.WParam   of
         //SC_MINIMIZE   :   ShowMessage( '最小化 ');
         //SC_MAXIMIZE   :   ;//ShowMessage( '最大化 ');
           SC_RESTORE    :
@@ -1298,9 +1300,10 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
-    MyIniFile : TIniFile;
-    FileName : string;
     strIp : string;
+    i : Integer;
+    MyIniFile : TIniFile;
+    FileName, str_tmp, name_str : string;
 begin
      SendLen := 0;
      RecLen  := 0;
@@ -1314,49 +1317,19 @@ begin
           MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
           MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
-          MyIniFile.WriteString('AUTOSEND', 'SEND1', TESEND01.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND2', TESEND02.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND3', TESEND03.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND4', TESEND04.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND5', TESEND05.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND6', TESEND06.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND7', TESEND07.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND8', TESEND08.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND9', TESEND09.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND10', TESEND10.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND11', TESEND11.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND12', TESEND12.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND13', TESEND13.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND14', TESEND14.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND15', TESEND15.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND16', TESEND16.Text);
-
-          MyIniFile.WriteString('AUTOSEND', 'SEND17', TESEND17.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND18', TESEND18.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND19', TESEND19.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND20', TESEND20.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND21', TESEND21.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND22', TESEND22.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND23', TESEND23.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND24', TESEND24.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND25', TESEND25.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND26', TESEND26.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND27', TESEND27.Text);
-
-          MyIniFile.WriteString('AUTOSEND', 'SEND28', TESEND28.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND29', TESEND29.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND30', TESEND30.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND31', TESEND31.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND32', TESEND32.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND33', TESEND33.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND34', TESEND34.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND35', TESEND35.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND36', TESEND36.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND37', TESEND37.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND38', TESEND38.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND39', TESEND39.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND40', TESEND40.Text);
-          MyIniFile.WriteString('AUTOSEND', 'SEND41', TESEND41.Text);
+          for i := 0 to GroupBox9.ControlCount - 1 do
+          begin
+              if GroupBox9.Controls[i].ClassType = tedit then
+              begin
+                  if (GroupBox9.Controls[i] as tedit).Text <> '' then
+                  begin
+                      str_tmp := (GroupBox9.Controls[i] as tedit).Text;
+                      name_str := (GroupBox9.Controls[i] as tedit).Name;
+                      str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
+                      MyIniFile.WriteString('AUTOSEND', name_str, str_tmp);
+                  end;
+              end;
+          end;
 
           MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
           MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
@@ -1370,49 +1343,17 @@ begin
           ComboBox3.itemindex := MyIniFile.ReadInteger('COM', 'ByteSize', 0);
           ComboBox4.itemindex := MyIniFile.ReadInteger('COM', 'Parity', 0);
 
-          TESEND01.Text := MyIniFile.ReadString('AUTOSEND', 'SEND1', '');
-          TESEND02.Text := MyIniFile.ReadString('AUTOSEND', 'SEND2',  '');
-          TESEND03.Text := MyIniFile.ReadString('AUTOSEND', 'SEND3',  '');
-          TESEND04.Text := MyIniFile.ReadString('AUTOSEND', 'SEND4',  '');
-          TESEND05.Text := MyIniFile.ReadString('AUTOSEND', 'SEND5',  '');
-          TESEND06.Text := MyIniFile.ReadString('AUTOSEND', 'SEND6',  '');
-          TESEND07.Text := MyIniFile.ReadString('AUTOSEND', 'SEND7',  '');
-          TESEND08.Text := MyIniFile.ReadString('AUTOSEND', 'SEND8',  '');
-          TESEND09.Text := MyIniFile.ReadString('AUTOSEND', 'SEND9',  '');
-          TESEND10.Text := MyIniFile.ReadString('AUTOSEND', 'SEND10',  '');
-          TESEND11.Text := MyIniFile.ReadString('AUTOSEND', 'SEND11',  '');
-          TESEND12.Text := MyIniFile.ReadString('AUTOSEND', 'SEND12',  '');
-          TESEND13.Text := MyIniFile.ReadString('AUTOSEND', 'SEND13',  '');
-          TESEND14.Text := MyIniFile.ReadString('AUTOSEND', 'SEND14',  '');
-          TESEND15.Text := MyIniFile.ReadString('AUTOSEND', 'SEND15',  '');
-          TESEND16.Text := MyIniFile.ReadString('AUTOSEND', 'SEND16',  '');
-
-          TESEND17.Text := MyIniFile.ReadString('AUTOSEND', 'SEND17', '');
-          TESEND18.Text := MyIniFile.ReadString('AUTOSEND', 'SEND18', '');
-          TESEND19.Text := MyIniFile.ReadString('AUTOSEND', 'SEND19', '');
-          TESEND20.Text := MyIniFile.ReadString('AUTOSEND', 'SEND20', '');
-          TESEND21.Text := MyIniFile.ReadString('AUTOSEND', 'SEND21', '');
-          TESEND22.Text := MyIniFile.ReadString('AUTOSEND', 'SEND22', '');
-          TESEND23.Text := MyIniFile.ReadString('AUTOSEND', 'SEND23', '');
-          TESEND24.Text := MyIniFile.ReadString('AUTOSEND', 'SEND24', '');
-          TESEND25.Text := MyIniFile.ReadString('AUTOSEND', 'SEND25', '');
-          TESEND26.Text := MyIniFile.ReadString('AUTOSEND', 'SEND26', '');
-          TESEND27.Text := MyIniFile.ReadString('AUTOSEND', 'SEND27', '');
-
-          TESEND28.Text := MyIniFile.ReadString('AUTOSEND', 'SEND28', '');
-          TESEND29.Text := MyIniFile.ReadString('AUTOSEND', 'SEND29', '');
-          TESEND30.Text := MyIniFile.ReadString('AUTOSEND', 'SEND30', '');
-          TESEND31.Text := MyIniFile.ReadString('AUTOSEND', 'SEND31', '');
-          TESEND32.Text := MyIniFile.ReadString('AUTOSEND', 'SEND32', '');
-          TESEND33.Text := MyIniFile.ReadString('AUTOSEND', 'SEND33', '');
-          TESEND34.Text := MyIniFile.ReadString('AUTOSEND', 'SEND34', '');
-          TESEND35.Text := MyIniFile.ReadString('AUTOSEND', 'SEND35', '');
-          TESEND36.Text := MyIniFile.ReadString('AUTOSEND', 'SEND36', '');
-          TESEND37.Text := MyIniFile.ReadString('AUTOSEND', 'SEND37', '');
-          TESEND38.Text := MyIniFile.ReadString('AUTOSEND', 'SEND38', '');
-          TESEND39.Text := MyIniFile.ReadString('AUTOSEND', 'SEND39', '');
-          TESEND40.Text := MyIniFile.ReadString('AUTOSEND', 'SEND40', '');
-          TESEND41.Text := MyIniFile.ReadString('AUTOSEND', 'SEND41', '');
+          str_tmp := MyIniFile.ReadString('SINGLESEND', 'SEND', '');
+          Memo2.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          for i := 0 to GroupBox9.ControlCount - 1 do
+          begin
+              if GroupBox9.Controls[i].ClassType = tedit then
+              begin
+                  name_str := (GroupBox9.Controls[i] as tedit).Name;
+                  str_tmp := MyIniFile.ReadString('AUTOSEND', name_str, '');
+                  (GroupBox9.Controls[i] as tedit).Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+              end;
+          end;
 
           Edit15.Text := MyIniFile.ReadString('TCP', 'SERVER_PORT',  '');
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
@@ -1423,6 +1364,54 @@ begin
           Memo1.Font.style:=  TfontStyles(Byte(MyIniFile.ReadInteger('DIS_PARA', 'font_style', 0)));
           Memo1.Font.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'font_color', 'clWindowText'));
           Memo1.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'back_color', 'clWindow'));
+
+          str_tmp := MyIniFile.ReadString('HIDSEND', 'SEND', str_tmp);
+          Memo4.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('TCPSEND', 'SEND', str_tmp);
+          Memo5.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('DES-MAC', 'DATA', str_tmp);
+          Memo7.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('DES-MAC', 'K1', str_tmp);
+          Edit50.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('DES-MAC', 'K2', str_tmp);
+          Edit51.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('DES-MAC', 'K3', str_tmp);
+          Edit58.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('DES-MAC', 'IV', str_tmp);
+          Edit57.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('AES', 'DATA', str_tmp);
+          Memo12.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('AES', 'K1', str_tmp);
+          Edit52.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('AES', 'K2', str_tmp);
+          Edit53.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('AES', 'K3', str_tmp);
+          Edit54.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('AES', 'K4', str_tmp);
+          Edit55.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('AES', 'IV', str_tmp);
+          Edit56.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('SM4', 'DATA', str_tmp);
+          Memo8.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('SM4', 'K1', str_tmp);
+          Edit59.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('SM4', 'IV', str_tmp);
+          Edit60.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('HASH', 'DATA', str_tmp);
+          Memo11.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('XOR', 'DATA1', str_tmp);
+          Memo14.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          str_tmp := MyIniFile.ReadString('XOR', 'DATA2', str_tmp);
+          Memo15.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+
+          str_tmp := MyIniFile.ReadString('MORE', 'DATA', str_tmp);
+          Memo13.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
@@ -1701,6 +1690,7 @@ begin
                HexSendFlag := False;
                Exit;
           end;
+          CheckBox2.Font.Color := clRed;
           HexSendFlag := True;
           Memo2.oNChange(Sender);
           Edit4.OnChange(Sender);
@@ -1710,13 +1700,15 @@ begin
           HexSendFlag := False;
           Memo2.oNChange(Sender);
           Edit4.OnChange(Sender);
+          CheckBox2.Font.Color := clWindowText;
      end;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 var
+    i : Integer;
     MyIniFile : TIniFile;
-    FileName : string;
+    FileName, str_tmp, name_str : string;
 begin
     FreeMemory(pRawData);
 
@@ -1727,91 +1719,24 @@ begin
     MyIniFile.WriteInteger('COM', 'ByteSize', ComboBox3.itemindex);
     MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
-    if TESEND01.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND1', TESEND01.Text);
-    if TESEND02.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND2', TESEND02.Text);
-    if TESEND03.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND3', TESEND03.Text);
-    if TESEND04.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND4', TESEND04.Text);
-    if TESEND05.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND5', TESEND05.Text);
-    if TESEND06.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND6', TESEND06.Text);
-    if TESEND07.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND7', TESEND07.Text);
-    if TESEND08.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND8', TESEND08.Text);
-    if TESEND09.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND9', TESEND09.Text);
+    str_tmp := Memo2.Text;
+    str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('SINGLESEND', 'SEND', str_tmp);
 
-    if TESEND10.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND10', TESEND10.Text);
-    if TESEND11.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND11', TESEND11.Text);
-    if TESEND12.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND12', TESEND12.Text);
-    if TESEND13.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND13', TESEND13.Text);
-    if TESEND14.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND14', TESEND14.Text);
-    if TESEND15.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND15', TESEND15.Text);
-    if TESEND16.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND16', TESEND16.Text);
-    if TESEND17.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND17', TESEND17.Text);
-    if TESEND18.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND18', TESEND18.Text);
-    if TESEND19.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND19', TESEND19.Text);
-
-    if TESEND20.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND20', TESEND20.Text);
-    if TESEND21.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND21', TESEND21.Text);
-    if TESEND22.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND22', TESEND22.Text);
-    if TESEND23.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND23', TESEND23.Text);
-    if TESEND24.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND24', TESEND24.Text);
-    if TESEND25.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND25', TESEND25.Text);
-    if TESEND26.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND26', TESEND26.Text);
-    if TESEND27.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND27', TESEND27.Text);
-    if TESEND28.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND28', TESEND28.Text);
-    if TESEND29.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND29', TESEND29.Text);
-
-    if TESEND30.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND30', TESEND30.Text);
-    if TESEND31.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND31', TESEND31.Text);
-    if TESEND32.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND32', TESEND32.Text);
-    if TESEND33.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND33', TESEND33.Text);
-    if TESEND34.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND34', TESEND34.Text);
-    if TESEND35.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND35', TESEND35.Text);
-    if TESEND36.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND36', TESEND36.Text);
-    if TESEND37.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND37', TESEND37.Text);
-    if TESEND38.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND38', TESEND38.Text);
-    if TESEND39.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND39', TESEND39.Text);
-    if TESEND40.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND40', TESEND40.Text);
-    if TESEND41.Text <> '' then
-        MyIniFile.WriteString('AUTOSEND', 'SEND41', TESEND41.Text);
+    for i := 0 to GroupBox9.ControlCount - 1 do
+    begin
+        if GroupBox9.Controls[i].ClassType = tedit then
+        begin
+            if (GroupBox9.Controls[i] as tedit).Text <> '' then
+            begin
+                str_tmp := (GroupBox9.Controls[i] as tedit).Text;
+                name_str := (GroupBox9.Controls[i] as tedit).Name;
+                str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
+                MyIniFile.WriteString('AUTOSEND', name_str, str_tmp);
+            end;
+        end;
+    end;
+    MyIniFile.WriteString('AUTOSEND', 'INTERVALS', Edit3.Text);
 
     MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
@@ -1822,6 +1747,54 @@ begin
     MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(Memo1.Font.Color));
     MyIniFile.WriteInteger('DIS_PARA', 'font_style', BYte(Memo1.Font.style));
     MyIniFile.WriteString('DIS_PARA', 'back_color', ColorToString(Memo1.Color));
+
+    str_tmp := StringReplace(Memo4.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('HIDSEND', 'SEND', str_tmp);
+
+    str_tmp := StringReplace(Memo5.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('TCPSEND', 'SEND', str_tmp);
+
+    str_tmp := StringReplace(Memo7.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('DES-MAC', 'DATA', str_tmp);
+    str_tmp := StringReplace(Edit50.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('DES-MAC', 'K1', str_tmp);
+    str_tmp := StringReplace(Edit51.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('DES-MAC', 'K2', str_tmp);
+    str_tmp := StringReplace(Edit58.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('DES-MAC', 'K3', str_tmp);
+    str_tmp := StringReplace(Edit57.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('DES-MAC', 'IV', str_tmp);
+
+    str_tmp := StringReplace(Memo12.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'DATA', str_tmp);
+    str_tmp := StringReplace(Edit52.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'K1', str_tmp);
+    str_tmp := StringReplace(Edit53.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'K2', str_tmp);
+    str_tmp := StringReplace(Edit54.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'K3', str_tmp);
+    str_tmp := StringReplace(Edit55.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'K4', str_tmp);
+    str_tmp := StringReplace(Edit56.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('AES', 'IV', str_tmp);
+
+    str_tmp := StringReplace(Memo8.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('SM4', 'DATA', str_tmp);
+    str_tmp := StringReplace(Edit59.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('SM4', 'K1', str_tmp);
+    str_tmp := StringReplace(Edit60.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('SM4', 'IV', str_tmp);
+
+    str_tmp := StringReplace(Memo11.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('HASH', 'DATA', str_tmp);
+
+    str_tmp := StringReplace(Memo14.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('XOR', 'DATA1', str_tmp);
+    str_tmp := StringReplace(Memo15.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('XOR', 'DATA2', str_tmp);
+
+    str_tmp := StringReplace(Memo13.Text, #13#10, #3#4, [rfReplaceAll]);
+    MyIniFile.WriteString('MORE', 'DATA', str_tmp);
 
     MyIniFile.Destroy;
 
@@ -3137,7 +3110,7 @@ begin
     //if HexSendFlag = True then
     begin
         SendBuf := TwoAsciiToHex(strbuf);
-        TextLen := Length(strbuf);
+        TextLen := Length(SendBuf);
         if 0 = TextLen then
         begin
              //ShowMessage('非法的十六进制数');
@@ -5503,6 +5476,22 @@ begin
         //ShowMessage('请输入0..9');
         Key := char(0);
     end;
+end;
+
+procedure TForm1.CheckBox6Click(Sender: TObject);
+begin
+    if CheckBox6.Checked = True then
+        CheckBox6.Font.Color := clRed
+    else
+        CheckBox6.Font.Color := clWindowText;
+end;
+
+procedure TForm1.CheckBox7Click(Sender: TObject);
+begin
+    if CheckBox7.Checked = True then
+        CheckBox7.Font.Color := clRed
+    else
+        CheckBox7.Font.Color := clWindowText;
 end;
 
 end.

@@ -209,6 +209,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 8
+        OnClick = CheckBox6Click
       end
       object CheckBox7: TCheckBox
         Left = 137
@@ -223,6 +224,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 9
+        OnClick = CheckBox7Click
       end
       object Button2: TButton
         Left = 178
@@ -300,6 +302,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           PopupMenu = pm1
+          ScrollBars = ssVertical
           TabOrder = 0
           OnChange = Memo2Change
           OnDblClick = Memo2DblClick
@@ -2315,7 +2318,7 @@ object Form1: TForm1
             end
             object Edit54: TEdit
               Left = 28
-              Top = 56
+              Top = 55
               Width = 177
               Height = 22
               Hint = '8 bytes'

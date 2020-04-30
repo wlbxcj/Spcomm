@@ -77,7 +77,6 @@ type
     GroupBox15: TGroupBox;
     IdHTTP1: TIdHTTP;
     SaveDialog2: TSaveDialog;
-    SkinData1: TSkinData;
     ts2: TTabSheet;
     Label16: TLabel;
     GroupBox17: TGroupBox;
@@ -394,6 +393,7 @@ type
     CheckBox60: TCheckBox;
     Label34: TLabel;
     check_result: TLabel;
+    DataCtlBox: TGroupBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -593,6 +593,8 @@ type
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure ComboBox5Change(Sender: TObject);
     procedure CheckBox60Click(Sender: TObject);
+    procedure Edit4Change(Sender: TObject);
+    procedure Edit4KeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -741,6 +743,121 @@ begin
     RawDatalen := 0;
 end;
 
+function Swap16(const Value: Word): Word;
+begin
+    Result := Swap(Value);
+end;
+
+function Swap32(const Value: DWord): DWord;
+begin
+    Result := (DWord(Swap(Word(Value))) shl 16) + Swap(Word(Value shr 16));
+    {Result := (DWord(Swap(Word(Value))) shl 16);
+    ShowMessage(IntToHex(Result, 4));
+    ShowMessage(IntToHex(Swap(DWord(Value) shr 16), 4));
+    Result := Result + Swap(dWord(Value) shr 16);}
+end;
+{
+0-None
+1-Xor
+2-Add
+3-CRC16
+4-CRC16(8005)
+5-CRC16(Modbus)
+6-CRC-CCITT(Sick)
+7-CRC-CCITT(XModem)
+8-CRC-CCITT(0xFFFF)
+9-CRC-CCITT(0x1D0F)
+10-CRC-CCITT(Kermit)
+11-CRC-DNP
+12-CRC-32
+}
+//mode 是否大小端切换， 0：不切换，其它则切换
+function get_check_value(id:Integer; data_str:string; offset:Integer; mode:Boolean):DWORD;
+var
+    i,j,data_len : DWORD;
+begin
+    data_len := Length(data_str);
+    if offset > 1 then
+        data_str := Copy(data_str, offset, data_len - offset + 1);
+    data_len := Length(data_str);
+    Result := 0;
+    if id = 1 then     //xor
+    begin
+        for j:= 1 to data_len do
+        begin
+             //ShowMessage(StrTemp[j]);
+            Result := Result xor Integer(data_str[j]);
+            Result := Result and $00ff;
+        end
+    end
+    else if id = 2 then     //add
+    begin
+        for j:= 1 to data_len do
+        begin
+             //ShowMessage(StrTemp[j]);
+            Result := Result + Integer(data_str[j]);
+            Result := Result and $00ff;
+        end
+    end
+    else if id = 3 then     //CRC16
+    begin
+        Result := Unit_CRC.Calcu_crc_16($0000, data_str);
+    end
+    else if id = 4 then     //CRC16(8005)
+    begin
+        Result := Unit_CRC.OriginalCalcuCRC_16(data_str);
+        //Display_Info('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 5 then     //CRC16(Modbus)
+    begin
+        Result := Unit_CRC.Calcu_crc_16($FFFF, data_str);
+        //Display_Info('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 6 then     //CRC-CCITT(Sick)
+    begin
+        Result := Unit_CRC.Calcu_crc_sick(data_str);
+        //Display_Info('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 7 then     //CRC-CCITT(XModem)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($0000, data_str);
+        //Display_Info('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 8 then     //CRC-CCITT(0xFFFF)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($FFFF, data_str);
+        //Display_Info('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 9 then     //CRC-CCITT(0x1D0F)
+    begin
+        Result := Unit_CRC.Calcu_crc_ccitt($1D0F, data_str);
+        //Display_Info('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 10 then     //CRC-CCITT(Kermit)
+    begin
+        Result := Unit_CRC.Calcu_crc_kermit(data_str);
+        //Display_Info('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 11 then     //CRC-DNP
+    begin
+        Result := Unit_CRC.Calcu_crc_dnp(data_str);
+        //Display_Info('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
+    end
+    else if id = 12 then     //CRC32
+    begin
+        Result := Unit_CRC.Calcu_crc_32(data_str);
+        //Display_Info('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
+    end;
+
+    if (mode <> False) then
+    begin
+        if (id > 2) and (id < 12) then
+            Result := Swap16(Result)
+        else if id = 12 then
+            Result := Swap32(Result);
+    end;
+    //Display_Info('id:'+inttostr(id)+' result:'+inttohex(Result, 2));
+end;
 function IsHexDataStr(data:string):Boolean;
 var
     i : Integer;
@@ -1465,61 +1582,68 @@ var
    //aucBuf : array[0..4096] of byte;
    SendBuf : string;
    strbuf : string;
+   result : DWORD;
 begin
      strbuf :=Memo2.text;
      sendbuf := '';
      if HexSendFlag = True then
      begin
-          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
-          TextLen := Length(strbuf);
-          i:=1;
-          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-                inc(i);
-          if i <= TextLen then
-          begin
-               ShowMessage('非法的十六进制数');
-               Exit;
-          end;
-          if TextLen > 0 then
-          begin
-              for j:=0 to (TextLen div 2 - 1) do
-              begin
-                  //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-              end;
-              if TextLen mod 2 <> 0 then
-              begin
-                   //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-              end;
-              //comm1.writecommdata(@aucBuf, TextLen div 2 + textLen mod 2);
-              comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
-              //ShowMessage(IntToStr(TextLen div 2 + TextLen mod 2));
-              SendLen := SendLen + TextLen div 2 + textLen mod 2;
-          end;
+          sendbuf := TwoAsciiToHex(strbuf);
+          if (SendBuf = '') then
+              Exit;
+
+          TextLen := Length(sendbuf);
+          //comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+          SendLen := SendLen + TextLen;
      end
      else
      begin
          if Length(Memo2.Text) > 0 then
          begin
-              comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
-         end;
-         if CheckBox6.Checked = true then
-         begin
-              strbuf := #13;
-              comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
-         end;
-         if CheckBox7.Checked = true then
-         begin
-              strbuf := #10;
-              comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
+            sendbuf := Memo2.text;
+            TextLen := Length(Memo2.Text);
+              //comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
          end;
          SendLen := SendLen + Length(Memo2.Text);
+     end;
+
+     if ComboBox5.ItemIndex > 0 then
+     begin
+         Result := get_check_value(ComboBox5.ItemIndex, sendbuf, StrToInt(Edit4.Text), checkbox60.checked);
+         if (ComboBox5.ItemIndex > 0) and (ComboBox5.ItemIndex < 3) then
+         begin
+            sendbuf := sendbuf +  Char(Result);
+            SendLen := SendLen + 1;
+            TextLen := TextLen + 1;
+            check_result.caption :=  inttohex(Result, 2);
+         end
+         else if (ComboBox5.ItemIndex > 2) and (ComboBox5.ItemIndex < 12) then
+         begin
+             sendbuf := sendbuf + Char(Result shr 8) + Char(Result);
+             SendLen := SendLen + 2;
+             TextLen := TextLen + 2;
+             check_result.caption :=  inttohex(Result, 4);
+         end
+         else if (ComboBox5.ItemIndex = 12) then
+         begin
+             sendbuf := sendbuf + Char(Result shr 24) + Char(Result shr 16) + Char(Result shr 8) + Char(Result);
+             SendLen := SendLen + 4;
+             TextLen := TextLen + 4;
+             check_result.caption :=  inttohex(Result, 8);
+         end;
+     end;
+     comm1.writecommdata(pchar(sendbuf), TextLen);
+     if CheckBox6.Checked = true then
+     begin
+          strbuf := #13;
+          comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
+     end;
+     if CheckBox7.Checked = true then
+     begin
+          strbuf := #10;
+          comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
      end;
      StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
@@ -1565,20 +1689,12 @@ var
    i ,j,TextLen: Integer;
    strbuf : string;
 begin
-     Memo2.oNChange(Sender);
 
      strbuf :=Memo2.text;
      if CheckBox2.Checked = True then
      begin
-          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
-          TextLen := Length(strbuf);
-          i:=1;
-          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-                inc(i);
-          if i <= TextLen then
+          TextLen := GetTwoAsciiToHexLen(strbuf);
+          if 0 = TextLen then
           begin
                ShowMessage('非法的十六进制数');
                CheckBox2.Checked := False;
@@ -1586,10 +1702,14 @@ begin
                Exit;
           end;
           HexSendFlag := True;
+          Memo2.oNChange(Sender);
+          Edit4.OnChange(Sender);
      end
      else
      begin
           HexSendFlag := False;
+          Memo2.oNChange(Sender);
+          Edit4.OnChange(Sender);
      end;
 end;
 
@@ -1723,13 +1843,13 @@ begin
     StrTemp := Memo13.Text;
     if CheckBox61.Checked = True then
     begin
-        strbuf := StringReplace(StrTemp, ' ', '', [rfReplaceAll]);
+        strbuf := TwoAsciiToHex(StrTemp);
         EditLen := Length(strbuf);
-        if editlen mod 2 = 0  then
+        if editlen > 0  then
         begin
-            for j:=0 to (EditLen div 2 - 1) do
+            for j:= 1 to (EditLen) do
             begin
-                ResultSun := ResultSun + (StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                ResultSun := ResultSun + Integer(strbuf[j]);
             end;
             //resultsun := resultsun and $00FF;
             Edit1.Text := 'Hex:  ' + IntToHex(ResultSun, 2);
@@ -1770,16 +1890,13 @@ begin
     StrTemp := Memo13.Text;
     if CheckBox61.Checked = True then
     begin
-       strbuf := StringReplace(StrTemp, #10, '', [rfReplaceAll]);
-       strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+        strbuf := TwoAsciiToHex(StrTemp);
         EditLen := Length(strbuf);
-        if editlen mod 2 = 0  then
+        if EditLen > 0  then
         begin
-            for j:=0 to (EditLen div 2 - 1) do
+            for j:= 1 to EditLen do
             begin
-                ResultSun := ResultSun xor (StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
+                ResultSun := ResultSun xor Integer(strbuf[j]);
             end;
             //resultsun := resultsun and $00FF;
             Edit1.Text := '0x' + IntToHex(ResultSun, 2);
@@ -1994,39 +2111,16 @@ begin
      sendbuf := '';
      if check_box.Checked = True then
      begin
-          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+          strbuf := TwoAsciiToHex(strbuf);
           TextLen := Length(strbuf);
-          i:=1;
-          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-                inc(i);
-          if i <= TextLen then
+
+          if 0 = TextLen then
           begin
-               ShowMessage('非法的十六进制数');
+               //ShowMessage('非法的十六进制数');
                Exit;
           end;
-
-          if TextLen = 1 then
-          begin
-              SendBuf := Char(StrToIntDef('$0'+ strbuf[1], 0));
-              Form1.comm1.writecommdata(pchar(SendBuf), 1);
-              SendLen := SendLen + 1;
-          end
-          else if TextLen > 1 then
-          begin
-              for j:=0 to (TextLen div 2 - 1) do
-              begin
-                  SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-              end;
-              if TextLen mod 2 <> 0 then
-              begin
-                   SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-              end;
-              Form1.comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
-              SendLen := SendLen + TextLen div 2 + textLen mod 2;
-          end;
+          Form1.comm1.writecommdata(pchar(strbuf), TextLen);
+          SendLen := SendLen + TextLen;
      end
      else
      begin
@@ -2035,19 +2129,19 @@ begin
               Form1.comm1.writecommdata(pchar(strbuf), Length(strbuf));
               SendLen := SendLen + Length(strbuf);
          end;
-         if Form1.CheckBox6.Checked = true then
-         begin
-              strbuf := #13;
-              Form1.comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
-         end;
-         if Form1.CheckBox7.Checked = true then
-         begin
-              strbuf := #10;
-              Form1.comm1.writecommdata(pchar(strbuf), 1);
-              SendLen := SendLen + 1;
-         end;
          //SendLen := SendLen + Length(strbuf);
+     end;
+     if Form1.CheckBox6.Checked = true then
+     begin
+          strbuf := #13;
+          Form1.comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
+     end;
+     if Form1.CheckBox7.Checked = true then
+     begin
+          strbuf := #10;
+          Form1.comm1.writecommdata(pchar(strbuf), 1);
+          SendLen := SendLen + 1;
      end;
      Form1.StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
@@ -2369,34 +2463,21 @@ begin
         sendbuf := '';
         if CheckBox24.Checked = True then
         begin
-            strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-            strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-            strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-            strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+            strbuf := TwoAsciiToHex(strbuf);
             TextLen := Length(strbuf);
-            i:=1;
-            while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-                inc(i);
-            if i <= TextLen then
+
+            if 0 = TextLen then
             begin
-               ShowMessage('非法的十六进制数');
                Exit;
             end;
-            SendLen := TextLen div 2;
+
+            SendLen := TextLen;
             if SendLen > 1024-1 then
                 SendLen := 1024-1;
 
-            for j:=0 to SendLen do
+            for j:=0 to SendLen - 1 do
             begin
-                //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-                //SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-                Buf[j+1] := StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0);
-            end;
-            if TextLen mod 2 <> 0 then
-            begin
-                 //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-                 Buf[j+1] := StrToIntDef('$0' + strbuf[2*j + 1], 0);
-                 SendLen := SendLen + 1;
+                Buf[j+1] := Byte(strbuf[j + 1]);
             end;
         end
         else
@@ -2692,29 +2773,19 @@ begin
     // HEX
     if CheckBox26.Checked = True then
     begin
-          strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-          strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+          strbuf := TwoAsciiToHex(strbuf);
           TextLen := Length(strbuf);
-          i:=1;
-          while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-                inc(i);
-          if i <= TextLen then
+          if 0 = TextLen then
           begin
-              ShowMessage('非法的十六进制数');
+              //ShowMessage('非法的十六进制数');
               Timer4.Enabled := False;
               CheckBox27.Checked := False;
               Exit;
           end;
-          
-          if TextLen > 0 then
+
+          for j:=0 to (TextLen - 1) do
           begin
-              for j:=0 to (TextLen div 2 - 1) do
-              begin
-                  aucBuf[j] := (StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-              end;
-              TextLen := TextLen div 2;
+              aucBuf[j] := Byte(strbuf[j + 1]);
           end;
     end
     else
@@ -3065,35 +3136,14 @@ begin
     sendbuf := '';
     //if HexSendFlag = True then
     begin
-        strbuf := StringReplace(strbuf, #10, '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, #13, '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, ' ', '', [rfReplaceAll]);
-        strbuf := StringReplace(strbuf, #9, '', [rfReplaceAll]);
+        SendBuf := TwoAsciiToHex(strbuf);
         TextLen := Length(strbuf);
-        i:=1;
-        while (i <= TextLen) and (strbuf[i] in ['0'..'9','A'..'F','a'..'f']) do
-              inc(i);
-        if i <= TextLen then
+        if 0 = TextLen then
         begin
-             ShowMessage('非法的十六进制数');
+             //ShowMessage('非法的十六进制数');
              Exit;
         end;
-        if TextLen > 0 then
-        begin
-            for j:=0 to (TextLen div 2 - 1) do
-            begin
-                //aucBuf[j] := Byte(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-                SendBuf := SendBuf + Char(StrToIntDef('$' + strbuf[2*j + 1] + strbuf[2*j + 2], 0));
-            end;
-
-            if TextLen mod 2 <> 0 then
-            begin
-                 //aucBuf[j] := Byte(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-                 SendBuf := SendBuf + Char(StrToIntDef('$0'+ strbuf[2*j + 1], 0));
-                 TextLen := (TextLen div 2) + 1;
-            end;
-            Display_info(SendBuf);
-        end;
+        Display_info(SendBuf);
     end
 end;
 
@@ -4558,40 +4608,34 @@ begin
     end;
     if CheckBox54.Checked = True then
     begin
-        strbuf1 := StringReplace(StrTemp1, #10, '', [rfReplaceAll]);
-        strbuf1 := StringReplace(strbuf1, #13, '', [rfReplaceAll]);
-        strbuf1 := StringReplace(strbuf1, ' ', '', [rfReplaceAll]);
-        strbuf1 := StringReplace(strbuf1, #9, '', [rfReplaceAll]);
-
-        strbuf2 := StringReplace(StrTemp2, #10, '', [rfReplaceAll]);
-        strbuf2 := StringReplace(strbuf2, #13, '', [rfReplaceAll]);
-        strbuf2 := StringReplace(strbuf2, ' ', '', [rfReplaceAll]);
-        strbuf2 := StringReplace(strbuf2, #9, '', [rfReplaceAll]);
+        strbuf1 := TwoAsciiToHex(StrTemp1);
         EditLen1 := Length(strbuf1);
-        EditLen2 := Length(strbuf2);
-        if (IsHexDataStr(strbuf1) = False) then
+
+        if (EditLen1 = 0) then
             Exit;
         Display_Info('XOR:(HEX)');
-        if RadioButton23.Checked = True  then
+        if RadioButton23.Checked = True  then   // 两组数据位异或
         begin
-            if (Length(strbuf2) = 0) then
+            strbuf2 := TwoAsciiToHex(StrTemp2);
+            EditLen2 := Length(strbuf2);
+
+            if (EditLen2 = 0) then
             begin
                 ShowMessage('请输入数据');
                 Exit;
             end;
-            if (IsHexDataStr(strbuf2) = False) then
-                Exit;
-            if (editlen1 mod 2 = 0)  and (EditLen2 mod 2 = 0) and (EditLen2 = EditLen1) then
+
+            if (EditLen2 = EditLen1) then
             begin
                 
-                for j:=0 to (EditLen1 div 2 - 1) do
+                for j:=0 to (EditLen1 - 1) do
                 begin
                     if (j mod 8 = 0) and (j <> 0) then
                     begin
                         Display_Info(resultstr);
                         resultstr := '';
                     end;
-                    ResultSun := (StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0)) xor (StrToIntDef('$' + strbuf2[2*j + 1] + strbuf2[2*j + 2], 0));
+                    ResultSun := Byte(strbuf1[j + 1]) xor Byte(strbuf2[j + 1]);
                      //Memo1.Lines.Add(IntToHex(ResultSun, 2));
                     resultstr := resultstr +  IntToHex(ResultSun, 2) + ' ';
                  
@@ -4604,14 +4648,9 @@ begin
                  //Edit1.Clear;
             end;
         end
-        else if RadioButton24.Checked = True then
+        else if RadioButton24.Checked = True then   //8字节分组位异或
         begin
-            strbuf2 := '';
-            for j:=0 to (EditLen1 div 2 - 1) do
-            begin
-                  strbuf2 := strbuf2 + Char(StrToIntDef('$' + strbuf1[2*j + 1] + strbuf1[2*j + 2], 0));
-            end;
-            resultstr := str_8byte_xor(strbuf2);
+            resultstr := str_8byte_xor(strbuf1);
             Display_Info(resultstr);
         end;
     end
@@ -5381,132 +5420,34 @@ begin
         ScrollBox1.Perform(WM_VSCROLL,SB_LINEUP,0);
 end;
 
-function Swap16(const Value: Word): Word;
-begin
-    Result := Swap(Value);
-end;
-
-function Swap32(const Value: DWord): DWord;
-begin
-    Result := (DWord(Swap(Word(Value))) shl 16) + Swap(Word(Value shr 16));
-    {Result := (DWord(Swap(Word(Value))) shl 16);
-    ShowMessage(IntToHex(Result, 4));
-    ShowMessage(IntToHex(Swap(DWord(Value) shr 16), 4));
-    Result := Result + Swap(dWord(Value) shr 16);}
-end;
-{
-0-None
-1-Xor
-2-Add
-3-CRC16
-4-CRC16(8005)
-5-CRC16(Modbus)
-6-CRC-CCITT(Sick)
-7-CRC-CCITT(XModem)
-8-CRC-CCITT(0xFFFF)
-9-CRC-CCITT(0x1D0F)
-10-CRC-CCITT(Kermit)
-11-CRC-DNP
-12-CRC-32
-}
-//mode 是否大小端切换， 0：不切换，其它则切换
-function get_check_value(id:Integer; data_str:string; mode:Boolean):DWORD;
-var
-    i,j,data_len : DWORD;
-begin
-    data_len := Length(data_str);
-    Result := 0;
-    if id = 1 then     //xor
-    begin
-        for j:= 1 to data_len do
-        begin
-             //ShowMessage(StrTemp[j]);
-            Result := Result xor Integer(data_str[j]);
-            Result := Result and $00ff;
-        end
-    end
-    else if id = 2 then     //add
-    begin
-        for j:= 1 to data_len do
-        begin
-             //ShowMessage(StrTemp[j]);
-            Result := Result + Integer(data_str[j]);
-            Result := Result and $00ff;
-        end
-    end
-    else if id = 3 then     //CRC16
-    begin
-        Result := Unit_CRC.Calcu_crc_16($0000, data_str);
-    end
-    else if id = 4 then     //CRC16(8005)
-    begin
-        Result := Unit_CRC.OriginalCalcuCRC_16(data_str);
-        //Display_Info('CRC-16(0x8005):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 5 then     //CRC16(Modbus)
-    begin
-        Result := Unit_CRC.Calcu_crc_16($FFFF, data_str);
-        //Display_Info('CRC-16(Modbus):    0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 6 then     //CRC-CCITT(Sick)
-    begin
-        Result := Unit_CRC.Calcu_crc_sick(data_str);
-        //Display_Info('CRC-CCITT(Sick):   0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 7 then     //CRC-CCITT(XModem)
-    begin
-        Result := Unit_CRC.Calcu_crc_ccitt($0000, data_str);
-        //Display_Info('CRC-CCITT(XModem): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 8 then     //CRC-CCITT(0xFFFF)
-    begin
-        Result := Unit_CRC.Calcu_crc_ccitt($FFFF, data_str);
-        //Display_Info('CRC-CCITT(0xFFFF): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 9 then     //CRC-CCITT(0x1D0F)
-    begin
-        Result := Unit_CRC.Calcu_crc_ccitt($1D0F, data_str);
-        //Display_Info('CRC-CCITT(0x1D0F): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 10 then     //CRC-CCITT(Kermit)
-    begin
-        Result := Unit_CRC.Calcu_crc_kermit(data_str);
-        //Display_Info('CRC-CCITT(Kermit): 0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 11 then     //CRC-DNP
-    begin
-        Result := Unit_CRC.Calcu_crc_dnp(data_str);
-        //Display_Info('CRC-DNP:           0x' + IntToHex(crc, 4) + '(' + IntToStr(crc) + ')');
-    end
-    else if id = 12 then     //CRC32
-    begin
-        Result := Unit_CRC.Calcu_crc_32(data_str);
-        //Display_Info('CRC-32:            0x' + IntToHex(crc32, 8) + '(' + IntToStr(crc32) + ')');
-    end;
-
-    if (mode <> False) then
-    begin
-        if (id > 2) and (id < 12) then
-            Result := Swap16(Result)
-        else if id = 12 then
-            Result := Swap32(Result);
-    end;
-    Display_Info('id:'+inttostr(id)+' result:'+inttohex(Result, 2));
-end;
-
-  procedure TForm1.ComboBox5Change(Sender: TObject);
+procedure TForm1.ComboBox5Change(Sender: TObject);
 var
     data_str : string;
-    result, show_len : dword;
+    result, show_len, offset, len: dword;
     mode : Boolean;
 begin
-    if ComboBox5.itemindex <> 0 then
+    ComboBox5.Hint := ComboBox5.Items[ComboBox5.itemindex];
+    if (ComboBox5.itemindex <> 0)then
     begin
+        CheckBox60.Enabled := True;
+
+        CheckBox60.Font.Color := clRed;
+
+        Label32.Font.Color := clRed;
+
+        Label33.Font.Color := clRed;
+
         data_str := Memo2.Text;
+        offset := StrToInt(Edit4.Text);
+
+        if (Memo2.Text = '') then
+            Exit;
+
         if HexSendFlag = True then
             data_str := TwoAsciiToHex(data_str);
+
         mode := CheckBox60.Checked;
-        Result := get_check_value(ComboBox5.itemindex, data_str, mode);
+        Result := get_check_value(ComboBox5.itemindex, data_str, offset, mode);
         if ComboBox5.itemindex <= 2 then
             show_len := 2
         else if ComboBox5.ItemIndex = 12 then
@@ -5518,12 +5459,50 @@ begin
     else
     begin
         check_result.caption :=  '';
+        CheckBox60.Enabled := False;
+        CheckBox60.Font.Color := clRed;
+        //check_result.Color := clBtnFace;
+
+        Label32.Font.Color := clWindowText;
+
+        Label33.Font.Color := clWindowText;
     end;
 end;
 
 procedure TForm1.CheckBox60Click(Sender: TObject);
 begin
     ComboBox5.OnChange(Sender);
+end;
+
+procedure TForm1.Edit4Change(Sender: TObject);
+var
+    data_len, input_len : Integer;
+    str_tmp : string;
+begin
+    str_tmp := Memo2.Text;
+    if CheckBox2.Checked = True then
+        str_tmp := TwoAsciiToHex(Memo2.Text);
+
+    data_len := Length(str_tmp);
+    input_len := StrToInt(Edit4.Text);
+    if data_len = 0 then
+        Edit4.Text := '0';
+    if (data_len > 0) then
+    begin
+        if input_len > data_len then
+            Edit4.Text := IntToStr(Length(str_tmp));
+        if input_len = 0 then
+            Edit4.Text := '1';
+    end;
+end;
+
+procedure TForm1.Edit4KeyPress(Sender: TObject; var Key: Char);
+begin
+    if not (Key  in ['0'..'9',Char(VK_BACK)]) then
+    begin
+        //ShowMessage('请输入0..9');
+        Key := char(0);
+    end;
 end;
 
 end.

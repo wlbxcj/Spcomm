@@ -1345,6 +1345,8 @@ begin
 
           str_tmp := MyIniFile.ReadString('SINGLESEND', 'SEND', '');
           Memo2.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit2.Text := MyIniFile.ReadString('SINGLESEND', 'INTERVALS',  '2000');
+
           for i := 0 to GroupBox9.ControlCount - 1 do
           begin
               if GroupBox9.Controls[i].ClassType = tedit then
@@ -1354,6 +1356,7 @@ begin
                   (GroupBox9.Controls[i] as tedit).Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
               end;
           end;
+          Edit3.Text := MyIniFile.ReadString('AUTOSEND', 'INTERVALS',  '1000');
 
           Edit15.Text := MyIniFile.ReadString('TCP', 'SERVER_PORT',  '');
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
@@ -1544,7 +1547,8 @@ begin
             //move(buffer^, pchar(rbufstr)^, bufferlength);
             if CheckBox3.Checked = True then      // time
             begin
-                data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
+                data_str := StringReplace(string(pc), #13, '', [rfReplaceAll]);
+                data_str := StringReplace(data_str, #10, #13#10+date_str, [rfReplaceAll]);
                 Memo1.Lines.Add(date_str + data_str);
             end
             else
@@ -1722,6 +1726,7 @@ begin
     str_tmp := Memo2.Text;
     str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
     MyIniFile.WriteString('SINGLESEND', 'SEND', str_tmp);
+    MyIniFile.WriteString('SINGLESEND', 'INTERVALS', Edit2.Text);
 
     for i := 0 to GroupBox9.ControlCount - 1 do
     begin

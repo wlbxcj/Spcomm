@@ -1547,7 +1547,8 @@ begin
             //move(buffer^, pchar(rbufstr)^, bufferlength);
             if CheckBox3.Checked = True then      // time
             begin
-                data_str := StringReplace(string(pc), #13#10, #13#10+date_str, [rfReplaceAll]);
+                data_str := StringReplace(string(pc), #13, '', [rfReplaceAll]);
+                data_str := StringReplace(data_str, #10, #13#10+date_str, [rfReplaceAll]);
                 Memo1.Lines.Add(date_str + data_str);
             end
             else
@@ -5406,6 +5407,7 @@ begin
     ComboBox5.Hint := ComboBox5.Items[ComboBox5.itemindex];
     if (ComboBox5.itemindex <> 0)then
     begin
+        CheckBox60.Visible := True;
         CheckBox60.Enabled := True;
 
         CheckBox60.Font.Color := clRed;
@@ -5436,6 +5438,7 @@ begin
     else
     begin
         check_result.caption :=  '';
+        CheckBox60.Visible := False;
         CheckBox60.Enabled := False;
         CheckBox60.Font.Color := clRed;
         //check_result.Color := clBtnFace;

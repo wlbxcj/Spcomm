@@ -445,6 +445,7 @@ object Form1: TForm1
         Caption = #22823#23567#31471
         Enabled = False
         TabOrder = 11
+        Visible = False
         OnClick = CheckBox60Click
       end
     end

@@ -445,6 +445,7 @@ object Form1: TForm1
         Caption = #22823#23567#31471
         Enabled = False
         TabOrder = 11
+        Visible = False
         OnClick = CheckBox60Click
       end
     end
@@ -2913,7 +2914,7 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 6
+    ReadIntervalTimeout = 20
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0
@@ -2946,7 +2947,7 @@ object Form1: TForm1
   end
   object PopupMenu1: TPopupMenu
     Left = 256
-    Top = 160
+    Top = 159
     object N9: TMenuItem
       Caption = #22797#21046
       OnClick = N9Click
@@ -3013,7 +3014,6 @@ object Form1: TForm1
       end
       object N6ms1: TMenuItem
         Caption = '6ms'
-        Checked = True
         RadioItem = True
         OnClick = N6ms1Click
       end
@@ -3024,8 +3024,19 @@ object Form1: TForm1
       end
       object N20ms1: TMenuItem
         Caption = '20ms'
+        Checked = True
         RadioItem = True
         OnClick = N20ms1Click
+      end
+      object N50ms1: TMenuItem
+        Caption = '50ms'
+        RadioItem = True
+        OnClick = N50ms1Click
+      end
+      object N100ms1: TMenuItem
+        Caption = '100ms'
+        RadioItem = True
+        OnClick = N100ms1Click
       end
     end
     object RawBackUp: TMenuItem
@@ -3046,6 +3057,28 @@ object Form1: TForm1
         Caption = #26368#22823'20M'
         RadioItem = True
         OnClick = N20M1Click
+      end
+    end
+    object N21: TMenuItem
+      Caption = #25442#34892#27169#24335
+      object Windos1: TMenuItem
+        Caption = 'Windos('#22238#36710'+'#25442#34892'CR/LF'#34920#31034#19979#19968#34892')'
+        Checked = True
+        Hint = #37319#29992#22238#36710'+'#25442#34892'CR/LF'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = Windos1Click
+      end
+      object UNIXLinux1: TMenuItem
+        Caption = 'UNIX/Linux('#25442#34892#31526'LF'#34920#31034#19979#19968#34892')'
+        Hint = #37319#29992#25442#34892#31526'LF'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = UNIXLinux1Click
+      end
+      object MACOS1: TMenuItem
+        Caption = 'MAC OS('#22238#36710#31526'CR'#34920#31034#19979#19968#34892')'
+        Hint = #37319#29992#22238#36710#31526'CR'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = MACOS1Click
       end
     end
   end

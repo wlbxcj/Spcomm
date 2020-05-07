@@ -6,7 +6,7 @@ object Form1: TForm1
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.5'
+  Caption = 'Spcom V4.6'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2914,13 +2914,13 @@ object Form1: TForm1
     XonChar = #17
     XoffChar = #19
     ReplacedChar = #0
-    ReadIntervalTimeout = 6
+    ReadIntervalTimeout = 20
     ReadTotalTimeoutMultiplier = 0
     ReadTotalTimeoutConstant = 0
     WriteTotalTimeoutMultiplier = 0
     WriteTotalTimeoutConstant = 0
     OnReceiveData = Comm1ReceiveData
-    Left = 163
+    Left = 164
     Top = 232
   end
   object SaveDialog1: TSaveDialog
@@ -2947,7 +2947,7 @@ object Form1: TForm1
   end
   object PopupMenu1: TPopupMenu
     Left = 256
-    Top = 160
+    Top = 159
     object N9: TMenuItem
       Caption = #22797#21046
       OnClick = N9Click
@@ -3014,7 +3014,6 @@ object Form1: TForm1
       end
       object N6ms1: TMenuItem
         Caption = '6ms'
-        Checked = True
         RadioItem = True
         OnClick = N6ms1Click
       end
@@ -3025,8 +3024,19 @@ object Form1: TForm1
       end
       object N20ms1: TMenuItem
         Caption = '20ms'
+        Checked = True
         RadioItem = True
         OnClick = N20ms1Click
+      end
+      object N50ms1: TMenuItem
+        Caption = '50ms'
+        RadioItem = True
+        OnClick = N50ms1Click
+      end
+      object N100ms1: TMenuItem
+        Caption = '100ms'
+        RadioItem = True
+        OnClick = N100ms1Click
       end
     end
     object RawBackUp: TMenuItem
@@ -3049,6 +3059,28 @@ object Form1: TForm1
         OnClick = N20M1Click
       end
     end
+    object N21: TMenuItem
+      Caption = #25442#34892#27169#24335
+      object Windos1: TMenuItem
+        Caption = 'Windos('#22238#36710'+'#25442#34892'CR/LF'#34920#31034#19979#19968#34892')'
+        Checked = True
+        Hint = #37319#29992#22238#36710'+'#25442#34892'CR/LF'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = Windos1Click
+      end
+      object UNIXLinux1: TMenuItem
+        Caption = 'UNIX/Linux('#25442#34892#31526'LF'#34920#31034#19979#19968#34892')'
+        Hint = #37319#29992#25442#34892#31526'LF'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = UNIXLinux1Click
+      end
+      object MACOS1: TMenuItem
+        Caption = 'MAC OS('#22238#36710#31526'CR'#34920#31034#19979#19968#34892')'
+        Hint = #37319#29992#22238#36710#31526'CR'#34920#31034#19979#19968#34892
+        RadioItem = True
+        OnClick = MACOS1Click
+      end
+    end
   end
   object Timer3: TTimer
     Enabled = False
@@ -3057,15 +3089,11 @@ object Form1: TForm1
     Top = 24
   end
   object pm1: TPopupMenu
-    Left = 16
+    Left = 17
     Top = 256
     object N2: TMenuItem
       Caption = #28165#31354
       OnClick = N2Click
-    end
-    object N3: TMenuItem
-      Caption = #22238#36710#21457#36865
-      OnClick = N3Click
     end
     object F1: TMenuItem
       Caption = #22797#21046
@@ -3075,36 +3103,35 @@ object Form1: TForm1
       Caption = #31896#36148
       OnClick = N6Click
     end
+    object N3: TMenuItem
+      Caption = #22238#36710#21457#36865
+      OnClick = N3Click
+    end
     object N7: TMenuItem
       Caption = #21457#36865#25991#20214#35774#32622
       RadioItem = True
       object N8: TMenuItem
-        AutoCheck = True
         Caption = #36830#32493#21457#36865
         RadioItem = True
         OnClick = N8Click
       end
       object N1K1ms1: TMenuItem
-        AutoCheck = True
         Caption = #27599'1K'#24310#26102'1ms'
         Checked = True
         RadioItem = True
         OnClick = N1K1ms1Click
       end
       object N1K10ms1: TMenuItem
-        AutoCheck = True
         Caption = #27599'1K'#24310#26102'10ms'
         RadioItem = True
         OnClick = N1K10ms1Click
       end
       object N1K50ms1: TMenuItem
-        AutoCheck = True
         Caption = #27599'1K'#24310#26102'50ms'
         RadioItem = True
         OnClick = N1K50ms1Click
       end
       object N1K100ms1: TMenuItem
-        AutoCheck = True
         Caption = #27599'1K'#24310#26102'100ms'
         RadioItem = True
         OnClick = N1K100ms1Click

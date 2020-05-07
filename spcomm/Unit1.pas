@@ -394,6 +394,12 @@ type
     Label34: TLabel;
     check_result: TLabel;
     DataCtlBox: TGroupBox;
+    N50ms1: TMenuItem;
+    N100ms1: TMenuItem;
+    N21: TMenuItem;
+    Windos1: TMenuItem;
+    UNIXLinux1: TMenuItem;
+    MACOS1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -597,6 +603,11 @@ type
     procedure Edit4KeyPress(Sender: TObject; var Key: Char);
     procedure CheckBox6Click(Sender: TObject);
     procedure CheckBox7Click(Sender: TObject);
+    procedure N50ms1Click(Sender: TObject);
+    procedure N100ms1Click(Sender: TObject);
+    procedure Windos1Click(Sender: TObject);
+    procedure UNIXLinux1Click(Sender: TObject);
+    procedure MACOS1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -641,7 +652,11 @@ var
   RawBackUpFlag : Integer = 0;
   RawDataSize : Integer = 0;
   RawDatalen : Integer = 0;
-
+  ComReadIntervalTimeout : Integer = 20;  // 串口字节间间隔超时时间
+  CrLfMode        : Integer = 0;          // 0  windos, 1 linux, 2 mac
+  ReplaceCrLfStr  : string = #13;         // 无意义换行符
+  RealCrLfStr     : string = #10;         // 需要替换掉的换行符
+  FinalCrLfStr    : string = #13#10;      // 最终的换行符
 
 implementation
 
@@ -1346,6 +1361,16 @@ begin
           str_tmp := MyIniFile.ReadString('SINGLESEND', 'SEND', '');
           Memo2.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
           Edit2.Text := MyIniFile.ReadString('SINGLESEND', 'INTERVALS',  '2000');
+          FileSendDelay := MyIniFile.ReadInteger('SINGLESEND', 'SEND_DELAY', 1);
+          case (FileSendDelay) of
+            0:  N8.Click;
+            1:  N1K1ms1.Click;
+            10:  N1K10ms1.Click;
+            50:  N1K100ms1.Click;
+            100:  N1K100ms1.Click;
+          else
+            N1K1ms1.Click;
+          end;
 
           for i := 0 to GroupBox9.ControlCount - 1 do
           begin
@@ -1367,6 +1392,26 @@ begin
           Memo1.Font.style:=  TfontStyles(Byte(MyIniFile.ReadInteger('DIS_PARA', 'font_style', 0)));
           Memo1.Font.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'font_color', 'clWindowText'));
           Memo1.Color := StringToColor(MyIniFile.ReadString('DIS_PARA', 'back_color', 'clWindow'));
+          ComReadIntervalTimeout := MyIniFile.ReadInteger('DIS_PARA', 'interval_time', 20);
+          case (ComReadIntervalTimeout) of
+            1:  N1ms1.Click;
+            3:  N3ms1.Click;
+            6:  N6ms1.Click;
+            9:  N9ms1.Click;
+            20:  N20ms1.Click;
+            50:  N50ms1.Click;
+            100:  N100ms1.Click;
+          else
+            N20ms1.Click;
+          end;
+          CrLfMode := MyIniFile.ReadInteger('DIS_PARA', 'crlf_mode', 0);
+          case (CrLfMode) of
+            0:  Windos1.Click;
+            1:  UNIXLinux1.Click;
+            2:  MACOS1.Click;
+          else
+            Windos1.Click;
+          end;
 
           str_tmp := MyIniFile.ReadString('HIDSEND', 'SEND', str_tmp);
           Memo4.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
@@ -1547,8 +1592,8 @@ begin
             //move(buffer^, pchar(rbufstr)^, bufferlength);
             if CheckBox3.Checked = True then      // time
             begin
-                data_str := StringReplace(string(pc), #13, '', [rfReplaceAll]);
-                data_str := StringReplace(data_str, #10, #13#10+date_str, [rfReplaceAll]);
+                data_str := StringReplace(string(pc), ReplaceCrLfStr, '', [rfReplaceAll]);
+                data_str := StringReplace(data_str, RealCrLfStr, FinalCrLfStr+date_str, [rfReplaceAll]);
                 Memo1.Lines.Add(date_str + data_str);
             end
             else
@@ -1577,68 +1622,69 @@ var
    strbuf : string;
    result : DWORD;
 begin
-     strbuf :=Memo2.text;
-     sendbuf := '';
-     if HexSendFlag = True then
-     begin
-          sendbuf := TwoAsciiToHex(strbuf);
-          if (SendBuf = '') then
-              Exit;
+    TextLen := Length(Memo2.Text);
+    strbuf :=Memo2.text;
+    sendbuf := '';
+    if HexSendFlag = True then
+    begin
+        sendbuf := TwoAsciiToHex(strbuf);
+        if (SendBuf = '') then
+            Exit;
 
-          TextLen := Length(sendbuf);
-          //comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
-          SendLen := SendLen + TextLen;
-     end
-     else
-     begin
-         if Length(Memo2.Text) > 0 then
-         begin
-            sendbuf := Memo2.text;
-            TextLen := Length(Memo2.Text);
-              //comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
-         end;
-         SendLen := SendLen + Length(Memo2.Text);
-     end;
+        TextLen := Length(sendbuf);
+        //comm1.writecommdata(pchar(SendBuf), TextLen div 2 + textLen mod 2);
+        SendLen := SendLen + TextLen;
+    end
+    else
+    begin
+       if TextLen > 0 then
+       begin
+          sendbuf := Memo2.text;
+          //TextLen := Length(Memo2.Text);
+          //comm1.writecommdata(pchar(strbuf), Length(Memo2.Text));
+       end;
+       SendLen := SendLen + TextLen;
+    end;
 
-     if ComboBox5.ItemIndex > 0 then
-     begin
-         Result := get_check_value(ComboBox5.ItemIndex, sendbuf, StrToInt(Edit4.Text), checkbox60.checked);
-         if (ComboBox5.ItemIndex > 0) and (ComboBox5.ItemIndex < 3) then
-         begin
-            sendbuf := sendbuf +  Char(Result);
-            SendLen := SendLen + 1;
-            TextLen := TextLen + 1;
-            check_result.caption :=  inttohex(Result, 2);
-         end
-         else if (ComboBox5.ItemIndex > 2) and (ComboBox5.ItemIndex < 12) then
-         begin
-             sendbuf := sendbuf + Char(Result shr 8) + Char(Result);
-             SendLen := SendLen + 2;
-             TextLen := TextLen + 2;
-             check_result.caption :=  inttohex(Result, 4);
-         end
-         else if (ComboBox5.ItemIndex = 12) then
-         begin
-             sendbuf := sendbuf + Char(Result shr 24) + Char(Result shr 16) + Char(Result shr 8) + Char(Result);
-             SendLen := SendLen + 4;
-             TextLen := TextLen + 4;
-             check_result.caption :=  inttohex(Result, 8);
-         end;
-     end;
-     comm1.writecommdata(pchar(sendbuf), TextLen);
-     if CheckBox6.Checked = true then
-     begin
-          strbuf := #13;
-          comm1.writecommdata(pchar(strbuf), 1);
+    if (ComboBox5.ItemIndex > 0) and (TextLen > 0)then
+    begin
+       Result := get_check_value(ComboBox5.ItemIndex, sendbuf, StrToInt(Edit4.Text), checkbox60.checked);
+       if (ComboBox5.ItemIndex > 0) and (ComboBox5.ItemIndex < 3) then
+       begin
+          sendbuf := sendbuf +  Char(Result);
           SendLen := SendLen + 1;
-     end;
-     if CheckBox7.Checked = true then
-     begin
-          strbuf := #10;
-          comm1.writecommdata(pchar(strbuf), 1);
-          SendLen := SendLen + 1;
-     end;
-     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
+          TextLen := TextLen + 1;
+          check_result.caption :=  inttohex(Result, 2);
+       end
+       else if (ComboBox5.ItemIndex > 2) and (ComboBox5.ItemIndex < 12) then
+       begin
+           sendbuf := sendbuf + Char(Result shr 8) + Char(Result);
+           SendLen := SendLen + 2;
+           TextLen := TextLen + 2;
+           check_result.caption :=  inttohex(Result, 4);
+       end
+       else if (ComboBox5.ItemIndex = 12) then
+       begin
+           sendbuf := sendbuf + Char(Result shr 24) + Char(Result shr 16) + Char(Result shr 8) + Char(Result);
+           SendLen := SendLen + 4;
+           TextLen := TextLen + 4;
+           check_result.caption :=  inttohex(Result, 8);
+       end;
+    end;
+    comm1.writecommdata(pchar(sendbuf), TextLen);
+    if CheckBox6.Checked = true then
+    begin
+        strbuf := #13;
+        comm1.writecommdata(pchar(strbuf), 1);
+        SendLen := SendLen + 1;
+    end;
+    if CheckBox7.Checked = true then
+    begin
+        strbuf := #10;
+        comm1.writecommdata(pchar(strbuf), 1);
+        SendLen := SendLen + 1;
+    end;
+    StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
 
 procedure TForm1.CheckBox1Click(Sender: TObject);
@@ -1727,6 +1773,7 @@ begin
     str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
     MyIniFile.WriteString('SINGLESEND', 'SEND', str_tmp);
     MyIniFile.WriteString('SINGLESEND', 'INTERVALS', Edit2.Text);
+    MyIniFile.WriteInteger('SINGLESEND', 'SEND_DELAY', FileSendDelay);
 
     for i := 0 to GroupBox9.ControlCount - 1 do
     begin
@@ -1752,6 +1799,8 @@ begin
     MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(Memo1.Font.Color));
     MyIniFile.WriteInteger('DIS_PARA', 'font_style', BYte(Memo1.Font.style));
     MyIniFile.WriteString('DIS_PARA', 'back_color', ColorToString(Memo1.Color));
+    MyIniFile.WriteInteger('DIS_PARA', 'interval_time', ComReadIntervalTimeout);
+    MyIniFile.WriteInteger('DIS_PARA', 'crlf_mode', CrLfMode);
 
     str_tmp := StringReplace(Memo4.Text, #13#10, #3#4, [rfReplaceAll]);
     MyIniFile.WriteString('HIDSEND', 'SEND', str_tmp);
@@ -2299,13 +2348,13 @@ begin
     begin
         Button2.Caption := '回车发送';
         EnterSend := 1;
-        pm1.Items[1].caption := '点击发送';
+        N3.Checked := True;
     end
     else
     begin
-        Button2.Caption := '点击发送';
+        Button2.Caption := '发送';
         EnterSend := 0;
-        pm1.Items[1].caption := '回车发送';
+        N3.Checked := False;
     end;
     
 end;
@@ -4788,26 +4837,46 @@ end;
 procedure TForm1.N8Click(Sender: TObject);
 begin
     FileSendDelay := 0;
+    if N8.Checked <> True then
+    begin
+        N8.Checked := True;
+    end;
 end;
 
 procedure TForm1.N1K1ms1Click(Sender: TObject);
 begin
     FileSendDelay := 1;
+    if N1K1ms1.Checked <> True then
+    begin
+        N1K1ms1.Checked := True;
+    end;
 end;
 
 procedure TForm1.N1K10ms1Click(Sender: TObject);
 begin
     FileSendDelay := 10;
+    if N1K10ms1.Checked <> True then
+    begin
+        N1K10ms1.Checked := True;
+    end;
 end;
 
 procedure TForm1.N1K50ms1Click(Sender: TObject);
 begin
     FileSendDelay := 50;
+    if N1K50ms1.Checked <> True then
+    begin
+        N1K50ms1.Checked := True;
+    end;
 end;
 
 procedure TForm1.N1K100ms1Click(Sender: TObject);
 begin
     FileSendDelay := 100;
+    if N1K100ms1.Checked <> True then
+    begin
+        N1K100ms1.Checked := True;
+    end;
 end;
 
 procedure TForm1.N1Click(Sender: TObject);
@@ -4965,6 +5034,7 @@ end;
 
 procedure TForm1.N1ms1Click(Sender: TObject);
 begin
+    ComReadIntervalTimeout := 1;
     if N1ms1.Checked <> True then
     begin
         N1ms1.Checked := True;
@@ -4981,6 +5051,7 @@ end;
 
 procedure TForm1.N3ms1Click(Sender: TObject);
 begin
+    ComReadIntervalTimeout := 3;
     if N3ms1.Checked <> True then
     begin
         N3ms1.Checked := True;
@@ -4997,6 +5068,7 @@ end;
 
 procedure TForm1.N6ms1Click(Sender: TObject);
 begin
+    ComReadIntervalTimeout := 6;
     if N6ms1.Checked <> True then
     begin
         N6ms1.Checked := True;
@@ -5013,6 +5085,7 @@ end;
 
 procedure TForm1.N9ms1Click(Sender: TObject);
 begin
+    ComReadIntervalTimeout := 9;
     if N9ms1.Checked <> True then
     begin
         N9ms1.Checked := True;
@@ -5029,6 +5102,7 @@ end;
 
 procedure TForm1.N20ms1Click(Sender: TObject);
 begin
+    ComReadIntervalTimeout := 20;
     if N20ms1.Checked <> True then
     begin
         N20ms1.Checked := True;
@@ -5499,6 +5573,76 @@ begin
         CheckBox7.Font.Color := clRed
     else
         CheckBox7.Font.Color := clWindowText;
+end;
+
+procedure TForm1.N50ms1Click(Sender: TObject);
+begin
+    ComReadIntervalTimeout := 50;
+    if N50ms1.Checked <> True then
+    begin
+        N50ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Click;
+            Comm1.ReadIntervalTimeout := 50;
+            Button1.Click;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 50;
+    end;
+end;
+
+procedure TForm1.N100ms1Click(Sender: TObject);
+begin
+    ComReadIntervalTimeout := 100;
+    if N100ms1.Checked <> True then
+    begin
+        N100ms1.Checked := True;
+        if Button1.Caption = '关闭串口' then
+        begin
+            Button1.Click;
+            Comm1.ReadIntervalTimeout := 100;
+            Button1.Click;
+        end
+        else
+            Comm1.ReadIntervalTimeout := 100;
+    end;
+end;
+
+procedure TForm1.Windos1Click(Sender: TObject);
+begin
+    if Windos1.Checked <> True then
+    begin
+        Windos1.Checked := True;
+        CrLfMode := 0;
+        ReplaceCrLfStr  := #13;         // 无意义换行符
+        RealCrLfStr     := #10;         // 需要替换掉的换行符
+        FinalCrLfStr    := #13#10;      // 最终的换行符
+    end;
+end;
+
+procedure TForm1.UNIXLinux1Click(Sender: TObject);
+begin
+    if UNIXLinux1.Checked <> True then
+    begin
+        UNIXLinux1.Checked := True;
+        CrLfMode := 1;
+        ReplaceCrLfStr  := #13;         // 无意义换行符
+        RealCrLfStr     := #10;         // 需要替换掉的换行符
+        FinalCrLfStr    := #13#10;      // 最终的换行符
+    end;
+end;
+
+procedure TForm1.MACOS1Click(Sender: TObject);
+begin
+    if MACOS1.Checked <> True then
+    begin
+        MACOS1.Checked := True;
+        CrLfMode := 2;
+        ReplaceCrLfStr  := #10;         // 无意义换行符
+        RealCrLfStr     := #13;         // 需要替换掉的换行符
+        FinalCrLfStr    := #13#10;      // 最终的换行符
+    end;
 end;
 
 end.

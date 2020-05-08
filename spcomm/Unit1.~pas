@@ -9,7 +9,8 @@ uses
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
-  MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC;
+  MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
+  SM;
 
 type
   TForm1 = class(TForm)
@@ -400,6 +401,8 @@ type
     Windos1: TMenuItem;
     UNIXLinux1: TMenuItem;
     MACOS1: TMenuItem;
+    RadioSm4: TRadioButton;
+    RadioSm3: TRadioButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -463,7 +466,6 @@ type
     procedure Edit15KeyPress(Sender: TObject; var Key: Char);
     procedure Button9Click(Sender: TObject);
     procedure IdTCPServer1Execute(AThread: TIdPeerThread);
-    procedure Edit22KeyPress(Sender: TObject; var Key: Char);
     procedure Button10Click(Sender: TObject);
 
     procedure IdTCPServer1Connect(AThread: TIdPeerThread);
@@ -608,6 +610,8 @@ type
     procedure Windos1Click(Sender: TObject);
     procedure UNIXLinux1Click(Sender: TObject);
     procedure MACOS1Click(Sender: TObject);
+    procedure RadioSm3Click(Sender: TObject);
+    procedure RadioSm4Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -2647,15 +2651,6 @@ begin
    end;  
 end;
 
-procedure TForm1.Edit22KeyPress(Sender: TObject; var Key: Char);
-begin
-     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
-     begin
-          ShowMessage('请输入0..9的数字');
-          Key := char(0);
-     end;
-end;
-
 procedure Tform1.LockControls(ALock: Boolean);
 var
     i : integer;
@@ -3645,6 +3640,7 @@ var
     mydatatmp : array[0..15] of Byte;
     outbuf :TMyArray;
     cbcout :TMyArray4096Byte;
+    md, msgArr: SMByteArray;
 begin
     datastr := Memo8.Text;
     keystr := Edit59.Text;
@@ -3654,19 +3650,18 @@ begin
         ShowMessage('请输入数据');
         Exit;
     end;
-    if keystr = '' then
-    begin
-        ShowMessage('请输入16字节key');
-        Exit;
-    end;
+
     // data len
     if CheckBox57.Checked <> True then   // str
     begin
+        datatmp := datastr;
         datalen := Length(datastr);
         if ((datalen mod 16 <> 0) or (datalen > 4096)) then
         begin
-            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
-            Exit;
+            if RadioSm4.Checked = True then begin
+                ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+                Exit;
+            end
         end
         else
         begin
@@ -3684,8 +3679,10 @@ begin
         datalen := Length(datatmp);
         if ((datalen mod 16 <> 0) or (datalen > 4096)) then
         begin
-            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
-            Exit;
+            if RadioSm4.Checked = True then begin
+                ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+                Exit;
+            end
         end
         else
         begin
@@ -3697,128 +3694,144 @@ begin
         end;
     end;
 
-    // key len
-    if CheckBox57.Checked <> True then  // str
-    begin
-        keylen := Length(keystr);
-        if (keylen <> 16) then
+    if RadioSm4.Checked = True then begin
+        if keystr = '' then
         begin
-            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+            ShowMessage('请输入16字节key');
             Exit;
-        end
-        else
+        end;
+        // key len
+        if CheckBox57.Checked <> True then  // str
         begin
-            for i:= 0 to 15 do
+            keylen := Length(keystr);
+            if (keylen <> 16) then
             begin
-                mykey[i] :=  Byte(keystr[i+1]);
-                //Memo1.Lines.Add('mykey['+inttostr(i)+']='+inttohex(mykey[i], 0))
+                ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+                Exit;
+            end
+            else
+            begin
+                for i:= 0 to 15 do
+                begin
+                    mykey[i] :=  Byte(keystr[i+1]);
+                    //Memo1.Lines.Add('mykey['+inttostr(i)+']='+inttohex(mykey[i], 0))
+                end;
             end;
+        end
+        else  // hex
+        begin
+            keytemp1 := '';
+            keytemp1 := TwoAsciiToHex(keystr);
+            keylen := Length(keytemp1);
+            if (keylen <> 16) then
+            begin
+                ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
+                Exit;
+            end
+            else
+            begin
+                for i:= 0 to keylen-1 do
+                begin
+                    mykey[i] :=  Byte(keytemp1[i+1]);
+                    //Memo1.Lines.Add('mykeytmp['+inttostr(i)+']='+inttohex(mykey[i], 0))
+                end;
+            end;
+        end;
+
+
+        if RadioButton8.Checked = True then   // ecb加密
+        begin
+            Display_Info('ECB ENC:');
+            finish_len := 0;
+            while (finish_len < datalen) do
+            begin
+              for i:= 0 to 15 do
+                mydatatmp[i] := mydata[i+ finish_len];
+
+              outbuf := sm4_crypt_ecb(1, mykey, mydatatmp, 16);
+              finish_len := finish_len + 16;
+              keytemp2 := '';
+              for i:= 0 to 15 do
+              begin
+                  keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
+              end;
+              Display_Info(keytemp2);
+            end;
+
+        end
+        else  // cbc 加密
+        begin
+            IVSTR :=  Edit60.Text;
+            if IVSTR = '' then    // 为空的话，默认全为0
+            begin
+                for i := 0 to 15 do
+                begin
+                    myiv[i] := $0;
+                end;
+            end
+            else
+            begin
+               if CheckBox57.Checked <> True then  // str
+               begin
+                  ivlen := Length(IVSTR);
+                  if (ivlen <> 16) then
+                  begin
+                      ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                      Exit;
+                  end
+                  else
+                  begin
+                      for i:= 0 to 15 do
+                      begin
+                          myiv[i] :=  Byte(IVSTR[i+1]);
+                          //Memo1.Lines.Add('myiv['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                      end;
+                  end;
+               end
+               else  // hex
+               begin
+                  ivstrtmp := '';
+                  ivstrtmp := TwoAsciiToHex(ivstr);
+                  ivlen := Length(ivstrtmp);
+                  if (ivlen <> 16) then
+                  begin
+                      ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
+                      Exit;
+                  end
+                  else
+                  begin
+                      for i:= 0 to keylen-1 do
+                      begin
+                          myiv[i] :=  Byte(ivstrtmp[i+1]);
+                          //Memo1.Lines.Add('myivtmp['+inttostr(i)+']='+inttohex(myiv[i], 2))
+                      end;
+                  end;
+               end;
+            end;
+
+            cbcout := sm4_crypt_cbc(1, mykey, mydata, datalen, myiv);
+            keytemp2 := '';
+            Display_Info('CBC ENC:');
+            for i:= 0 to datalen-1 do
+            begin
+                if ((i mod 16) = 0) and (i <> 0) then
+                begin
+                    Display_Info(keytemp2);
+                    keytemp2 := '';
+                end;
+                keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
+            end;
+            Display_Info(keytemp2);
         end;
     end
-    else  // hex
-    begin
-        keytemp1 := '';
-        keytemp1 := TwoAsciiToHex(keystr);
-        keylen := Length(keytemp1);
-        if (keylen <> 16) then
-        begin
-            ShowMessage('请输入16字节key,当前长度为'+ IntToStr(keylen));
-            Exit;
-        end
-        else
-        begin
-            for i:= 0 to keylen-1 do
-            begin
-                mykey[i] :=  Byte(keytemp1[i+1]);
-                //Memo1.Lines.Add('mykeytmp['+inttostr(i)+']='+inttohex(mykey[i], 0))
-            end;
-        end;
-    end;
-
-
-    if RadioButton8.Checked = True then   // ecb加密
-    begin
-        Display_Info('ECB ENC:');
-        finish_len := 0;
-        while (finish_len < datalen) do
-        begin
-          for i:= 0 to 15 do
-            mydatatmp[i] := mydata[i+ finish_len];
-
-          outbuf := sm4_crypt_ecb(1, mykey, mydatatmp, 16);
-          finish_len := finish_len + 16;
-          keytemp2 := '';
-          for i:= 0 to 15 do
-          begin
-              keytemp2 := keytemp2 + IntToHex(outbuf[i], 2) + ' ';
-          end;
-          Display_Info(keytemp2);
-        end;
-
-    end
-    else  // cbc 加密
-    begin
-        IVSTR :=  Edit60.Text;
-        if IVSTR = '' then    // 为空的话，默认全为0
-        begin
-            for i := 0 to 15 do
-            begin
-                myiv[i] := $0;
-            end;
-        end
-        else
-        begin
-           if CheckBox57.Checked <> True then  // str
-           begin
-              ivlen := Length(IVSTR);
-              if (ivlen <> 16) then
-              begin
-                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
-                  Exit;
-              end
-              else
-              begin
-                  for i:= 0 to 15 do
-                  begin
-                      myiv[i] :=  Byte(IVSTR[i+1]);
-                      //Memo1.Lines.Add('myiv['+inttostr(i)+']='+inttohex(myiv[i], 2))
-                  end;
-              end;
-           end
-           else  // hex
-           begin
-              ivstrtmp := '';
-              ivstrtmp := TwoAsciiToHex(ivstr);
-              ivlen := Length(ivstrtmp);
-              if (ivlen <> 16) then
-              begin
-                  ShowMessage('请输入16字节IV,当前长度为'+ IntToStr(ivlen));
-                  Exit;
-              end
-              else
-              begin
-                  for i:= 0 to keylen-1 do
-                  begin
-                      myiv[i] :=  Byte(ivstrtmp[i+1]);
-                      //Memo1.Lines.Add('myivtmp['+inttostr(i)+']='+inttohex(myiv[i], 2))
-                  end;
-              end;
-           end;
-        end;
-
-        cbcout := sm4_crypt_cbc(1, mykey, mydata, datalen, myiv);
-        keytemp2 := '';
-        Display_Info('CBC ENC:');
-        for i:= 0 to datalen-1 do
-        begin
-            if ((i mod 16) = 0) and (i <> 0) then
-            begin
-                Display_Info(keytemp2);
-                keytemp2 := '';
-            end;
-            keytemp2 := keytemp2 + IntToHex(cbcout[i], 2) + ' ';
-        end;
-        Display_Info(keytemp2);
+    else if RadioSm3.Checked = True then begin
+        //Display_Info('inpudata:'+datatmp + ' len:' + IntToStr(Length(datatmp)));
+        SetLength(msgArr, Length(datatmp));
+        SetLength(md, 32);
+        CopyMemory(msgArr, PAnsiChar(datatmp), Length(datatmp));
+        md := SM.SM3.calcBuf(msgArr);
+        Display_Info('Sm3:');
+        Display_Info(SMUtils.StrToHex(String(md)));
     end;
 
 end;
@@ -5682,6 +5695,32 @@ begin
         ReplaceCrLfStr  := #10;         // 无意义换行符
         RealCrLfStr     := #13;         // 需要替换掉的换行符
         FinalCrLfStr    := #13#10;      // 最终的换行符
+    end;
+end;
+
+procedure TForm1.RadioSm3Click(Sender: TObject);
+begin
+    if RadioSm3.Checked = True then begin
+         Edit59.Enabled := False;
+         Edit59.Color := clScrollBar;
+         Edit60.Enabled := False;
+         Edit60.Color := clScrollBar;
+         RadioButton8.Enabled := False;
+         RadioButton9.Enabled := False;
+         Button59.Enabled := False;
+    end;
+end;
+
+procedure TForm1.RadioSm4Click(Sender: TObject);
+begin
+    if RadioSm4.Checked = True then begin
+        Edit59.Enabled := True;
+        Edit59.Color := clWindow;
+        Edit60.Enabled := True;
+        Edit60.Color := clWindow;
+        RadioButton8.Enabled := True;
+        RadioButton9.Enabled := True;
+        Button59.Enabled := True;
     end;
 end;
 

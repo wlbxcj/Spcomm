@@ -66,7 +66,7 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       object shape1: TShape
-        Left = 156
+        Left = 157
         Top = 14
         Width = 20
         Height = 22

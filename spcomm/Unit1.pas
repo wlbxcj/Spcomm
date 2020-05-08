@@ -1150,7 +1150,8 @@ begin
         // 排序
           for i := 0  to Namelst.Count-2 do
             for j := i+1  to Namelst.Count-1 do
-                if Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j] then
+                if (Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j])
+                      and (Length(Form1.ComboBox1.Items[i]) >= Length(Form1.ComboBox1.Items[j])) then
                 begin
                     str := Form1.ComboBox1.Items[i];
                     Form1.ComboBox1.Items[i] := Form1.ComboBox1.Items[j];
@@ -1190,7 +1191,8 @@ begin
             // 排序
               for i := 0  to Namelst.Count-2 do
                 for j := i+1  to Namelst.Count-1 do
-                    if Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j] then
+                    if (Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j])
+                      and (Length(Form1.ComboBox1.Items[i]) >= Length(Form1.ComboBox1.Items[j])) then
                     begin
                         str := Form1.ComboBox1.Items[i];
                         Form1.ComboBox1.Items[i] := Form1.ComboBox1.Items[j];
@@ -4562,9 +4564,47 @@ end;
 
 procedure TForm1.shape1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+var
+    reg:TRegistry; // 注: 要引用Registry单元
+    Namelst:TStrings;
+    i,j:integer;
+    str:string;
+    b:Boolean;
 begin
     Timer5.Enabled := False;
-    GetComListFromReg();
+
+    Namelst:=TStringList.Create;
+    reg:=TRegistry.Create;
+    reg.RootKey :=HKEY_LOCAL_MACHINE;
+    b := reg.OpenKey('HARDWARE\DEVICEMAP\SERIALCOMM',true);
+    reg.GetValueNames(Namelst);
+    //if Namelst.Count <> TotalComNum then
+    begin
+        if HaveOpenCom = '0' then
+        begin
+            TotalComNum  := Namelst.Count;
+            Form1.ComboBox1.Items.Clear;
+            for i := 0  to Namelst.Count-1 do
+            begin
+              Form1.ComboBox1.Items.Add(reg.ReadString(Namelst[i]));
+            end;
+            // 排序
+            for i := 0  to Namelst.Count-2 do
+              for j := i+1  to Namelst.Count-1 do begin
+                  if (Form1.ComboBox1.Items[i] > Form1.ComboBox1.Items[j])
+                      and (Length(Form1.ComboBox1.Items[i]) >= Length(Form1.ComboBox1.Items[j])) then
+                  begin
+                      str := Form1.ComboBox1.Items[i];
+                      Form1.ComboBox1.Items[i] := Form1.ComboBox1.Items[j];
+                      Form1.ComboBox1.Items[j] := str;
+                  end;
+              end;
+            Form1.ComboBox1.itemindex := 0;
+        end
+    end;
+    reg.CloseKey;
+    reg.Free;
+    Namelst.Free;
     Timer5.Enabled := True;
 end;
 

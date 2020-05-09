@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 536
-  Top = 87
+  Left = 404
+  Top = 84
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
@@ -55,7 +55,7 @@ object Form1: TForm1
     object TGroupBox
       Left = 2
       Top = 5
-      Width = 245
+      Width = 233
       Height = 117
       Align = alLeft
       Font.Charset = ANSI_CHARSET
@@ -66,7 +66,7 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       object shape1: TShape
-        Left = 157
+        Left = 144
         Top = 14
         Width = 20
         Height = 22
@@ -78,8 +78,8 @@ object Form1: TForm1
         OnMouseDown = shape1MouseDown
       end
       object Label4: TLabel
-        Left = 140
-        Top = 74
+        Left = 126
+        Top = 75
         Width = 35
         Height = 14
         Caption = 'ms/'#27425
@@ -87,7 +87,7 @@ object Form1: TForm1
       object ComboBox1: TComboBox
         Left = 7
         Top = 14
-        Width = 73
+        Width = 60
         Height = 22
         ItemHeight = 14
         TabOrder = 0
@@ -105,9 +105,9 @@ object Form1: TForm1
           'COM9')
       end
       object ComboBox2: TComboBox
-        Left = 81
+        Left = 69
         Top = 14
-        Width = 73
+        Width = 70
         Height = 22
         ItemHeight = 14
         TabOrder = 1
@@ -131,7 +131,7 @@ object Form1: TForm1
       object ComboBox3: TComboBox
         Left = 7
         Top = 43
-        Width = 73
+        Width = 60
         Height = 22
         ItemHeight = 14
         ItemIndex = 0
@@ -145,9 +145,9 @@ object Form1: TForm1
           '5')
       end
       object ComboBox4: TComboBox
-        Left = 81
+        Left = 69
         Top = 43
-        Width = 73
+        Width = 70
         Height = 22
         ItemHeight = 14
         ItemIndex = 0
@@ -160,7 +160,7 @@ object Form1: TForm1
           'Even')
       end
       object Button1: TButton
-        Left = 180
+        Left = 167
         Top = 16
         Width = 60
         Height = 20
@@ -170,7 +170,7 @@ object Form1: TForm1
       end
       object CheckBox4: TCheckBox
         Left = 6
-        Top = 73
+        Top = 72
         Width = 81
         Height = 17
         Caption = #23450#26102#21457#36865
@@ -188,18 +188,18 @@ object Form1: TForm1
         OnClick = CheckBox2Click
       end
       object Edit2: TEdit
-        Left = 87
-        Top = 69
-        Width = 50
+        Left = 85
+        Top = 70
+        Width = 39
         Height = 22
         TabOrder = 7
         Text = '1000'
         OnKeyPress = Edit2KeyPress
       end
       object CheckBox6: TCheckBox
-        Left = 87
+        Left = 85
         Top = 96
-        Width = 45
+        Width = 42
         Height = 17
         Caption = #39'\r'#39
         Font.Charset = ANSI_CHARSET
@@ -212,9 +212,9 @@ object Form1: TForm1
         OnClick = CheckBox6Click
       end
       object CheckBox7: TCheckBox
-        Left = 137
+        Left = 120
         Top = 96
-        Width = 55
+        Width = 39
         Height = 17
         Caption = #39'\n'#39
         Font.Charset = ANSI_CHARSET
@@ -227,20 +227,26 @@ object Form1: TForm1
         OnClick = CheckBox7Click
       end
       object Button2: TButton
-        Left = 178
-        Top = 80
+        Left = 165
+        Top = 75
         Width = 60
-        Height = 20
-        Caption = #21457#36865
+        Height = 30
+        Caption = #21457' '#36865
         Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clTeal
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 10
         OnClick = Button2Click
       end
     end
     object DataCtlBox: TGroupBox
-      Left = 247
+      Left = 235
       Top = 5
-      Width = 443
+      Width = 455
       Height = 117
       Align = alClient
       Font.Charset = ANSI_CHARSET
@@ -279,7 +285,7 @@ object Form1: TForm1
       object GroupBoxinput: TGroupBox
         Left = 2
         Top = 43
-        Width = 439
+        Width = 451
         Height = 72
         Align = alBottom
         Font.Charset = ANSI_CHARSET
@@ -292,7 +298,7 @@ object Form1: TForm1
         object Memo2: TMemo
           Left = 2
           Top = 16
-          Width = 435
+          Width = 447
           Height = 54
           Hint = #21452#20987#21487#21457#36865#25991#20214
           Align = alClient
@@ -338,7 +344,7 @@ object Form1: TForm1
         OnClick = CheckBox1Click
       end
       object BitBtn1: TBitBtn
-        Left = 392
+        Left = 400
         Top = 7
         Width = 42
         Height = 17
@@ -347,7 +353,7 @@ object Form1: TForm1
         OnClick = BitBtn1Click
       end
       object Button13: TButton
-        Left = 392
+        Left = 400
         Top = 26
         Width = 42
         Height = 17
@@ -367,7 +373,7 @@ object Form1: TForm1
         OnClick = CheckBox5Click
       end
       object Button7: TButton
-        Left = 348
+        Left = 356
         Top = 7
         Width = 42
         Height = 17
@@ -376,7 +382,7 @@ object Form1: TForm1
         OnClick = Button7Click
       end
       object Button66: TButton
-        Left = 348
+        Left = 356
         Top = 26
         Width = 42
         Height = 17
@@ -512,6 +518,8 @@ object Form1: TForm1
       Height = 380
       ActivePage = TabSheet1
       Align = alClient
+      ParentShowHint = False
+      ShowHint = False
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'String'
@@ -1878,8 +1886,8 @@ object Form1: TForm1
             OnChange = Memo5Change
           end
           object Button12: TButton
-            Left = 164
-            Top = 124
+            Left = 170
+            Top = 122
             Width = 50
             Height = 21
             Caption = #21457#36865
@@ -1934,8 +1942,11 @@ object Form1: TForm1
         end
       end
       object ts2: TTabSheet
+        Hint = 'DES:'#13#10#25968#25454#38271#24230#20026'8'#30340#20493#25968#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'8'#23383#33410
         Caption = 'DES/MAC'
         ImageIndex = 4
+        ParentShowHint = False
+        ShowHint = True
         object GroupBox17: TGroupBox
           Left = 0
           Top = 0
@@ -1960,7 +1971,6 @@ object Form1: TForm1
           Width = 231
           Height = 245
           Align = alClient
-          Caption = 'operation'
           TabOrder = 1
           object Label17: TLabel
             Left = 8
@@ -2188,8 +2198,11 @@ object Form1: TForm1
         end
       end
       object TabSheet6: TTabSheet
+        Hint = 'AES:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968','#19981#36275#26411#23614#34917#20805'0x00'#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'16'#23383#33410
         Caption = 'AES'
         ImageIndex = 7
+        ParentShowHint = False
+        ShowHint = True
         object GroupBox29: TGroupBox
           Left = 0
           Top = 0
@@ -2332,7 +2345,6 @@ object Form1: TForm1
               Color = clScrollBar
               Enabled = False
               TabOrder = 3
-              Text = #27599#20010'KEY  8'#23383#33410
               OnChange = Edit55Change
             end
             object Edit56: TEdit
@@ -2343,7 +2355,6 @@ object Form1: TForm1
               Color = clScrollBar
               Enabled = False
               TabOrder = 4
-              Text = '16'#23383#33410#21021#22987#21270#21521#37327
               OnChange = Edit56Change
             end
           end
@@ -2441,7 +2452,7 @@ object Form1: TForm1
               Top = 74
               Width = 97
               Height = 17
-              Caption = 'HEX INPUT'
+              Caption = 'HEX'
               TabOrder = 4
               OnClick = CheckBox59Click
             end
@@ -2449,8 +2460,13 @@ object Form1: TForm1
         end
       end
       object TabSheet4: TTabSheet
+        Hint = 
+          'SM4:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968#19988#23567#20110#31561#20110'4096'#13#10'KEY'#20026'16'#23383#33410#13#10'IV'#20026'16'#23383#33410#13#10#13#10'SM3:'#13#10#36755#20837#25968#25454#38656#23567#20110#31561#20110'4' +
+          '096'
         Caption = 'SM'
         ImageIndex = 5
+        ParentShowHint = False
+        ShowHint = True
         object GroupBox19: TGroupBox
           Left = 0
           Top = 0
@@ -2466,6 +2482,8 @@ object Form1: TForm1
             Height = 139
             Hint = 'Multiples of 16'
             Align = alClient
+            ParentShowHint = False
+            ShowHint = False
             TabOrder = 0
             OnChange = Memo8Change
           end
@@ -2531,7 +2549,7 @@ object Form1: TForm1
               OnClick = CheckBox57Click
             end
             object RadioSm4: TRadioButton
-              Left = 96
+              Left = 119
               Top = 9
               Width = 49
               Height = 17
@@ -2542,7 +2560,7 @@ object Form1: TForm1
               OnClick = RadioSm4Click
             end
             object RadioSm3: TRadioButton
-              Left = 168
+              Left = 169
               Top = 9
               Width = 50
               Height = 17
@@ -2688,7 +2706,7 @@ object Form1: TForm1
             end
             object Button62: TButton
               Left = 128
-              Top = 13
+              Top = 14
               Width = 75
               Height = 25
               Caption = #25991#20214#35745#31639
@@ -2745,9 +2763,9 @@ object Form1: TForm1
             object CheckBox54: TCheckBox
               Left = 9
               Top = 20
-              Width = 97
+              Width = 58
               Height = 17
-              Caption = 'hex'
+              Caption = 'HEX'
               TabOrder = 0
               OnClick = CheckBox54Click
             end

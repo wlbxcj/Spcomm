@@ -463,7 +463,6 @@ type
       const Idx: Integer): Boolean;
     procedure JvHidDeviceController1Removal(HidDev: TJvHidDevice);
     procedure Button8Click(Sender: TObject);
-    procedure Edit15KeyPress(Sender: TObject; var Key: Char);
     procedure Button9Click(Sender: TObject);
     procedure IdTCPServer1Execute(AThread: TIdPeerThread);
     procedure Button10Click(Sender: TObject);
@@ -2554,15 +2553,6 @@ begin
           AddToHistory(Str);
         end;
     end;
-end;
-
-procedure TForm1.Edit15KeyPress(Sender: TObject; var Key: Char);
-begin
-     if not (Key  in ['0'..'9',Char(VK_BACK)]) then
-     begin
-          ShowMessage('ÇëÊäÈë0..9µÄÊý×Ö');
-          Key := char(0);
-     end;
 end;
 
 procedure TForm1.Button9Click(Sender: TObject);

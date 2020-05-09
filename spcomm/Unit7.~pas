@@ -2161,8 +2161,6 @@ procedure EncryptAESStreamCBC(Source: TStream; Count: cardinal;
   const ExpandedKey: TAESExpandedKey128;  const InitVector: TAESBuffer;
   Dest: TStream);
 var
-  i : Integer;
-  s: string;
   TempIn, TempOut, Vector: TAESBuffer;
   Done: cardinal;
 begin

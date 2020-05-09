@@ -2351,13 +2351,13 @@ procedure TForm1.N3Click(Sender: TObject);
 begin
     if EnterSend = 0 then
     begin
-        Button2.Caption := '回车发送';
+        //Button2.Caption := '回车发送';
         EnterSend := 1;
         N3.Checked := True;
     end
     else
     begin
-        Button2.Caption := '发送';
+        //Button2.Caption := '发送';
         EnterSend := 0;
         N3.Checked := False;
     end;

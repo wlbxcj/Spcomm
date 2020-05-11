@@ -42,9 +42,6 @@ type
     GroupBox11: TGroupBox;
     Memo3: TMemo;
     Memo4: TMemo;
-    ReadBtn: TSpeedButton;
-    Button8: TButton;
-    CheckBox24: TCheckBox;
     TabSheet2: TTabSheet;
     IdTCPServer1: TIdTCPServer;
     GroupBox12: TGroupBox;
@@ -82,18 +79,13 @@ type
     Label16: TLabel;
     GroupBox17: TGroupBox;
     GroupBox18: TGroupBox;
-    Button55: TButton;
-    Button56: TButton;
     Edit50: TEdit;
     Label17: TLabel;
     Label18: TLabel;
     Edit51: TEdit;
     CheckBox55: TCheckBox;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
     memo7: TMemo;
     CheckBox56: TCheckBox;
-    RadioButton7: TRadioButton;
     SkinData2: TSkinData;
     F1: TMenuItem;
     N6: TMenuItem;
@@ -314,10 +306,6 @@ type
     GroupBox37: TGroupBox;
     CheckBox54: TCheckBox;
     Button64: TButton;
-    RadioButton20: TRadioButton;
-    RadioButton21: TRadioButton;
-    RadioButton22: TRadioButton;
-    Button65: TButton;
     RadioButton23: TRadioButton;
     RadioButton24: TRadioButton;
     Button66: TButton;
@@ -352,13 +340,6 @@ type
     ColorDialog1: TColorDialog;
     N12: TMenuItem;
     Memo13: TMemo;
-    Edit1: TEdit;
-    CheckBox61: TCheckBox;
-    Button6: TButton;
-    Button54: TButton;
-    Button5: TButton;
-    Button4: TButton;
-    Button3: TButton;
     N13: TMenuItem;
     N14: TMenuItem;
     N15: TMenuItem;
@@ -385,7 +366,6 @@ type
     Label30: TLabel;
     Label31: TLabel;
     CheckBox53: TCheckBox;
-    Button67: TButton;
     BitBtn2: TBitBtn;
     Label32: TLabel;
     Edit4: TEdit;
@@ -403,6 +383,29 @@ type
     MACOS1: TMenuItem;
     RadioSm4: TRadioButton;
     RadioSm3: TRadioButton;
+    GroupBox2: TGroupBox;
+    ReadBtn: TSpeedButton;
+    CheckBox24: TCheckBox;
+    Button8: TButton;
+    GroupBox3: TGroupBox;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
+    RadioButton7: TRadioButton;
+    RadioButton21: TRadioButton;
+    RadioButton20: TRadioButton;
+    RadioButton22: TRadioButton;
+    Button65: TButton;
+    Button56: TButton;
+    Button55: TButton;
+    GroupBox16: TGroupBox;
+    CheckBox61: TCheckBox;
+    Button5: TButton;
+    Button4: TButton;
+    Button3: TButton;
+    Button6: TButton;
+    Button54: TButton;
+    Button67: TButton;
+    Button11: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -611,11 +614,12 @@ type
     procedure MACOS1Click(Sender: TObject);
     procedure RadioSm3Click(Sender: TObject);
     procedure RadioSm4Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
 
   private
     { Private declarations }
-    procedure   WMSysCommand(var   Msg:TMessage);message   WM_SYSCOMMAND;
-
+    procedure WMSysCommand(var   Msg:TMessage);message   WM_SYSCOMMAND;
+    //procedure AppMessage(var Msg:TWMSYSCOMMAND);message WM_SYSCOMMAND;
   public
     ServerThread: TIdPeerThread;
     FList: TList;
@@ -731,6 +735,8 @@ begin
     finally
         FileClose(FileId);
     end;
+    // 重新备份新数据
+    RawDatalen := 0;
 end;
 
 procedure put_raw_data(Buffer: Pointer; BufferLength: Word);
@@ -1108,14 +1114,14 @@ end;
 procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
 begin
     case   Msg.WParam   of
-        //SC_MINIMIZE   :   ShowMessage( '最小化 ');
-        //SC_MAXIMIZE   :   ;//ShowMessage( '最大化 ');
-          SC_RESTORE    :
-            begin
-                //form1.Width := 800;
-                //groupbox3.Align:= alcustom;
-                //groupbox3.anchors := akTop;
-            end;
+        SC_MINIMIZE   :   ;//ShowMessage( '最小化 ');
+        SC_MAXIMIZE   :   //ShowMessage( '最大化 ');
+        begin
+
+        end;
+        SC_RESTORE    :
+        begin
+        end;
     end;
     inherited;
 end;
@@ -1883,12 +1889,9 @@ begin
             begin
                 ResultSun := ResultSun + Integer(strbuf[j]);
             end;
-            //resultsun := resultsun and $00FF;
-            Edit1.Text := 'Hex:  ' + IntToHex(ResultSun, 2);
-        end
-        else
-        begin
-             Edit1.Clear;
+            resultsun := resultsun and $00FF;
+            //Edit1.Text := 'Hex:  ' + IntToHex(ResultSun, 2);
+            Display_Info('Add: Hex: 0x' + IntToHex(resultsun, 2));
         end;
     end
     else
@@ -1902,10 +1905,11 @@ begin
 
          end;
          Resultxor := Resultxor and $0000ff;
-         if (HexOrChar mod 2 = 0) then
+         {if (HexOrChar mod 2 = 0) then
              Edit1.Text := 'Hex:  ' + IntToHex(Resultxor, 2)
          else
-             Edit1.Text := 'Char:  ' + Char(Resultxor);
+             Edit1.Text := 'Char:  ' + Char(Resultxor); }
+         Display_Info('Add: Hex: 0x' + IntToHex(Resultxor, 2));
     end;
 end;
 
@@ -1930,12 +1934,10 @@ begin
             begin
                 ResultSun := ResultSun xor Integer(strbuf[j]);
             end;
-            //resultsun := resultsun and $00FF;
-            Edit1.Text := '0x' + IntToHex(ResultSun, 2);
-        end
-        else
-        begin
-             Edit1.Clear;
+            resultsun := resultsun and $00FF;
+            //Edit1.Text := '0x' + IntToHex(ResultSun, 2);
+            //Display_Info('Hex: 0x' + IntToHex(ResultSun, 2));
+            Display_Info('Xor: Hex: 0x' + IntToHex(resultsun, 2));
         end;
     end
     else
@@ -1946,11 +1948,12 @@ begin
              //ShowMessage(StrTemp[j]);
             Resultxor := Resultxor xor Integer(StrTemp[j]);
             Resultxor := Resultxor and $00ff;
-            if (HexOrChar mod 2 = 0) then
+            {if (HexOrChar mod 2 = 0) then
                Edit1.Text := 'Hex:  ' + IntToHex(Resultxor, 2)
             else
-               Edit1.Text := 'Char:  ' + Char(Resultxor);
-        end
+               Edit1.Text := 'Char:  ' + Char(Resultxor);}
+        end;
+        Display_Info('Xor: Hex: 0x' + IntToHex(Resultxor, 2));
     end;
 
 end;
@@ -2090,8 +2093,10 @@ begin
     begin
       SaveDialog1.FileName := Form1.ComboBox1.Items[Form1.ComboBox1.itemindex] + formatdatetime('-yymmdd-hhmmss',now);
       if SaveDialog1.Execute then
+      begin
           Memo1.Lines.SaveToFile(SaveDialog1.FileName+'.txt');
           save_raw_data(SaveDialog1.FileName+'.dat');
+      end;
     end;
 end;
 
@@ -2351,13 +2356,13 @@ procedure TForm1.N3Click(Sender: TObject);
 begin
     if EnterSend = 0 then
     begin
-        Button2.Caption := '回车发送';
+        //Button2.Caption := '回车发送';
         EnterSend := 1;
         N3.Checked := True;
     end
     else
     begin
-        Button2.Caption := '发送';
+        //Button2.Caption := '发送';
         EnterSend := 0;
         N3.Checked := False;
     end;
@@ -4851,13 +4856,8 @@ begin
     begin
         Memo15.Visible := True;
         Memo15.Enabled := True;
-        Memo14.Align := alCustom;
-        Memo14.Height := 75;
+        Memo15.Height := (Memo15.Height + Memo14.Height) div 2;
 
-        Memo15.Align := alClient;
-        Memo15.Height := 75;
-
-        Memo14.Align := alTop;
         GroupBox6.Caption := 'data1/data2';
     end;
     CheckBox54.OnClick(Sender);
@@ -5712,6 +5712,34 @@ begin
         RadioButton9.Enabled := True;
         Button59.Enabled := True;
     end;
+end;
+
+procedure TForm1.Button11Click(Sender: TObject);
+var
+    i:Integer;
+    StrTemp,strbuf: string;
+begin
+    StrTemp := Memo13.Text;
+    if CheckBox61.Checked = True then
+    begin
+        StrTemp := TwoAsciiToHex(StrTemp);
+    end;
+
+    if Length(StrTemp) > 0 then
+    begin
+        strbuf := '';
+        for i:=1 to Length(StrTemp) do
+        begin
+            strbuf:= strbuf + inttohex(Byte(StrTemp[i]), 2) + ' ' ;
+            if (i + 1) mod 16 = 0 then
+            begin
+                strbuf:= strbuf + #13 + #10;
+            end;
+        end;
+        Display_Info('Hex:');
+        Display_Info(strbuf);
+    end;
+
 end;
 
 end.

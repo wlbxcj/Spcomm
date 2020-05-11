@@ -1,8 +1,20 @@
 # Spcomm
+基于dephi 7实现的多功能串口工具，集合了串口收发/多字符串发送、TCP功能、HID功能、DES、AES、SM4、XOR、HASH、CRC、MD5功能等
 
-
+VM下的XP系统环境：
+链接: https://pan.baidu.com/s/1v_DA3uTcsMU7X_srS_qsQw 
+提取码: aqwi
 
 Email:357853730@qq.com
+
+2020-05-11
+
+1、升级到4.8
+
+2、调整扩展功能中的控件排版
+
+3、原始数据进行保存后，重新开始备份
+
 
 2020-05-08
 

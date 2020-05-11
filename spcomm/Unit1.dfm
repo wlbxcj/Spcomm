@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 404
-  Top = 84
+  Left = 421
+  Top = 90
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.7'
+  Caption = 'Spcom V4.8'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1570,16 +1570,6 @@ object Form1: TForm1
       object ts1: TTabSheet
         Caption = 'HID'
         ImageIndex = 1
-        object ReadBtn: TSpeedButton
-          Left = 0
-          Top = 323
-          Width = 68
-          Height = 20
-          AllowAllUp = True
-          GroupIndex = 1
-          Caption = #30417#25511
-          OnClick = ReadBtnClick
-        end
         object DevListBox: TListBox
           Left = 0
           Top = 0
@@ -1624,15 +1614,15 @@ object Form1: TForm1
           Left = 0
           Top = 212
           Width = 231
-          Height = 107
-          Align = alTop
+          Height = 98
+          Align = alClient
           Caption = 'Send'
           TabOrder = 2
           object Memo4: TMemo
             Left = 2
             Top = 16
             Width = 227
-            Height = 89
+            Height = 80
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1643,22 +1633,40 @@ object Form1: TForm1
             TabOrder = 0
           end
         end
-        object Button8: TButton
-          Left = 160
-          Top = 323
-          Width = 68
-          Height = 20
-          Caption = #21457#36865
+        object GroupBox2: TGroupBox
+          Left = 0
+          Top = 310
+          Width = 231
+          Height = 41
+          Align = alBottom
           TabOrder = 3
-          OnClick = Button8Click
-        end
-        object CheckBox24: TCheckBox
-          Left = 112
-          Top = 326
-          Width = 46
-          Height = 17
-          Caption = 'HEX'
-          TabOrder = 4
+          object ReadBtn: TSpeedButton
+            Left = 9
+            Top = 10
+            Width = 68
+            Height = 25
+            AllowAllUp = True
+            GroupIndex = 1
+            Caption = #30417#25511
+            OnClick = ReadBtnClick
+          end
+          object CheckBox24: TCheckBox
+            Left = 100
+            Top = 13
+            Width = 46
+            Height = 22
+            Caption = 'HEX'
+            TabOrder = 0
+          end
+          object Button8: TButton
+            Left = 156
+            Top = 10
+            Width = 68
+            Height = 25
+            Caption = #21457#36865
+            TabOrder = 1
+            OnClick = Button8Click
+          end
         end
       end
       object TabSheet2: TTabSheet
@@ -1952,7 +1960,7 @@ object Form1: TForm1
           Top = 0
           Width = 231
           Height = 106
-          Align = alTop
+          Align = alClient
           Caption = 'data'
           TabOrder = 0
           object memo7: TMemo
@@ -1969,8 +1977,8 @@ object Form1: TForm1
           Left = 0
           Top = 106
           Width = 231
-          Height = 245
-          Align = alClient
+          Height = 161
+          Align = alBottom
           TabOrder = 1
           object Label17: TLabel
             Left = 8
@@ -2024,30 +2032,12 @@ object Form1: TForm1
             Width = 7
             Height = 14
           end
-          object Button55: TButton
-            Left = 24
-            Top = 218
-            Width = 75
-            Height = 17
-            Caption = #35299#23494
-            TabOrder = 0
-            OnClick = Button55Click
-          end
-          object Button56: TButton
-            Left = 136
-            Top = 218
-            Width = 75
-            Height = 17
-            Caption = #21152#23494
-            TabOrder = 1
-            OnClick = Button56Click
-          end
           object Edit50: TEdit
             Left = 28
             Top = 32
             Width = 169
             Height = 22
-            TabOrder = 2
+            TabOrder = 0
             OnChange = Edit50Change
           end
           object Edit51: TEdit
@@ -2057,7 +2047,7 @@ object Form1: TForm1
             Height = 22
             Color = clScrollBar
             Enabled = False
-            TabOrder = 3
+            TabOrder = 1
             OnChange = Edit51Change
           end
           object CheckBox55: TCheckBox
@@ -2068,28 +2058,8 @@ object Form1: TForm1
             Caption = 'DATA HEX'
             Checked = True
             State = cbChecked
-            TabOrder = 4
+            TabOrder = 2
             OnClick = CheckBox55Click
-          end
-          object RadioButton5: TRadioButton
-            Left = 5
-            Top = 157
-            Width = 57
-            Height = 17
-            Caption = 'DES'
-            Checked = True
-            TabOrder = 5
-            TabStop = True
-            OnClick = RadioButton5Click
-          end
-          object RadioButton6: TRadioButton
-            Left = 75
-            Top = 157
-            Width = 73
-            Height = 17
-            Caption = '3DES'
-            TabOrder = 6
-            OnClick = RadioButton6Click
           end
           object CheckBox56: TCheckBox
             Left = 130
@@ -2099,17 +2069,8 @@ object Form1: TForm1
             Caption = 'KEY  HEX '
             Checked = True
             State = cbChecked
-            TabOrder = 7
+            TabOrder = 3
             OnClick = CheckBox56Click
-          end
-          object RadioButton7: TRadioButton
-            Left = 150
-            Top = 157
-            Width = 57
-            Height = 17
-            Caption = 'CBC'
-            TabOrder = 8
-            OnClick = RadioButton7Click
           end
           object Edit57: TEdit
             Left = 27
@@ -2118,7 +2079,7 @@ object Form1: TForm1
             Height = 22
             Color = clScrollBar
             Enabled = False
-            TabOrder = 9
+            TabOrder = 4
             OnChange = Edit57Change
           end
           object Edit58: TEdit
@@ -2128,7 +2089,7 @@ object Form1: TForm1
             Height = 22
             Color = clScrollBar
             Enabled = False
-            TabOrder = 10
+            TabOrder = 5
             OnChange = Edit58Change
           end
           object GroupBox35: TGroupBox
@@ -2136,7 +2097,7 @@ object Form1: TForm1
             Top = 127
             Width = 204
             Height = 27
-            TabOrder = 11
+            TabOrder = 6
             Visible = False
             object RadioButton15: TRadioButton
               Left = 11
@@ -2159,41 +2120,96 @@ object Form1: TForm1
               OnClick = RadioButton16Click
             end
           end
-          object RadioButton20: TRadioButton
-            Left = 5
-            Top = 178
-            Width = 113
+        end
+        object GroupBox3: TGroupBox
+          Left = 0
+          Top = 267
+          Width = 231
+          Height = 84
+          Align = alBottom
+          TabOrder = 2
+          object RadioButton5: TRadioButton
+            Left = 4
+            Top = 9
+            Width = 57
             Height = 17
-            Caption = 'ANSI-X9.9 MAC'
-            TabOrder = 12
-            OnClick = RadioButton20Click
+            Caption = 'DES'
+            Checked = True
+            TabOrder = 0
+            TabStop = True
+            OnClick = RadioButton5Click
+          end
+          object RadioButton6: TRadioButton
+            Left = 78
+            Top = 8
+            Width = 73
+            Height = 17
+            Caption = '3DES'
+            TabOrder = 1
+            OnClick = RadioButton6Click
+          end
+          object RadioButton7: TRadioButton
+            Left = 153
+            Top = 8
+            Width = 57
+            Height = 17
+            Caption = 'CBC'
+            TabOrder = 2
+            OnClick = RadioButton7Click
           end
           object RadioButton21: TRadioButton
             Left = 119
-            Top = 177
+            Top = 24
             Width = 105
             Height = 17
             Caption = 'ANSI-9.19-MAC'
-            TabOrder = 13
+            TabOrder = 3
             OnClick = RadioButton21Click
           end
+          object RadioButton20: TRadioButton
+            Left = 4
+            Top = 39
+            Width = 113
+            Height = 17
+            Caption = 'ANSI-X9.9 MAC'
+            TabOrder = 4
+            OnClick = RadioButton20Click
+          end
           object RadioButton22: TRadioButton
-            Left = 5
-            Top = 201
+            Left = 4
+            Top = 24
             Width = 113
             Height = 17
             Caption = 'PBOC-3DES-MAC'
-            TabOrder = 14
+            TabOrder = 5
             OnClick = RadioButton22Click
           end
           object Button65: TButton
-            Left = 135
-            Top = 197
+            Left = 136
+            Top = 39
             Width = 75
             Height = 17
             Caption = 'MAC'#35828#26126
-            TabOrder = 15
+            TabOrder = 6
             OnClick = Button65Click
+          end
+          object Button56: TButton
+            Left = 10
+            Top = 60
+            Width = 75
+            Height = 17
+            Caption = #21152#23494
+            TabOrder = 7
+            OnClick = Button56Click
+          end
+          object Button55: TButton
+            Left = 136
+            Top = 60
+            Width = 75
+            Height = 17
+            Caption = #35299#23494
+            TabOrder = 8
+            OnClick = Button55Click
           end
         end
       end
@@ -2730,35 +2746,35 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 168
-            Align = alTop
+            Height = 204
+            Align = alClient
             Caption = 'data1/data2'
             TabOrder = 0
             object Memo14: TMemo
               Left = 2
               Top = 16
               Width = 223
-              Height = 75
-              Align = alTop
+              Height = 93
+              Align = alClient
               TabOrder = 0
               OnChange = Memo14Change
             end
             object Memo15: TMemo
               Left = 2
-              Top = 91
+              Top = 109
               Width = 223
-              Height = 75
-              Align = alClient
+              Height = 93
+              Align = alBottom
               TabOrder = 1
               OnChange = Memo15Change
             end
           end
           object GroupBox36: TGroupBox
             Left = 2
-            Top = 184
+            Top = 220
             Width = 227
             Height = 49
-            Align = alTop
+            Align = alBottom
             TabOrder = 1
             object CheckBox54: TCheckBox
               Left = 9
@@ -2772,16 +2788,16 @@ object Form1: TForm1
           end
           object GroupBox37: TGroupBox
             Left = 2
-            Top = 233
+            Top = 269
             Width = 227
-            Height = 116
-            Align = alClient
+            Height = 80
+            Align = alBottom
             TabOrder = 2
             object Button64: TButton
               Left = 16
-              Top = 63
+              Top = 53
               Width = 75
-              Height = 25
+              Height = 20
               Caption = #35745#31639
               TabOrder = 0
               OnClick = Button64Click
@@ -2824,87 +2840,91 @@ object Form1: TForm1
             Left = 2
             Top = 16
             Width = 227
-            Height = 191
-            Align = alTop
+            Height = 173
+            Align = alClient
             TabOrder = 0
             OnChange = Memo13Change
           end
-          object Edit1: TEdit
-            Left = 4
-            Top = 234
-            Width = 226
-            Height = 21
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Microsoft Sans Serif'
-            Font.Style = []
-            ParentFont = False
+          object GroupBox16: TGroupBox
+            Left = 2
+            Top = 189
+            Width = 227
+            Height = 160
+            Align = alBottom
             TabOrder = 1
-          end
-          object CheckBox61: TCheckBox
-            Left = 6
-            Top = 214
-            Width = 73
-            Height = 17
-            Caption = 'HEX'
-            TabOrder = 2
-            OnClick = CheckBox61Click
-          end
-          object Button6: TButton
-            Left = 133
-            Top = 294
-            Width = 91
-            Height = 21
-            Caption = 'ASCII'#30721#34920
-            TabOrder = 3
-            OnClick = Button6Click
-          end
-          object Button54: TButton
-            Left = 4
-            Top = 294
-            Width = 91
-            Height = 21
-            Caption = 'HexToAscii'
-            TabOrder = 4
-            OnClick = Button54Click
-          end
-          object Button5: TButton
-            Left = 152
-            Top = 217
-            Width = 75
-            Height = 17
-            Caption = 'SendFile'
-            TabOrder = 5
-            Visible = False
-            OnClick = Button5Click
-          end
-          object Button4: TButton
-            Left = 4
-            Top = 261
-            Width = 91
-            Height = 21
-            Caption = #24322#25110#21644
-            TabOrder = 6
-            OnClick = Button4Click
-          end
-          object Button3: TButton
-            Left = 133
-            Top = 261
-            Width = 91
-            Height = 21
-            Caption = #32047#21152#21644
-            TabOrder = 7
-            OnClick = Button3Click
-          end
-          object Button67: TButton
-            Left = 4
-            Top = 323
-            Width = 91
-            Height = 21
-            Caption = 'UTF8'#26174#31034
-            TabOrder = 8
-            OnClick = Button67Click
+            object CheckBox61: TCheckBox
+              Left = 5
+              Top = 21
+              Width = 73
+              Height = 23
+              Caption = 'HEX'
+              TabOrder = 0
+              OnClick = CheckBox61Click
+            end
+            object Button5: TButton
+              Left = 152
+              Top = 57
+              Width = 75
+              Height = 23
+              Caption = 'SendFile'
+              TabOrder = 1
+              Visible = False
+              OnClick = Button5Click
+            end
+            object Button4: TButton
+              Left = 5
+              Top = 54
+              Width = 91
+              Height = 23
+              Caption = #24322#25110#21644
+              TabOrder = 2
+              OnClick = Button4Click
+            end
+            object Button3: TButton
+              Left = 131
+              Top = 53
+              Width = 91
+              Height = 23
+              Caption = #32047#21152#21644
+              TabOrder = 3
+              OnClick = Button3Click
+            end
+            object Button6: TButton
+              Left = 5
+              Top = 80
+              Width = 91
+              Height = 23
+              Caption = 'ASCII'#30721#34920
+              TabOrder = 4
+              OnClick = Button6Click
+            end
+            object Button54: TButton
+              Left = 5
+              Top = 106
+              Width = 91
+              Height = 23
+              Caption = 'HexToAscii'
+              TabOrder = 5
+              OnClick = Button54Click
+            end
+            object Button67: TButton
+              Left = 131
+              Top = 80
+              Width = 91
+              Height = 23
+              Caption = 'UTF8'#26174#31034
+              TabOrder = 6
+              OnClick = Button67Click
+            end
+            object Button11: TButton
+              Left = 131
+              Top = 106
+              Width = 91
+              Height = 23
+              Caption = 'AsciiToHex'
+              TabOrder = 7
+              OnClick = Button11Click
+            end
           end
         end
       end

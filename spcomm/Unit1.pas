@@ -1370,7 +1370,7 @@ begin
           ComboBox4.itemindex := MyIniFile.ReadInteger('COM', 'Parity', 0);
 
           str_tmp := MyIniFile.ReadString('SINGLESEND', 'SEND', '');
-          Memo2.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo2.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           Edit2.Text := MyIniFile.ReadString('SINGLESEND', 'INTERVALS',  '2000');
           FileSendDelay := MyIniFile.ReadInteger('SINGLESEND', 'SEND_DELAY', 1);
           case (FileSendDelay) of
@@ -1389,7 +1389,7 @@ begin
               begin
                   name_str := (GroupBox9.Controls[i] as tedit).Name;
                   str_tmp := MyIniFile.ReadString('AUTOSEND', name_str, '');
-                  (GroupBox9.Controls[i] as tedit).Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+                  (GroupBox9.Controls[i] as tedit).Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
               end;
           end;
           Edit3.Text := MyIniFile.ReadString('AUTOSEND', 'INTERVALS',  '1000');
@@ -1397,6 +1397,8 @@ begin
           Edit15.Text := MyIniFile.ReadString('TCP', 'SERVER_PORT',  '');
           Edit21.Text := MyIniFile.ReadString('TCP', 'CLIENT_IP',    '');
           Edit22.Text := MyIniFile.ReadString('TCP', 'CLIENT_PORT',  '');
+          str_tmp := MyIniFile.ReadString('TCP', 'SEND', str_tmp);
+          Memo5.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           Memo1.Font.name := MyIniFile.ReadString('DIS_PARA', 'font_name', 'Courier New');
           Memo1.Font.size := MyIniFile.ReadInteger('DIS_PARA', 'font_size', 9);
@@ -1425,52 +1427,49 @@ begin
           end;
 
           str_tmp := MyIniFile.ReadString('HIDSEND', 'SEND', str_tmp);
-          Memo4.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
-
-          str_tmp := MyIniFile.ReadString('TCPSEND', 'SEND', str_tmp);
-          Memo5.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo4.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('DES-MAC', 'DATA', str_tmp);
-          Memo7.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo7.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('DES-MAC', 'K1', str_tmp);
-          Edit50.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit50.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('DES-MAC', 'K2', str_tmp);
-          Edit51.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit51.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('DES-MAC', 'K3', str_tmp);
-          Edit58.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit58.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('DES-MAC', 'IV', str_tmp);
-          Edit57.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit57.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('AES', 'DATA', str_tmp);
-          Memo12.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo12.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('AES', 'K1', str_tmp);
-          Edit52.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit52.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('AES', 'K2', str_tmp);
-          Edit53.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit53.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('AES', 'K3', str_tmp);
-          Edit54.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit54.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('AES', 'K4', str_tmp);
-          Edit55.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit55.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('AES', 'IV', str_tmp);
-          Edit56.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit56.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('SM4', 'DATA', str_tmp);
-          Memo8.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo8.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('SM4', 'K1', str_tmp);
-          Edit59.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit59.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('SM4', 'IV', str_tmp);
-          Edit60.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Edit60.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('HASH', 'DATA', str_tmp);
-          Memo11.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo11.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('XOR', 'DATA1', str_tmp);
-          Memo14.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo14.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
           str_tmp := MyIniFile.ReadString('XOR', 'DATA2', str_tmp);
-          Memo15.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo15.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           str_tmp := MyIniFile.ReadString('MORE', 'DATA', str_tmp);
-          Memo13.Text := StringReplace(str_tmp, #3#4, #13#10, [rfReplaceAll]);
+          Memo13.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
@@ -1605,7 +1604,11 @@ begin
             begin
                 data_str := StringReplace(string(pc), ReplaceCrLfStr, '', [rfReplaceAll]);
                 data_str := StringReplace(data_str, RealCrLfStr, FinalCrLfStr+date_str, [rfReplaceAll]);
-                Memo1.Lines.Add(date_str + data_str);
+                // 末尾有换行的话，会多出一行时间，下次数据来时替换掉
+                if Length(Memo1.Lines[Memo1.Lines.Count-1]) = 21 then
+                    Memo1.Lines[Memo1.Lines.Count-1] := date_str + data_str
+                else
+                    Memo1.Lines.Add(date_str + data_str);
             end
             else
             begin
@@ -1781,7 +1784,7 @@ begin
     MyIniFile.WriteInteger('COM', 'Parity', ComboBox4.itemindex);
 
     str_tmp := Memo2.Text;
-    str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(str_tmp, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('SINGLESEND', 'SEND', str_tmp);
     MyIniFile.WriteString('SINGLESEND', 'INTERVALS', Edit2.Text);
     MyIniFile.WriteInteger('SINGLESEND', 'SEND_DELAY', FileSendDelay);
@@ -1794,7 +1797,7 @@ begin
             begin
                 str_tmp := (GroupBox9.Controls[i] as tedit).Text;
                 name_str := (GroupBox9.Controls[i] as tedit).Name;
-                str_tmp := StringReplace(str_tmp, #13#10, #3#4, [rfReplaceAll]);
+                str_tmp := StringReplace(str_tmp, #13#10, #03#04+'@', [rfReplaceAll]);
                 MyIniFile.WriteString('AUTOSEND', name_str, str_tmp);
             end;
         end;
@@ -1804,6 +1807,8 @@ begin
     MyIniFile.WriteString('TCP', 'SERVER_PORT', Edit15.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_IP',   Edit21.Text);
     MyIniFile.WriteString('TCP', 'CLIENT_PORT', Edit22.Text);
+    str_tmp := StringReplace(Memo5.Text, #13#10, #03#04+'@', [rfReplaceAll]);
+    MyIniFile.WriteString('TCP', 'SEND', str_tmp);
 
     MyIniFile.WriteString('DIS_PARA', 'font_name', Memo1.Font.name);
     MyIniFile.WriteInteger('DIS_PARA', 'font_size', Memo1.Font.size);
@@ -1813,52 +1818,49 @@ begin
     MyIniFile.WriteInteger('DIS_PARA', 'interval_time', ComReadIntervalTimeout);
     MyIniFile.WriteInteger('DIS_PARA', 'crlf_mode', CrLfMode);
 
-    str_tmp := StringReplace(Memo4.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo4.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('HIDSEND', 'SEND', str_tmp);
 
-    str_tmp := StringReplace(Memo5.Text, #13#10, #3#4, [rfReplaceAll]);
-    MyIniFile.WriteString('TCPSEND', 'SEND', str_tmp);
-
-    str_tmp := StringReplace(Memo7.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo7.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('DES-MAC', 'DATA', str_tmp);
-    str_tmp := StringReplace(Edit50.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit50.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('DES-MAC', 'K1', str_tmp);
-    str_tmp := StringReplace(Edit51.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit51.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('DES-MAC', 'K2', str_tmp);
-    str_tmp := StringReplace(Edit58.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit58.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('DES-MAC', 'K3', str_tmp);
-    str_tmp := StringReplace(Edit57.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit57.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('DES-MAC', 'IV', str_tmp);
 
-    str_tmp := StringReplace(Memo12.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo12.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'DATA', str_tmp);
-    str_tmp := StringReplace(Edit52.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit52.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'K1', str_tmp);
-    str_tmp := StringReplace(Edit53.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit53.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'K2', str_tmp);
-    str_tmp := StringReplace(Edit54.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit54.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'K3', str_tmp);
-    str_tmp := StringReplace(Edit55.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit55.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'K4', str_tmp);
-    str_tmp := StringReplace(Edit56.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit56.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('AES', 'IV', str_tmp);
 
-    str_tmp := StringReplace(Memo8.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo8.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('SM4', 'DATA', str_tmp);
-    str_tmp := StringReplace(Edit59.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit59.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('SM4', 'K1', str_tmp);
-    str_tmp := StringReplace(Edit60.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Edit60.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('SM4', 'IV', str_tmp);
 
-    str_tmp := StringReplace(Memo11.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo11.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('HASH', 'DATA', str_tmp);
 
-    str_tmp := StringReplace(Memo14.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo14.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('XOR', 'DATA1', str_tmp);
-    str_tmp := StringReplace(Memo15.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo15.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('XOR', 'DATA2', str_tmp);
 
-    str_tmp := StringReplace(Memo13.Text, #13#10, #3#4, [rfReplaceAll]);
+    str_tmp := StringReplace(Memo13.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('MORE', 'DATA', str_tmp);
 
     MyIniFile.Destroy;
@@ -1900,9 +1902,6 @@ begin
          for j:= 1 to EditLen do
          begin
             Resultxor := Resultxor + Integer(StrTemp[j]);
-
-            
-
          end;
          Resultxor := Resultxor and $0000ff;
          {if (HexOrChar mod 2 = 0) then

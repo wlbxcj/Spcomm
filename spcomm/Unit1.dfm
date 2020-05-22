@@ -1922,7 +1922,7 @@ object Form1: TForm1
           end
           object CheckBox26: TCheckBox
             Left = 123
-            Top = 127
+            Top = 126
             Width = 41
             Height = 17
             Caption = 'HEX'

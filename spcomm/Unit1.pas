@@ -1034,7 +1034,7 @@ var
   TimeBuf : TDateTime;
   rbuf:array[0..40960] of byte;
 begin
-    //move(buffer^, pchar(@rbuf)^, DataLen);
+    put_raw_data(@Buffer, DataLen);   // 原始数据保存
     strtmp := '';
     if Form1.CheckBox1.Checked = True then
     begin
@@ -1045,11 +1045,7 @@ begin
     end
     else
     begin
-        //move(buffer^, pchar(strtmp)^, DataLen);
-        for i := 0 to DataLen - 1 do
-        begin
-            strtmp := strtmp + Char(buffer[i]);
-        end;
+        strtmp := PChar(@buffer);
     end;
 
     if form1.CheckBox3.Checked = True then
@@ -1066,7 +1062,6 @@ begin
     Display_info(strtmp);
     RecLen := RecLen + DataLen;
     form1.StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
-    //form1.StatusBar1.Panels[2].Text := ' Lines: ' + IntToStr(form1.Memo1.Lines.Count);
 end;
 
 
@@ -1100,9 +1095,10 @@ begin
                 if 0 < readlen then
                 begin
                     if readlen > 40960 then
-                        readlen := 40960;
+                        readlen := 40960-1;
 
                     Form1.IdTCPClient1.ReadBuffer(buf, readlen);
+                    buf[readlen] := 0;
                     Form1.DisplayRecData(buf, readlen, Form1.Edit21.Text);
                 end;
             end;
@@ -4934,6 +4930,7 @@ begin
         RawBackUpFlag := 0;
         RawDatalen := 0;
     end;
+    StatusBar1.Panels[3].Text:='https://github.com/wlbxcj/Spcomm';
 end;
 
 procedure TForm1.N10M1Click(Sender: TObject);
@@ -4956,6 +4953,7 @@ begin
             N10M1.Checked := False;
             ShowMessage('申请内存失败');
         end;
+        StatusBar1.Panels[3].Text:='原始数据正在后台备份';
     end;
 end;
 
@@ -4980,6 +4978,7 @@ begin
             N20M1.Checked := False;
             ShowMessage('申请内存失败');
         end;
+        StatusBar1.Panels[3].Text:='原始数据正在后台备份';
     end;
 end;
 

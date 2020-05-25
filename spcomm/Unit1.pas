@@ -5,12 +5,12 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SPComm, ExtCtrls, Buttons, ComCtrls,IniFiles,IdStream,
-  Menus,Registry,Unit2,Unit3,Unit4,unit7, WinSkinData, IdHTTP,
+  Menus,Registry,Unit2,Unit3,Unit4,unit7,unit8, WinSkinData, IdHTTP,
   IdAntiFreezeBase, IdAntiFreeze, IdIPWatch, IdTCPConnection, IdTCPClient,
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
-  SM;
+  SM, Jpeg, SCapture,ScrnCap;
 
 type
   TForm1 = class(TForm)
@@ -406,6 +406,8 @@ type
     Button54: TButton;
     Button67: TButton;
     Button11: TButton;
+    Button14: TButton;
+    Button15: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -615,7 +617,10 @@ type
     procedure RadioSm3Click(Sender: TObject);
     procedure RadioSm4Click(Sender: TObject);
     procedure Button11Click(Sender: TObject);
-
+    procedure Button14Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
+    //procedure TForm1.CaptureRegion();
+    
   private
     { Private declarations }
     procedure WMSysCommand(var   Msg:TMessage);message   WM_SYSCOMMAND;
@@ -5738,6 +5743,80 @@ begin
         Display_Info(strbuf);
     end;
 
+end;
+
+procedure snapscreen(a,b,c,d:Integer);
+var
+    bmpscreen:Tbitmap;
+    jpegscreen:Tjpegimage;
+    FullscreenCanvas:TCanvas;
+    dc:HDC;
+    sourceRect, destRect: TRect;
+begin
+    try
+        dc:=getdc(0);
+        fullscreencanvas:=Tcanvas.Create;
+        fullscreencanvas.Handle:=dc;
+        bmpscreen:=Tbitmap.create;
+        bmpscreen.Width :=c-a;
+        bmpscreen.Height :=d-b;
+        sourcerect:=rect(0,0,c-a ,d-b );
+        destrect:= rect(a,b,c,d);
+        bmpscreen.Canvas.CopyRect(sourcerect,fullscreenCanvas,destrect);
+        jpegscreen:=Tjpegimage.Create ;
+        jpegscreen.Assign (bmpscreen);
+        jpegscreen.CompressionQuality:=100;
+        jpegscreen.SaveToFile(ExtractFilePath(ParamStr(0))+'tmp.jpg');
+        FullscreenCanvas.Free;
+        bmpscreen.Free;
+        jpegscreen.Free ;
+        ReleaseDC(0, DC);
+        except
+    end;
+end;
+
+procedure CaptureRegion();
+var
+    ABitmap: TBitmap;
+begin
+  with TForm8.Create(Application) do
+  try
+    if ShowModal = mrOK then
+      with fRect do
+      begin
+        if (Right > Left) and (Bottom > Top) then
+        begin
+            // 提供系统刷新时间
+          Sleep(500);
+          ABitmap := TBitmap.Create;
+          ABitmap.Assign(CaptureScreenRect(fRect));
+          ABitmap.SaveToFile(formatdatetime('mmdd-hhmmss',now)+'.jpg');
+          Display_Info(ExtractFilePath(ParamStr(0)) + formatdatetime('mmdd-hhmmss',now)+'.jpg');
+          ABitmap.Free;
+        end
+        else
+        begin
+          Form1.Button14Click(TObject(0));
+          Exit;
+        end;                            {If}
+      end;                              {fRect}
+  finally                               {ShowModal}
+    Free;
+  end;
+end;
+
+procedure TForm1.Button14Click(Sender: TObject);
+begin
+    Application.Minimize;
+    Sleep(500);
+    CaptureRegion();
+    Application.Restore;
+end;
+
+
+procedure TForm1.Button15Click(Sender: TObject);
+begin
+    WinExec('calc.exe',SW_SHOWNORMAL);
 end;
 
 end.

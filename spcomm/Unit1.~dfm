@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 421
-  Top = 90
+  Left = 291
+  Top = 98
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
@@ -516,7 +516,7 @@ object Form1: TForm1
       Top = 16
       Width = 239
       Height = 380
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       ParentShowHint = False
       ShowHint = False
@@ -1922,7 +1922,7 @@ object Form1: TForm1
           end
           object CheckBox26: TCheckBox
             Left = 123
-            Top = 127
+            Top = 126
             Width = 41
             Height = 17
             Caption = 'HEX'
@@ -2925,6 +2925,15 @@ object Form1: TForm1
               TabOrder = 7
               OnClick = Button11Click
             end
+            object Button14: TButton
+              Left = 6
+              Top = 131
+              Width = 75
+              Height = 25
+              Caption = #25130#22270
+              TabOrder = 8
+              OnClick = Button14Click
+            end
           end
         end
       end
@@ -3149,6 +3158,7 @@ object Form1: TForm1
     end
     object F1: TMenuItem
       Caption = #22797#21046
+      Enabled = False
       OnClick = F1Click
     end
     object N6: TMenuItem

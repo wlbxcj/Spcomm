@@ -407,6 +407,7 @@ type
     Button67: TButton;
     Button11: TButton;
     Button14: TButton;
+    Button15: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -617,6 +618,7 @@ type
     procedure RadioSm4Click(Sender: TObject);
     procedure Button11Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -3484,7 +3486,7 @@ procedure TForm1.Button57Click(Sender: TObject);
 var
     datastr ,datatmp: string;
     datalen, i:LongWord;
-    mydata:array [0..4096] of Byte;
+    mydata:array of Byte;
     hashout:THashOutArray;
     hashstr:string;
     n:LongInt;
@@ -3495,7 +3497,7 @@ var
     str: string;
 begin
     datastr := Memo11.Text;
-
+    SetLength(mydata, Length(datastr));
     if datastr = '' then
     begin
         ShowMessage('请输入数据');
@@ -3629,10 +3631,11 @@ var
     i, j : Integer;
     mykey : array[0..15] of Byte;
     myiv : array[0..15] of Byte;
-    mydata : array[0..4095] of Byte;
+    //mydata : array[0..4095] of Byte;
+    mydata : array of Byte;
     mydatatmp : array[0..15] of Byte;
     outbuf :TMyArray;
-    cbcout :TMyArray4096Byte;
+    cbcout :TMyArrayByte;
     md, msgArr: SMByteArray;
 begin
     datastr := Memo8.Text;
@@ -3643,16 +3646,16 @@ begin
         ShowMessage('请输入数据');
         Exit;
     end;
-
+    SetLength(mydata, Length(Memo8.Text));     // 动态数组
     // data len
     if CheckBox57.Checked <> True then   // str
     begin
         datatmp := datastr;
         datalen := Length(datastr);
-        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        if (datalen mod 16 <> 0) then
         begin
             if RadioSm4.Checked = True then begin
-                ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+                ShowMessage('请输入16字节整数倍长度的数据,当前长度为'+ IntToStr(datalen));
                 Exit;
             end
         end
@@ -3670,10 +3673,10 @@ begin
         datatmp := '';
         datatmp := TwoAsciiToHex(datastr);
         datalen := Length(datatmp);
-        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        if ((datalen mod 16 <> 0)) then
         begin
             if RadioSm4.Checked = True then begin
-                ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+                ShowMessage('请输入16字节整数倍长度的数据,当前长度为'+ IntToStr(datalen));
                 Exit;
             end
         end
@@ -3801,7 +3804,7 @@ begin
                   end;
                end;
             end;
-
+            SetLength(cbcout, (datalen +15) div 16 * 16);
             cbcout := sm4_crypt_cbc(1, mykey, mydata, datalen, myiv);
             keytemp2 := '';
             Display_Info('CBC ENC:');
@@ -3839,14 +3842,15 @@ var
     i, j : Integer;
     mykey : array[0..15] of Byte;
     myiv : array[0..15] of Byte;
-    mydata : array[0..4095] of Byte;
+    //mydata : array[0..4095] of Byte;
+    mydata : array of Byte;
     mydatatmp : array[0..15] of Byte;
     outbuf :TMyArray;
-    cbcout :TMyArray4096Byte;
+    cbcout :TMyArrayByte;
 begin
     datastr := Memo8.Text;
     keystr := Edit59.Text;
-
+    SetLength(mydata, Length(Memo8.Text));     // 动态数组
     if datastr = '' then
     begin
         ShowMessage('请输入数据');
@@ -3861,9 +3865,9 @@ begin
     if CheckBox57.Checked <> True then   // str
     begin
         datalen := Length(datastr);
-        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        if ((datalen mod 16 <> 0)) then
         begin
-            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            ShowMessage('请输入16字节整数倍长度的数据,当前长度为'+ IntToStr(datalen));
             Exit;
         end
         else
@@ -3880,9 +3884,9 @@ begin
         datatmp := '';
         datatmp := TwoAsciiToHex(datastr);
         datalen := Length(datatmp);
-        if ((datalen mod 16 <> 0) or (datalen > 4096)) then
+        if ((datalen mod 16 <> 0)) then
         begin
-            ShowMessage('请输入16字节整数倍长度的数据且小于4096,当前长度为'+ IntToStr(datalen));
+            ShowMessage('请输入16字节整数倍长度的数据,当前长度为'+ IntToStr(datalen));
             Exit;
         end
         else
@@ -4003,7 +4007,7 @@ begin
               end;
            end;
         end;
-
+        SetLength(cbcout, (datalen +15) div 16 * 16);
         cbcout := sm4_crypt_cbc(0, mykey, mydata, datalen, myiv);
         Display_Info('CBC DEC:');
         keytemp2 := '';
@@ -5811,5 +5815,10 @@ begin
     Application.Restore;
 end;
 
+
+procedure TForm1.Button15Click(Sender: TObject);
+begin
+    WinExec('calc.exe',SW_SHOWNORMAL);
+end;
 
 end.

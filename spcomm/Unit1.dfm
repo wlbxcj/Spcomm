@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 291
-  Top = 98
+  Left = 247
+  Top = 122
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
@@ -516,7 +516,7 @@ object Form1: TForm1
       Top = 16
       Width = 239
       Height = 380
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       ParentShowHint = False
       ShowHint = False

@@ -11,7 +11,8 @@ uses SysUtils,Windows, Messages, Variants, Classes, Graphics, Controls, Forms,
 type
   TMyArray = array[0..16] of byte;
   TMyArrayLong32 = array[0..31] of longword;
-  TMyArray4096Byte = array[0..4095] of Byte;
+  //TMyArray4096Byte = array[0..4095] of Byte;
+  TMyArrayByte = array of Byte;
 
   function PUT_ULONG_BE(n:longword;i:longword):TMyArray;
   function GET_ULONG_BE(b:array of byte;i:longword):longword;
@@ -21,7 +22,7 @@ type
 					            key:array of Byte;
 					            input:array of Byte;
 					            inputlen:longword;
-					            iv:array of Byte):TMyArray4096Byte;
+					            iv:array of Byte):TMyArrayByte;
 const
   SboxTable: array[0..16*16-1] of Byte =(
         $d6,$90,$e9,$fe,$cc,$e1,$3d,$b7,$16,$b6,$14,$c2,$28,$fb,$2c,$05,
@@ -249,7 +250,7 @@ function sm4_crypt_cbc(mode:Integer;
 					            key:array of Byte;
 					            input:array of Byte;
 					            inputlen:longword;
-					            iv:array of Byte):TMyArray4096Byte;
+					            iv:array of Byte):TMyArrayByte;
 var
     i,finish_len:longword;
     tmp : longword;
@@ -257,8 +258,10 @@ var
     ivtmp : array[0..15] of Byte;
     inputtmp : array[0..15] of Byte;
     outputtmp : TMyArray;
-    outputresult : TMyArray4096Byte;
+    outputresult : TMyArrayByte;
 begin
+    SetLength(outputresult, (inputlen +15) div 16 * 16);
+
     for i := 0 to 15 do
        ivtmp[i] := iv[i];
 

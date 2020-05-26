@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 291
-  Top = 98
+  Left = 247
+  Top = 122
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V4.9'
+  Caption = 'Spcom V5.0'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -2854,8 +2854,8 @@ object Form1: TForm1
             TabOrder = 1
             object CheckBox61: TCheckBox
               Left = 5
-              Top = 21
-              Width = 73
+              Top = 14
+              Width = 91
               Height = 23
               Caption = 'HEX'
               TabOrder = 0
@@ -2873,7 +2873,7 @@ object Form1: TForm1
             end
             object Button4: TButton
               Left = 5
-              Top = 54
+              Top = 47
               Width = 91
               Height = 23
               Caption = #24322#25110#21644
@@ -2882,7 +2882,7 @@ object Form1: TForm1
             end
             object Button3: TButton
               Left = 131
-              Top = 53
+              Top = 46
               Width = 91
               Height = 23
               Caption = #32047#21152#21644
@@ -2891,7 +2891,7 @@ object Form1: TForm1
             end
             object Button6: TButton
               Left = 5
-              Top = 80
+              Top = 73
               Width = 91
               Height = 23
               Caption = 'ASCII'#30721#34920
@@ -2900,7 +2900,7 @@ object Form1: TForm1
             end
             object Button54: TButton
               Left = 5
-              Top = 106
+              Top = 98
               Width = 91
               Height = 23
               Caption = 'HexToAscii'
@@ -2909,7 +2909,7 @@ object Form1: TForm1
             end
             object Button67: TButton
               Left = 131
-              Top = 80
+              Top = 73
               Width = 91
               Height = 23
               Caption = 'UTF8'#26174#31034
@@ -2918,7 +2918,7 @@ object Form1: TForm1
             end
             object Button11: TButton
               Left = 131
-              Top = 106
+              Top = 99
               Width = 91
               Height = 23
               Caption = 'AsciiToHex'
@@ -2926,13 +2926,22 @@ object Form1: TForm1
               OnClick = Button11Click
             end
             object Button14: TButton
-              Left = 6
-              Top = 131
-              Width = 75
+              Left = 5
+              Top = 124
+              Width = 91
               Height = 25
               Caption = #25130#22270
               TabOrder = 8
               OnClick = Button14Click
+            end
+            object Button15: TButton
+              Left = 131
+              Top = 124
+              Width = 91
+              Height = 25
+              Caption = #25171#24320#35745#31639#22120
+              TabOrder = 9
+              OnClick = Button15Click
             end
           end
         end

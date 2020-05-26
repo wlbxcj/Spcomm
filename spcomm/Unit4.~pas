@@ -10,17 +10,17 @@ uses SysUtils,Windows, Messages, Variants, Classes, Graphics, Controls, Forms,
   MConnect, SConnect, IdThread, IdHTTP, wininet, WinSkinData,Unit2,Unit3;
 type
   TMyArray = array[0..16] of byte;
-  TMyArrayLong32 = array[0..31] of LongInt;
+  TMyArrayLong32 = array[0..31] of longword;
   TMyArray4096Byte = array[0..4095] of Byte;
 
-  function PUT_ULONG_BE(n:LongInt;i:LongInt):TMyArray;
-  function GET_ULONG_BE(b:array of byte;i:LongInt):LongInt;
-  function ROTL(x,n:LongInt):LongInt;
-  function sm4_crypt_ecb(mode: Integer; key:array of Byte; data:array of Byte; datalen: Integer):TMyArray;
+  function PUT_ULONG_BE(n:longword;i:longword):TMyArray;
+  function GET_ULONG_BE(b:array of byte;i:longword):longword;
+  function ROTL(x,n:longword):longword;
+  function sm4_crypt_ecb(mode: Integer; key:array of Byte; data:array of Byte; datalen: longword):TMyArray;
   function sm4_crypt_cbc(mode:Integer;
 					            key:array of Byte;
 					            input:array of Byte;
-					            inputlen:Integer;
+					            inputlen:longword;
 					            iv:array of Byte):TMyArray4096Byte;
 const
   SboxTable: array[0..16*16-1] of Byte =(
@@ -41,8 +41,8 @@ const
         $89,$69,$97,$4a,$0c,$96,$77,$7e,$65,$b9,$f1,$09,$c5,$6e,$c6,$84,
         $18,$f0,$7d,$ec,$3a,$dc,$4d,$20,$79,$ee,$5f,$3e,$d7,$cb,$39,$48);
 
-  FK: array[0..4-1] of LongInt =($a3b1bac6,$56aa3350,$677d9197,$b27022dc);
-  CK: array[0..32-1] of LongInt =(
+  FK: array[0..4-1] of longword =($a3b1bac6,$56aa3350,$677d9197,$b27022dc);
+  CK: array[0..32-1] of longword =(
         $00070e15,$1c232a31,$383f464d,$545b6269,
         $70777e85,$8c939aa1,$a8afb6bd,$c4cbd2d9,
         $e0e7eef5,$fc030a11,$181f262d,$343b4249,
@@ -53,19 +53,19 @@ const
         $10171e25,$2c333a41,$484f565d,$646b7279);
 implementation
 
-function sm4Sbox(inch: Integer):Byte;
+function sm4Sbox(inch: longword):Byte;
 begin
     Result := SboxTable[inch];
 end;
 
 
-function GET_ULONG_BE( b:array of byte;i:LongInt):LongInt;
+function GET_ULONG_BE( b:array of byte;i:longword):longword;
 begin
     Result := ((b[(i)]) shl 24 ) or ((b[(i)+1]) shl 16 ) or ((b[(i)+2]) shl 8 ) or ((b[(i)+3]));
 end;
 
 
-function PUT_ULONG_BE(n:LongInt;i:LongInt):TMyArray;
+function PUT_ULONG_BE(n:longword;i:longword):TMyArray;
 var
   b:TMyArray;
 begin
@@ -78,13 +78,13 @@ begin
     Result := b;
 end;
 
-function ROTL(x,n:LongInt):LongInt;
-  function myshl(m,k:LongInt):LongInt;
+function ROTL(x,n:longword):longword;
+  function myshl(m,k:longword):longword;
   begin
       Result := (((m) and $FFFFFFFF) shl k)
   end;
 var
-  a,b:LongInt;
+  a,b:longword;
 begin
     a := 0;
     b := 0;
@@ -93,10 +93,10 @@ begin
     Result := a or b;
 end;
 
-function sm4Lt(ka: LongInt):LongInt;
+function sm4Lt(ka: longword):longword;
 var
-  bb : LongInt;
-  c : LongInt;
+  bb : longword;
+  c : longword;
   a : TMyArray;
 	b : TMyArray;
 begin
@@ -112,16 +112,16 @@ begin
     Result := c;
 end;
 
-function sm4F(x0, x1, x2, x3, rk: LongInt):LongInt;
+function sm4F(x0, x1, x2, x3, rk: longword):longword;
 begin
     result := (x0 xor sm4Lt(x1 xor x2 xor x3 xor rk));
 end;
 
 
-function sm4CalciRK(ka:LongInt):LongInt;
+function sm4CalciRK(ka:longword):longword;
 var
-  bb : LongInt;
-  rk : LongInt;
+  bb : longword;
+  rk : longword;
   a : TMyArray;
 	b : TMyArray;
 begin
@@ -137,9 +137,9 @@ end;
 
 function sm4_setkey(key:array of Byte):TMyArrayLong32;
 var
-    MK: array[0..3] of LongInt;
-    k: array[0..35] of LongInt;
-    i : LongInt;
+    MK: array[0..3] of longword;
+    k: array[0..35] of longword;
+    i : longword;
     SK:TMyArrayLong32;
 begin
     i := 0;
@@ -164,9 +164,9 @@ end;
 function sm4_one_round(sk:TMyArrayLong32;
                     input:array of Byte):TMyArray;
 var
-    i : LongInt;
+    i : longword;
     output : TMyArray;
-    ulbuf : array[0..35] of LongInt;
+    ulbuf : array[0..35] of longword;
 begin
     for i := 0 to 35 do
     begin
@@ -208,11 +208,11 @@ begin
     end;
 end;
 
-function sm4_crypt_ecb(mode: Integer; key:array of Byte; data:array of Byte; datalen: Integer):TMyArray;
+function sm4_crypt_ecb(mode: Integer; key:array of Byte; data:array of Byte; datalen: longword):TMyArray;
 var
     SK:TMyArrayLong32;
     output : TMyArray;
-    i, tmp : LongInt;
+    i, tmp : longword;
 begin
   // º”√‹
   if mode <> 0 then
@@ -248,11 +248,11 @@ end;
 function sm4_crypt_cbc(mode:Integer;
 					            key:array of Byte;
 					            input:array of Byte;
-					            inputlen:Integer;
+					            inputlen:longword;
 					            iv:array of Byte):TMyArray4096Byte;
 var
-    i,finish_len:Integer;
-    tmp : LongInt;
+    i,finish_len:longword;
+    tmp : longword;
     SK:TMyArrayLong32;
     ivtmp : array[0..15] of Byte;
     inputtmp : array[0..15] of Byte;

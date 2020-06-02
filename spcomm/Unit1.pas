@@ -87,7 +87,6 @@ type
     memo7: TMemo;
     CheckBox56: TCheckBox;
     SkinData2: TSkinData;
-    F1: TMenuItem;
     N6: TMenuItem;
     TabSheet4: TTabSheet;
     GroupBox19: TGroupBox;
@@ -408,6 +407,8 @@ type
     Button11: TButton;
     Button14: TButton;
     Button15: TButton;
+    N22: TMenuItem;
+    N23: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -619,6 +620,8 @@ type
     procedure Button11Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
+    procedure N22Click(Sender: TObject);
+    procedure N23Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -670,6 +673,24 @@ var
   RealCrLfStr     : string = #10;         // 需要替换掉的换行符
   FinalCrLfStr    : string = #13#10;      // 最终的换行符
 
+const
+  strHexTable =
+    '000102030405060708090A0B0C0D0E0F' +
+    '101112131415161718191A1B1C1D1E1F' +
+    '202122232425262728292A2B2C2D2E2F' +
+    '303132333435363738393A3B3C3D3E3F' +
+    '404142434445464748494A4B4C4D4E4F' +
+    '505152535455565758595A5B5C5D5E5F' +
+    '606162636465666768696A6B6C6D6E6F' +
+    '707172737475767778797A7B7C7D7E7F' +
+    '808182838485868788898A8B8C8D8E8F' +
+    '909192939495969798999A9B9C9D9E9F' +
+    'A0A1A2A3A4A5A6A7A8A9AAABACADAEAF' +
+    'B0B1B2B3B4B5B6B7B8B9BABBBCBDBEBF' +
+    'C0C1C2C3C4C5C6C7C8C9CACBCCCDCECF' +
+    'D0D1D2D3D4D5D6D7D8D9DADBDCDDDEDF' +
+    'E0E1E2E3E4E5E6E7E8E9EAEBECEDEEEF' +
+    'F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF';
 implementation
 
 uses Unit5;
@@ -1551,6 +1572,26 @@ begin
     end;}
 end;
 
+function _IntTo2Hex_(const intValue:Integer):string;
+type
+   PInt_stu=^TInt_stu;
+   TInt_stu=record
+    B1:Byte;
+    B2:Byte;
+    B3:Byte;
+    B4:Byte;
+   end;
+var
+    P:PChar;
+    T:TInt_stu;
+begin
+    Integer(T) := intValue;
+    SetLength(Result, 2);
+    P := strHexTable;
+    Inc(P,T.B1 + T.B1);
+    Result[1] := P^; Inc(P);
+    Result[2] := P^;
+end;
 procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
@@ -1558,6 +1599,7 @@ var
     date_str, data_str:string;
     rbuf:array[0..5000] of byte;
     pc:PChar;
+    prstr:pointer;
 begin
     put_raw_data(Buffer, BufferLength);   // 原始数据保存
     if CheckBox5.Checked = True then
@@ -1586,10 +1628,12 @@ begin
         if HexShow = True then
         begin
              Memo1.Lines.Add(date_str);
-             move(buffer^, pchar(@rbuf)^, len);
+             //move(buffer^, pchar(@rbuf)^, len);
+             prstr:=buffer;
              for i:=0 to len - 1 do
              begin
-                 viewstring:= viewstring + inttohex(rbuf[i],2) + ' ' ;
+                 //viewstring:= viewstring + IntToHex(Byte(Pointer(Integer(prstr)+i)^),2) + ' ' ;
+                 viewstring:= viewstring + _IntTo2Hex_(Byte(Pointer(Integer(prstr)+i)^)) + ' ' ;
                  if (i + 1) mod 16 = 0 then
                  begin
                      viewstring:= viewstring + #13 + #10;
@@ -5819,6 +5863,24 @@ end;
 procedure TForm1.Button15Click(Sender: TObject);
 begin
     WinExec('calc.exe',SW_SHOWNORMAL);
+end;
+
+procedure TForm1.N22Click(Sender: TObject);
+begin
+    //Memo2.SelectAll;
+    Memo2.CopyToClipboard;
+    Memo2.SetFocus;
+end;
+
+procedure TForm1.N23Click(Sender: TObject);
+begin
+    if (Memo1.ReadOnly = True) then
+    begin
+        ShowMessage('只读模式');
+        Exit;
+    end;
+    Memo1.PasteFromClipboard;
+    Memo1.SetFocus;
 end;
 
 end.

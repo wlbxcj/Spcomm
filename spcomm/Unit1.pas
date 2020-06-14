@@ -10,7 +10,7 @@ uses
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
-  SM, Jpeg, SCapture,ScrnCap;
+  SM, Jpeg, SCapture,ScrnCap, ImgList;
 
 type
   TForm1 = class(TForm)
@@ -409,6 +409,180 @@ type
     Button15: TButton;
     N22: TMenuItem;
     N23: TMenuItem;
+    TCHB42: TCheckBox;
+    TESEND82: TEdit;
+    TESEND81: TEdit;
+    TESEND80: TEdit;
+    TESEND79: TEdit;
+    TESEND78: TEdit;
+    TESEND77: TEdit;
+    TESEND76: TEdit;
+    TESEND75: TEdit;
+    TESEND74: TEdit;
+    TESEND73: TEdit;
+    TESEND72: TEdit;
+    TESEND71: TEdit;
+    TESEND70: TEdit;
+    TESEND69: TEdit;
+    TESEND68: TEdit;
+    TESEND67: TEdit;
+    TESEND66: TEdit;
+    TESEND65: TEdit;
+    TESEND64: TEdit;
+    TESEND63: TEdit;
+    TESEND62: TEdit;
+    TESEND61: TEdit;
+    TESEND60: TEdit;
+    TESEND59: TEdit;
+    TESEND58: TEdit;
+    TESEND57: TEdit;
+    TESEND56: TEdit;
+    TESEND55: TEdit;
+    TESEND54: TEdit;
+    TESEND53: TEdit;
+    TESEND52: TEdit;
+    TESEND51: TEdit;
+    TESEND50: TEdit;
+    TESEND49: TEdit;
+    TESEND48: TEdit;
+    TESEND47: TEdit;
+    TESEND46: TEdit;
+    TESEND45: TEdit;
+    TESEND44: TEdit;
+    TESEND43: TEdit;
+    TESEND42: TEdit;
+    TCHB43: TCheckBox;
+    TCHB82: TCheckBox;
+    TCHB81: TCheckBox;
+    TCHB80: TCheckBox;
+    TCHB79: TCheckBox;
+    TCHB78: TCheckBox;
+    TCHB77: TCheckBox;
+    TCHB76: TCheckBox;
+    TCHB75: TCheckBox;
+    TCHB74: TCheckBox;
+    TCHB73: TCheckBox;
+    TCHB72: TCheckBox;
+    TCHB71: TCheckBox;
+    TCHB70: TCheckBox;
+    TCHB69: TCheckBox;
+    TCHB68: TCheckBox;
+    TCHB67: TCheckBox;
+    TCHB66: TCheckBox;
+    TCHB65: TCheckBox;
+    TCHB64: TCheckBox;
+    TCHB63: TCheckBox;
+    TCHB62: TCheckBox;
+    TCHB61: TCheckBox;
+    TCHB60: TCheckBox;
+    TCHB59: TCheckBox;
+    TCHB58: TCheckBox;
+    TCHB57: TCheckBox;
+    TCHB56: TCheckBox;
+    TCHB55: TCheckBox;
+    TCHB54: TCheckBox;
+    TCHB53: TCheckBox;
+    TCHB52: TCheckBox;
+    TCHB51: TCheckBox;
+    TCHB50: TCheckBox;
+    TCHB49: TCheckBox;
+    TCHB48: TCheckBox;
+    TCHB47: TCheckBox;
+    TCHB46: TCheckBox;
+    TCHB45: TCheckBox;
+    TCHB44: TCheckBox;
+    BTSEND82: TButton;
+    BTSEND81: TButton;
+    BTSEND80: TButton;
+    BTSEND79: TButton;
+    BTSEND78: TButton;
+    BTSEND77: TButton;
+    BTSEND76: TButton;
+    BTSEND75: TButton;
+    BTSEND74: TButton;
+    BTSEND73: TButton;
+    BTSEND72: TButton;
+    BTSEND71: TButton;
+    BTSEND70: TButton;
+    BTSEND69: TButton;
+    BTSEND68: TButton;
+    BTSEND67: TButton;
+    BTSEND66: TButton;
+    BTSEND65: TButton;
+    BTSEND64: TButton;
+    BTSEND63: TButton;
+    BTSEND62: TButton;
+    BTSEND61: TButton;
+    BTSEND60: TButton;
+    BTSEND59: TButton;
+    BTSEND58: TButton;
+    BTSEND57: TButton;
+    BTSEND56: TButton;
+    BTSEND55: TButton;
+    BTSEND54: TButton;
+    BTSEND53: TButton;
+    BTSEND52: TButton;
+    BTSEND51: TButton;
+    BTSEND50: TButton;
+    BTSEND49: TButton;
+    BTSEND48: TButton;
+    BTSEND47: TButton;
+    BTSEND46: TButton;
+    BTSEND45: TButton;
+    BTSEND44: TButton;
+    BTSEND43: TButton;
+    BTSEND42: TButton;
+    TCHB99: TCheckBox;
+    TESEND99: TEdit;
+    BTSEND99: TButton;
+    TCHB98: TCheckBox;
+    TESEND98: TEdit;
+    BTSEND98: TButton;
+    TCHB97: TCheckBox;
+    TESEND97: TEdit;
+    BTSEND97: TButton;
+    TESEND96: TEdit;
+    BTSEND96: TButton;
+    TCHB96: TCheckBox;
+    TCHB95: TCheckBox;
+    TESEND95: TEdit;
+    BTSEND95: TButton;
+    TCHB94: TCheckBox;
+    TESEND94: TEdit;
+    BTSEND94: TButton;
+    TCHB93: TCheckBox;
+    TESEND93: TEdit;
+    BTSEND93: TButton;
+    TCHB92: TCheckBox;
+    TESEND92: TEdit;
+    BTSEND92: TButton;
+    TCHB91: TCheckBox;
+    TESEND91: TEdit;
+    BTSEND91: TButton;
+    TCHB90: TCheckBox;
+    TESEND90: TEdit;
+    BTSEND90: TButton;
+    TCHB89: TCheckBox;
+    TESEND89: TEdit;
+    BTSEND89: TButton;
+    TCHB88: TCheckBox;
+    TESEND88: TEdit;
+    BTSEND88: TButton;
+    TCHB87: TCheckBox;
+    TESEND87: TEdit;
+    BTSEND87: TButton;
+    TCHB86: TCheckBox;
+    TESEND86: TEdit;
+    BTSEND86: TButton;
+    TCHB85: TCheckBox;
+    TESEND85: TEdit;
+    BTSEND85: TButton;
+    TCHB84: TCheckBox;
+    TESEND84: TEdit;
+    BTSEND84: TButton;
+    TCHB83: TCheckBox;
+    TESEND83: TEdit;
+    BTSEND83: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -513,6 +687,64 @@ type
     procedure BTSEND39Click(Sender: TObject);
     procedure BTSEND40Click(Sender: TObject);
     procedure BTSEND41Click(Sender: TObject);
+    procedure BTSEND42Click(Sender: TObject);
+    procedure BTSEND43Click(Sender: TObject);
+    procedure BTSEND44Click(Sender: TObject);
+    procedure BTSEND45Click(Sender: TObject);
+    procedure BTSEND46Click(Sender: TObject);
+    procedure BTSEND47Click(Sender: TObject);
+    procedure BTSEND48Click(Sender: TObject);
+    procedure BTSEND49Click(Sender: TObject);
+    procedure BTSEND50Click(Sender: TObject);
+    procedure BTSEND51Click(Sender: TObject);
+    procedure BTSEND52Click(Sender: TObject);
+    procedure BTSEND53Click(Sender: TObject);
+    procedure BTSEND54Click(Sender: TObject);
+    procedure BTSEND55Click(Sender: TObject);
+    procedure BTSEND56Click(Sender: TObject);
+    procedure BTSEND57Click(Sender: TObject);
+    procedure BTSEND58Click(Sender: TObject);
+    procedure BTSEND59Click(Sender: TObject);
+    procedure BTSEND60Click(Sender: TObject);
+    procedure BTSEND61Click(Sender: TObject);
+    procedure BTSEND62Click(Sender: TObject);
+    procedure BTSEND63Click(Sender: TObject);
+    procedure BTSEND64Click(Sender: TObject);
+    procedure BTSEND65Click(Sender: TObject);
+    procedure BTSEND66Click(Sender: TObject);
+    procedure BTSEND67Click(Sender: TObject);
+    procedure BTSEND68Click(Sender: TObject);
+    procedure BTSEND69Click(Sender: TObject);
+    procedure BTSEND70Click(Sender: TObject);
+    procedure BTSEND71Click(Sender: TObject);
+    procedure BTSEND72Click(Sender: TObject);
+    procedure BTSEND73Click(Sender: TObject);
+    procedure BTSEND74Click(Sender: TObject);
+    procedure BTSEND75Click(Sender: TObject);
+    procedure BTSEND76Click(Sender: TObject);
+    procedure BTSEND77Click(Sender: TObject);
+    procedure BTSEND78Click(Sender: TObject);
+    procedure BTSEND79Click(Sender: TObject);
+    procedure BTSEND80Click(Sender: TObject);
+    procedure BTSEND81Click(Sender: TObject);
+    procedure BTSEND82Click(Sender: TObject);
+    procedure BTSEND83Click(Sender: TObject);
+    procedure BTSEND84Click(Sender: TObject);
+    procedure BTSEND85Click(Sender: TObject);
+    procedure BTSEND86Click(Sender: TObject);
+    procedure BTSEND87Click(Sender: TObject);
+    procedure BTSEND88Click(Sender: TObject);
+    procedure BTSEND89Click(Sender: TObject);
+    procedure BTSEND90Click(Sender: TObject);
+    procedure BTSEND91Click(Sender: TObject);
+    procedure BTSEND92Click(Sender: TObject);
+    procedure BTSEND93Click(Sender: TObject);
+    procedure BTSEND94Click(Sender: TObject);
+    procedure BTSEND95Click(Sender: TObject);
+    procedure BTSEND96Click(Sender: TObject);
+    procedure BTSEND97Click(Sender: TObject);
+    procedure BTSEND98Click(Sender: TObject);
+    procedure BTSEND99Click(Sender: TObject);
     procedure CheckBox53Click(Sender: TObject);
     procedure Button54Click(Sender: TObject);
     procedure Button55Click(Sender: TObject);
@@ -1390,6 +1622,8 @@ begin
           ComboBox2.itemindex := MyIniFile.ReadInteger('COM', 'BaudRate', 0);
           ComboBox3.itemindex := MyIniFile.ReadInteger('COM', 'ByteSize', 0);
           ComboBox4.itemindex := MyIniFile.ReadInteger('COM', 'Parity', 0);
+          ComboBox1.Hint := ComboBox1.Items[ComboBox1.itemindex];
+          ComboBox2.Hint := ComboBox2.Items[ComboBox2.itemindex];
 
           str_tmp := MyIniFile.ReadString('SINGLESEND', 'SEND', '');
           Memo2.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
@@ -1523,7 +1757,7 @@ begin
         Button1.Click;
         Button1.Click;
      end;
-      //ShowMessage(IntToStr(ComboBox2.ItemIndex));
+     ComboBox2.Hint := ComboBox2.Items[ComboBox2.itemindex];
 end;
 
 procedure TForm1.ComboBox3Change(Sender: TObject);
@@ -2367,7 +2601,7 @@ begin
                     
                     TButton(cp).Click();
                     inc(AutoLoopSend);
-                    if (AutoLoopSend > 41) then
+                    if (AutoLoopSend > 99) then
                        AutoLoopSend := 1;
                     Exit;
                 end
@@ -3177,6 +3411,296 @@ end;
 procedure TForm1.BTSEND41Click(Sender: TObject);
 begin
     button_send(TESEND41.Text, checkbox52);
+end;
+
+procedure TForm1.BTSEND42Click(Sender: TObject);
+begin
+    button_send(TESEND42.Text, TCHB42);
+end;
+
+procedure TForm1.BTSEND43Click(Sender: TObject);
+begin
+    button_send(TESEND43.Text, TCHB43);
+end;
+
+procedure TForm1.BTSEND44Click(Sender: TObject);
+begin
+    button_send(TESEND44.Text, TCHB44);
+end;
+
+procedure TForm1.BTSEND45Click(Sender: TObject);
+begin
+    button_send(TESEND45.Text, TCHB45);
+end;
+
+procedure TForm1.BTSEND46Click(Sender: TObject);
+begin
+    button_send(TESEND46.Text, TCHB46);
+end;
+
+procedure TForm1.BTSEND47Click(Sender: TObject);
+begin
+    button_send(TESEND47.Text, TCHB47);
+end;
+
+procedure TForm1.BTSEND48Click(Sender: TObject);
+begin
+    button_send(TESEND48.Text, TCHB48);
+end;
+
+procedure TForm1.BTSEND49Click(Sender: TObject);
+begin
+    button_send(TESEND49.Text, TCHB49);
+end;
+
+procedure TForm1.BTSEND50Click(Sender: TObject);
+begin
+    button_send(TESEND50.Text, TCHB50);
+end;
+
+procedure TForm1.BTSEND51Click(Sender: TObject);
+begin
+    button_send(TESEND51.Text, TCHB51);
+end;
+
+procedure TForm1.BTSEND52Click(Sender: TObject);
+begin
+    button_send(TESEND52.Text, TCHB52);
+end;
+
+procedure TForm1.BTSEND53Click(Sender: TObject);
+begin
+    button_send(TESEND53.Text, TCHB53);
+end;
+
+procedure TForm1.BTSEND54Click(Sender: TObject);
+begin
+    button_send(TESEND54.Text, TCHB54);
+end;
+
+procedure TForm1.BTSEND55Click(Sender: TObject);
+begin
+    button_send(TESEND55.Text, TCHB55);
+end;
+
+procedure TForm1.BTSEND56Click(Sender: TObject);
+begin
+    button_send(TESEND56.Text, TCHB56);
+end;
+
+procedure TForm1.BTSEND57Click(Sender: TObject);
+begin
+    button_send(TESEND57.Text, TCHB57);
+end;
+
+procedure TForm1.BTSEND58Click(Sender: TObject);
+begin
+    button_send(TESEND58.Text, TCHB58);
+end;
+
+procedure TForm1.BTSEND59Click(Sender: TObject);
+begin
+    button_send(TESEND59.Text, TCHB59);
+end;
+
+procedure TForm1.BTSEND60Click(Sender: TObject);
+begin
+    button_send(TESEND60.Text, TCHB60);
+end;
+
+procedure TForm1.BTSEND61Click(Sender: TObject);
+begin
+    button_send(TESEND61.Text, TCHB61);
+end;
+
+procedure TForm1.BTSEND62Click(Sender: TObject);
+begin
+    button_send(TESEND62.Text, TCHB62);
+end;
+
+procedure TForm1.BTSEND63Click(Sender: TObject);
+begin
+    button_send(TESEND63.Text, TCHB63);
+end;
+
+procedure TForm1.BTSEND64Click(Sender: TObject);
+begin
+    button_send(TESEND64.Text, TCHB64);
+end;
+
+procedure TForm1.BTSEND65Click(Sender: TObject);
+begin
+    button_send(TESEND65.Text, TCHB65);
+end;
+
+procedure TForm1.BTSEND66Click(Sender: TObject);
+begin
+    button_send(TESEND66.Text, TCHB66);
+end;
+
+procedure TForm1.BTSEND67Click(Sender: TObject);
+begin
+    button_send(TESEND67.Text, TCHB67);
+end;
+
+procedure TForm1.BTSEND68Click(Sender: TObject);
+begin
+    button_send(TESEND68.Text, TCHB68);
+end;
+
+procedure TForm1.BTSEND69Click(Sender: TObject);
+begin
+    button_send(TESEND69.Text, TCHB69);
+end;
+
+procedure TForm1.BTSEND70Click(Sender: TObject);
+begin
+    button_send(TESEND70.Text, TCHB70);
+end;
+
+procedure TForm1.BTSEND71Click(Sender: TObject);
+begin
+    button_send(TESEND71.Text, TCHB71);
+end;
+
+procedure TForm1.BTSEND72Click(Sender: TObject);
+begin
+    button_send(TESEND72.Text, TCHB72);
+end;
+
+procedure TForm1.BTSEND73Click(Sender: TObject);
+begin
+    button_send(TESEND73.Text, TCHB73);
+end;
+
+procedure TForm1.BTSEND74Click(Sender: TObject);
+begin
+    button_send(TESEND74.Text, TCHB74);
+end;
+
+procedure TForm1.BTSEND75Click(Sender: TObject);
+begin
+    button_send(TESEND75.Text, TCHB75);
+end;
+
+procedure TForm1.BTSEND76Click(Sender: TObject);
+begin
+    button_send(TESEND76.Text, TCHB76);
+end;
+
+procedure TForm1.BTSEND77Click(Sender: TObject);
+begin
+    button_send(TESEND77.Text, TCHB77);
+end;
+
+procedure TForm1.BTSEND78Click(Sender: TObject);
+begin
+    button_send(TESEND78.Text, TCHB78);
+end;
+
+procedure TForm1.BTSEND79Click(Sender: TObject);
+begin
+    button_send(TESEND79.Text, TCHB79);
+end;
+
+procedure TForm1.BTSEND80Click(Sender: TObject);
+begin
+    button_send(TESEND80.Text, TCHB80);
+end;
+
+procedure TForm1.BTSEND81Click(Sender: TObject);
+begin
+    button_send(TESEND81.Text, TCHB81);
+end;
+
+procedure TForm1.BTSEND82Click(Sender: TObject);
+begin
+    button_send(TESEND82.Text, TCHB82);
+end;
+
+procedure TForm1.BTSEND83Click(Sender: TObject);
+begin
+    button_send(TESEND83.Text, TCHB83);
+end;
+
+procedure TForm1.BTSEND84Click(Sender: TObject);
+begin
+    button_send(TESEND84.Text, TCHB84);
+end;
+
+procedure TForm1.BTSEND85Click(Sender: TObject);
+begin
+    button_send(TESEND85.Text, TCHB85);
+end;
+
+procedure TForm1.BTSEND86Click(Sender: TObject);
+begin
+    button_send(TESEND86.Text, TCHB86);
+end;
+
+procedure TForm1.BTSEND87Click(Sender: TObject);
+begin
+    button_send(TESEND87.Text, TCHB87);
+end;
+
+procedure TForm1.BTSEND88Click(Sender: TObject);
+begin
+    button_send(TESEND88.Text, TCHB88);
+end;
+
+procedure TForm1.BTSEND89Click(Sender: TObject);
+begin
+    button_send(TESEND89.Text, TCHB89);
+end;
+
+procedure TForm1.BTSEND90Click(Sender: TObject);
+begin
+    button_send(TESEND90.Text, TCHB90);
+end;
+
+procedure TForm1.BTSEND91Click(Sender: TObject);
+begin
+    button_send(TESEND91.Text, TCHB91);
+end;
+
+procedure TForm1.BTSEND92Click(Sender: TObject);
+begin
+    button_send(TESEND92.Text, TCHB92);
+end;
+
+procedure TForm1.BTSEND93Click(Sender: TObject);
+begin
+    button_send(TESEND93.Text, TCHB93);
+end;
+
+procedure TForm1.BTSEND94Click(Sender: TObject);
+begin
+    button_send(TESEND94.Text, TCHB94);
+end;
+
+procedure TForm1.BTSEND95Click(Sender: TObject);
+begin
+    button_send(TESEND95.Text, TCHB95);
+end;
+
+procedure TForm1.BTSEND96Click(Sender: TObject);
+begin
+    button_send(TESEND96.Text, TCHB96);
+end;
+
+procedure TForm1.BTSEND97Click(Sender: TObject);
+begin
+    button_send(TESEND97.Text, TCHB97);
+end;
+
+procedure TForm1.BTSEND98Click(Sender: TObject);
+begin
+    button_send(TESEND98.Text, TCHB98);
+end;
+
+procedure TForm1.BTSEND99Click(Sender: TObject);
+begin
+    button_send(TESEND99.Text, TCHB99);
 end;
 
 procedure TForm1.CheckBox53Click(Sender: TObject);

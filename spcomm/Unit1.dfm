@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 247
-  Top = 122
+  Left = 329
+  Top = 124
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V5.1'
+  Caption = 'Spcom V5.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -107,9 +107,12 @@ object Form1: TForm1
       object ComboBox2: TComboBox
         Left = 69
         Top = 14
-        Width = 70
+        Width = 65
         Height = 22
+        Hint = '1'
         ItemHeight = 14
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
         Text = '9600'
         OnChange = ComboBox2Change
@@ -147,7 +150,7 @@ object Form1: TForm1
       object ComboBox4: TComboBox
         Left = 69
         Top = 43
-        Width = 70
+        Width = 65
         Height = 22
         ItemHeight = 14
         ItemIndex = 0
@@ -577,7 +580,7 @@ object Form1: TForm1
           Top = 28
           Width = 231
           Height = 323
-          VertScrollBar.Range = 925
+          VertScrollBar.Range = 2200
           VertScrollBar.Smooth = True
           VertScrollBar.Tracking = True
           Align = alClient
@@ -588,7 +591,7 @@ object Form1: TForm1
             Left = 0
             Top = 0
             Width = 210
-            Height = 925
+            Height = 2200
             Align = alClient
             TabOrder = 0
             object lbl1: TLabel
@@ -622,226 +625,226 @@ object Form1: TForm1
               Caption = #21457#36865
             end
             object chk1: TCheckBox
-              Left = 6
+              Left = 4
               Top = 25
               Width = 17
               Height = 17
               TabOrder = 0
             end
             object TESEND01: TEdit
-              Left = 24
+              Left = 21
               Top = 22
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 1
             end
             object TESEND02: TEdit
-              Left = 24
+              Left = 21
               Top = 44
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 2
             end
             object TESEND03: TEdit
-              Left = 24
+              Left = 21
               Top = 66
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 3
             end
             object TESEND04: TEdit
-              Left = 24
+              Left = 21
               Top = 88
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 4
             end
             object TESEND05: TEdit
-              Left = 24
+              Left = 21
               Top = 110
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 5
             end
             object TESEND06: TEdit
-              Left = 24
+              Left = 21
               Top = 132
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 6
             end
             object TESEND07: TEdit
-              Left = 24
+              Left = 21
               Top = 154
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 7
             end
             object TESEND08: TEdit
-              Left = 24
+              Left = 21
               Top = 176
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 8
             end
             object TESEND09: TEdit
-              Left = 24
+              Left = 21
               Top = 198
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 9
             end
             object TESEND10: TEdit
-              Left = 24
+              Left = 21
               Top = 220
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 10
             end
             object TESEND11: TEdit
-              Left = 24
+              Left = 21
               Top = 242
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 11
             end
             object TESEND13: TEdit
-              Left = 24
+              Left = 21
               Top = 286
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 12
             end
             object CheckBox9: TCheckBox
-              Left = 6
+              Left = 4
               Top = 47
               Width = 17
               Height = 17
               TabOrder = 13
             end
             object CheckBox10: TCheckBox
-              Left = 6
+              Left = 4
               Top = 69
               Width = 17
               Height = 17
               TabOrder = 14
             end
             object CheckBox11: TCheckBox
-              Left = 6
+              Left = 4
               Top = 91
               Width = 17
               Height = 17
               TabOrder = 15
             end
             object CheckBox12: TCheckBox
-              Left = 6
+              Left = 4
               Top = 113
               Width = 17
               Height = 17
               TabOrder = 16
             end
             object CheckBox13: TCheckBox
-              Left = 6
+              Left = 4
               Top = 135
               Width = 17
               Height = 17
               TabOrder = 17
             end
             object CheckBox14: TCheckBox
-              Left = 6
+              Left = 4
               Top = 157
               Width = 17
               Height = 17
               TabOrder = 18
             end
             object CheckBox15: TCheckBox
-              Left = 6
+              Left = 4
               Top = 179
               Width = 17
               Height = 17
               TabOrder = 19
             end
             object CheckBox16: TCheckBox
-              Left = 6
+              Left = 4
               Top = 201
               Width = 17
               Height = 17
               TabOrder = 20
             end
             object CheckBox17: TCheckBox
-              Left = 6
+              Left = 4
               Top = 223
               Width = 17
               Height = 17
               TabOrder = 21
             end
             object CheckBox18: TCheckBox
-              Left = 6
+              Left = 4
               Top = 245
               Width = 17
               Height = 17
               TabOrder = 22
             end
             object CheckBox19: TCheckBox
-              Left = 6
+              Left = 4
               Top = 267
               Width = 17
               Height = 17
               TabOrder = 23
             end
             object CheckBox20: TCheckBox
-              Left = 6
+              Left = 4
               Top = 289
               Width = 17
               Height = 17
               TabOrder = 24
             end
             object CheckBox21: TCheckBox
-              Left = 6
+              Left = 4
               Top = 311
               Width = 17
               Height = 17
               TabOrder = 25
             end
             object CheckBox22: TCheckBox
-              Left = 6
+              Left = 4
               Top = 333
               Width = 17
               Height = 17
               TabOrder = 26
             end
             object CheckBox23: TCheckBox
-              Left = 6
+              Left = 4
               Top = 355
               Width = 17
               Height = 17
               TabOrder = 27
             end
             object TESEND12: TEdit
-              Left = 24
+              Left = 21
               Top = 264
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 28
             end
             object TESEND14: TEdit
-              Left = 24
+              Left = 21
               Top = 308
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 29
             end
             object TESEND15: TEdit
-              Left = 24
+              Left = 21
               Top = 330
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 30
             end
             object TESEND16: TEdit
-              Left = 24
+              Left = 21
               Top = 352
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 31
             end
@@ -990,79 +993,79 @@ object Form1: TForm1
               OnClick = BTSEND16Click
             end
             object TESEND17: TEdit
-              Left = 24
+              Left = 21
               Top = 374
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 48
             end
             object TESEND18: TEdit
-              Left = 24
+              Left = 21
               Top = 396
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 49
             end
             object TESEND19: TEdit
-              Left = 24
+              Left = 21
               Top = 418
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 50
             end
             object TESEND20: TEdit
-              Left = 24
+              Left = 21
               Top = 440
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 51
             end
             object TESEND21: TEdit
-              Left = 24
+              Left = 21
               Top = 462
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 52
             end
             object TESEND22: TEdit
-              Left = 24
+              Left = 21
               Top = 484
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 53
             end
             object TESEND23: TEdit
-              Left = 24
+              Left = 21
               Top = 506
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 54
             end
             object TESEND24: TEdit
-              Left = 24
+              Left = 21
               Top = 528
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 55
             end
             object TESEND25: TEdit
-              Left = 24
+              Left = 21
               Top = 550
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 56
             end
             object TESEND26: TEdit
-              Left = 24
+              Left = 21
               Top = 572
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 57
             end
             object TESEND27: TEdit
-              Left = 24
+              Left = 21
               Top = 594
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 58
             end
@@ -1104,7 +1107,7 @@ object Form1: TForm1
             end
             object BTSEND21: TButton
               Left = 193
-              Top = 463
+              Top = 462
               Width = 22
               Height = 22
               Caption = '21'
@@ -1175,177 +1178,177 @@ object Form1: TForm1
               OnClick = BTSEND28Click
             end
             object CheckBox28: TCheckBox
-              Left = 6
+              Left = 4
               Top = 377
               Width = 17
               Height = 17
               TabOrder = 71
             end
             object CheckBox29: TCheckBox
-              Left = 6
+              Left = 4
               Top = 399
               Width = 17
               Height = 17
               TabOrder = 72
             end
             object CheckBox30: TCheckBox
-              Left = 6
+              Left = 4
               Top = 421
               Width = 17
               Height = 17
               TabOrder = 73
             end
             object CheckBox31: TCheckBox
-              Left = 6
+              Left = 4
               Top = 443
               Width = 17
               Height = 17
               TabOrder = 74
             end
             object CheckBox32: TCheckBox
-              Left = 6
+              Left = 4
               Top = 465
               Width = 17
               Height = 17
               TabOrder = 75
             end
             object CheckBox33: TCheckBox
-              Left = 6
+              Left = 4
               Top = 487
               Width = 17
               Height = 17
               TabOrder = 76
             end
             object CheckBox34: TCheckBox
-              Left = 6
+              Left = 4
               Top = 509
               Width = 17
               Height = 17
               TabOrder = 77
             end
             object CheckBox35: TCheckBox
-              Left = 6
+              Left = 4
               Top = 531
               Width = 17
               Height = 17
               TabOrder = 78
             end
             object CheckBox36: TCheckBox
-              Left = 6
+              Left = 4
               Top = 553
               Width = 17
               Height = 17
               TabOrder = 79
             end
             object CheckBox37: TCheckBox
-              Left = 6
+              Left = 4
               Top = 575
               Width = 17
               Height = 17
               TabOrder = 80
             end
             object CheckBox38: TCheckBox
-              Left = 6
+              Left = 4
               Top = 597
               Width = 17
               Height = 17
               TabOrder = 81
             end
             object TESEND28: TEdit
-              Left = 24
+              Left = 21
               Top = 616
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 82
             end
             object TESEND29: TEdit
-              Left = 24
+              Left = 21
               Top = 638
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 83
             end
             object TESEND30: TEdit
-              Left = 24
+              Left = 21
               Top = 660
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 84
             end
             object TESEND31: TEdit
-              Left = 24
+              Left = 21
               Top = 682
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 85
             end
             object TESEND32: TEdit
-              Left = 24
+              Left = 21
               Top = 704
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 86
             end
             object TESEND33: TEdit
-              Left = 24
+              Left = 21
               Top = 726
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 87
             end
             object TESEND34: TEdit
-              Left = 24
+              Left = 21
               Top = 748
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 88
             end
             object TESEND35: TEdit
-              Left = 24
+              Left = 21
               Top = 770
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 89
             end
             object TESEND36: TEdit
-              Left = 24
+              Left = 21
               Top = 792
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 90
             end
             object TESEND37: TEdit
-              Left = 24
+              Left = 21
               Top = 814
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 91
             end
             object TESEND38: TEdit
-              Left = 24
+              Left = 21
               Top = 836
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 92
             end
             object TESEND39: TEdit
-              Left = 24
+              Left = 21
               Top = 858
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 93
             end
             object TESEND40: TEdit
-              Left = 24
+              Left = 21
               Top = 880
-              Width = 168
+              Width = 173
               Height = 22
               TabOrder = 94
             end
             object TESEND41: TEdit
-              Left = 24
-              Top = 904
-              Width = 168
+              Left = 21
+              Top = 902
+              Width = 173
               Height = 22
               TabOrder = 95
             end
@@ -1459,7 +1462,7 @@ object Form1: TForm1
             end
             object BTSEND41: TButton
               Left = 192
-              Top = 904
+              Top = 902
               Width = 22
               Height = 22
               Caption = '41'
@@ -1467,102 +1470,1436 @@ object Form1: TForm1
               OnClick = BTSEND41Click
             end
             object CheckBox39: TCheckBox
-              Left = 6
+              Left = 4
               Top = 619
               Width = 17
               Height = 17
               TabOrder = 109
             end
             object CheckBox40: TCheckBox
-              Left = 6
+              Left = 4
               Top = 641
               Width = 17
               Height = 17
               TabOrder = 110
             end
             object CheckBox41: TCheckBox
-              Left = 6
+              Left = 4
               Top = 663
               Width = 17
               Height = 17
               TabOrder = 111
             end
             object CheckBox42: TCheckBox
-              Left = 6
+              Left = 4
               Top = 685
               Width = 17
               Height = 17
               TabOrder = 112
             end
             object CheckBox43: TCheckBox
-              Left = 6
+              Left = 4
               Top = 707
               Width = 17
               Height = 17
               TabOrder = 113
             end
             object CheckBox44: TCheckBox
-              Left = 6
+              Left = 4
               Top = 729
               Width = 17
               Height = 17
               TabOrder = 114
             end
             object CheckBox45: TCheckBox
-              Left = 6
+              Left = 4
               Top = 751
               Width = 17
               Height = 17
               TabOrder = 115
             end
             object CheckBox46: TCheckBox
-              Left = 6
+              Left = 4
               Top = 773
               Width = 17
               Height = 17
               TabOrder = 116
             end
             object CheckBox47: TCheckBox
-              Left = 6
+              Left = 4
               Top = 795
               Width = 17
               Height = 17
               TabOrder = 117
             end
             object CheckBox48: TCheckBox
-              Left = 6
+              Left = 4
               Top = 817
               Width = 17
               Height = 17
               TabOrder = 118
             end
             object CheckBox49: TCheckBox
-              Left = 6
+              Left = 4
               Top = 839
               Width = 17
               Height = 17
               TabOrder = 119
             end
             object CheckBox50: TCheckBox
-              Left = 6
+              Left = 4
               Top = 861
               Width = 17
               Height = 17
               TabOrder = 120
             end
             object CheckBox51: TCheckBox
-              Left = 6
+              Left = 4
               Top = 883
               Width = 17
               Height = 17
               TabOrder = 121
             end
             object CheckBox52: TCheckBox
-              Left = 6
-              Top = 907
+              Left = 4
+              Top = 905
               Width = 17
               Height = 17
               TabOrder = 122
+            end
+            object TCHB42: TCheckBox
+              Left = 4
+              Top = 927
+              Width = 17
+              Height = 17
+              TabOrder = 123
+            end
+            object TESEND82: TEdit
+              Left = 21
+              Top = 1804
+              Width = 173
+              Height = 22
+              TabOrder = 124
+            end
+            object TESEND81: TEdit
+              Left = 21
+              Top = 1782
+              Width = 173
+              Height = 22
+              TabOrder = 125
+            end
+            object TESEND80: TEdit
+              Left = 21
+              Top = 1760
+              Width = 173
+              Height = 22
+              TabOrder = 126
+            end
+            object TESEND79: TEdit
+              Left = 21
+              Top = 1738
+              Width = 173
+              Height = 22
+              TabOrder = 127
+            end
+            object TESEND78: TEdit
+              Left = 21
+              Top = 1716
+              Width = 173
+              Height = 22
+              TabOrder = 128
+            end
+            object TESEND77: TEdit
+              Left = 21
+              Top = 1694
+              Width = 173
+              Height = 22
+              TabOrder = 129
+            end
+            object TESEND76: TEdit
+              Left = 21
+              Top = 1672
+              Width = 173
+              Height = 22
+              TabOrder = 130
+            end
+            object TESEND75: TEdit
+              Left = 21
+              Top = 1650
+              Width = 173
+              Height = 22
+              TabOrder = 131
+            end
+            object TESEND74: TEdit
+              Left = 21
+              Top = 1628
+              Width = 173
+              Height = 22
+              TabOrder = 132
+            end
+            object TESEND73: TEdit
+              Left = 21
+              Top = 1606
+              Width = 173
+              Height = 22
+              TabOrder = 133
+            end
+            object TESEND72: TEdit
+              Left = 21
+              Top = 1584
+              Width = 173
+              Height = 22
+              TabOrder = 134
+            end
+            object TESEND71: TEdit
+              Left = 21
+              Top = 1562
+              Width = 173
+              Height = 22
+              TabOrder = 135
+            end
+            object TESEND70: TEdit
+              Left = 21
+              Top = 1540
+              Width = 173
+              Height = 22
+              TabOrder = 136
+            end
+            object TESEND69: TEdit
+              Left = 21
+              Top = 1518
+              Width = 173
+              Height = 22
+              TabOrder = 137
+            end
+            object TESEND68: TEdit
+              Left = 21
+              Top = 1496
+              Width = 173
+              Height = 22
+              TabOrder = 138
+            end
+            object TESEND67: TEdit
+              Left = 21
+              Top = 1474
+              Width = 173
+              Height = 22
+              TabOrder = 139
+            end
+            object TESEND66: TEdit
+              Left = 21
+              Top = 1452
+              Width = 173
+              Height = 22
+              TabOrder = 140
+            end
+            object TESEND65: TEdit
+              Left = 21
+              Top = 1430
+              Width = 173
+              Height = 22
+              TabOrder = 141
+            end
+            object TESEND64: TEdit
+              Left = 21
+              Top = 1408
+              Width = 173
+              Height = 22
+              TabOrder = 142
+            end
+            object TESEND63: TEdit
+              Left = 21
+              Top = 1386
+              Width = 173
+              Height = 22
+              TabOrder = 143
+            end
+            object TESEND62: TEdit
+              Left = 21
+              Top = 1364
+              Width = 173
+              Height = 22
+              TabOrder = 144
+            end
+            object TESEND61: TEdit
+              Left = 21
+              Top = 1342
+              Width = 173
+              Height = 22
+              TabOrder = 145
+            end
+            object TESEND60: TEdit
+              Left = 21
+              Top = 1320
+              Width = 173
+              Height = 22
+              TabOrder = 146
+            end
+            object TESEND59: TEdit
+              Left = 21
+              Top = 1298
+              Width = 173
+              Height = 22
+              TabOrder = 147
+            end
+            object TESEND58: TEdit
+              Left = 21
+              Top = 1276
+              Width = 173
+              Height = 22
+              TabOrder = 148
+            end
+            object TESEND57: TEdit
+              Left = 21
+              Top = 1254
+              Width = 173
+              Height = 22
+              TabOrder = 149
+            end
+            object TESEND56: TEdit
+              Left = 21
+              Top = 1232
+              Width = 173
+              Height = 22
+              TabOrder = 150
+            end
+            object TESEND55: TEdit
+              Left = 21
+              Top = 1210
+              Width = 173
+              Height = 22
+              TabOrder = 151
+            end
+            object TESEND54: TEdit
+              Left = 21
+              Top = 1188
+              Width = 173
+              Height = 22
+              TabOrder = 152
+            end
+            object TESEND53: TEdit
+              Left = 21
+              Top = 1166
+              Width = 173
+              Height = 22
+              TabOrder = 153
+            end
+            object TESEND52: TEdit
+              Left = 21
+              Top = 1144
+              Width = 173
+              Height = 22
+              TabOrder = 154
+            end
+            object TESEND51: TEdit
+              Left = 21
+              Top = 1122
+              Width = 173
+              Height = 22
+              TabOrder = 155
+            end
+            object TESEND50: TEdit
+              Left = 21
+              Top = 1100
+              Width = 173
+              Height = 22
+              TabOrder = 156
+            end
+            object TESEND49: TEdit
+              Left = 21
+              Top = 1078
+              Width = 173
+              Height = 22
+              TabOrder = 157
+            end
+            object TESEND48: TEdit
+              Left = 21
+              Top = 1056
+              Width = 173
+              Height = 22
+              TabOrder = 158
+            end
+            object TESEND47: TEdit
+              Left = 21
+              Top = 1034
+              Width = 173
+              Height = 22
+              TabOrder = 159
+            end
+            object TESEND46: TEdit
+              Left = 21
+              Top = 1012
+              Width = 173
+              Height = 22
+              TabOrder = 160
+            end
+            object TESEND45: TEdit
+              Left = 21
+              Top = 990
+              Width = 173
+              Height = 22
+              TabOrder = 161
+            end
+            object TESEND44: TEdit
+              Left = 21
+              Top = 968
+              Width = 173
+              Height = 22
+              TabOrder = 162
+            end
+            object TESEND43: TEdit
+              Left = 21
+              Top = 946
+              Width = 173
+              Height = 22
+              TabOrder = 163
+            end
+            object TESEND42: TEdit
+              Left = 21
+              Top = 924
+              Width = 173
+              Height = 22
+              TabOrder = 164
+            end
+            object TCHB43: TCheckBox
+              Left = 4
+              Top = 949
+              Width = 17
+              Height = 17
+              TabOrder = 165
+            end
+            object TCHB82: TCheckBox
+              Left = 4
+              Top = 1807
+              Width = 17
+              Height = 17
+              TabOrder = 166
+            end
+            object TCHB81: TCheckBox
+              Left = 4
+              Top = 1785
+              Width = 17
+              Height = 17
+              TabOrder = 167
+            end
+            object TCHB80: TCheckBox
+              Left = 4
+              Top = 1763
+              Width = 17
+              Height = 17
+              TabOrder = 168
+            end
+            object TCHB79: TCheckBox
+              Left = 4
+              Top = 1741
+              Width = 17
+              Height = 17
+              TabOrder = 169
+            end
+            object TCHB78: TCheckBox
+              Left = 4
+              Top = 1719
+              Width = 17
+              Height = 17
+              TabOrder = 170
+            end
+            object TCHB77: TCheckBox
+              Left = 4
+              Top = 1697
+              Width = 17
+              Height = 17
+              TabOrder = 171
+            end
+            object TCHB76: TCheckBox
+              Left = 4
+              Top = 1675
+              Width = 17
+              Height = 17
+              TabOrder = 172
+            end
+            object TCHB75: TCheckBox
+              Left = 4
+              Top = 1653
+              Width = 17
+              Height = 17
+              TabOrder = 173
+            end
+            object TCHB74: TCheckBox
+              Left = 4
+              Top = 1631
+              Width = 17
+              Height = 17
+              TabOrder = 174
+            end
+            object TCHB73: TCheckBox
+              Left = 4
+              Top = 1609
+              Width = 17
+              Height = 17
+              TabOrder = 175
+            end
+            object TCHB72: TCheckBox
+              Left = 4
+              Top = 1587
+              Width = 17
+              Height = 17
+              TabOrder = 176
+            end
+            object TCHB71: TCheckBox
+              Left = 4
+              Top = 1565
+              Width = 17
+              Height = 17
+              TabOrder = 177
+            end
+            object TCHB70: TCheckBox
+              Left = 4
+              Top = 1543
+              Width = 17
+              Height = 17
+              TabOrder = 178
+            end
+            object TCHB69: TCheckBox
+              Left = 4
+              Top = 1521
+              Width = 17
+              Height = 17
+              TabOrder = 179
+            end
+            object TCHB68: TCheckBox
+              Left = 4
+              Top = 1499
+              Width = 17
+              Height = 17
+              TabOrder = 180
+            end
+            object TCHB67: TCheckBox
+              Left = 4
+              Top = 1477
+              Width = 17
+              Height = 17
+              TabOrder = 181
+            end
+            object TCHB66: TCheckBox
+              Left = 4
+              Top = 1455
+              Width = 17
+              Height = 17
+              TabOrder = 182
+            end
+            object TCHB65: TCheckBox
+              Left = 4
+              Top = 1433
+              Width = 17
+              Height = 17
+              TabOrder = 183
+            end
+            object TCHB64: TCheckBox
+              Left = 4
+              Top = 1411
+              Width = 17
+              Height = 17
+              TabOrder = 184
+            end
+            object TCHB63: TCheckBox
+              Left = 4
+              Top = 1389
+              Width = 17
+              Height = 17
+              TabOrder = 185
+            end
+            object TCHB62: TCheckBox
+              Left = 4
+              Top = 1367
+              Width = 17
+              Height = 17
+              TabOrder = 186
+            end
+            object TCHB61: TCheckBox
+              Left = 4
+              Top = 1345
+              Width = 17
+              Height = 17
+              TabOrder = 187
+            end
+            object TCHB60: TCheckBox
+              Left = 4
+              Top = 1323
+              Width = 17
+              Height = 17
+              TabOrder = 188
+            end
+            object TCHB59: TCheckBox
+              Left = 4
+              Top = 1301
+              Width = 17
+              Height = 17
+              TabOrder = 189
+            end
+            object TCHB58: TCheckBox
+              Left = 4
+              Top = 1279
+              Width = 17
+              Height = 17
+              TabOrder = 190
+            end
+            object TCHB57: TCheckBox
+              Left = 4
+              Top = 1257
+              Width = 17
+              Height = 17
+              TabOrder = 191
+            end
+            object TCHB56: TCheckBox
+              Left = 4
+              Top = 1235
+              Width = 17
+              Height = 17
+              TabOrder = 192
+            end
+            object TCHB55: TCheckBox
+              Left = 4
+              Top = 1213
+              Width = 17
+              Height = 17
+              TabOrder = 193
+            end
+            object TCHB54: TCheckBox
+              Left = 4
+              Top = 1191
+              Width = 17
+              Height = 17
+              TabOrder = 194
+            end
+            object TCHB53: TCheckBox
+              Left = 4
+              Top = 1169
+              Width = 17
+              Height = 17
+              TabOrder = 195
+            end
+            object TCHB52: TCheckBox
+              Left = 4
+              Top = 1147
+              Width = 17
+              Height = 17
+              TabOrder = 196
+            end
+            object TCHB51: TCheckBox
+              Left = 4
+              Top = 1125
+              Width = 17
+              Height = 17
+              TabOrder = 197
+            end
+            object TCHB50: TCheckBox
+              Left = 4
+              Top = 1103
+              Width = 17
+              Height = 17
+              TabOrder = 198
+            end
+            object TCHB49: TCheckBox
+              Left = 4
+              Top = 1081
+              Width = 17
+              Height = 17
+              TabOrder = 199
+            end
+            object TCHB48: TCheckBox
+              Left = 4
+              Top = 1059
+              Width = 17
+              Height = 17
+              TabOrder = 200
+            end
+            object TCHB47: TCheckBox
+              Left = 4
+              Top = 1037
+              Width = 17
+              Height = 17
+              TabOrder = 201
+            end
+            object TCHB46: TCheckBox
+              Left = 4
+              Top = 1015
+              Width = 17
+              Height = 17
+              TabOrder = 202
+            end
+            object TCHB45: TCheckBox
+              Left = 4
+              Top = 993
+              Width = 17
+              Height = 17
+              TabOrder = 203
+            end
+            object TCHB44: TCheckBox
+              Left = 4
+              Top = 971
+              Width = 17
+              Height = 17
+              TabOrder = 204
+            end
+            object BTSEND82: TButton
+              Left = 193
+              Top = 1804
+              Width = 22
+              Height = 22
+              Caption = '82'
+              TabOrder = 205
+              OnClick = BTSEND82Click
+            end
+            object BTSEND81: TButton
+              Left = 193
+              Top = 1782
+              Width = 22
+              Height = 22
+              Caption = '81'
+              TabOrder = 206
+              OnClick = BTSEND81Click
+            end
+            object BTSEND80: TButton
+              Left = 193
+              Top = 1760
+              Width = 22
+              Height = 22
+              Caption = '80'
+              TabOrder = 207
+              OnClick = BTSEND80Click
+            end
+            object BTSEND79: TButton
+              Left = 193
+              Top = 1738
+              Width = 22
+              Height = 22
+              Caption = '79'
+              TabOrder = 208
+              OnClick = BTSEND79Click
+            end
+            object BTSEND78: TButton
+              Left = 193
+              Top = 1716
+              Width = 22
+              Height = 22
+              Caption = '78'
+              TabOrder = 209
+              OnClick = BTSEND78Click
+            end
+            object BTSEND77: TButton
+              Left = 193
+              Top = 1694
+              Width = 22
+              Height = 22
+              Caption = '77'
+              TabOrder = 210
+              OnClick = BTSEND77Click
+            end
+            object BTSEND76: TButton
+              Left = 193
+              Top = 1672
+              Width = 22
+              Height = 22
+              Caption = '76'
+              TabOrder = 211
+              OnClick = BTSEND76Click
+            end
+            object BTSEND75: TButton
+              Left = 193
+              Top = 1650
+              Width = 22
+              Height = 22
+              Caption = '75'
+              TabOrder = 212
+              OnClick = BTSEND75Click
+            end
+            object BTSEND74: TButton
+              Left = 193
+              Top = 1628
+              Width = 22
+              Height = 22
+              Caption = '74'
+              TabOrder = 213
+              OnClick = BTSEND74Click
+            end
+            object BTSEND73: TButton
+              Left = 193
+              Top = 1606
+              Width = 22
+              Height = 22
+              Caption = '73'
+              TabOrder = 214
+              OnClick = BTSEND73Click
+            end
+            object BTSEND72: TButton
+              Left = 193
+              Top = 1584
+              Width = 22
+              Height = 22
+              Caption = '72'
+              TabOrder = 215
+              OnClick = BTSEND72Click
+            end
+            object BTSEND71: TButton
+              Left = 193
+              Top = 1562
+              Width = 22
+              Height = 22
+              Caption = '71'
+              TabOrder = 216
+              OnClick = BTSEND71Click
+            end
+            object BTSEND70: TButton
+              Left = 193
+              Top = 1540
+              Width = 22
+              Height = 22
+              Caption = '70'
+              TabOrder = 217
+              OnClick = BTSEND70Click
+            end
+            object BTSEND69: TButton
+              Left = 193
+              Top = 1518
+              Width = 22
+              Height = 22
+              Caption = '69'
+              TabOrder = 218
+              OnClick = BTSEND69Click
+            end
+            object BTSEND68: TButton
+              Left = 193
+              Top = 1496
+              Width = 22
+              Height = 22
+              Caption = '68'
+              TabOrder = 219
+              OnClick = BTSEND68Click
+            end
+            object BTSEND67: TButton
+              Left = 193
+              Top = 1474
+              Width = 22
+              Height = 22
+              Caption = '67'
+              TabOrder = 220
+              OnClick = BTSEND67Click
+            end
+            object BTSEND66: TButton
+              Left = 193
+              Top = 1452
+              Width = 22
+              Height = 22
+              Caption = '66'
+              TabOrder = 221
+              OnClick = BTSEND66Click
+            end
+            object BTSEND65: TButton
+              Left = 193
+              Top = 1430
+              Width = 22
+              Height = 22
+              Caption = '65'
+              TabOrder = 222
+              OnClick = BTSEND65Click
+            end
+            object BTSEND64: TButton
+              Left = 194
+              Top = 1408
+              Width = 22
+              Height = 22
+              Caption = '64'
+              TabOrder = 223
+              OnClick = BTSEND64Click
+            end
+            object BTSEND63: TButton
+              Left = 193
+              Top = 1386
+              Width = 22
+              Height = 22
+              Caption = '63'
+              TabOrder = 224
+              OnClick = BTSEND63Click
+            end
+            object BTSEND62: TButton
+              Left = 193
+              Top = 1364
+              Width = 22
+              Height = 22
+              Caption = '62'
+              TabOrder = 225
+              OnClick = BTSEND62Click
+            end
+            object BTSEND61: TButton
+              Left = 193
+              Top = 1342
+              Width = 22
+              Height = 22
+              Caption = '61'
+              TabOrder = 226
+              OnClick = BTSEND61Click
+            end
+            object BTSEND60: TButton
+              Left = 193
+              Top = 1320
+              Width = 22
+              Height = 22
+              Caption = '60'
+              TabOrder = 227
+              OnClick = BTSEND60Click
+            end
+            object BTSEND59: TButton
+              Left = 193
+              Top = 1298
+              Width = 22
+              Height = 22
+              Caption = '59'
+              TabOrder = 228
+              OnClick = BTSEND59Click
+            end
+            object BTSEND58: TButton
+              Left = 193
+              Top = 1276
+              Width = 22
+              Height = 22
+              Caption = '58'
+              TabOrder = 229
+              OnClick = BTSEND58Click
+            end
+            object BTSEND57: TButton
+              Left = 193
+              Top = 1254
+              Width = 22
+              Height = 22
+              Caption = '57'
+              TabOrder = 230
+              OnClick = BTSEND57Click
+            end
+            object BTSEND56: TButton
+              Left = 193
+              Top = 1232
+              Width = 22
+              Height = 22
+              Caption = '56'
+              TabOrder = 231
+              OnClick = BTSEND56Click
+            end
+            object BTSEND55: TButton
+              Left = 193
+              Top = 1210
+              Width = 22
+              Height = 22
+              Caption = '55'
+              TabOrder = 232
+              OnClick = BTSEND55Click
+            end
+            object BTSEND54: TButton
+              Left = 193
+              Top = 1188
+              Width = 22
+              Height = 22
+              Caption = '54'
+              TabOrder = 233
+              OnClick = BTSEND54Click
+            end
+            object BTSEND53: TButton
+              Left = 193
+              Top = 1166
+              Width = 22
+              Height = 22
+              Caption = '53'
+              TabOrder = 234
+              OnClick = BTSEND53Click
+            end
+            object BTSEND52: TButton
+              Left = 193
+              Top = 1144
+              Width = 22
+              Height = 22
+              Caption = '52'
+              TabOrder = 235
+              OnClick = BTSEND52Click
+            end
+            object BTSEND51: TButton
+              Left = 193
+              Top = 1122
+              Width = 22
+              Height = 22
+              Caption = '51'
+              TabOrder = 236
+              OnClick = BTSEND51Click
+            end
+            object BTSEND50: TButton
+              Left = 193
+              Top = 1100
+              Width = 22
+              Height = 22
+              Caption = '50'
+              TabOrder = 237
+              OnClick = BTSEND50Click
+            end
+            object BTSEND49: TButton
+              Left = 193
+              Top = 1078
+              Width = 22
+              Height = 22
+              Caption = '49'
+              TabOrder = 238
+              OnClick = BTSEND49Click
+            end
+            object BTSEND48: TButton
+              Left = 193
+              Top = 1056
+              Width = 22
+              Height = 22
+              Caption = '48'
+              TabOrder = 239
+              OnClick = BTSEND48Click
+            end
+            object BTSEND47: TButton
+              Left = 193
+              Top = 1034
+              Width = 22
+              Height = 22
+              Caption = '47'
+              TabOrder = 240
+              OnClick = BTSEND47Click
+            end
+            object BTSEND46: TButton
+              Left = 193
+              Top = 1012
+              Width = 22
+              Height = 22
+              Caption = '46'
+              TabOrder = 241
+              OnClick = BTSEND46Click
+            end
+            object BTSEND45: TButton
+              Left = 193
+              Top = 990
+              Width = 22
+              Height = 22
+              Caption = '45'
+              TabOrder = 242
+              OnClick = BTSEND45Click
+            end
+            object BTSEND44: TButton
+              Left = 193
+              Top = 968
+              Width = 22
+              Height = 22
+              Caption = '44'
+              TabOrder = 243
+              OnClick = BTSEND44Click
+            end
+            object BTSEND43: TButton
+              Left = 193
+              Top = 946
+              Width = 22
+              Height = 22
+              Caption = '43'
+              TabOrder = 244
+              OnClick = BTSEND43Click
+            end
+            object BTSEND42: TButton
+              Left = 193
+              Top = 924
+              Width = 22
+              Height = 22
+              Caption = '42'
+              TabOrder = 245
+              OnClick = BTSEND42Click
+            end
+            object TCHB99: TCheckBox
+              Left = 4
+              Top = 2181
+              Width = 17
+              Height = 17
+              TabOrder = 246
+            end
+            object TESEND99: TEdit
+              Left = 21
+              Top = 2178
+              Width = 173
+              Height = 22
+              TabOrder = 247
+            end
+            object BTSEND99: TButton
+              Left = 192
+              Top = 2178
+              Width = 22
+              Height = 22
+              Caption = '99'
+              TabOrder = 248
+              OnClick = BTSEND99Click
+            end
+            object TCHB98: TCheckBox
+              Left = 4
+              Top = 2159
+              Width = 17
+              Height = 17
+              TabOrder = 249
+            end
+            object TESEND98: TEdit
+              Left = 21
+              Top = 2156
+              Width = 173
+              Height = 22
+              TabOrder = 250
+            end
+            object BTSEND98: TButton
+              Left = 192
+              Top = 2156
+              Width = 22
+              Height = 22
+              Caption = '98'
+              TabOrder = 251
+              OnClick = BTSEND98Click
+            end
+            object TCHB97: TCheckBox
+              Left = 4
+              Top = 2137
+              Width = 17
+              Height = 17
+              TabOrder = 252
+            end
+            object TESEND97: TEdit
+              Left = 21
+              Top = 2134
+              Width = 173
+              Height = 22
+              TabOrder = 253
+            end
+            object BTSEND97: TButton
+              Left = 192
+              Top = 2134
+              Width = 22
+              Height = 22
+              Caption = '97'
+              TabOrder = 254
+              OnClick = BTSEND97Click
+            end
+            object TESEND96: TEdit
+              Left = 21
+              Top = 2112
+              Width = 173
+              Height = 22
+              TabOrder = 255
+            end
+            object BTSEND96: TButton
+              Left = 192
+              Top = 2112
+              Width = 22
+              Height = 22
+              Caption = '96'
+              TabOrder = 256
+              OnClick = BTSEND96Click
+            end
+            object TCHB96: TCheckBox
+              Left = 4
+              Top = 2115
+              Width = 17
+              Height = 17
+              TabOrder = 257
+            end
+            object TCHB95: TCheckBox
+              Left = 4
+              Top = 2093
+              Width = 17
+              Height = 17
+              TabOrder = 258
+            end
+            object TESEND95: TEdit
+              Left = 21
+              Top = 2090
+              Width = 173
+              Height = 22
+              TabOrder = 259
+            end
+            object BTSEND95: TButton
+              Left = 192
+              Top = 2090
+              Width = 22
+              Height = 22
+              Caption = '95'
+              TabOrder = 260
+              OnClick = BTSEND95Click
+            end
+            object TCHB94: TCheckBox
+              Left = 4
+              Top = 2071
+              Width = 17
+              Height = 17
+              TabOrder = 261
+            end
+            object TESEND94: TEdit
+              Left = 21
+              Top = 2068
+              Width = 173
+              Height = 22
+              TabOrder = 262
+            end
+            object BTSEND94: TButton
+              Left = 192
+              Top = 2068
+              Width = 22
+              Height = 22
+              Caption = '94'
+              TabOrder = 263
+              OnClick = BTSEND94Click
+            end
+            object TCHB93: TCheckBox
+              Left = 4
+              Top = 2049
+              Width = 17
+              Height = 17
+              TabOrder = 264
+            end
+            object TESEND93: TEdit
+              Left = 21
+              Top = 2046
+              Width = 173
+              Height = 22
+              TabOrder = 265
+            end
+            object BTSEND93: TButton
+              Left = 192
+              Top = 2046
+              Width = 22
+              Height = 22
+              Caption = '93'
+              TabOrder = 266
+              OnClick = BTSEND93Click
+            end
+            object TCHB92: TCheckBox
+              Left = 4
+              Top = 2027
+              Width = 17
+              Height = 17
+              TabOrder = 267
+            end
+            object TESEND92: TEdit
+              Left = 21
+              Top = 2024
+              Width = 173
+              Height = 22
+              TabOrder = 268
+            end
+            object BTSEND92: TButton
+              Left = 192
+              Top = 2024
+              Width = 22
+              Height = 22
+              Caption = '92'
+              TabOrder = 269
+              OnClick = BTSEND92Click
+            end
+            object TCHB91: TCheckBox
+              Left = 4
+              Top = 2005
+              Width = 17
+              Height = 17
+              TabOrder = 270
+            end
+            object TESEND91: TEdit
+              Left = 21
+              Top = 2002
+              Width = 173
+              Height = 22
+              TabOrder = 271
+            end
+            object BTSEND91: TButton
+              Left = 192
+              Top = 2002
+              Width = 22
+              Height = 22
+              Caption = '91'
+              TabOrder = 272
+              OnClick = BTSEND91Click
+            end
+            object TCHB90: TCheckBox
+              Left = 4
+              Top = 1983
+              Width = 17
+              Height = 17
+              TabOrder = 273
+            end
+            object TESEND90: TEdit
+              Left = 21
+              Top = 1980
+              Width = 173
+              Height = 22
+              TabOrder = 274
+            end
+            object BTSEND90: TButton
+              Left = 192
+              Top = 1980
+              Width = 22
+              Height = 22
+              Caption = '90'
+              TabOrder = 275
+              OnClick = BTSEND90Click
+            end
+            object TCHB89: TCheckBox
+              Left = 4
+              Top = 1961
+              Width = 17
+              Height = 17
+              TabOrder = 276
+            end
+            object TESEND89: TEdit
+              Left = 21
+              Top = 1958
+              Width = 173
+              Height = 22
+              TabOrder = 277
+            end
+            object BTSEND89: TButton
+              Left = 192
+              Top = 1958
+              Width = 22
+              Height = 22
+              Caption = '89'
+              TabOrder = 278
+              OnClick = BTSEND89Click
+            end
+            object TCHB88: TCheckBox
+              Left = 4
+              Top = 1939
+              Width = 17
+              Height = 17
+              TabOrder = 279
+            end
+            object TESEND88: TEdit
+              Left = 21
+              Top = 1936
+              Width = 173
+              Height = 22
+              TabOrder = 280
+            end
+            object BTSEND88: TButton
+              Left = 192
+              Top = 1936
+              Width = 22
+              Height = 22
+              Caption = '88'
+              TabOrder = 281
+              OnClick = BTSEND88Click
+            end
+            object TCHB87: TCheckBox
+              Left = 4
+              Top = 1917
+              Width = 17
+              Height = 17
+              TabOrder = 282
+            end
+            object TESEND87: TEdit
+              Left = 21
+              Top = 1914
+              Width = 173
+              Height = 22
+              TabOrder = 283
+            end
+            object BTSEND87: TButton
+              Left = 192
+              Top = 1914
+              Width = 22
+              Height = 22
+              Caption = '87'
+              TabOrder = 284
+              OnClick = BTSEND87Click
+            end
+            object TCHB86: TCheckBox
+              Left = 4
+              Top = 1895
+              Width = 17
+              Height = 17
+              TabOrder = 285
+            end
+            object TESEND86: TEdit
+              Left = 21
+              Top = 1892
+              Width = 173
+              Height = 22
+              TabOrder = 286
+            end
+            object BTSEND86: TButton
+              Left = 192
+              Top = 1892
+              Width = 22
+              Height = 22
+              Caption = '86'
+              TabOrder = 287
+              OnClick = BTSEND86Click
+            end
+            object TCHB85: TCheckBox
+              Left = 4
+              Top = 1873
+              Width = 17
+              Height = 17
+              TabOrder = 288
+            end
+            object TESEND85: TEdit
+              Left = 21
+              Top = 1870
+              Width = 173
+              Height = 22
+              TabOrder = 289
+            end
+            object BTSEND85: TButton
+              Left = 192
+              Top = 1870
+              Width = 22
+              Height = 22
+              Caption = '85'
+              TabOrder = 290
+              OnClick = BTSEND85Click
+            end
+            object TCHB84: TCheckBox
+              Left = 4
+              Top = 1851
+              Width = 17
+              Height = 17
+              TabOrder = 291
+            end
+            object TESEND84: TEdit
+              Left = 21
+              Top = 1848
+              Width = 173
+              Height = 22
+              TabOrder = 292
+            end
+            object BTSEND84: TButton
+              Left = 192
+              Top = 1848
+              Width = 22
+              Height = 22
+              Caption = '84'
+              TabOrder = 293
+              OnClick = BTSEND84Click
+            end
+            object TCHB83: TCheckBox
+              Left = 4
+              Top = 1829
+              Width = 17
+              Height = 17
+              TabOrder = 294
+            end
+            object TESEND83: TEdit
+              Left = 21
+              Top = 1826
+              Width = 173
+              Height = 22
+              TabOrder = 295
+            end
+            object BTSEND83: TButton
+              Left = 192
+              Top = 1826
+              Width = 22
+              Height = 22
+              Caption = '83'
+              TabOrder = 296
+              OnClick = BTSEND83Click
             end
           end
         end

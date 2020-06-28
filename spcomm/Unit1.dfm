@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 329
-  Top = 124
+  Left = 428
+  Top = 104
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V5.2'
+  Caption = 'Spcom V5.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -4353,7 +4353,7 @@ object Form1: TForm1
     Top = 41
   end
   object PopupMenu1: TPopupMenu
-    Left = 130
+    Left = 131
     Top = 123
     object N9: TMenuItem
       Caption = #22797#21046
@@ -4490,6 +4490,45 @@ object Form1: TForm1
         Hint = #37319#29992#22238#36710#31526'CR'#34920#31034#19979#19968#34892
         RadioItem = True
         OnClick = MACOS1Click
+      end
+    end
+    object N24: TMenuItem
+      Caption = #25171#24320#25193#23637#21151#33021
+      object String1: TMenuItem
+        Caption = 'String'
+        OnClick = String1Click
+      end
+      object HID1: TMenuItem
+        Caption = 'HID'
+        OnClick = HID1Click
+      end
+      object CP1: TMenuItem
+        Caption = 'TCP'
+        OnClick = CP1Click
+      end
+      object DES1: TMenuItem
+        Caption = 'DES'
+        OnClick = DES1Click
+      end
+      object AES1: TMenuItem
+        Caption = 'AES'
+        OnClick = AES1Click
+      end
+      object SM1: TMenuItem
+        Caption = 'SM'
+        OnClick = SM1Click
+      end
+      object HASH1: TMenuItem
+        Caption = 'HASH/MD5/CRC'
+        OnClick = HASH1Click
+      end
+      object XOR1: TMenuItem
+        Caption = 'XOR'
+        OnClick = XOR1Click
+      end
+      object MORE1: TMenuItem
+        Caption = 'MORE'
+        OnClick = MORE1Click
       end
     end
   end

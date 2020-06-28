@@ -583,6 +583,16 @@ type
     TCHB83: TCheckBox;
     TESEND83: TEdit;
     BTSEND83: TButton;
+    N24: TMenuItem;
+    String1: TMenuItem;
+    HID1: TMenuItem;
+    CP1: TMenuItem;
+    DES1: TMenuItem;
+    AES1: TMenuItem;
+    SM1: TMenuItem;
+    HASH1: TMenuItem;
+    XOR1: TMenuItem;
+    MORE1: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -854,6 +864,16 @@ type
     procedure Button15Click(Sender: TObject);
     procedure N22Click(Sender: TObject);
     procedure N23Click(Sender: TObject);
+    procedure String1Click(Sender: TObject);
+    procedure HID1Click(Sender: TObject);
+    procedure CP1Click(Sender: TObject);
+    procedure DES1Click(Sender: TObject);
+    procedure AES1Click(Sender: TObject);
+    procedure SM1Click(Sender: TObject);
+    procedure HASH1Click(Sender: TObject);
+    procedure XOR1Click(Sender: TObject);
+    procedure MORE1Click(Sender: TObject);
+    procedure N25Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -6360,7 +6380,7 @@ begin
           Sleep(500);
           ABitmap := TBitmap.Create;
           ABitmap.Assign(CaptureScreenRect(fRect));
-          ABitmap.SaveToFile(formatdatetime('mmdd-hhmmss',now)+'.jpg');
+          ABitmap.SaveToFile(ExtractFilePath(ParamStr(0)) + formatdatetime('mmdd-hhmmss',now)+'.jpg');
           Display_Info(ExtractFilePath(ParamStr(0)) + formatdatetime('mmdd-hhmmss',now)+'.jpg');
           ABitmap.Free;
         end
@@ -6405,6 +6425,95 @@ begin
     end;
     Memo1.PasteFromClipboard;
     Memo1.SetFocus;
+end;
+
+procedure TForm1.String1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 0;
+end;
+
+procedure TForm1.HID1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 1;
+end;
+
+procedure TForm1.CP1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 2;
+end;
+
+procedure TForm1.DES1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 3;
+end;
+
+procedure TForm1.AES1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 4;
+end;
+
+procedure TForm1.SM1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 5;
+end;
+
+procedure TForm1.HASH1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 6;
+end;
+
+procedure TForm1.XOR1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 7;
+end;
+
+procedure TForm1.MORE1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 8;
+end;
+
+procedure TForm1.N25Click(Sender: TObject);
+begin
+    if ExtendFun = 1 then
+    begin
+        Button13.Click;
+    end;
 end;
 
 end.

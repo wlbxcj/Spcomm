@@ -3757,7 +3757,7 @@ end;
 {解密  。…。……}
 procedure TForm1.Button55Click(Sender: TObject);
 var
-    strbuf : string;
+    strbuf,temp : string;
     SendBuf , sendtemp: string;
     keytemp1,keytemp2, KEYBuf : string;
     ivtmp, iv : string;
@@ -3900,17 +3900,34 @@ begin
     begin
         ShowMessage('不支持该操作');
         Exit;
-    end;  
-
-
+    end;
     Display_info('解密:');
+    temp := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(strbuf) > 16) then
+    begin
+        for j := 0 to Length(temp) div 16 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
     Display_info(strbuf);
 end;
 
 // 加密
 procedure TForm1.Button56Click(Sender: TObject);
 var
-    strbuf : string;
+    strbuf,temp : string;
     SendBuf ,sendtemp: string;
     keytemp1,keybuf : string;
     ivtmp, iv : string;
@@ -4067,6 +4084,25 @@ begin
         Exit;
     end;
     Display_info('加密:');
+    temp := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(strbuf) > 16) then
+    begin
+        for j := 0 to Length(temp) div 16 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
     Display_info(strbuf);
 end;
 
@@ -4617,12 +4653,12 @@ var
   Source: TStringStream;
   Dest: TStringStream;
   Start, Stop: cardinal;
-  Size: integer;
+  Size,j,i: integer;
   Key128: TAESKey128;
   Key192: TAESKey192;
   Key256: TAESKey256;
   TAESKey:array [0..31] of byte;
-  RegCode:String;
+  RegCode,temp,sendtemp:String;
   IV:TAESBuffer;
   key1,key2,key3,key4,ivedit,datain:string;
 begin
@@ -4741,7 +4777,27 @@ begin
         end;
     end;
 
-    Display_Info('AES ENC:'+RegCode);
+    Display_Info('AES ENC:');
+    temp := StringReplace(RegCode, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(temp) > 32) then
+    begin
+        for j := 0 to Length(temp) div 32 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 15 do
+            begin
+                sendtemp := sendtemp + temp[j * 32 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 32 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
+    Display_Info(RegCode);
 end;
 
 procedure TForm1.RadioButton10Click(Sender: TObject);
@@ -4870,12 +4926,12 @@ var
   Source: TStringStream;
   Dest: TStringStream;
   Start, Stop: cardinal;
-  Size: integer;
+  Size,i ,j: integer;
   Key128: TAESKey128;
   Key192: TAESKey192;
   Key256: TAESKey256;
   TAESKey:array [0..31] of byte;
-  RegCode:String;
+  RegCode, temp, sendtemp:String;
   IV:TAESBuffer;
   key1,key2,key3,key4,ivedit,datain:string;
 begin
@@ -4998,7 +5054,27 @@ begin
         end;
     end;
 
-    Display_Info('AES DEC:'+RegCode);
+    Display_Info('AES DEC:');
+    temp := StringReplace(RegCode, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(temp) > 32) then
+    begin
+        for j := 0 to Length(temp) div 32 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 15 do
+            begin
+                sendtemp := sendtemp + temp[j * 32 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 32 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
+    Display_Info(RegCode);
 end;
 
 procedure TForm1.RadioButton13Click(Sender: TObject);

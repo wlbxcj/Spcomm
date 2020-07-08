@@ -3757,7 +3757,7 @@ end;
 {解密  。…。……}
 procedure TForm1.Button55Click(Sender: TObject);
 var
-    strbuf : string;
+    strbuf,temp : string;
     SendBuf , sendtemp: string;
     keytemp1,keytemp2, KEYBuf : string;
     ivtmp, iv : string;
@@ -3900,17 +3900,34 @@ begin
     begin
         ShowMessage('不支持该操作');
         Exit;
-    end;  
-
-
+    end;
     Display_info('解密:');
+    temp := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(strbuf) > 16) then
+    begin
+        for j := 0 to Length(temp) div 16 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
     Display_info(strbuf);
 end;
 
 // 加密
 procedure TForm1.Button56Click(Sender: TObject);
 var
-    strbuf : string;
+    strbuf,temp : string;
     SendBuf ,sendtemp: string;
     keytemp1,keybuf : string;
     ivtmp, iv : string;
@@ -4067,6 +4084,25 @@ begin
         Exit;
     end;
     Display_info('加密:');
+    temp := StringReplace(strbuf, #10, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    if (Length(strbuf) > 16) then
+    begin
+        for j := 0 to Length(temp) div 16 -1 do
+        begin
+            sendtemp := '';
+            for i := 0 to 7 do
+            begin
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 1];
+                sendtemp := sendtemp + temp[j * 16 + i*2 + 2];
+                sendtemp := sendtemp + ' ';
+            end;
+            Display_info(sendtemp);
+        end;
+        Exit;
+    end;
     Display_info(strbuf);
 end;
 

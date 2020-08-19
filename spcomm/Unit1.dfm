@@ -6,7 +6,7 @@ object Form1: TForm1
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V5.4'
+  Caption = 'Spcom V6.0'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -19,25 +19,13 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Shape2: TShape
-    Left = 369
-    Top = 208
-    Width = 65
-    Height = 65
-  end
-  object Label16: TLabel
-    Left = 584
-    Top = 192
-    Width = 49
-    Height = 14
-    Caption = 'Label16'
-  end
-  object Label34: TLabel
-    Left = 273
-    Top = 12
-    Width = 49
-    Height = 14
-    Caption = 'Label34'
+  object Splitter1: TSplitter
+    Left = 446
+    Top = 0
+    Width = 1
+    Height = 398
+    Align = alRight
+    OnPaint = Splitter1Paint
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -506,3791 +494,10 @@ object Form1: TForm1
       OnMouseMove = StatusBar1MouseMove
     end
   end
-  object GroupBox7: TGroupBox
-    Left = 449
-    Top = 0
-    Width = 243
-    Height = 398
-    Align = alRight
-    TabOrder = 2
-    Visible = False
-    object PageControl2: TPageControl
-      Left = 2
-      Top = 16
-      Width = 239
-      Height = 380
-      ActivePage = TabSheet1
-      Align = alClient
-      ParentShowHint = False
-      ShowHint = False
-      TabOrder = 0
-      object TabSheet1: TTabSheet
-        Caption = 'String'
-        object GroupBox8: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 28
-          Align = alTop
-          TabOrder = 0
-          object Label9: TLabel
-            Left = 136
-            Top = 8
-            Width = 14
-            Height = 14
-            Caption = 'ms'
-          end
-          object CheckBox8: TCheckBox
-            Left = 4
-            Top = 8
-            Width = 83
-            Height = 15
-            Caption = #24490#29615#21457#36865
-            Enabled = False
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -8
-            Font.Name = 'MS Sans Serif'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            OnClick = CheckBox8Click
-          end
-          object Edit3: TEdit
-            Left = 95
-            Top = 6
-            Width = 40
-            Height = 22
-            TabOrder = 1
-            Text = '1000'
-            OnKeyPress = Edit3KeyPress
-          end
-          object BitBtn2: TBitBtn
-            Left = 167
-            Top = 9
-            Width = 58
-            Height = 15
-            Caption = #20840#28165
-            TabOrder = 2
-            OnClick = BitBtn2Click
-          end
-        end
-        object ScrollBox1: TScrollBox
-          Left = 0
-          Top = 28
-          Width = 231
-          Height = 323
-          VertScrollBar.Range = 2200
-          VertScrollBar.Smooth = True
-          VertScrollBar.Tracking = True
-          Align = alClient
-          AutoScroll = False
-          TabOrder = 1
-          OnMouseWheel = ScrollBox1MouseWheel
-          object GroupBox9: TGroupBox
-            Left = 0
-            Top = 0
-            Width = 210
-            Height = 2200
-            Align = alClient
-            TabOrder = 0
-            object lbl1: TLabel
-              Left = 2
-              Top = 7
-              Width = 22
-              Height = 13
-              Caption = 'HEX'
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -7
-              Font.Name = 'MS Sans Serif'
-              Font.Style = []
-              ParentFont = False
-            end
-            object Label10: TLabel
-              Left = 80
-              Top = 8
-              Width = 70
-              Height = 13
-              Alignment = taCenter
-              AutoSize = False
-              Caption = #23383#31526#20018
-            end
-            object Label11: TLabel
-              Left = 184
-              Top = 8
-              Width = 33
-              Height = 17
-              AutoSize = False
-              Caption = #21457#36865
-            end
-            object chk1: TCheckBox
-              Left = 4
-              Top = 25
-              Width = 17
-              Height = 17
-              TabOrder = 0
-            end
-            object TESEND01: TEdit
-              Left = 21
-              Top = 22
-              Width = 173
-              Height = 22
-              TabOrder = 1
-            end
-            object TESEND02: TEdit
-              Left = 21
-              Top = 44
-              Width = 173
-              Height = 22
-              TabOrder = 2
-            end
-            object TESEND03: TEdit
-              Left = 21
-              Top = 66
-              Width = 173
-              Height = 22
-              TabOrder = 3
-            end
-            object TESEND04: TEdit
-              Left = 21
-              Top = 88
-              Width = 173
-              Height = 22
-              TabOrder = 4
-            end
-            object TESEND05: TEdit
-              Left = 21
-              Top = 110
-              Width = 173
-              Height = 22
-              TabOrder = 5
-            end
-            object TESEND06: TEdit
-              Left = 21
-              Top = 132
-              Width = 173
-              Height = 22
-              TabOrder = 6
-            end
-            object TESEND07: TEdit
-              Left = 21
-              Top = 154
-              Width = 173
-              Height = 22
-              TabOrder = 7
-            end
-            object TESEND08: TEdit
-              Left = 21
-              Top = 176
-              Width = 173
-              Height = 22
-              TabOrder = 8
-            end
-            object TESEND09: TEdit
-              Left = 21
-              Top = 198
-              Width = 173
-              Height = 22
-              TabOrder = 9
-            end
-            object TESEND10: TEdit
-              Left = 21
-              Top = 220
-              Width = 173
-              Height = 22
-              TabOrder = 10
-            end
-            object TESEND11: TEdit
-              Left = 21
-              Top = 242
-              Width = 173
-              Height = 22
-              TabOrder = 11
-            end
-            object TESEND13: TEdit
-              Left = 21
-              Top = 286
-              Width = 173
-              Height = 22
-              TabOrder = 12
-            end
-            object CheckBox9: TCheckBox
-              Left = 4
-              Top = 47
-              Width = 17
-              Height = 17
-              TabOrder = 13
-            end
-            object CheckBox10: TCheckBox
-              Left = 4
-              Top = 69
-              Width = 17
-              Height = 17
-              TabOrder = 14
-            end
-            object CheckBox11: TCheckBox
-              Left = 4
-              Top = 91
-              Width = 17
-              Height = 17
-              TabOrder = 15
-            end
-            object CheckBox12: TCheckBox
-              Left = 4
-              Top = 113
-              Width = 17
-              Height = 17
-              TabOrder = 16
-            end
-            object CheckBox13: TCheckBox
-              Left = 4
-              Top = 135
-              Width = 17
-              Height = 17
-              TabOrder = 17
-            end
-            object CheckBox14: TCheckBox
-              Left = 4
-              Top = 157
-              Width = 17
-              Height = 17
-              TabOrder = 18
-            end
-            object CheckBox15: TCheckBox
-              Left = 4
-              Top = 179
-              Width = 17
-              Height = 17
-              TabOrder = 19
-            end
-            object CheckBox16: TCheckBox
-              Left = 4
-              Top = 201
-              Width = 17
-              Height = 17
-              TabOrder = 20
-            end
-            object CheckBox17: TCheckBox
-              Left = 4
-              Top = 223
-              Width = 17
-              Height = 17
-              TabOrder = 21
-            end
-            object CheckBox18: TCheckBox
-              Left = 4
-              Top = 245
-              Width = 17
-              Height = 17
-              TabOrder = 22
-            end
-            object CheckBox19: TCheckBox
-              Left = 4
-              Top = 267
-              Width = 17
-              Height = 17
-              TabOrder = 23
-            end
-            object CheckBox20: TCheckBox
-              Left = 4
-              Top = 289
-              Width = 17
-              Height = 17
-              TabOrder = 24
-            end
-            object CheckBox21: TCheckBox
-              Left = 4
-              Top = 311
-              Width = 17
-              Height = 17
-              TabOrder = 25
-            end
-            object CheckBox22: TCheckBox
-              Left = 4
-              Top = 333
-              Width = 17
-              Height = 17
-              TabOrder = 26
-            end
-            object CheckBox23: TCheckBox
-              Left = 4
-              Top = 355
-              Width = 17
-              Height = 17
-              TabOrder = 27
-            end
-            object TESEND12: TEdit
-              Left = 21
-              Top = 264
-              Width = 173
-              Height = 22
-              TabOrder = 28
-            end
-            object TESEND14: TEdit
-              Left = 21
-              Top = 308
-              Width = 173
-              Height = 22
-              TabOrder = 29
-            end
-            object TESEND15: TEdit
-              Left = 21
-              Top = 330
-              Width = 173
-              Height = 22
-              TabOrder = 30
-            end
-            object TESEND16: TEdit
-              Left = 21
-              Top = 352
-              Width = 173
-              Height = 22
-              TabOrder = 31
-            end
-            object BTSEND01: TButton
-              Left = 192
-              Top = 22
-              Width = 22
-              Height = 22
-              Caption = '1'
-              TabOrder = 32
-              OnClick = BTSEND01Click
-            end
-            object BTSEND02: TButton
-              Left = 192
-              Top = 44
-              Width = 22
-              Height = 22
-              Caption = '2'
-              TabOrder = 33
-              OnClick = BTSEND02Click
-            end
-            object BTSEND03: TButton
-              Left = 192
-              Top = 66
-              Width = 22
-              Height = 22
-              Caption = '3'
-              TabOrder = 34
-              OnClick = BTSEND03Click
-            end
-            object BTSEND04: TButton
-              Left = 192
-              Top = 88
-              Width = 22
-              Height = 22
-              Caption = '4'
-              TabOrder = 35
-              OnClick = BTSEND04Click
-            end
-            object BTSEND05: TButton
-              Left = 192
-              Top = 110
-              Width = 22
-              Height = 22
-              Caption = '5'
-              TabOrder = 36
-              OnClick = BTSEND05Click
-            end
-            object BTSEND06: TButton
-              Left = 192
-              Top = 132
-              Width = 22
-              Height = 22
-              Caption = '6'
-              TabOrder = 37
-              OnClick = BTSEND06Click
-            end
-            object BTSEND07: TButton
-              Left = 192
-              Top = 154
-              Width = 22
-              Height = 22
-              Caption = '7'
-              TabOrder = 38
-              OnClick = BTSEND07Click
-            end
-            object BTSEND08: TButton
-              Left = 192
-              Top = 176
-              Width = 22
-              Height = 22
-              Caption = '8'
-              TabOrder = 39
-              OnClick = BTSEND08Click
-            end
-            object BTSEND09: TButton
-              Left = 192
-              Top = 198
-              Width = 22
-              Height = 22
-              Caption = '9'
-              TabOrder = 40
-              OnClick = BTSEND09Click
-            end
-            object BTSEND10: TButton
-              Left = 192
-              Top = 220
-              Width = 22
-              Height = 22
-              Caption = '10'
-              TabOrder = 41
-              OnClick = BTSEND10Click
-            end
-            object BTSEND11: TButton
-              Left = 192
-              Top = 242
-              Width = 22
-              Height = 22
-              Caption = '11'
-              TabOrder = 42
-              OnClick = BTSEND11Click
-            end
-            object BTSEND12: TButton
-              Left = 192
-              Top = 264
-              Width = 22
-              Height = 22
-              Caption = '12'
-              TabOrder = 43
-              OnClick = BTSEND12Click
-            end
-            object BTSEND13: TButton
-              Left = 192
-              Top = 286
-              Width = 22
-              Height = 22
-              Caption = '13'
-              TabOrder = 44
-              OnClick = BTSEND13Click
-            end
-            object BTSEND14: TButton
-              Left = 192
-              Top = 308
-              Width = 22
-              Height = 22
-              Caption = '14'
-              TabOrder = 45
-              OnClick = BTSEND14Click
-            end
-            object BTSEND15: TButton
-              Left = 192
-              Top = 330
-              Width = 22
-              Height = 22
-              Caption = '15'
-              TabOrder = 46
-              OnClick = BTSEND15Click
-            end
-            object BTSEND16: TButton
-              Left = 192
-              Top = 352
-              Width = 22
-              Height = 22
-              Caption = '16'
-              TabOrder = 47
-              OnClick = BTSEND16Click
-            end
-            object TESEND17: TEdit
-              Left = 21
-              Top = 374
-              Width = 173
-              Height = 22
-              TabOrder = 48
-            end
-            object TESEND18: TEdit
-              Left = 21
-              Top = 396
-              Width = 173
-              Height = 22
-              TabOrder = 49
-            end
-            object TESEND19: TEdit
-              Left = 21
-              Top = 418
-              Width = 173
-              Height = 22
-              TabOrder = 50
-            end
-            object TESEND20: TEdit
-              Left = 21
-              Top = 440
-              Width = 173
-              Height = 22
-              TabOrder = 51
-            end
-            object TESEND21: TEdit
-              Left = 21
-              Top = 462
-              Width = 173
-              Height = 22
-              TabOrder = 52
-            end
-            object TESEND22: TEdit
-              Left = 21
-              Top = 484
-              Width = 173
-              Height = 22
-              TabOrder = 53
-            end
-            object TESEND23: TEdit
-              Left = 21
-              Top = 506
-              Width = 173
-              Height = 22
-              TabOrder = 54
-            end
-            object TESEND24: TEdit
-              Left = 21
-              Top = 528
-              Width = 173
-              Height = 22
-              TabOrder = 55
-            end
-            object TESEND25: TEdit
-              Left = 21
-              Top = 550
-              Width = 173
-              Height = 22
-              TabOrder = 56
-            end
-            object TESEND26: TEdit
-              Left = 21
-              Top = 572
-              Width = 173
-              Height = 22
-              TabOrder = 57
-            end
-            object TESEND27: TEdit
-              Left = 21
-              Top = 594
-              Width = 173
-              Height = 22
-              TabOrder = 58
-            end
-            object BTSEND17: TButton
-              Left = 192
-              Top = 374
-              Width = 22
-              Height = 22
-              Caption = '17'
-              TabOrder = 59
-              OnClick = BTSEND17Click
-            end
-            object BTSEND18: TButton
-              Left = 192
-              Top = 396
-              Width = 22
-              Height = 22
-              Caption = '18'
-              TabOrder = 60
-              OnClick = BTSEND18Click
-            end
-            object BTSEND19: TButton
-              Left = 192
-              Top = 418
-              Width = 22
-              Height = 22
-              Caption = '19'
-              TabOrder = 61
-              OnClick = BTSEND19Click
-            end
-            object BTSEND20: TButton
-              Left = 192
-              Top = 440
-              Width = 22
-              Height = 22
-              Caption = '20'
-              TabOrder = 62
-              OnClick = BTSEND20Click
-            end
-            object BTSEND21: TButton
-              Left = 193
-              Top = 462
-              Width = 22
-              Height = 22
-              Caption = '21'
-              TabOrder = 63
-              OnClick = BTSEND21Click
-            end
-            object BTSEND22: TButton
-              Left = 192
-              Top = 484
-              Width = 22
-              Height = 22
-              Caption = '22'
-              TabOrder = 64
-              OnClick = BTSEND22Click
-            end
-            object BTSEND23: TButton
-              Left = 192
-              Top = 506
-              Width = 22
-              Height = 22
-              Caption = '23'
-              TabOrder = 65
-              OnClick = BTSEND23Click
-            end
-            object BTSEND24: TButton
-              Left = 192
-              Top = 528
-              Width = 22
-              Height = 22
-              Caption = '24'
-              TabOrder = 66
-              OnClick = BTSEND24Click
-            end
-            object BTSEND25: TButton
-              Left = 192
-              Top = 550
-              Width = 22
-              Height = 22
-              Caption = '25'
-              TabOrder = 67
-              OnClick = BTSEND25Click
-            end
-            object BTSEND26: TButton
-              Left = 192
-              Top = 572
-              Width = 22
-              Height = 22
-              Caption = '26'
-              TabOrder = 68
-              OnClick = BTSEND26Click
-            end
-            object BTSEND27: TButton
-              Left = 192
-              Top = 594
-              Width = 22
-              Height = 22
-              Caption = '27'
-              TabOrder = 69
-              OnClick = BTSEND27Click
-            end
-            object BTSEND28: TButton
-              Left = 192
-              Top = 616
-              Width = 22
-              Height = 22
-              Caption = '28'
-              TabOrder = 70
-              OnClick = BTSEND28Click
-            end
-            object CheckBox28: TCheckBox
-              Left = 4
-              Top = 377
-              Width = 17
-              Height = 17
-              TabOrder = 71
-            end
-            object CheckBox29: TCheckBox
-              Left = 4
-              Top = 399
-              Width = 17
-              Height = 17
-              TabOrder = 72
-            end
-            object CheckBox30: TCheckBox
-              Left = 4
-              Top = 421
-              Width = 17
-              Height = 17
-              TabOrder = 73
-            end
-            object CheckBox31: TCheckBox
-              Left = 4
-              Top = 443
-              Width = 17
-              Height = 17
-              TabOrder = 74
-            end
-            object CheckBox32: TCheckBox
-              Left = 4
-              Top = 465
-              Width = 17
-              Height = 17
-              TabOrder = 75
-            end
-            object CheckBox33: TCheckBox
-              Left = 4
-              Top = 487
-              Width = 17
-              Height = 17
-              TabOrder = 76
-            end
-            object CheckBox34: TCheckBox
-              Left = 4
-              Top = 509
-              Width = 17
-              Height = 17
-              TabOrder = 77
-            end
-            object CheckBox35: TCheckBox
-              Left = 4
-              Top = 531
-              Width = 17
-              Height = 17
-              TabOrder = 78
-            end
-            object CheckBox36: TCheckBox
-              Left = 4
-              Top = 553
-              Width = 17
-              Height = 17
-              TabOrder = 79
-            end
-            object CheckBox37: TCheckBox
-              Left = 4
-              Top = 575
-              Width = 17
-              Height = 17
-              TabOrder = 80
-            end
-            object CheckBox38: TCheckBox
-              Left = 4
-              Top = 597
-              Width = 17
-              Height = 17
-              TabOrder = 81
-            end
-            object TESEND28: TEdit
-              Left = 21
-              Top = 616
-              Width = 173
-              Height = 22
-              TabOrder = 82
-            end
-            object TESEND29: TEdit
-              Left = 21
-              Top = 638
-              Width = 173
-              Height = 22
-              TabOrder = 83
-            end
-            object TESEND30: TEdit
-              Left = 21
-              Top = 660
-              Width = 173
-              Height = 22
-              TabOrder = 84
-            end
-            object TESEND31: TEdit
-              Left = 21
-              Top = 682
-              Width = 173
-              Height = 22
-              TabOrder = 85
-            end
-            object TESEND32: TEdit
-              Left = 21
-              Top = 704
-              Width = 173
-              Height = 22
-              TabOrder = 86
-            end
-            object TESEND33: TEdit
-              Left = 21
-              Top = 726
-              Width = 173
-              Height = 22
-              TabOrder = 87
-            end
-            object TESEND34: TEdit
-              Left = 21
-              Top = 748
-              Width = 173
-              Height = 22
-              TabOrder = 88
-            end
-            object TESEND35: TEdit
-              Left = 21
-              Top = 770
-              Width = 173
-              Height = 22
-              TabOrder = 89
-            end
-            object TESEND36: TEdit
-              Left = 21
-              Top = 792
-              Width = 173
-              Height = 22
-              TabOrder = 90
-            end
-            object TESEND37: TEdit
-              Left = 21
-              Top = 814
-              Width = 173
-              Height = 22
-              TabOrder = 91
-            end
-            object TESEND38: TEdit
-              Left = 21
-              Top = 836
-              Width = 173
-              Height = 22
-              TabOrder = 92
-            end
-            object TESEND39: TEdit
-              Left = 21
-              Top = 858
-              Width = 173
-              Height = 22
-              TabOrder = 93
-            end
-            object TESEND40: TEdit
-              Left = 21
-              Top = 880
-              Width = 173
-              Height = 22
-              TabOrder = 94
-            end
-            object TESEND41: TEdit
-              Left = 21
-              Top = 902
-              Width = 173
-              Height = 22
-              TabOrder = 95
-            end
-            object BTSEND29: TButton
-              Left = 192
-              Top = 638
-              Width = 22
-              Height = 22
-              Caption = '29'
-              TabOrder = 96
-              OnClick = BTSEND29Click
-            end
-            object BTSEND30: TButton
-              Left = 192
-              Top = 660
-              Width = 22
-              Height = 22
-              Caption = '30'
-              TabOrder = 97
-              OnClick = BTSEND30Click
-            end
-            object BTSEND31: TButton
-              Left = 192
-              Top = 682
-              Width = 22
-              Height = 22
-              Caption = '31'
-              TabOrder = 98
-              OnClick = BTSEND31Click
-            end
-            object BTSEND32: TButton
-              Left = 192
-              Top = 704
-              Width = 22
-              Height = 22
-              Caption = '32'
-              TabOrder = 99
-              OnClick = BTSEND32Click
-            end
-            object BTSEND33: TButton
-              Left = 192
-              Top = 726
-              Width = 22
-              Height = 22
-              Caption = '33'
-              TabOrder = 100
-              OnClick = BTSEND33Click
-            end
-            object BTSEND34: TButton
-              Left = 192
-              Top = 748
-              Width = 22
-              Height = 22
-              Caption = '34'
-              TabOrder = 101
-              OnClick = BTSEND34Click
-            end
-            object BTSEND35: TButton
-              Left = 192
-              Top = 770
-              Width = 22
-              Height = 22
-              Caption = '35'
-              TabOrder = 102
-              OnClick = BTSEND35Click
-            end
-            object BTSEND36: TButton
-              Left = 192
-              Top = 792
-              Width = 22
-              Height = 22
-              Caption = '36'
-              TabOrder = 103
-              OnClick = BTSEND36Click
-            end
-            object BTSEND37: TButton
-              Left = 192
-              Top = 814
-              Width = 22
-              Height = 22
-              Caption = '37'
-              TabOrder = 104
-              OnClick = BTSEND37Click
-            end
-            object BTSEND38: TButton
-              Left = 192
-              Top = 836
-              Width = 22
-              Height = 22
-              Caption = '38'
-              TabOrder = 105
-              OnClick = BTSEND38Click
-            end
-            object BTSEND39: TButton
-              Left = 192
-              Top = 858
-              Width = 22
-              Height = 22
-              Caption = '39'
-              TabOrder = 106
-              OnClick = BTSEND39Click
-            end
-            object BTSEND40: TButton
-              Left = 193
-              Top = 880
-              Width = 22
-              Height = 22
-              Caption = '40'
-              TabOrder = 107
-              OnClick = BTSEND40Click
-            end
-            object BTSEND41: TButton
-              Left = 192
-              Top = 902
-              Width = 22
-              Height = 22
-              Caption = '41'
-              TabOrder = 108
-              OnClick = BTSEND41Click
-            end
-            object CheckBox39: TCheckBox
-              Left = 4
-              Top = 619
-              Width = 17
-              Height = 17
-              TabOrder = 109
-            end
-            object CheckBox40: TCheckBox
-              Left = 4
-              Top = 641
-              Width = 17
-              Height = 17
-              TabOrder = 110
-            end
-            object CheckBox41: TCheckBox
-              Left = 4
-              Top = 663
-              Width = 17
-              Height = 17
-              TabOrder = 111
-            end
-            object CheckBox42: TCheckBox
-              Left = 4
-              Top = 685
-              Width = 17
-              Height = 17
-              TabOrder = 112
-            end
-            object CheckBox43: TCheckBox
-              Left = 4
-              Top = 707
-              Width = 17
-              Height = 17
-              TabOrder = 113
-            end
-            object CheckBox44: TCheckBox
-              Left = 4
-              Top = 729
-              Width = 17
-              Height = 17
-              TabOrder = 114
-            end
-            object CheckBox45: TCheckBox
-              Left = 4
-              Top = 751
-              Width = 17
-              Height = 17
-              TabOrder = 115
-            end
-            object CheckBox46: TCheckBox
-              Left = 4
-              Top = 773
-              Width = 17
-              Height = 17
-              TabOrder = 116
-            end
-            object CheckBox47: TCheckBox
-              Left = 4
-              Top = 795
-              Width = 17
-              Height = 17
-              TabOrder = 117
-            end
-            object CheckBox48: TCheckBox
-              Left = 4
-              Top = 817
-              Width = 17
-              Height = 17
-              TabOrder = 118
-            end
-            object CheckBox49: TCheckBox
-              Left = 4
-              Top = 839
-              Width = 17
-              Height = 17
-              TabOrder = 119
-            end
-            object CheckBox50: TCheckBox
-              Left = 4
-              Top = 861
-              Width = 17
-              Height = 17
-              TabOrder = 120
-            end
-            object CheckBox51: TCheckBox
-              Left = 4
-              Top = 883
-              Width = 17
-              Height = 17
-              TabOrder = 121
-            end
-            object CheckBox52: TCheckBox
-              Left = 4
-              Top = 905
-              Width = 17
-              Height = 17
-              TabOrder = 122
-            end
-            object TCHB42: TCheckBox
-              Left = 4
-              Top = 927
-              Width = 17
-              Height = 17
-              TabOrder = 123
-            end
-            object TESEND82: TEdit
-              Left = 21
-              Top = 1804
-              Width = 173
-              Height = 22
-              TabOrder = 124
-            end
-            object TESEND81: TEdit
-              Left = 21
-              Top = 1782
-              Width = 173
-              Height = 22
-              TabOrder = 125
-            end
-            object TESEND80: TEdit
-              Left = 21
-              Top = 1760
-              Width = 173
-              Height = 22
-              TabOrder = 126
-            end
-            object TESEND79: TEdit
-              Left = 21
-              Top = 1738
-              Width = 173
-              Height = 22
-              TabOrder = 127
-            end
-            object TESEND78: TEdit
-              Left = 21
-              Top = 1716
-              Width = 173
-              Height = 22
-              TabOrder = 128
-            end
-            object TESEND77: TEdit
-              Left = 21
-              Top = 1694
-              Width = 173
-              Height = 22
-              TabOrder = 129
-            end
-            object TESEND76: TEdit
-              Left = 21
-              Top = 1672
-              Width = 173
-              Height = 22
-              TabOrder = 130
-            end
-            object TESEND75: TEdit
-              Left = 21
-              Top = 1650
-              Width = 173
-              Height = 22
-              TabOrder = 131
-            end
-            object TESEND74: TEdit
-              Left = 21
-              Top = 1628
-              Width = 173
-              Height = 22
-              TabOrder = 132
-            end
-            object TESEND73: TEdit
-              Left = 21
-              Top = 1606
-              Width = 173
-              Height = 22
-              TabOrder = 133
-            end
-            object TESEND72: TEdit
-              Left = 21
-              Top = 1584
-              Width = 173
-              Height = 22
-              TabOrder = 134
-            end
-            object TESEND71: TEdit
-              Left = 21
-              Top = 1562
-              Width = 173
-              Height = 22
-              TabOrder = 135
-            end
-            object TESEND70: TEdit
-              Left = 21
-              Top = 1540
-              Width = 173
-              Height = 22
-              TabOrder = 136
-            end
-            object TESEND69: TEdit
-              Left = 21
-              Top = 1518
-              Width = 173
-              Height = 22
-              TabOrder = 137
-            end
-            object TESEND68: TEdit
-              Left = 21
-              Top = 1496
-              Width = 173
-              Height = 22
-              TabOrder = 138
-            end
-            object TESEND67: TEdit
-              Left = 21
-              Top = 1474
-              Width = 173
-              Height = 22
-              TabOrder = 139
-            end
-            object TESEND66: TEdit
-              Left = 21
-              Top = 1452
-              Width = 173
-              Height = 22
-              TabOrder = 140
-            end
-            object TESEND65: TEdit
-              Left = 21
-              Top = 1430
-              Width = 173
-              Height = 22
-              TabOrder = 141
-            end
-            object TESEND64: TEdit
-              Left = 21
-              Top = 1408
-              Width = 173
-              Height = 22
-              TabOrder = 142
-            end
-            object TESEND63: TEdit
-              Left = 21
-              Top = 1386
-              Width = 173
-              Height = 22
-              TabOrder = 143
-            end
-            object TESEND62: TEdit
-              Left = 21
-              Top = 1364
-              Width = 173
-              Height = 22
-              TabOrder = 144
-            end
-            object TESEND61: TEdit
-              Left = 21
-              Top = 1342
-              Width = 173
-              Height = 22
-              TabOrder = 145
-            end
-            object TESEND60: TEdit
-              Left = 21
-              Top = 1320
-              Width = 173
-              Height = 22
-              TabOrder = 146
-            end
-            object TESEND59: TEdit
-              Left = 21
-              Top = 1298
-              Width = 173
-              Height = 22
-              TabOrder = 147
-            end
-            object TESEND58: TEdit
-              Left = 21
-              Top = 1276
-              Width = 173
-              Height = 22
-              TabOrder = 148
-            end
-            object TESEND57: TEdit
-              Left = 21
-              Top = 1254
-              Width = 173
-              Height = 22
-              TabOrder = 149
-            end
-            object TESEND56: TEdit
-              Left = 21
-              Top = 1232
-              Width = 173
-              Height = 22
-              TabOrder = 150
-            end
-            object TESEND55: TEdit
-              Left = 21
-              Top = 1210
-              Width = 173
-              Height = 22
-              TabOrder = 151
-            end
-            object TESEND54: TEdit
-              Left = 21
-              Top = 1188
-              Width = 173
-              Height = 22
-              TabOrder = 152
-            end
-            object TESEND53: TEdit
-              Left = 21
-              Top = 1166
-              Width = 173
-              Height = 22
-              TabOrder = 153
-            end
-            object TESEND52: TEdit
-              Left = 21
-              Top = 1144
-              Width = 173
-              Height = 22
-              TabOrder = 154
-            end
-            object TESEND51: TEdit
-              Left = 21
-              Top = 1122
-              Width = 173
-              Height = 22
-              TabOrder = 155
-            end
-            object TESEND50: TEdit
-              Left = 21
-              Top = 1100
-              Width = 173
-              Height = 22
-              TabOrder = 156
-            end
-            object TESEND49: TEdit
-              Left = 21
-              Top = 1078
-              Width = 173
-              Height = 22
-              TabOrder = 157
-            end
-            object TESEND48: TEdit
-              Left = 21
-              Top = 1056
-              Width = 173
-              Height = 22
-              TabOrder = 158
-            end
-            object TESEND47: TEdit
-              Left = 21
-              Top = 1034
-              Width = 173
-              Height = 22
-              TabOrder = 159
-            end
-            object TESEND46: TEdit
-              Left = 21
-              Top = 1012
-              Width = 173
-              Height = 22
-              TabOrder = 160
-            end
-            object TESEND45: TEdit
-              Left = 21
-              Top = 990
-              Width = 173
-              Height = 22
-              TabOrder = 161
-            end
-            object TESEND44: TEdit
-              Left = 21
-              Top = 968
-              Width = 173
-              Height = 22
-              TabOrder = 162
-            end
-            object TESEND43: TEdit
-              Left = 21
-              Top = 946
-              Width = 173
-              Height = 22
-              TabOrder = 163
-            end
-            object TESEND42: TEdit
-              Left = 21
-              Top = 924
-              Width = 173
-              Height = 22
-              TabOrder = 164
-            end
-            object TCHB43: TCheckBox
-              Left = 4
-              Top = 949
-              Width = 17
-              Height = 17
-              TabOrder = 165
-            end
-            object TCHB82: TCheckBox
-              Left = 4
-              Top = 1807
-              Width = 17
-              Height = 17
-              TabOrder = 166
-            end
-            object TCHB81: TCheckBox
-              Left = 4
-              Top = 1785
-              Width = 17
-              Height = 17
-              TabOrder = 167
-            end
-            object TCHB80: TCheckBox
-              Left = 4
-              Top = 1763
-              Width = 17
-              Height = 17
-              TabOrder = 168
-            end
-            object TCHB79: TCheckBox
-              Left = 4
-              Top = 1741
-              Width = 17
-              Height = 17
-              TabOrder = 169
-            end
-            object TCHB78: TCheckBox
-              Left = 4
-              Top = 1719
-              Width = 17
-              Height = 17
-              TabOrder = 170
-            end
-            object TCHB77: TCheckBox
-              Left = 4
-              Top = 1697
-              Width = 17
-              Height = 17
-              TabOrder = 171
-            end
-            object TCHB76: TCheckBox
-              Left = 4
-              Top = 1675
-              Width = 17
-              Height = 17
-              TabOrder = 172
-            end
-            object TCHB75: TCheckBox
-              Left = 4
-              Top = 1653
-              Width = 17
-              Height = 17
-              TabOrder = 173
-            end
-            object TCHB74: TCheckBox
-              Left = 4
-              Top = 1631
-              Width = 17
-              Height = 17
-              TabOrder = 174
-            end
-            object TCHB73: TCheckBox
-              Left = 4
-              Top = 1609
-              Width = 17
-              Height = 17
-              TabOrder = 175
-            end
-            object TCHB72: TCheckBox
-              Left = 4
-              Top = 1587
-              Width = 17
-              Height = 17
-              TabOrder = 176
-            end
-            object TCHB71: TCheckBox
-              Left = 4
-              Top = 1565
-              Width = 17
-              Height = 17
-              TabOrder = 177
-            end
-            object TCHB70: TCheckBox
-              Left = 4
-              Top = 1543
-              Width = 17
-              Height = 17
-              TabOrder = 178
-            end
-            object TCHB69: TCheckBox
-              Left = 4
-              Top = 1521
-              Width = 17
-              Height = 17
-              TabOrder = 179
-            end
-            object TCHB68: TCheckBox
-              Left = 4
-              Top = 1499
-              Width = 17
-              Height = 17
-              TabOrder = 180
-            end
-            object TCHB67: TCheckBox
-              Left = 4
-              Top = 1477
-              Width = 17
-              Height = 17
-              TabOrder = 181
-            end
-            object TCHB66: TCheckBox
-              Left = 4
-              Top = 1455
-              Width = 17
-              Height = 17
-              TabOrder = 182
-            end
-            object TCHB65: TCheckBox
-              Left = 4
-              Top = 1433
-              Width = 17
-              Height = 17
-              TabOrder = 183
-            end
-            object TCHB64: TCheckBox
-              Left = 4
-              Top = 1411
-              Width = 17
-              Height = 17
-              TabOrder = 184
-            end
-            object TCHB63: TCheckBox
-              Left = 4
-              Top = 1389
-              Width = 17
-              Height = 17
-              TabOrder = 185
-            end
-            object TCHB62: TCheckBox
-              Left = 4
-              Top = 1367
-              Width = 17
-              Height = 17
-              TabOrder = 186
-            end
-            object TCHB61: TCheckBox
-              Left = 4
-              Top = 1345
-              Width = 17
-              Height = 17
-              TabOrder = 187
-            end
-            object TCHB60: TCheckBox
-              Left = 4
-              Top = 1323
-              Width = 17
-              Height = 17
-              TabOrder = 188
-            end
-            object TCHB59: TCheckBox
-              Left = 4
-              Top = 1301
-              Width = 17
-              Height = 17
-              TabOrder = 189
-            end
-            object TCHB58: TCheckBox
-              Left = 4
-              Top = 1279
-              Width = 17
-              Height = 17
-              TabOrder = 190
-            end
-            object TCHB57: TCheckBox
-              Left = 4
-              Top = 1257
-              Width = 17
-              Height = 17
-              TabOrder = 191
-            end
-            object TCHB56: TCheckBox
-              Left = 4
-              Top = 1235
-              Width = 17
-              Height = 17
-              TabOrder = 192
-            end
-            object TCHB55: TCheckBox
-              Left = 4
-              Top = 1213
-              Width = 17
-              Height = 17
-              TabOrder = 193
-            end
-            object TCHB54: TCheckBox
-              Left = 4
-              Top = 1191
-              Width = 17
-              Height = 17
-              TabOrder = 194
-            end
-            object TCHB53: TCheckBox
-              Left = 4
-              Top = 1169
-              Width = 17
-              Height = 17
-              TabOrder = 195
-            end
-            object TCHB52: TCheckBox
-              Left = 4
-              Top = 1147
-              Width = 17
-              Height = 17
-              TabOrder = 196
-            end
-            object TCHB51: TCheckBox
-              Left = 4
-              Top = 1125
-              Width = 17
-              Height = 17
-              TabOrder = 197
-            end
-            object TCHB50: TCheckBox
-              Left = 4
-              Top = 1103
-              Width = 17
-              Height = 17
-              TabOrder = 198
-            end
-            object TCHB49: TCheckBox
-              Left = 4
-              Top = 1081
-              Width = 17
-              Height = 17
-              TabOrder = 199
-            end
-            object TCHB48: TCheckBox
-              Left = 4
-              Top = 1059
-              Width = 17
-              Height = 17
-              TabOrder = 200
-            end
-            object TCHB47: TCheckBox
-              Left = 4
-              Top = 1037
-              Width = 17
-              Height = 17
-              TabOrder = 201
-            end
-            object TCHB46: TCheckBox
-              Left = 4
-              Top = 1015
-              Width = 17
-              Height = 17
-              TabOrder = 202
-            end
-            object TCHB45: TCheckBox
-              Left = 4
-              Top = 993
-              Width = 17
-              Height = 17
-              TabOrder = 203
-            end
-            object TCHB44: TCheckBox
-              Left = 4
-              Top = 971
-              Width = 17
-              Height = 17
-              TabOrder = 204
-            end
-            object BTSEND82: TButton
-              Left = 193
-              Top = 1804
-              Width = 22
-              Height = 22
-              Caption = '82'
-              TabOrder = 205
-              OnClick = BTSEND82Click
-            end
-            object BTSEND81: TButton
-              Left = 193
-              Top = 1782
-              Width = 22
-              Height = 22
-              Caption = '81'
-              TabOrder = 206
-              OnClick = BTSEND81Click
-            end
-            object BTSEND80: TButton
-              Left = 193
-              Top = 1760
-              Width = 22
-              Height = 22
-              Caption = '80'
-              TabOrder = 207
-              OnClick = BTSEND80Click
-            end
-            object BTSEND79: TButton
-              Left = 193
-              Top = 1738
-              Width = 22
-              Height = 22
-              Caption = '79'
-              TabOrder = 208
-              OnClick = BTSEND79Click
-            end
-            object BTSEND78: TButton
-              Left = 193
-              Top = 1716
-              Width = 22
-              Height = 22
-              Caption = '78'
-              TabOrder = 209
-              OnClick = BTSEND78Click
-            end
-            object BTSEND77: TButton
-              Left = 193
-              Top = 1694
-              Width = 22
-              Height = 22
-              Caption = '77'
-              TabOrder = 210
-              OnClick = BTSEND77Click
-            end
-            object BTSEND76: TButton
-              Left = 193
-              Top = 1672
-              Width = 22
-              Height = 22
-              Caption = '76'
-              TabOrder = 211
-              OnClick = BTSEND76Click
-            end
-            object BTSEND75: TButton
-              Left = 193
-              Top = 1650
-              Width = 22
-              Height = 22
-              Caption = '75'
-              TabOrder = 212
-              OnClick = BTSEND75Click
-            end
-            object BTSEND74: TButton
-              Left = 193
-              Top = 1628
-              Width = 22
-              Height = 22
-              Caption = '74'
-              TabOrder = 213
-              OnClick = BTSEND74Click
-            end
-            object BTSEND73: TButton
-              Left = 193
-              Top = 1606
-              Width = 22
-              Height = 22
-              Caption = '73'
-              TabOrder = 214
-              OnClick = BTSEND73Click
-            end
-            object BTSEND72: TButton
-              Left = 193
-              Top = 1584
-              Width = 22
-              Height = 22
-              Caption = '72'
-              TabOrder = 215
-              OnClick = BTSEND72Click
-            end
-            object BTSEND71: TButton
-              Left = 193
-              Top = 1562
-              Width = 22
-              Height = 22
-              Caption = '71'
-              TabOrder = 216
-              OnClick = BTSEND71Click
-            end
-            object BTSEND70: TButton
-              Left = 193
-              Top = 1540
-              Width = 22
-              Height = 22
-              Caption = '70'
-              TabOrder = 217
-              OnClick = BTSEND70Click
-            end
-            object BTSEND69: TButton
-              Left = 193
-              Top = 1518
-              Width = 22
-              Height = 22
-              Caption = '69'
-              TabOrder = 218
-              OnClick = BTSEND69Click
-            end
-            object BTSEND68: TButton
-              Left = 193
-              Top = 1496
-              Width = 22
-              Height = 22
-              Caption = '68'
-              TabOrder = 219
-              OnClick = BTSEND68Click
-            end
-            object BTSEND67: TButton
-              Left = 193
-              Top = 1474
-              Width = 22
-              Height = 22
-              Caption = '67'
-              TabOrder = 220
-              OnClick = BTSEND67Click
-            end
-            object BTSEND66: TButton
-              Left = 193
-              Top = 1452
-              Width = 22
-              Height = 22
-              Caption = '66'
-              TabOrder = 221
-              OnClick = BTSEND66Click
-            end
-            object BTSEND65: TButton
-              Left = 193
-              Top = 1430
-              Width = 22
-              Height = 22
-              Caption = '65'
-              TabOrder = 222
-              OnClick = BTSEND65Click
-            end
-            object BTSEND64: TButton
-              Left = 194
-              Top = 1408
-              Width = 22
-              Height = 22
-              Caption = '64'
-              TabOrder = 223
-              OnClick = BTSEND64Click
-            end
-            object BTSEND63: TButton
-              Left = 193
-              Top = 1386
-              Width = 22
-              Height = 22
-              Caption = '63'
-              TabOrder = 224
-              OnClick = BTSEND63Click
-            end
-            object BTSEND62: TButton
-              Left = 193
-              Top = 1364
-              Width = 22
-              Height = 22
-              Caption = '62'
-              TabOrder = 225
-              OnClick = BTSEND62Click
-            end
-            object BTSEND61: TButton
-              Left = 193
-              Top = 1342
-              Width = 22
-              Height = 22
-              Caption = '61'
-              TabOrder = 226
-              OnClick = BTSEND61Click
-            end
-            object BTSEND60: TButton
-              Left = 193
-              Top = 1320
-              Width = 22
-              Height = 22
-              Caption = '60'
-              TabOrder = 227
-              OnClick = BTSEND60Click
-            end
-            object BTSEND59: TButton
-              Left = 193
-              Top = 1298
-              Width = 22
-              Height = 22
-              Caption = '59'
-              TabOrder = 228
-              OnClick = BTSEND59Click
-            end
-            object BTSEND58: TButton
-              Left = 193
-              Top = 1276
-              Width = 22
-              Height = 22
-              Caption = '58'
-              TabOrder = 229
-              OnClick = BTSEND58Click
-            end
-            object BTSEND57: TButton
-              Left = 193
-              Top = 1254
-              Width = 22
-              Height = 22
-              Caption = '57'
-              TabOrder = 230
-              OnClick = BTSEND57Click
-            end
-            object BTSEND56: TButton
-              Left = 193
-              Top = 1232
-              Width = 22
-              Height = 22
-              Caption = '56'
-              TabOrder = 231
-              OnClick = BTSEND56Click
-            end
-            object BTSEND55: TButton
-              Left = 193
-              Top = 1210
-              Width = 22
-              Height = 22
-              Caption = '55'
-              TabOrder = 232
-              OnClick = BTSEND55Click
-            end
-            object BTSEND54: TButton
-              Left = 193
-              Top = 1188
-              Width = 22
-              Height = 22
-              Caption = '54'
-              TabOrder = 233
-              OnClick = BTSEND54Click
-            end
-            object BTSEND53: TButton
-              Left = 193
-              Top = 1166
-              Width = 22
-              Height = 22
-              Caption = '53'
-              TabOrder = 234
-              OnClick = BTSEND53Click
-            end
-            object BTSEND52: TButton
-              Left = 193
-              Top = 1144
-              Width = 22
-              Height = 22
-              Caption = '52'
-              TabOrder = 235
-              OnClick = BTSEND52Click
-            end
-            object BTSEND51: TButton
-              Left = 193
-              Top = 1122
-              Width = 22
-              Height = 22
-              Caption = '51'
-              TabOrder = 236
-              OnClick = BTSEND51Click
-            end
-            object BTSEND50: TButton
-              Left = 193
-              Top = 1100
-              Width = 22
-              Height = 22
-              Caption = '50'
-              TabOrder = 237
-              OnClick = BTSEND50Click
-            end
-            object BTSEND49: TButton
-              Left = 193
-              Top = 1078
-              Width = 22
-              Height = 22
-              Caption = '49'
-              TabOrder = 238
-              OnClick = BTSEND49Click
-            end
-            object BTSEND48: TButton
-              Left = 193
-              Top = 1056
-              Width = 22
-              Height = 22
-              Caption = '48'
-              TabOrder = 239
-              OnClick = BTSEND48Click
-            end
-            object BTSEND47: TButton
-              Left = 193
-              Top = 1034
-              Width = 22
-              Height = 22
-              Caption = '47'
-              TabOrder = 240
-              OnClick = BTSEND47Click
-            end
-            object BTSEND46: TButton
-              Left = 193
-              Top = 1012
-              Width = 22
-              Height = 22
-              Caption = '46'
-              TabOrder = 241
-              OnClick = BTSEND46Click
-            end
-            object BTSEND45: TButton
-              Left = 193
-              Top = 990
-              Width = 22
-              Height = 22
-              Caption = '45'
-              TabOrder = 242
-              OnClick = BTSEND45Click
-            end
-            object BTSEND44: TButton
-              Left = 193
-              Top = 968
-              Width = 22
-              Height = 22
-              Caption = '44'
-              TabOrder = 243
-              OnClick = BTSEND44Click
-            end
-            object BTSEND43: TButton
-              Left = 193
-              Top = 946
-              Width = 22
-              Height = 22
-              Caption = '43'
-              TabOrder = 244
-              OnClick = BTSEND43Click
-            end
-            object BTSEND42: TButton
-              Left = 193
-              Top = 924
-              Width = 22
-              Height = 22
-              Caption = '42'
-              TabOrder = 245
-              OnClick = BTSEND42Click
-            end
-            object TCHB99: TCheckBox
-              Left = 4
-              Top = 2181
-              Width = 17
-              Height = 17
-              TabOrder = 246
-            end
-            object TESEND99: TEdit
-              Left = 21
-              Top = 2178
-              Width = 173
-              Height = 22
-              TabOrder = 247
-            end
-            object BTSEND99: TButton
-              Left = 192
-              Top = 2178
-              Width = 22
-              Height = 22
-              Caption = '99'
-              TabOrder = 248
-              OnClick = BTSEND99Click
-            end
-            object TCHB98: TCheckBox
-              Left = 4
-              Top = 2159
-              Width = 17
-              Height = 17
-              TabOrder = 249
-            end
-            object TESEND98: TEdit
-              Left = 21
-              Top = 2156
-              Width = 173
-              Height = 22
-              TabOrder = 250
-            end
-            object BTSEND98: TButton
-              Left = 192
-              Top = 2156
-              Width = 22
-              Height = 22
-              Caption = '98'
-              TabOrder = 251
-              OnClick = BTSEND98Click
-            end
-            object TCHB97: TCheckBox
-              Left = 4
-              Top = 2137
-              Width = 17
-              Height = 17
-              TabOrder = 252
-            end
-            object TESEND97: TEdit
-              Left = 21
-              Top = 2134
-              Width = 173
-              Height = 22
-              TabOrder = 253
-            end
-            object BTSEND97: TButton
-              Left = 192
-              Top = 2134
-              Width = 22
-              Height = 22
-              Caption = '97'
-              TabOrder = 254
-              OnClick = BTSEND97Click
-            end
-            object TESEND96: TEdit
-              Left = 21
-              Top = 2112
-              Width = 173
-              Height = 22
-              TabOrder = 255
-            end
-            object BTSEND96: TButton
-              Left = 192
-              Top = 2112
-              Width = 22
-              Height = 22
-              Caption = '96'
-              TabOrder = 256
-              OnClick = BTSEND96Click
-            end
-            object TCHB96: TCheckBox
-              Left = 4
-              Top = 2115
-              Width = 17
-              Height = 17
-              TabOrder = 257
-            end
-            object TCHB95: TCheckBox
-              Left = 4
-              Top = 2093
-              Width = 17
-              Height = 17
-              TabOrder = 258
-            end
-            object TESEND95: TEdit
-              Left = 21
-              Top = 2090
-              Width = 173
-              Height = 22
-              TabOrder = 259
-            end
-            object BTSEND95: TButton
-              Left = 192
-              Top = 2090
-              Width = 22
-              Height = 22
-              Caption = '95'
-              TabOrder = 260
-              OnClick = BTSEND95Click
-            end
-            object TCHB94: TCheckBox
-              Left = 4
-              Top = 2071
-              Width = 17
-              Height = 17
-              TabOrder = 261
-            end
-            object TESEND94: TEdit
-              Left = 21
-              Top = 2068
-              Width = 173
-              Height = 22
-              TabOrder = 262
-            end
-            object BTSEND94: TButton
-              Left = 192
-              Top = 2068
-              Width = 22
-              Height = 22
-              Caption = '94'
-              TabOrder = 263
-              OnClick = BTSEND94Click
-            end
-            object TCHB93: TCheckBox
-              Left = 4
-              Top = 2049
-              Width = 17
-              Height = 17
-              TabOrder = 264
-            end
-            object TESEND93: TEdit
-              Left = 21
-              Top = 2046
-              Width = 173
-              Height = 22
-              TabOrder = 265
-            end
-            object BTSEND93: TButton
-              Left = 192
-              Top = 2046
-              Width = 22
-              Height = 22
-              Caption = '93'
-              TabOrder = 266
-              OnClick = BTSEND93Click
-            end
-            object TCHB92: TCheckBox
-              Left = 4
-              Top = 2027
-              Width = 17
-              Height = 17
-              TabOrder = 267
-            end
-            object TESEND92: TEdit
-              Left = 21
-              Top = 2024
-              Width = 173
-              Height = 22
-              TabOrder = 268
-            end
-            object BTSEND92: TButton
-              Left = 192
-              Top = 2024
-              Width = 22
-              Height = 22
-              Caption = '92'
-              TabOrder = 269
-              OnClick = BTSEND92Click
-            end
-            object TCHB91: TCheckBox
-              Left = 4
-              Top = 2005
-              Width = 17
-              Height = 17
-              TabOrder = 270
-            end
-            object TESEND91: TEdit
-              Left = 21
-              Top = 2002
-              Width = 173
-              Height = 22
-              TabOrder = 271
-            end
-            object BTSEND91: TButton
-              Left = 192
-              Top = 2002
-              Width = 22
-              Height = 22
-              Caption = '91'
-              TabOrder = 272
-              OnClick = BTSEND91Click
-            end
-            object TCHB90: TCheckBox
-              Left = 4
-              Top = 1983
-              Width = 17
-              Height = 17
-              TabOrder = 273
-            end
-            object TESEND90: TEdit
-              Left = 21
-              Top = 1980
-              Width = 173
-              Height = 22
-              TabOrder = 274
-            end
-            object BTSEND90: TButton
-              Left = 192
-              Top = 1980
-              Width = 22
-              Height = 22
-              Caption = '90'
-              TabOrder = 275
-              OnClick = BTSEND90Click
-            end
-            object TCHB89: TCheckBox
-              Left = 4
-              Top = 1961
-              Width = 17
-              Height = 17
-              TabOrder = 276
-            end
-            object TESEND89: TEdit
-              Left = 21
-              Top = 1958
-              Width = 173
-              Height = 22
-              TabOrder = 277
-            end
-            object BTSEND89: TButton
-              Left = 192
-              Top = 1958
-              Width = 22
-              Height = 22
-              Caption = '89'
-              TabOrder = 278
-              OnClick = BTSEND89Click
-            end
-            object TCHB88: TCheckBox
-              Left = 4
-              Top = 1939
-              Width = 17
-              Height = 17
-              TabOrder = 279
-            end
-            object TESEND88: TEdit
-              Left = 21
-              Top = 1936
-              Width = 173
-              Height = 22
-              TabOrder = 280
-            end
-            object BTSEND88: TButton
-              Left = 192
-              Top = 1936
-              Width = 22
-              Height = 22
-              Caption = '88'
-              TabOrder = 281
-              OnClick = BTSEND88Click
-            end
-            object TCHB87: TCheckBox
-              Left = 4
-              Top = 1917
-              Width = 17
-              Height = 17
-              TabOrder = 282
-            end
-            object TESEND87: TEdit
-              Left = 21
-              Top = 1914
-              Width = 173
-              Height = 22
-              TabOrder = 283
-            end
-            object BTSEND87: TButton
-              Left = 192
-              Top = 1914
-              Width = 22
-              Height = 22
-              Caption = '87'
-              TabOrder = 284
-              OnClick = BTSEND87Click
-            end
-            object TCHB86: TCheckBox
-              Left = 4
-              Top = 1895
-              Width = 17
-              Height = 17
-              TabOrder = 285
-            end
-            object TESEND86: TEdit
-              Left = 21
-              Top = 1892
-              Width = 173
-              Height = 22
-              TabOrder = 286
-            end
-            object BTSEND86: TButton
-              Left = 192
-              Top = 1892
-              Width = 22
-              Height = 22
-              Caption = '86'
-              TabOrder = 287
-              OnClick = BTSEND86Click
-            end
-            object TCHB85: TCheckBox
-              Left = 4
-              Top = 1873
-              Width = 17
-              Height = 17
-              TabOrder = 288
-            end
-            object TESEND85: TEdit
-              Left = 21
-              Top = 1870
-              Width = 173
-              Height = 22
-              TabOrder = 289
-            end
-            object BTSEND85: TButton
-              Left = 192
-              Top = 1870
-              Width = 22
-              Height = 22
-              Caption = '85'
-              TabOrder = 290
-              OnClick = BTSEND85Click
-            end
-            object TCHB84: TCheckBox
-              Left = 4
-              Top = 1851
-              Width = 17
-              Height = 17
-              TabOrder = 291
-            end
-            object TESEND84: TEdit
-              Left = 21
-              Top = 1848
-              Width = 173
-              Height = 22
-              TabOrder = 292
-            end
-            object BTSEND84: TButton
-              Left = 192
-              Top = 1848
-              Width = 22
-              Height = 22
-              Caption = '84'
-              TabOrder = 293
-              OnClick = BTSEND84Click
-            end
-            object TCHB83: TCheckBox
-              Left = 4
-              Top = 1829
-              Width = 17
-              Height = 17
-              TabOrder = 294
-            end
-            object TESEND83: TEdit
-              Left = 21
-              Top = 1826
-              Width = 173
-              Height = 22
-              TabOrder = 295
-            end
-            object BTSEND83: TButton
-              Left = 192
-              Top = 1826
-              Width = 22
-              Height = 22
-              Caption = '83'
-              TabOrder = 296
-              OnClick = BTSEND83Click
-            end
-          end
-        end
-      end
-      object ts1: TTabSheet
-        Caption = 'HID'
-        ImageIndex = 1
-        object DevListBox: TListBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 113
-          Align = alTop
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ItemHeight = 14
-          ParentFont = False
-          TabOrder = 0
-          OnClick = DevListBoxClick
-        end
-        object GroupBox10: TGroupBox
-          Left = 0
-          Top = 113
-          Width = 231
-          Height = 99
-          Align = alTop
-          Caption = 'Attribute'
-          TabOrder = 1
-          object Memo3: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 81
-            Align = alClient
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Courier New'
-            Font.Style = []
-            ParentFont = False
-            ScrollBars = ssVertical
-            TabOrder = 0
-          end
-        end
-        object GroupBox11: TGroupBox
-          Left = 0
-          Top = 212
-          Width = 231
-          Height = 98
-          Align = alClient
-          Caption = 'Send'
-          TabOrder = 2
-          object Memo4: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 80
-            Align = alClient
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Courier New'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-          end
-        end
-        object GroupBox2: TGroupBox
-          Left = 0
-          Top = 310
-          Width = 231
-          Height = 41
-          Align = alBottom
-          TabOrder = 3
-          object ReadBtn: TSpeedButton
-            Left = 9
-            Top = 10
-            Width = 68
-            Height = 25
-            AllowAllUp = True
-            GroupIndex = 1
-            Caption = #30417#25511
-            OnClick = ReadBtnClick
-          end
-          object CheckBox24: TCheckBox
-            Left = 100
-            Top = 13
-            Width = 46
-            Height = 22
-            Caption = 'HEX'
-            TabOrder = 0
-          end
-          object Button8: TButton
-            Left = 156
-            Top = 10
-            Width = 68
-            Height = 25
-            Caption = #21457#36865
-            TabOrder = 1
-            OnClick = Button8Click
-          end
-        end
-      end
-      object TabSheet2: TTabSheet
-        Caption = 'TCP'
-        ImageIndex = 2
-        PopupMenu = PopupMenu3
-        object GroupBox12: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 148
-          Align = alTop
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          TabOrder = 0
-          object GroupBox38: TGroupBox
-            Left = 2
-            Top = 114
-            Width = 227
-            Height = 32
-            Align = alBottom
-            TabOrder = 0
-            object CheckBox25: TCheckBox
-              Left = 8
-              Top = 11
-              Width = 73
-              Height = 17
-              Caption = #33258#21160#22238#22797
-              Checked = True
-              State = cbChecked
-              TabOrder = 0
-              OnClick = CheckBox25Click
-            end
-            object RadioButton1: TRadioButton
-              Left = 98
-              Top = 11
-              Width = 55
-              Height = 17
-              Caption = #25968#25454
-              TabOrder = 1
-              OnClick = RadioButton1Click
-            end
-            object RadioButton2: TRadioButton
-              Left = 161
-              Top = 11
-              Width = 54
-              Height = 17
-              Caption = #36879#26126
-              Checked = True
-              TabOrder = 2
-              TabStop = True
-            end
-          end
-          object GroupBox40: TGroupBox
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 57
-            Align = alTop
-            Caption = 'Server'
-            TabOrder = 1
-            object Label15: TLabel
-              Left = 8
-              Top = 13
-              Width = 63
-              Height = 14
-              Caption = #26412#26426'IP '#65306
-            end
-            object Shape3: TShape
-              Left = 193
-              Top = 9
-              Width = 25
-              Height = 17
-              Brush.Color = clGray
-              Shape = stCircle
-            end
-            object Label12: TLabel
-              Left = 8
-              Top = 35
-              Width = 59
-              Height = 14
-              AutoSize = False
-              Caption = #31471'  '#21475' '#65306
-            end
-            object Edit24: TEdit
-              Left = 65
-              Top = 8
-              Width = 113
-              Height = 22
-              TabOrder = 0
-              Text = '255.255.255.255'
-            end
-            object Button9: TButton
-              Left = 176
-              Top = 31
-              Width = 45
-              Height = 21
-              Caption = #24320#21551
-              TabOrder = 1
-              OnClick = Button9Click
-            end
-            object Button63: TButton
-              Left = 117
-              Top = 31
-              Width = 49
-              Height = 21
-              Caption = #33719#21462'IP'
-              TabOrder = 2
-              OnClick = Button63Click
-            end
-            object Edit15: TEdit
-              Left = 64
-              Top = 31
-              Width = 49
-              Height = 22
-              TabOrder = 3
-            end
-          end
-          object CheckListBox1: TCheckListBox
-            Left = 2
-            Top = 73
-            Width = 227
-            Height = 41
-            Align = alClient
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Courier New'
-            Font.Style = []
-            ItemHeight = 14
-            ParentFont = False
-            PopupMenu = PopupMenu2
-            TabOrder = 2
-          end
-        end
-        object GroupBox13: TGroupBox
-          Left = 0
-          Top = 148
-          Width = 231
-          Height = 57
-          Align = alTop
-          Caption = 'Client'
-          TabOrder = 1
-          object Label13: TLabel
-            Left = 8
-            Top = 15
-            Width = 42
-            Height = 14
-            Caption = 'IP  '#65306
-          end
-          object Label14: TLabel
-            Left = 8
-            Top = 34
-            Width = 42
-            Height = 14
-            Caption = #31471#21475#65306
-          end
-          object Shape4: TShape
-            Left = 172
-            Top = 9
-            Width = 25
-            Height = 17
-            Brush.Color = clGray
-            Shape = stCircle
-          end
-          object Edit22: TEdit
-            Left = 52
-            Top = 31
-            Width = 110
-            Height = 22
-            TabOrder = 0
-          end
-          object Button10: TButton
-            Left = 165
-            Top = 31
-            Width = 50
-            Height = 21
-            Caption = #36830#25509
-            TabOrder = 1
-            OnClick = Button10Click
-          end
-          object Edit21: TEdit
-            Left = 52
-            Top = 8
-            Width = 110
-            Height = 22
-            TabOrder = 2
-          end
-        end
-        object GroupBox14: TGroupBox
-          Left = 0
-          Top = 205
-          Width = 231
-          Height = 146
-          Align = alClient
-          Caption = 'Send'
-          TabOrder = 2
-          object Label19: TLabel
-            Left = 98
-            Top = 105
-            Width = 35
-            Height = 14
-            Caption = #38388#38548':'
-          end
-          object Label20: TLabel
-            Left = 194
-            Top = 104
-            Width = 14
-            Height = 14
-            Caption = #31186
-          end
-          object Memo5: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 80
-            Align = alTop
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Courier New'
-            Font.Style = []
-            MaxLength = 32767
-            ParentFont = False
-            TabOrder = 0
-            OnChange = Memo5Change
-          end
-          object Button12: TButton
-            Left = 170
-            Top = 122
-            Width = 50
-            Height = 21
-            Caption = #21457#36865
-            TabOrder = 1
-            OnClick = Button12Click
-          end
-          object RadioButton3: TRadioButton
-            Left = 5
-            Top = 126
-            Width = 73
-            Height = 17
-            Caption = 'Server'
-            Checked = True
-            TabOrder = 2
-            TabStop = True
-          end
-          object RadioButton4: TRadioButton
-            Left = 65
-            Top = 127
-            Width = 55
-            Height = 17
-            Caption = 'Client'
-            TabOrder = 3
-          end
-          object CheckBox26: TCheckBox
-            Left = 123
-            Top = 126
-            Width = 41
-            Height = 17
-            Caption = 'HEX'
-            TabOrder = 4
-            OnClick = CheckBox26Click
-          end
-          object CheckBox27: TCheckBox
-            Left = 8
-            Top = 103
-            Width = 73
-            Height = 17
-            Caption = #33258#21160#21457#36865
-            TabOrder = 5
-            OnClick = CheckBox27Click
-          end
-          object Edit23: TEdit
-            Left = 134
-            Top = 100
-            Width = 59
-            Height = 22
-            TabOrder = 6
-            Text = '1'
-            OnKeyPress = Edit23KeyPress
-          end
-        end
-      end
-      object ts2: TTabSheet
-        Hint = 'DES:'#13#10#25968#25454#38271#24230#20026'8'#30340#20493#25968#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'8'#23383#33410
-        Caption = 'DES/MAC'
-        ImageIndex = 4
-        ParentShowHint = False
-        ShowHint = True
-        object GroupBox17: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 106
-          Align = alClient
-          Caption = 'data'
-          TabOrder = 0
-          object memo7: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 88
-            Align = alClient
-            TabOrder = 0
-            OnChange = memo7Change
-          end
-        end
-        object GroupBox18: TGroupBox
-          Left = 0
-          Top = 106
-          Width = 231
-          Height = 161
-          Align = alBottom
-          TabOrder = 1
-          object Label17: TLabel
-            Left = 8
-            Top = 37
-            Width = 14
-            Height = 14
-            Caption = 'K1'
-          end
-          object Label18: TLabel
-            Left = 8
-            Top = 62
-            Width = 14
-            Height = 14
-            Caption = 'K2'
-          end
-          object Label27: TLabel
-            Left = 8
-            Top = 109
-            Width = 14
-            Height = 14
-            Caption = 'IV'
-          end
-          object Label28: TLabel
-            Left = 8
-            Top = 86
-            Width = 14
-            Height = 14
-            Caption = 'K3'
-          end
-          object Label2: TLabel
-            Left = 212
-            Top = 37
-            Width = 7
-            Height = 14
-          end
-          object Label3: TLabel
-            Left = 212
-            Top = 62
-            Width = 7
-            Height = 14
-          end
-          object Label5: TLabel
-            Left = 212
-            Top = 86
-            Width = 7
-            Height = 14
-          end
-          object Label6: TLabel
-            Left = 212
-            Top = 109
-            Width = 7
-            Height = 14
-          end
-          object Edit50: TEdit
-            Left = 28
-            Top = 32
-            Width = 180
-            Height = 22
-            TabOrder = 0
-            OnChange = Edit50Change
-          end
-          object Edit51: TEdit
-            Left = 27
-            Top = 57
-            Width = 180
-            Height = 22
-            Color = clScrollBar
-            Enabled = False
-            TabOrder = 1
-            OnChange = Edit51Change
-          end
-          object CheckBox55: TCheckBox
-            Left = 8
-            Top = 13
-            Width = 91
-            Height = 17
-            Caption = 'DATA HEX'
-            Checked = True
-            State = cbChecked
-            TabOrder = 2
-            OnClick = CheckBox55Click
-          end
-          object CheckBox56: TCheckBox
-            Left = 130
-            Top = 13
-            Width = 84
-            Height = 17
-            Caption = 'KEY  HEX '
-            Checked = True
-            State = cbChecked
-            TabOrder = 3
-            OnClick = CheckBox56Click
-          end
-          object Edit57: TEdit
-            Left = 27
-            Top = 105
-            Width = 180
-            Height = 22
-            Color = clScrollBar
-            Enabled = False
-            TabOrder = 4
-            OnChange = Edit57Change
-          end
-          object Edit58: TEdit
-            Left = 27
-            Top = 81
-            Width = 180
-            Height = 22
-            Color = clScrollBar
-            Enabled = False
-            TabOrder = 5
-            OnChange = Edit58Change
-          end
-          object GroupBox35: TGroupBox
-            Left = 6
-            Top = 127
-            Width = 204
-            Height = 27
-            TabOrder = 6
-            Visible = False
-            object RadioButton15: TRadioButton
-              Left = 11
-              Top = 7
-              Width = 73
-              Height = 17
-              Caption = '128bit'
-              Checked = True
-              TabOrder = 0
-              TabStop = True
-              OnClick = RadioButton15Click
-            end
-            object RadioButton16: TRadioButton
-              Left = 123
-              Top = 7
-              Width = 67
-              Height = 17
-              Caption = '192bit'
-              TabOrder = 1
-              OnClick = RadioButton16Click
-            end
-          end
-        end
-        object GroupBox3: TGroupBox
-          Left = 0
-          Top = 267
-          Width = 231
-          Height = 84
-          Align = alBottom
-          TabOrder = 2
-          object RadioButton5: TRadioButton
-            Left = 4
-            Top = 9
-            Width = 57
-            Height = 17
-            Caption = 'DES'
-            Checked = True
-            TabOrder = 0
-            TabStop = True
-            OnClick = RadioButton5Click
-          end
-          object RadioButton6: TRadioButton
-            Left = 78
-            Top = 8
-            Width = 73
-            Height = 17
-            Caption = '3DES'
-            TabOrder = 1
-            OnClick = RadioButton6Click
-          end
-          object RadioButton7: TRadioButton
-            Left = 153
-            Top = 8
-            Width = 57
-            Height = 17
-            Caption = 'CBC'
-            TabOrder = 2
-            OnClick = RadioButton7Click
-          end
-          object RadioButton21: TRadioButton
-            Left = 119
-            Top = 24
-            Width = 105
-            Height = 17
-            Caption = 'ANSI-9.19-MAC'
-            TabOrder = 3
-            OnClick = RadioButton21Click
-          end
-          object RadioButton20: TRadioButton
-            Left = 4
-            Top = 39
-            Width = 113
-            Height = 17
-            Caption = 'ANSI-X9.9 MAC'
-            TabOrder = 4
-            OnClick = RadioButton20Click
-          end
-          object RadioButton22: TRadioButton
-            Left = 4
-            Top = 24
-            Width = 113
-            Height = 17
-            Caption = 'PBOC-3DES-MAC'
-            TabOrder = 5
-            OnClick = RadioButton22Click
-          end
-          object Button65: TButton
-            Left = 136
-            Top = 39
-            Width = 75
-            Height = 17
-            Caption = 'MAC'#35828#26126
-            TabOrder = 6
-            OnClick = Button65Click
-          end
-          object Button56: TButton
-            Left = 10
-            Top = 60
-            Width = 75
-            Height = 17
-            Caption = #21152#23494
-            TabOrder = 7
-            OnClick = Button56Click
-          end
-          object Button55: TButton
-            Left = 136
-            Top = 60
-            Width = 75
-            Height = 17
-            Caption = #35299#23494
-            TabOrder = 8
-            OnClick = Button55Click
-          end
-        end
-      end
-      object TabSheet6: TTabSheet
-        Hint = 'AES:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968','#19981#36275#26411#23614#34917#20805'0x00'#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'16'#23383#33410
-        Caption = 'AES'
-        ImageIndex = 7
-        ParentShowHint = False
-        ShowHint = True
-        object GroupBox29: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 351
-          Align = alClient
-          TabOrder = 0
-          object GroupBox30: TGroupBox
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 77
-            Align = alClient
-            Caption = 'data'
-            TabOrder = 0
-            object Memo12: TMemo
-              Left = 2
-              Top = 16
-              Width = 223
-              Height = 59
-              Align = alClient
-              TabOrder = 0
-              OnChange = Memo12Change
-            end
-          end
-          object GroupBox31: TGroupBox
-            Left = 2
-            Top = 93
-            Width = 227
-            Height = 131
-            Align = alBottom
-            TabOrder = 1
-            object Label21: TLabel
-              Left = 8
-              Top = 13
-              Width = 14
-              Height = 14
-              Caption = 'K1'
-            end
-            object Label22: TLabel
-              Left = 7
-              Top = 37
-              Width = 14
-              Height = 14
-              Caption = 'K2'
-            end
-            object Label23: TLabel
-              Left = 7
-              Top = 61
-              Width = 14
-              Height = 14
-              Caption = 'K3'
-            end
-            object Label24: TLabel
-              Left = 40
-              Top = 40
-              Width = 28
-              Height = 14
-              Caption = 'KEY1'
-            end
-            object Label25: TLabel
-              Left = 8
-              Top = 84
-              Width = 14
-              Height = 14
-              Caption = 'K4'
-            end
-            object Label26: TLabel
-              Left = 8
-              Top = 108
-              Width = 14
-              Height = 14
-              Caption = 'IV'
-            end
-            object Label7: TLabel
-              Left = 210
-              Top = 13
-              Width = 7
-              Height = 14
-            end
-            object Label8: TLabel
-              Left = 210
-              Top = 37
-              Width = 7
-              Height = 14
-            end
-            object Label29: TLabel
-              Left = 210
-              Top = 60
-              Width = 7
-              Height = 14
-            end
-            object Label30: TLabel
-              Left = 210
-              Top = 84
-              Width = 7
-              Height = 14
-            end
-            object Label31: TLabel
-              Left = 210
-              Top = 108
-              Width = 7
-              Height = 14
-            end
-            object Edit52: TEdit
-              Left = 28
-              Top = 8
-              Width = 180
-              Height = 22
-              Hint = '8 bytes'
-              TabOrder = 0
-              OnChange = Edit52Change
-            end
-            object Edit53: TEdit
-              Left = 28
-              Top = 32
-              Width = 180
-              Height = 22
-              TabOrder = 1
-              OnChange = Edit53Change
-            end
-            object Edit54: TEdit
-              Left = 28
-              Top = 55
-              Width = 180
-              Height = 22
-              Hint = '8 bytes'
-              Color = clScrollBar
-              Enabled = False
-              ParentShowHint = False
-              ShowHint = True
-              TabOrder = 2
-              OnChange = Edit54Change
-            end
-            object Edit55: TEdit
-              Left = 28
-              Top = 80
-              Width = 180
-              Height = 22
-              Color = clScrollBar
-              Enabled = False
-              TabOrder = 3
-              OnChange = Edit55Change
-            end
-            object Edit56: TEdit
-              Left = 28
-              Top = 104
-              Width = 180
-              Height = 22
-              Color = clScrollBar
-              Enabled = False
-              TabOrder = 4
-              OnChange = Edit56Change
-            end
-          end
-          object GroupBox32: TGroupBox
-            Left = 2
-            Top = 224
-            Width = 227
-            Height = 125
-            Align = alBottom
-            TabOrder = 2
-            object Button60: TButton
-              Left = 8
-              Top = 96
-              Width = 75
-              Height = 25
-              Caption = #21152#23494
-              TabOrder = 0
-              OnClick = Button60Click
-            end
-            object GroupBox33: TGroupBox
-              Left = 0
-              Top = 7
-              Width = 214
-              Height = 33
-              Align = alCustom
-              TabOrder = 1
-              object RadioButton10: TRadioButton
-                Left = 7
-                Top = 8
-                Width = 73
-                Height = 17
-                Caption = '128Bit'
-                Checked = True
-                TabOrder = 0
-                TabStop = True
-                OnClick = RadioButton10Click
-              end
-              object RadioButton11: TRadioButton
-                Left = 74
-                Top = 8
-                Width = 80
-                Height = 17
-                Caption = '192Bit'
-                TabOrder = 1
-                OnClick = RadioButton11Click
-              end
-              object RadioButton12: TRadioButton
-                Left = 142
-                Top = 8
-                Width = 60
-                Height = 17
-                Caption = '256Bit'
-                TabOrder = 2
-                OnClick = RadioButton12Click
-              end
-            end
-            object GroupBox34: TGroupBox
-              Left = 0
-              Top = 40
-              Width = 214
-              Height = 30
-              TabOrder = 2
-              object RadioButton13: TRadioButton
-                Left = 8
-                Top = 7
-                Width = 89
-                Height = 17
-                Caption = 'ECB'
-                Checked = True
-                TabOrder = 0
-                TabStop = True
-                OnClick = RadioButton13Click
-              end
-              object RadioButton14: TRadioButton
-                Left = 145
-                Top = 8
-                Width = 51
-                Height = 17
-                Caption = 'CBC'
-                TabOrder = 1
-                OnClick = RadioButton14Click
-              end
-            end
-            object Button61: TButton
-              Left = 128
-              Top = 96
-              Width = 75
-              Height = 25
-              Caption = #35299#23494
-              TabOrder = 3
-              OnClick = Button61Click
-            end
-            object CheckBox59: TCheckBox
-              Left = 8
-              Top = 74
-              Width = 97
-              Height = 17
-              Caption = 'HEX'
-              Checked = True
-              State = cbChecked
-              TabOrder = 4
-              OnClick = CheckBox59Click
-            end
-          end
-        end
-      end
-      object TabSheet4: TTabSheet
-        Hint = 
-          'SM4:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968#19988#23567#20110#31561#20110'4096'#13#10'KEY'#20026'16'#23383#33410#13#10'IV'#20026'16'#23383#33410#13#10#13#10'SM3:'#13#10#36755#20837#25968#25454#38656#23567#20110#31561#20110'4' +
-          '096'
-        Caption = 'SM'
-        ImageIndex = 5
-        ParentShowHint = False
-        ShowHint = True
-        object GroupBox19: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 157
-          Align = alClient
-          Caption = 'data'
-          TabOrder = 0
-          object Memo8: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 139
-            Hint = 'Multiples of 16'
-            Align = alClient
-            ParentShowHint = False
-            ShowHint = False
-            TabOrder = 0
-            OnChange = Memo8Change
-          end
-        end
-        object GroupBox20: TGroupBox
-          Left = 0
-          Top = 157
-          Width = 231
-          Height = 46
-          Align = alBottom
-          Caption = 'key'
-          TabOrder = 1
-          object Edit59: TEdit
-            Left = 1
-            Top = 17
-            Width = 229
-            Height = 22
-            TabOrder = 0
-            OnChange = Edit59Change
-          end
-        end
-        object GroupBox21: TGroupBox
-          Left = 0
-          Top = 250
-          Width = 231
-          Height = 101
-          Align = alBottom
-          TabOrder = 2
-          object Button58: TButton
-            Left = 24
-            Top = 78
-            Width = 75
-            Height = 20
-            Caption = #21152#23494
-            TabOrder = 0
-            OnClick = Button58Click
-          end
-          object Button59: TButton
-            Left = 128
-            Top = 78
-            Width = 75
-            Height = 20
-            Caption = #35299#23494
-            TabOrder = 1
-            OnClick = Button59Click
-          end
-          object GroupBox22: TGroupBox
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 28
-            Align = alTop
-            TabOrder = 2
-            object CheckBox57: TCheckBox
-              Left = 19
-              Top = 9
-              Width = 45
-              Height = 17
-              Caption = 'HEX'
-              Checked = True
-              State = cbChecked
-              TabOrder = 0
-              OnClick = CheckBox57Click
-            end
-            object RadioSm4: TRadioButton
-              Left = 119
-              Top = 9
-              Width = 49
-              Height = 17
-              Caption = 'SM4'
-              Checked = True
-              TabOrder = 1
-              TabStop = True
-              OnClick = RadioSm4Click
-            end
-            object RadioSm3: TRadioButton
-              Left = 169
-              Top = 9
-              Width = 50
-              Height = 17
-              Caption = 'SM3'
-              TabOrder = 2
-              OnClick = RadioSm3Click
-            end
-          end
-          object GroupBox23: TGroupBox
-            Left = 2
-            Top = 44
-            Width = 227
-            Height = 30
-            Align = alTop
-            TabOrder = 3
-            object RadioButton8: TRadioButton
-              Left = 16
-              Top = 8
-              Width = 55
-              Height = 17
-              Caption = 'ECB'
-              Checked = True
-              TabOrder = 0
-              TabStop = True
-            end
-            object RadioButton9: TRadioButton
-              Left = 120
-              Top = 8
-              Width = 57
-              Height = 17
-              Caption = 'CBC'
-              TabOrder = 1
-            end
-          end
-        end
-        object GroupBox24: TGroupBox
-          Left = 0
-          Top = 203
-          Width = 231
-          Height = 47
-          Align = alBottom
-          Caption = 'IV'
-          TabOrder = 3
-          object Edit60: TEdit
-            Left = 2
-            Top = 16
-            Width = 229
-            Height = 22
-            TabOrder = 0
-            OnChange = Edit60Change
-          end
-        end
-      end
-      object TabSheet5: TTabSheet
-        Caption = 'HASH/MD5/CRC'
-        ImageIndex = 6
-        object GroupBox25: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 351
-          Align = alClient
-          TabOrder = 0
-          object GroupBox26: TGroupBox
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 255
-            Align = alClient
-            Caption = 'data'
-            TabOrder = 0
-            object Memo11: TMemo
-              Left = 2
-              Top = 16
-              Width = 223
-              Height = 237
-              Align = alClient
-              ScrollBars = ssVertical
-              TabOrder = 0
-              OnChange = Memo11Change
-            end
-          end
-          object GroupBox27: TGroupBox
-            Left = 2
-            Top = 271
-            Width = 227
-            Height = 32
-            Align = alBottom
-            TabOrder = 1
-            object CheckBox58: TCheckBox
-              Left = 7
-              Top = 11
-              Width = 60
-              Height = 17
-              Caption = 'HEX'
-              Checked = True
-              State = cbChecked
-              TabOrder = 0
-              OnClick = CheckBox58Click
-            end
-            object RadioButton17: TRadioButton
-              Left = 65
-              Top = 11
-              Width = 55
-              Height = 17
-              Caption = 'HASH'
-              Checked = True
-              TabOrder = 1
-              TabStop = True
-            end
-            object RadioButton18: TRadioButton
-              Left = 124
-              Top = 11
-              Width = 45
-              Height = 17
-              Caption = 'MD5'
-              TabOrder = 2
-            end
-            object RadioButton19: TRadioButton
-              Left = 174
-              Top = 11
-              Width = 45
-              Height = 17
-              Caption = 'CRC'
-              TabOrder = 3
-            end
-          end
-          object GroupBox28: TGroupBox
-            Left = 2
-            Top = 303
-            Width = 227
-            Height = 46
-            Align = alBottom
-            TabOrder = 2
-            object Button57: TButton
-              Left = 17
-              Top = 14
-              Width = 75
-              Height = 25
-              Caption = #36755#20837#35745#31639
-              TabOrder = 0
-              OnClick = Button57Click
-            end
-            object Button62: TButton
-              Left = 128
-              Top = 14
-              Width = 75
-              Height = 25
-              Caption = #25991#20214#35745#31639
-              TabOrder = 1
-              OnClick = Button62Click
-            end
-          end
-        end
-      end
-      object TabSheet7: TTabSheet
-        Caption = 'XOR'
-        ImageIndex = 8
-        object GroupBox4: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 351
-          Align = alClient
-          TabOrder = 0
-          object GroupBox6: TGroupBox
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 204
-            Align = alClient
-            Caption = 'data1/data2'
-            TabOrder = 0
-            object Memo14: TMemo
-              Left = 2
-              Top = 16
-              Width = 223
-              Height = 93
-              Align = alClient
-              TabOrder = 0
-              OnChange = Memo14Change
-            end
-            object Memo15: TMemo
-              Left = 2
-              Top = 109
-              Width = 223
-              Height = 93
-              Align = alBottom
-              TabOrder = 1
-              OnChange = Memo15Change
-            end
-          end
-          object GroupBox36: TGroupBox
-            Left = 2
-            Top = 220
-            Width = 227
-            Height = 49
-            Align = alBottom
-            TabOrder = 1
-            object CheckBox54: TCheckBox
-              Left = 9
-              Top = 20
-              Width = 58
-              Height = 17
-              Caption = 'HEX'
-              TabOrder = 0
-              OnClick = CheckBox54Click
-            end
-          end
-          object GroupBox37: TGroupBox
-            Left = 2
-            Top = 269
-            Width = 227
-            Height = 80
-            Align = alBottom
-            TabOrder = 2
-            object Button64: TButton
-              Left = 16
-              Top = 53
-              Width = 75
-              Height = 20
-              Caption = #35745#31639
-              TabOrder = 0
-              OnClick = Button64Click
-            end
-            object RadioButton23: TRadioButton
-              Left = 16
-              Top = 15
-              Width = 122
-              Height = 17
-              Caption = #20004#32452#25968#25454#20301#24322#25110
-              Checked = True
-              TabOrder = 1
-              TabStop = True
-              OnClick = RadioButton23Click
-            end
-            object RadioButton24: TRadioButton
-              Left = 16
-              Top = 35
-              Width = 167
-              Height = 17
-              Caption = '8'#23383#33410#20998#32452#20301#24322#25110
-              TabOrder = 2
-              OnClick = RadioButton24Click
-            end
-          end
-        end
-      end
-      object TabSheet3: TTabSheet
-        Caption = 'More'
-        ImageIndex = 3
-        object GroupBox15: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 231
-          Height = 351
-          Align = alClient
-          Caption = 'data'
-          TabOrder = 0
-          object Memo13: TMemo
-            Left = 2
-            Top = 16
-            Width = 227
-            Height = 173
-            Align = alClient
-            TabOrder = 0
-            OnChange = Memo13Change
-          end
-          object GroupBox16: TGroupBox
-            Left = 2
-            Top = 189
-            Width = 227
-            Height = 160
-            Align = alBottom
-            TabOrder = 1
-            object CheckBox61: TCheckBox
-              Left = 5
-              Top = 14
-              Width = 91
-              Height = 23
-              Caption = 'HEX'
-              TabOrder = 0
-              OnClick = CheckBox61Click
-            end
-            object Button5: TButton
-              Left = 152
-              Top = 57
-              Width = 75
-              Height = 23
-              Caption = 'SendFile'
-              TabOrder = 1
-              Visible = False
-              OnClick = Button5Click
-            end
-            object Button4: TButton
-              Left = 5
-              Top = 47
-              Width = 91
-              Height = 23
-              Caption = #24322#25110#21644
-              TabOrder = 2
-              OnClick = Button4Click
-            end
-            object Button3: TButton
-              Left = 131
-              Top = 46
-              Width = 91
-              Height = 23
-              Caption = #32047#21152#21644
-              TabOrder = 3
-              OnClick = Button3Click
-            end
-            object Button6: TButton
-              Left = 5
-              Top = 73
-              Width = 91
-              Height = 23
-              Caption = 'ASCII'#30721#34920
-              TabOrder = 4
-              OnClick = Button6Click
-            end
-            object Button54: TButton
-              Left = 5
-              Top = 98
-              Width = 91
-              Height = 23
-              Caption = 'HexToAscii'
-              TabOrder = 5
-              OnClick = Button54Click
-            end
-            object Button67: TButton
-              Left = 131
-              Top = 73
-              Width = 91
-              Height = 23
-              Caption = 'UTF8'#26174#31034
-              TabOrder = 6
-              OnClick = Button67Click
-            end
-            object Button11: TButton
-              Left = 131
-              Top = 99
-              Width = 91
-              Height = 23
-              Caption = 'AsciiToHex'
-              TabOrder = 7
-              OnClick = Button11Click
-            end
-            object Button14: TButton
-              Left = 5
-              Top = 124
-              Width = 91
-              Height = 25
-              Caption = #25130#22270
-              TabOrder = 8
-              OnClick = Button14Click
-            end
-            object Button15: TButton
-              Left = 131
-              Top = 124
-              Width = 91
-              Height = 25
-              Caption = #25171#24320#35745#31639#22120
-              TabOrder = 9
-              OnClick = Button15Click
-            end
-          end
-        end
-      end
-    end
-  end
   object Memo1: TMemo
     Left = 0
     Top = 0
-    Width = 449
+    Width = 446
     Height = 398
     Align = alClient
     ParentShowHint = False
@@ -4298,8 +505,3782 @@ object Form1: TForm1
     ReadOnly = True
     ScrollBars = ssVertical
     ShowHint = False
-    TabOrder = 3
+    TabOrder = 2
     WordWrap = False
+  end
+  object PageControl2: TPageControl
+    Left = 447
+    Top = 0
+    Width = 245
+    Height = 398
+    ActivePage = TabSheet1
+    Align = alRight
+    Constraints.MinWidth = 245
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 3
+    Visible = False
+    object TabSheet1: TTabSheet
+      Caption = 'String'
+      object GroupBox8: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 28
+        Align = alTop
+        TabOrder = 0
+        object Label9: TLabel
+          Left = 136
+          Top = 8
+          Width = 14
+          Height = 14
+          Caption = 'ms'
+        end
+        object CheckBox8: TCheckBox
+          Left = 4
+          Top = 8
+          Width = 83
+          Height = 15
+          Caption = #24490#29615#21457#36865
+          Enabled = False
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -8
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          OnClick = CheckBox8Click
+        end
+        object Edit3: TEdit
+          Left = 95
+          Top = 6
+          Width = 40
+          Height = 22
+          TabOrder = 1
+          Text = '1000'
+          OnKeyPress = Edit3KeyPress
+        end
+        object BitBtn2: TBitBtn
+          Left = 167
+          Top = 9
+          Width = 58
+          Height = 15
+          Caption = #20840#28165
+          TabOrder = 2
+          OnClick = BitBtn2Click
+        end
+      end
+      object ScrollBox1: TScrollBox
+        Left = 0
+        Top = 28
+        Width = 237
+        Height = 341
+        VertScrollBar.Range = 2200
+        VertScrollBar.Smooth = True
+        VertScrollBar.Tracking = True
+        Align = alClient
+        AutoScroll = False
+        TabOrder = 1
+        OnMouseWheel = ScrollBox1MouseWheel
+        object GroupBox9: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 216
+          Height = 2200
+          Align = alClient
+          TabOrder = 0
+          object lbl1: TLabel
+            Left = 2
+            Top = 7
+            Width = 22
+            Height = 13
+            Caption = 'HEX'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -7
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label10: TLabel
+            Left = 80
+            Top = 8
+            Width = 70
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = #23383#31526#20018
+          end
+          object Label11: TLabel
+            Left = 184
+            Top = 8
+            Width = 33
+            Height = 17
+            AutoSize = False
+            Caption = #21457#36865
+          end
+          object chk1: TCheckBox
+            Left = 4
+            Top = 25
+            Width = 17
+            Height = 17
+            TabOrder = 0
+          end
+          object TESEND01: TEdit
+            Left = 21
+            Top = 22
+            Width = 173
+            Height = 22
+            TabOrder = 1
+          end
+          object TESEND02: TEdit
+            Left = 21
+            Top = 44
+            Width = 173
+            Height = 22
+            TabOrder = 2
+          end
+          object TESEND03: TEdit
+            Left = 21
+            Top = 66
+            Width = 173
+            Height = 22
+            TabOrder = 3
+          end
+          object TESEND04: TEdit
+            Left = 21
+            Top = 88
+            Width = 173
+            Height = 22
+            TabOrder = 4
+          end
+          object TESEND05: TEdit
+            Left = 21
+            Top = 110
+            Width = 173
+            Height = 22
+            TabOrder = 5
+          end
+          object TESEND06: TEdit
+            Left = 21
+            Top = 132
+            Width = 173
+            Height = 22
+            TabOrder = 6
+          end
+          object TESEND07: TEdit
+            Left = 21
+            Top = 154
+            Width = 173
+            Height = 22
+            TabOrder = 7
+          end
+          object TESEND08: TEdit
+            Left = 21
+            Top = 176
+            Width = 173
+            Height = 22
+            TabOrder = 8
+          end
+          object TESEND09: TEdit
+            Left = 21
+            Top = 198
+            Width = 173
+            Height = 22
+            TabOrder = 9
+          end
+          object TESEND10: TEdit
+            Left = 21
+            Top = 220
+            Width = 173
+            Height = 22
+            TabOrder = 10
+          end
+          object TESEND11: TEdit
+            Left = 21
+            Top = 242
+            Width = 173
+            Height = 22
+            TabOrder = 11
+          end
+          object TESEND13: TEdit
+            Left = 21
+            Top = 286
+            Width = 173
+            Height = 22
+            TabOrder = 12
+          end
+          object CheckBox9: TCheckBox
+            Left = 4
+            Top = 47
+            Width = 17
+            Height = 17
+            TabOrder = 13
+          end
+          object CheckBox10: TCheckBox
+            Left = 4
+            Top = 69
+            Width = 17
+            Height = 17
+            TabOrder = 14
+          end
+          object CheckBox11: TCheckBox
+            Left = 4
+            Top = 91
+            Width = 17
+            Height = 17
+            TabOrder = 15
+          end
+          object CheckBox12: TCheckBox
+            Left = 4
+            Top = 113
+            Width = 17
+            Height = 17
+            TabOrder = 16
+          end
+          object CheckBox13: TCheckBox
+            Left = 4
+            Top = 135
+            Width = 17
+            Height = 17
+            TabOrder = 17
+          end
+          object CheckBox14: TCheckBox
+            Left = 4
+            Top = 157
+            Width = 17
+            Height = 17
+            TabOrder = 18
+          end
+          object CheckBox15: TCheckBox
+            Left = 4
+            Top = 179
+            Width = 17
+            Height = 17
+            TabOrder = 19
+          end
+          object CheckBox16: TCheckBox
+            Left = 4
+            Top = 201
+            Width = 17
+            Height = 17
+            TabOrder = 20
+          end
+          object CheckBox17: TCheckBox
+            Left = 4
+            Top = 223
+            Width = 17
+            Height = 17
+            TabOrder = 21
+          end
+          object CheckBox18: TCheckBox
+            Left = 4
+            Top = 245
+            Width = 17
+            Height = 17
+            TabOrder = 22
+          end
+          object CheckBox19: TCheckBox
+            Left = 4
+            Top = 267
+            Width = 17
+            Height = 17
+            TabOrder = 23
+          end
+          object CheckBox20: TCheckBox
+            Left = 4
+            Top = 289
+            Width = 17
+            Height = 17
+            TabOrder = 24
+          end
+          object CheckBox21: TCheckBox
+            Left = 4
+            Top = 311
+            Width = 17
+            Height = 17
+            TabOrder = 25
+          end
+          object CheckBox22: TCheckBox
+            Left = 4
+            Top = 333
+            Width = 17
+            Height = 17
+            TabOrder = 26
+          end
+          object CheckBox23: TCheckBox
+            Left = 4
+            Top = 355
+            Width = 17
+            Height = 17
+            TabOrder = 27
+          end
+          object TESEND12: TEdit
+            Left = 21
+            Top = 264
+            Width = 173
+            Height = 22
+            TabOrder = 28
+          end
+          object TESEND14: TEdit
+            Left = 21
+            Top = 308
+            Width = 173
+            Height = 22
+            TabOrder = 29
+          end
+          object TESEND15: TEdit
+            Left = 21
+            Top = 330
+            Width = 173
+            Height = 22
+            TabOrder = 30
+          end
+          object TESEND16: TEdit
+            Left = 21
+            Top = 352
+            Width = 173
+            Height = 22
+            TabOrder = 31
+          end
+          object BTSEND01: TButton
+            Left = 192
+            Top = 22
+            Width = 22
+            Height = 22
+            Caption = '1'
+            TabOrder = 32
+            OnClick = BTSEND01Click
+          end
+          object BTSEND02: TButton
+            Left = 192
+            Top = 44
+            Width = 22
+            Height = 22
+            Caption = '2'
+            TabOrder = 33
+            OnClick = BTSEND02Click
+          end
+          object BTSEND03: TButton
+            Left = 192
+            Top = 66
+            Width = 22
+            Height = 22
+            Caption = '3'
+            TabOrder = 34
+            OnClick = BTSEND03Click
+          end
+          object BTSEND04: TButton
+            Left = 192
+            Top = 88
+            Width = 22
+            Height = 22
+            Caption = '4'
+            TabOrder = 35
+            OnClick = BTSEND04Click
+          end
+          object BTSEND05: TButton
+            Left = 192
+            Top = 110
+            Width = 22
+            Height = 22
+            Caption = '5'
+            TabOrder = 36
+            OnClick = BTSEND05Click
+          end
+          object BTSEND06: TButton
+            Left = 192
+            Top = 132
+            Width = 22
+            Height = 22
+            Caption = '6'
+            TabOrder = 37
+            OnClick = BTSEND06Click
+          end
+          object BTSEND07: TButton
+            Left = 192
+            Top = 154
+            Width = 22
+            Height = 22
+            Caption = '7'
+            TabOrder = 38
+            OnClick = BTSEND07Click
+          end
+          object BTSEND08: TButton
+            Left = 192
+            Top = 176
+            Width = 22
+            Height = 22
+            Caption = '8'
+            TabOrder = 39
+            OnClick = BTSEND08Click
+          end
+          object BTSEND09: TButton
+            Left = 192
+            Top = 198
+            Width = 22
+            Height = 22
+            Caption = '9'
+            TabOrder = 40
+            OnClick = BTSEND09Click
+          end
+          object BTSEND10: TButton
+            Left = 192
+            Top = 220
+            Width = 22
+            Height = 22
+            Caption = '10'
+            TabOrder = 41
+            OnClick = BTSEND10Click
+          end
+          object BTSEND11: TButton
+            Left = 192
+            Top = 242
+            Width = 22
+            Height = 22
+            Caption = '11'
+            TabOrder = 42
+            OnClick = BTSEND11Click
+          end
+          object BTSEND12: TButton
+            Left = 192
+            Top = 264
+            Width = 22
+            Height = 22
+            Caption = '12'
+            TabOrder = 43
+            OnClick = BTSEND12Click
+          end
+          object BTSEND13: TButton
+            Left = 192
+            Top = 286
+            Width = 22
+            Height = 22
+            Caption = '13'
+            TabOrder = 44
+            OnClick = BTSEND13Click
+          end
+          object BTSEND14: TButton
+            Left = 192
+            Top = 308
+            Width = 22
+            Height = 22
+            Caption = '14'
+            TabOrder = 45
+            OnClick = BTSEND14Click
+          end
+          object BTSEND15: TButton
+            Left = 192
+            Top = 330
+            Width = 22
+            Height = 22
+            Caption = '15'
+            TabOrder = 46
+            OnClick = BTSEND15Click
+          end
+          object BTSEND16: TButton
+            Left = 192
+            Top = 352
+            Width = 22
+            Height = 22
+            Caption = '16'
+            TabOrder = 47
+            OnClick = BTSEND16Click
+          end
+          object TESEND17: TEdit
+            Left = 21
+            Top = 374
+            Width = 173
+            Height = 22
+            TabOrder = 48
+          end
+          object TESEND18: TEdit
+            Left = 21
+            Top = 396
+            Width = 173
+            Height = 22
+            TabOrder = 49
+          end
+          object TESEND19: TEdit
+            Left = 21
+            Top = 418
+            Width = 173
+            Height = 22
+            TabOrder = 50
+          end
+          object TESEND20: TEdit
+            Left = 21
+            Top = 440
+            Width = 173
+            Height = 22
+            TabOrder = 51
+          end
+          object TESEND21: TEdit
+            Left = 21
+            Top = 462
+            Width = 173
+            Height = 22
+            TabOrder = 52
+          end
+          object TESEND22: TEdit
+            Left = 21
+            Top = 484
+            Width = 173
+            Height = 22
+            TabOrder = 53
+          end
+          object TESEND23: TEdit
+            Left = 21
+            Top = 506
+            Width = 173
+            Height = 22
+            TabOrder = 54
+          end
+          object TESEND24: TEdit
+            Left = 21
+            Top = 528
+            Width = 173
+            Height = 22
+            TabOrder = 55
+          end
+          object TESEND25: TEdit
+            Left = 21
+            Top = 550
+            Width = 173
+            Height = 22
+            TabOrder = 56
+          end
+          object TESEND26: TEdit
+            Left = 21
+            Top = 572
+            Width = 173
+            Height = 22
+            TabOrder = 57
+          end
+          object TESEND27: TEdit
+            Left = 21
+            Top = 594
+            Width = 173
+            Height = 22
+            TabOrder = 58
+          end
+          object BTSEND17: TButton
+            Left = 192
+            Top = 374
+            Width = 22
+            Height = 22
+            Caption = '17'
+            TabOrder = 59
+            OnClick = BTSEND17Click
+          end
+          object BTSEND18: TButton
+            Left = 192
+            Top = 396
+            Width = 22
+            Height = 22
+            Caption = '18'
+            TabOrder = 60
+            OnClick = BTSEND18Click
+          end
+          object BTSEND19: TButton
+            Left = 192
+            Top = 418
+            Width = 22
+            Height = 22
+            Caption = '19'
+            TabOrder = 61
+            OnClick = BTSEND19Click
+          end
+          object BTSEND20: TButton
+            Left = 192
+            Top = 440
+            Width = 22
+            Height = 22
+            Caption = '20'
+            TabOrder = 62
+            OnClick = BTSEND20Click
+          end
+          object BTSEND21: TButton
+            Left = 193
+            Top = 462
+            Width = 22
+            Height = 22
+            Caption = '21'
+            TabOrder = 63
+            OnClick = BTSEND21Click
+          end
+          object BTSEND22: TButton
+            Left = 192
+            Top = 484
+            Width = 22
+            Height = 22
+            Caption = '22'
+            TabOrder = 64
+            OnClick = BTSEND22Click
+          end
+          object BTSEND23: TButton
+            Left = 192
+            Top = 506
+            Width = 22
+            Height = 22
+            Caption = '23'
+            TabOrder = 65
+            OnClick = BTSEND23Click
+          end
+          object BTSEND24: TButton
+            Left = 192
+            Top = 528
+            Width = 22
+            Height = 22
+            Caption = '24'
+            TabOrder = 66
+            OnClick = BTSEND24Click
+          end
+          object BTSEND25: TButton
+            Left = 192
+            Top = 550
+            Width = 22
+            Height = 22
+            Caption = '25'
+            TabOrder = 67
+            OnClick = BTSEND25Click
+          end
+          object BTSEND26: TButton
+            Left = 192
+            Top = 572
+            Width = 22
+            Height = 22
+            Caption = '26'
+            TabOrder = 68
+            OnClick = BTSEND26Click
+          end
+          object BTSEND27: TButton
+            Left = 192
+            Top = 594
+            Width = 22
+            Height = 22
+            Caption = '27'
+            TabOrder = 69
+            OnClick = BTSEND27Click
+          end
+          object BTSEND28: TButton
+            Left = 192
+            Top = 616
+            Width = 22
+            Height = 22
+            Caption = '28'
+            TabOrder = 70
+            OnClick = BTSEND28Click
+          end
+          object CheckBox28: TCheckBox
+            Left = 4
+            Top = 377
+            Width = 17
+            Height = 17
+            TabOrder = 71
+          end
+          object CheckBox29: TCheckBox
+            Left = 4
+            Top = 399
+            Width = 17
+            Height = 17
+            TabOrder = 72
+          end
+          object CheckBox30: TCheckBox
+            Left = 4
+            Top = 421
+            Width = 17
+            Height = 17
+            TabOrder = 73
+          end
+          object CheckBox31: TCheckBox
+            Left = 4
+            Top = 443
+            Width = 17
+            Height = 17
+            TabOrder = 74
+          end
+          object CheckBox32: TCheckBox
+            Left = 4
+            Top = 465
+            Width = 17
+            Height = 17
+            TabOrder = 75
+          end
+          object CheckBox33: TCheckBox
+            Left = 4
+            Top = 487
+            Width = 17
+            Height = 17
+            TabOrder = 76
+          end
+          object CheckBox34: TCheckBox
+            Left = 4
+            Top = 509
+            Width = 17
+            Height = 17
+            TabOrder = 77
+          end
+          object CheckBox35: TCheckBox
+            Left = 4
+            Top = 531
+            Width = 17
+            Height = 17
+            TabOrder = 78
+          end
+          object CheckBox36: TCheckBox
+            Left = 4
+            Top = 553
+            Width = 17
+            Height = 17
+            TabOrder = 79
+          end
+          object CheckBox37: TCheckBox
+            Left = 4
+            Top = 575
+            Width = 17
+            Height = 17
+            TabOrder = 80
+          end
+          object CheckBox38: TCheckBox
+            Left = 4
+            Top = 597
+            Width = 17
+            Height = 17
+            TabOrder = 81
+          end
+          object TESEND28: TEdit
+            Left = 21
+            Top = 616
+            Width = 173
+            Height = 22
+            TabOrder = 82
+          end
+          object TESEND29: TEdit
+            Left = 21
+            Top = 638
+            Width = 173
+            Height = 22
+            TabOrder = 83
+          end
+          object TESEND30: TEdit
+            Left = 21
+            Top = 660
+            Width = 173
+            Height = 22
+            TabOrder = 84
+          end
+          object TESEND31: TEdit
+            Left = 21
+            Top = 682
+            Width = 173
+            Height = 22
+            TabOrder = 85
+          end
+          object TESEND32: TEdit
+            Left = 21
+            Top = 704
+            Width = 173
+            Height = 22
+            TabOrder = 86
+          end
+          object TESEND33: TEdit
+            Left = 21
+            Top = 726
+            Width = 173
+            Height = 22
+            TabOrder = 87
+          end
+          object TESEND34: TEdit
+            Left = 21
+            Top = 748
+            Width = 173
+            Height = 22
+            TabOrder = 88
+          end
+          object TESEND35: TEdit
+            Left = 21
+            Top = 770
+            Width = 173
+            Height = 22
+            TabOrder = 89
+          end
+          object TESEND36: TEdit
+            Left = 21
+            Top = 792
+            Width = 173
+            Height = 22
+            TabOrder = 90
+          end
+          object TESEND37: TEdit
+            Left = 21
+            Top = 814
+            Width = 173
+            Height = 22
+            TabOrder = 91
+          end
+          object TESEND38: TEdit
+            Left = 21
+            Top = 836
+            Width = 173
+            Height = 22
+            TabOrder = 92
+          end
+          object TESEND39: TEdit
+            Left = 21
+            Top = 858
+            Width = 173
+            Height = 22
+            TabOrder = 93
+          end
+          object TESEND40: TEdit
+            Left = 21
+            Top = 880
+            Width = 173
+            Height = 22
+            TabOrder = 94
+          end
+          object TESEND41: TEdit
+            Left = 21
+            Top = 902
+            Width = 173
+            Height = 22
+            TabOrder = 95
+          end
+          object BTSEND29: TButton
+            Left = 192
+            Top = 638
+            Width = 22
+            Height = 22
+            Caption = '29'
+            TabOrder = 96
+            OnClick = BTSEND29Click
+          end
+          object BTSEND30: TButton
+            Left = 192
+            Top = 660
+            Width = 22
+            Height = 22
+            Caption = '30'
+            TabOrder = 97
+            OnClick = BTSEND30Click
+          end
+          object BTSEND31: TButton
+            Left = 192
+            Top = 682
+            Width = 22
+            Height = 22
+            Caption = '31'
+            TabOrder = 98
+            OnClick = BTSEND31Click
+          end
+          object BTSEND32: TButton
+            Left = 192
+            Top = 704
+            Width = 22
+            Height = 22
+            Caption = '32'
+            TabOrder = 99
+            OnClick = BTSEND32Click
+          end
+          object BTSEND33: TButton
+            Left = 192
+            Top = 726
+            Width = 22
+            Height = 22
+            Caption = '33'
+            TabOrder = 100
+            OnClick = BTSEND33Click
+          end
+          object BTSEND34: TButton
+            Left = 192
+            Top = 748
+            Width = 22
+            Height = 22
+            Caption = '34'
+            TabOrder = 101
+            OnClick = BTSEND34Click
+          end
+          object BTSEND35: TButton
+            Left = 192
+            Top = 770
+            Width = 22
+            Height = 22
+            Caption = '35'
+            TabOrder = 102
+            OnClick = BTSEND35Click
+          end
+          object BTSEND36: TButton
+            Left = 192
+            Top = 792
+            Width = 22
+            Height = 22
+            Caption = '36'
+            TabOrder = 103
+            OnClick = BTSEND36Click
+          end
+          object BTSEND37: TButton
+            Left = 192
+            Top = 814
+            Width = 22
+            Height = 22
+            Caption = '37'
+            TabOrder = 104
+            OnClick = BTSEND37Click
+          end
+          object BTSEND38: TButton
+            Left = 192
+            Top = 836
+            Width = 22
+            Height = 22
+            Caption = '38'
+            TabOrder = 105
+            OnClick = BTSEND38Click
+          end
+          object BTSEND39: TButton
+            Left = 192
+            Top = 858
+            Width = 22
+            Height = 22
+            Caption = '39'
+            TabOrder = 106
+            OnClick = BTSEND39Click
+          end
+          object BTSEND40: TButton
+            Left = 193
+            Top = 880
+            Width = 22
+            Height = 22
+            Caption = '40'
+            TabOrder = 107
+            OnClick = BTSEND40Click
+          end
+          object BTSEND41: TButton
+            Left = 192
+            Top = 902
+            Width = 22
+            Height = 22
+            Caption = '41'
+            TabOrder = 108
+            OnClick = BTSEND41Click
+          end
+          object CheckBox39: TCheckBox
+            Left = 4
+            Top = 619
+            Width = 17
+            Height = 17
+            TabOrder = 109
+          end
+          object CheckBox40: TCheckBox
+            Left = 4
+            Top = 641
+            Width = 17
+            Height = 17
+            TabOrder = 110
+          end
+          object CheckBox41: TCheckBox
+            Left = 4
+            Top = 663
+            Width = 17
+            Height = 17
+            TabOrder = 111
+          end
+          object CheckBox42: TCheckBox
+            Left = 4
+            Top = 685
+            Width = 17
+            Height = 17
+            TabOrder = 112
+          end
+          object CheckBox43: TCheckBox
+            Left = 4
+            Top = 707
+            Width = 17
+            Height = 17
+            TabOrder = 113
+          end
+          object CheckBox44: TCheckBox
+            Left = 4
+            Top = 729
+            Width = 17
+            Height = 17
+            TabOrder = 114
+          end
+          object CheckBox45: TCheckBox
+            Left = 4
+            Top = 751
+            Width = 17
+            Height = 17
+            TabOrder = 115
+          end
+          object CheckBox46: TCheckBox
+            Left = 4
+            Top = 773
+            Width = 17
+            Height = 17
+            TabOrder = 116
+          end
+          object CheckBox47: TCheckBox
+            Left = 4
+            Top = 795
+            Width = 17
+            Height = 17
+            TabOrder = 117
+          end
+          object CheckBox48: TCheckBox
+            Left = 4
+            Top = 817
+            Width = 17
+            Height = 17
+            TabOrder = 118
+          end
+          object CheckBox49: TCheckBox
+            Left = 4
+            Top = 839
+            Width = 17
+            Height = 17
+            TabOrder = 119
+          end
+          object CheckBox50: TCheckBox
+            Left = 4
+            Top = 861
+            Width = 17
+            Height = 17
+            TabOrder = 120
+          end
+          object CheckBox51: TCheckBox
+            Left = 4
+            Top = 883
+            Width = 17
+            Height = 17
+            TabOrder = 121
+          end
+          object CheckBox52: TCheckBox
+            Left = 4
+            Top = 905
+            Width = 17
+            Height = 17
+            TabOrder = 122
+          end
+          object TCHB42: TCheckBox
+            Left = 4
+            Top = 927
+            Width = 17
+            Height = 17
+            TabOrder = 123
+          end
+          object TESEND82: TEdit
+            Left = 21
+            Top = 1804
+            Width = 173
+            Height = 22
+            TabOrder = 124
+          end
+          object TESEND81: TEdit
+            Left = 21
+            Top = 1782
+            Width = 173
+            Height = 22
+            TabOrder = 125
+          end
+          object TESEND80: TEdit
+            Left = 21
+            Top = 1760
+            Width = 173
+            Height = 22
+            TabOrder = 126
+          end
+          object TESEND79: TEdit
+            Left = 21
+            Top = 1738
+            Width = 173
+            Height = 22
+            TabOrder = 127
+          end
+          object TESEND78: TEdit
+            Left = 21
+            Top = 1716
+            Width = 173
+            Height = 22
+            TabOrder = 128
+          end
+          object TESEND77: TEdit
+            Left = 21
+            Top = 1694
+            Width = 173
+            Height = 22
+            TabOrder = 129
+          end
+          object TESEND76: TEdit
+            Left = 21
+            Top = 1672
+            Width = 173
+            Height = 22
+            TabOrder = 130
+          end
+          object TESEND75: TEdit
+            Left = 21
+            Top = 1650
+            Width = 173
+            Height = 22
+            TabOrder = 131
+          end
+          object TESEND74: TEdit
+            Left = 21
+            Top = 1628
+            Width = 173
+            Height = 22
+            TabOrder = 132
+          end
+          object TESEND73: TEdit
+            Left = 21
+            Top = 1606
+            Width = 173
+            Height = 22
+            TabOrder = 133
+          end
+          object TESEND72: TEdit
+            Left = 21
+            Top = 1584
+            Width = 173
+            Height = 22
+            TabOrder = 134
+          end
+          object TESEND71: TEdit
+            Left = 21
+            Top = 1562
+            Width = 173
+            Height = 22
+            TabOrder = 135
+          end
+          object TESEND70: TEdit
+            Left = 21
+            Top = 1540
+            Width = 173
+            Height = 22
+            TabOrder = 136
+          end
+          object TESEND69: TEdit
+            Left = 21
+            Top = 1518
+            Width = 173
+            Height = 22
+            TabOrder = 137
+          end
+          object TESEND68: TEdit
+            Left = 21
+            Top = 1496
+            Width = 173
+            Height = 22
+            TabOrder = 138
+          end
+          object TESEND67: TEdit
+            Left = 21
+            Top = 1474
+            Width = 173
+            Height = 22
+            TabOrder = 139
+          end
+          object TESEND66: TEdit
+            Left = 21
+            Top = 1452
+            Width = 173
+            Height = 22
+            TabOrder = 140
+          end
+          object TESEND65: TEdit
+            Left = 21
+            Top = 1430
+            Width = 173
+            Height = 22
+            TabOrder = 141
+          end
+          object TESEND64: TEdit
+            Left = 21
+            Top = 1408
+            Width = 173
+            Height = 22
+            TabOrder = 142
+          end
+          object TESEND63: TEdit
+            Left = 21
+            Top = 1386
+            Width = 173
+            Height = 22
+            TabOrder = 143
+          end
+          object TESEND62: TEdit
+            Left = 21
+            Top = 1364
+            Width = 173
+            Height = 22
+            TabOrder = 144
+          end
+          object TESEND61: TEdit
+            Left = 21
+            Top = 1342
+            Width = 173
+            Height = 22
+            TabOrder = 145
+          end
+          object TESEND60: TEdit
+            Left = 21
+            Top = 1320
+            Width = 173
+            Height = 22
+            TabOrder = 146
+          end
+          object TESEND59: TEdit
+            Left = 21
+            Top = 1298
+            Width = 173
+            Height = 22
+            TabOrder = 147
+          end
+          object TESEND58: TEdit
+            Left = 21
+            Top = 1276
+            Width = 173
+            Height = 22
+            TabOrder = 148
+          end
+          object TESEND57: TEdit
+            Left = 21
+            Top = 1254
+            Width = 173
+            Height = 22
+            TabOrder = 149
+          end
+          object TESEND56: TEdit
+            Left = 21
+            Top = 1232
+            Width = 173
+            Height = 22
+            TabOrder = 150
+          end
+          object TESEND55: TEdit
+            Left = 21
+            Top = 1210
+            Width = 173
+            Height = 22
+            TabOrder = 151
+          end
+          object TESEND54: TEdit
+            Left = 21
+            Top = 1188
+            Width = 173
+            Height = 22
+            TabOrder = 152
+          end
+          object TESEND53: TEdit
+            Left = 21
+            Top = 1166
+            Width = 173
+            Height = 22
+            TabOrder = 153
+          end
+          object TESEND52: TEdit
+            Left = 21
+            Top = 1144
+            Width = 173
+            Height = 22
+            TabOrder = 154
+          end
+          object TESEND51: TEdit
+            Left = 21
+            Top = 1122
+            Width = 173
+            Height = 22
+            TabOrder = 155
+          end
+          object TESEND50: TEdit
+            Left = 21
+            Top = 1100
+            Width = 173
+            Height = 22
+            TabOrder = 156
+          end
+          object TESEND49: TEdit
+            Left = 21
+            Top = 1078
+            Width = 173
+            Height = 22
+            TabOrder = 157
+          end
+          object TESEND48: TEdit
+            Left = 21
+            Top = 1056
+            Width = 173
+            Height = 22
+            TabOrder = 158
+          end
+          object TESEND47: TEdit
+            Left = 21
+            Top = 1034
+            Width = 173
+            Height = 22
+            TabOrder = 159
+          end
+          object TESEND46: TEdit
+            Left = 21
+            Top = 1012
+            Width = 173
+            Height = 22
+            TabOrder = 160
+          end
+          object TESEND45: TEdit
+            Left = 21
+            Top = 990
+            Width = 173
+            Height = 22
+            TabOrder = 161
+          end
+          object TESEND44: TEdit
+            Left = 21
+            Top = 968
+            Width = 173
+            Height = 22
+            TabOrder = 162
+          end
+          object TESEND43: TEdit
+            Left = 21
+            Top = 946
+            Width = 173
+            Height = 22
+            TabOrder = 163
+          end
+          object TESEND42: TEdit
+            Left = 21
+            Top = 924
+            Width = 173
+            Height = 22
+            TabOrder = 164
+          end
+          object TCHB43: TCheckBox
+            Left = 4
+            Top = 949
+            Width = 17
+            Height = 17
+            TabOrder = 165
+          end
+          object TCHB82: TCheckBox
+            Left = 4
+            Top = 1807
+            Width = 17
+            Height = 17
+            TabOrder = 166
+          end
+          object TCHB81: TCheckBox
+            Left = 4
+            Top = 1785
+            Width = 17
+            Height = 17
+            TabOrder = 167
+          end
+          object TCHB80: TCheckBox
+            Left = 4
+            Top = 1763
+            Width = 17
+            Height = 17
+            TabOrder = 168
+          end
+          object TCHB79: TCheckBox
+            Left = 4
+            Top = 1741
+            Width = 17
+            Height = 17
+            TabOrder = 169
+          end
+          object TCHB78: TCheckBox
+            Left = 4
+            Top = 1719
+            Width = 17
+            Height = 17
+            TabOrder = 170
+          end
+          object TCHB77: TCheckBox
+            Left = 4
+            Top = 1697
+            Width = 17
+            Height = 17
+            TabOrder = 171
+          end
+          object TCHB76: TCheckBox
+            Left = 4
+            Top = 1675
+            Width = 17
+            Height = 17
+            TabOrder = 172
+          end
+          object TCHB75: TCheckBox
+            Left = 4
+            Top = 1653
+            Width = 17
+            Height = 17
+            TabOrder = 173
+          end
+          object TCHB74: TCheckBox
+            Left = 4
+            Top = 1631
+            Width = 17
+            Height = 17
+            TabOrder = 174
+          end
+          object TCHB73: TCheckBox
+            Left = 4
+            Top = 1609
+            Width = 17
+            Height = 17
+            TabOrder = 175
+          end
+          object TCHB72: TCheckBox
+            Left = 4
+            Top = 1587
+            Width = 17
+            Height = 17
+            TabOrder = 176
+          end
+          object TCHB71: TCheckBox
+            Left = 4
+            Top = 1565
+            Width = 17
+            Height = 17
+            TabOrder = 177
+          end
+          object TCHB70: TCheckBox
+            Left = 4
+            Top = 1543
+            Width = 17
+            Height = 17
+            TabOrder = 178
+          end
+          object TCHB69: TCheckBox
+            Left = 4
+            Top = 1521
+            Width = 17
+            Height = 17
+            TabOrder = 179
+          end
+          object TCHB68: TCheckBox
+            Left = 4
+            Top = 1499
+            Width = 17
+            Height = 17
+            TabOrder = 180
+          end
+          object TCHB67: TCheckBox
+            Left = 4
+            Top = 1477
+            Width = 17
+            Height = 17
+            TabOrder = 181
+          end
+          object TCHB66: TCheckBox
+            Left = 4
+            Top = 1455
+            Width = 17
+            Height = 17
+            TabOrder = 182
+          end
+          object TCHB65: TCheckBox
+            Left = 4
+            Top = 1433
+            Width = 17
+            Height = 17
+            TabOrder = 183
+          end
+          object TCHB64: TCheckBox
+            Left = 4
+            Top = 1411
+            Width = 17
+            Height = 17
+            TabOrder = 184
+          end
+          object TCHB63: TCheckBox
+            Left = 4
+            Top = 1389
+            Width = 17
+            Height = 17
+            TabOrder = 185
+          end
+          object TCHB62: TCheckBox
+            Left = 4
+            Top = 1367
+            Width = 17
+            Height = 17
+            TabOrder = 186
+          end
+          object TCHB61: TCheckBox
+            Left = 4
+            Top = 1345
+            Width = 17
+            Height = 17
+            TabOrder = 187
+          end
+          object TCHB60: TCheckBox
+            Left = 4
+            Top = 1323
+            Width = 17
+            Height = 17
+            TabOrder = 188
+          end
+          object TCHB59: TCheckBox
+            Left = 4
+            Top = 1301
+            Width = 17
+            Height = 17
+            TabOrder = 189
+          end
+          object TCHB58: TCheckBox
+            Left = 4
+            Top = 1279
+            Width = 17
+            Height = 17
+            TabOrder = 190
+          end
+          object TCHB57: TCheckBox
+            Left = 4
+            Top = 1257
+            Width = 17
+            Height = 17
+            TabOrder = 191
+          end
+          object TCHB56: TCheckBox
+            Left = 4
+            Top = 1235
+            Width = 17
+            Height = 17
+            TabOrder = 192
+          end
+          object TCHB55: TCheckBox
+            Left = 4
+            Top = 1213
+            Width = 17
+            Height = 17
+            TabOrder = 193
+          end
+          object TCHB54: TCheckBox
+            Left = 4
+            Top = 1191
+            Width = 17
+            Height = 17
+            TabOrder = 194
+          end
+          object TCHB53: TCheckBox
+            Left = 4
+            Top = 1169
+            Width = 17
+            Height = 17
+            TabOrder = 195
+          end
+          object TCHB52: TCheckBox
+            Left = 4
+            Top = 1147
+            Width = 17
+            Height = 17
+            TabOrder = 196
+          end
+          object TCHB51: TCheckBox
+            Left = 4
+            Top = 1125
+            Width = 17
+            Height = 17
+            TabOrder = 197
+          end
+          object TCHB50: TCheckBox
+            Left = 4
+            Top = 1103
+            Width = 17
+            Height = 17
+            TabOrder = 198
+          end
+          object TCHB49: TCheckBox
+            Left = 4
+            Top = 1081
+            Width = 17
+            Height = 17
+            TabOrder = 199
+          end
+          object TCHB48: TCheckBox
+            Left = 4
+            Top = 1059
+            Width = 17
+            Height = 17
+            TabOrder = 200
+          end
+          object TCHB47: TCheckBox
+            Left = 4
+            Top = 1037
+            Width = 17
+            Height = 17
+            TabOrder = 201
+          end
+          object TCHB46: TCheckBox
+            Left = 4
+            Top = 1015
+            Width = 17
+            Height = 17
+            TabOrder = 202
+          end
+          object TCHB45: TCheckBox
+            Left = 4
+            Top = 993
+            Width = 17
+            Height = 17
+            TabOrder = 203
+          end
+          object TCHB44: TCheckBox
+            Left = 4
+            Top = 971
+            Width = 17
+            Height = 17
+            TabOrder = 204
+          end
+          object BTSEND82: TButton
+            Left = 193
+            Top = 1804
+            Width = 22
+            Height = 22
+            Caption = '82'
+            TabOrder = 205
+            OnClick = BTSEND82Click
+          end
+          object BTSEND81: TButton
+            Left = 193
+            Top = 1782
+            Width = 22
+            Height = 22
+            Caption = '81'
+            TabOrder = 206
+            OnClick = BTSEND81Click
+          end
+          object BTSEND80: TButton
+            Left = 193
+            Top = 1760
+            Width = 22
+            Height = 22
+            Caption = '80'
+            TabOrder = 207
+            OnClick = BTSEND80Click
+          end
+          object BTSEND79: TButton
+            Left = 193
+            Top = 1738
+            Width = 22
+            Height = 22
+            Caption = '79'
+            TabOrder = 208
+            OnClick = BTSEND79Click
+          end
+          object BTSEND78: TButton
+            Left = 193
+            Top = 1716
+            Width = 22
+            Height = 22
+            Caption = '78'
+            TabOrder = 209
+            OnClick = BTSEND78Click
+          end
+          object BTSEND77: TButton
+            Left = 193
+            Top = 1694
+            Width = 22
+            Height = 22
+            Caption = '77'
+            TabOrder = 210
+            OnClick = BTSEND77Click
+          end
+          object BTSEND76: TButton
+            Left = 193
+            Top = 1672
+            Width = 22
+            Height = 22
+            Caption = '76'
+            TabOrder = 211
+            OnClick = BTSEND76Click
+          end
+          object BTSEND75: TButton
+            Left = 193
+            Top = 1650
+            Width = 22
+            Height = 22
+            Caption = '75'
+            TabOrder = 212
+            OnClick = BTSEND75Click
+          end
+          object BTSEND74: TButton
+            Left = 193
+            Top = 1628
+            Width = 22
+            Height = 22
+            Caption = '74'
+            TabOrder = 213
+            OnClick = BTSEND74Click
+          end
+          object BTSEND73: TButton
+            Left = 193
+            Top = 1606
+            Width = 22
+            Height = 22
+            Caption = '73'
+            TabOrder = 214
+            OnClick = BTSEND73Click
+          end
+          object BTSEND72: TButton
+            Left = 193
+            Top = 1584
+            Width = 22
+            Height = 22
+            Caption = '72'
+            TabOrder = 215
+            OnClick = BTSEND72Click
+          end
+          object BTSEND71: TButton
+            Left = 193
+            Top = 1562
+            Width = 22
+            Height = 22
+            Caption = '71'
+            TabOrder = 216
+            OnClick = BTSEND71Click
+          end
+          object BTSEND70: TButton
+            Left = 193
+            Top = 1540
+            Width = 22
+            Height = 22
+            Caption = '70'
+            TabOrder = 217
+            OnClick = BTSEND70Click
+          end
+          object BTSEND69: TButton
+            Left = 193
+            Top = 1518
+            Width = 22
+            Height = 22
+            Caption = '69'
+            TabOrder = 218
+            OnClick = BTSEND69Click
+          end
+          object BTSEND68: TButton
+            Left = 193
+            Top = 1496
+            Width = 22
+            Height = 22
+            Caption = '68'
+            TabOrder = 219
+            OnClick = BTSEND68Click
+          end
+          object BTSEND67: TButton
+            Left = 193
+            Top = 1474
+            Width = 22
+            Height = 22
+            Caption = '67'
+            TabOrder = 220
+            OnClick = BTSEND67Click
+          end
+          object BTSEND66: TButton
+            Left = 193
+            Top = 1452
+            Width = 22
+            Height = 22
+            Caption = '66'
+            TabOrder = 221
+            OnClick = BTSEND66Click
+          end
+          object BTSEND65: TButton
+            Left = 193
+            Top = 1430
+            Width = 22
+            Height = 22
+            Caption = '65'
+            TabOrder = 222
+            OnClick = BTSEND65Click
+          end
+          object BTSEND64: TButton
+            Left = 194
+            Top = 1408
+            Width = 22
+            Height = 22
+            Caption = '64'
+            TabOrder = 223
+            OnClick = BTSEND64Click
+          end
+          object BTSEND63: TButton
+            Left = 193
+            Top = 1386
+            Width = 22
+            Height = 22
+            Caption = '63'
+            TabOrder = 224
+            OnClick = BTSEND63Click
+          end
+          object BTSEND62: TButton
+            Left = 193
+            Top = 1364
+            Width = 22
+            Height = 22
+            Caption = '62'
+            TabOrder = 225
+            OnClick = BTSEND62Click
+          end
+          object BTSEND61: TButton
+            Left = 193
+            Top = 1342
+            Width = 22
+            Height = 22
+            Caption = '61'
+            TabOrder = 226
+            OnClick = BTSEND61Click
+          end
+          object BTSEND60: TButton
+            Left = 193
+            Top = 1320
+            Width = 22
+            Height = 22
+            Caption = '60'
+            TabOrder = 227
+            OnClick = BTSEND60Click
+          end
+          object BTSEND59: TButton
+            Left = 193
+            Top = 1298
+            Width = 22
+            Height = 22
+            Caption = '59'
+            TabOrder = 228
+            OnClick = BTSEND59Click
+          end
+          object BTSEND58: TButton
+            Left = 193
+            Top = 1276
+            Width = 22
+            Height = 22
+            Caption = '58'
+            TabOrder = 229
+            OnClick = BTSEND58Click
+          end
+          object BTSEND57: TButton
+            Left = 193
+            Top = 1254
+            Width = 22
+            Height = 22
+            Caption = '57'
+            TabOrder = 230
+            OnClick = BTSEND57Click
+          end
+          object BTSEND56: TButton
+            Left = 193
+            Top = 1232
+            Width = 22
+            Height = 22
+            Caption = '56'
+            TabOrder = 231
+            OnClick = BTSEND56Click
+          end
+          object BTSEND55: TButton
+            Left = 193
+            Top = 1210
+            Width = 22
+            Height = 22
+            Caption = '55'
+            TabOrder = 232
+            OnClick = BTSEND55Click
+          end
+          object BTSEND54: TButton
+            Left = 193
+            Top = 1188
+            Width = 22
+            Height = 22
+            Caption = '54'
+            TabOrder = 233
+            OnClick = BTSEND54Click
+          end
+          object BTSEND53: TButton
+            Left = 193
+            Top = 1166
+            Width = 22
+            Height = 22
+            Caption = '53'
+            TabOrder = 234
+            OnClick = BTSEND53Click
+          end
+          object BTSEND52: TButton
+            Left = 193
+            Top = 1144
+            Width = 22
+            Height = 22
+            Caption = '52'
+            TabOrder = 235
+            OnClick = BTSEND52Click
+          end
+          object BTSEND51: TButton
+            Left = 193
+            Top = 1122
+            Width = 22
+            Height = 22
+            Caption = '51'
+            TabOrder = 236
+            OnClick = BTSEND51Click
+          end
+          object BTSEND50: TButton
+            Left = 193
+            Top = 1100
+            Width = 22
+            Height = 22
+            Caption = '50'
+            TabOrder = 237
+            OnClick = BTSEND50Click
+          end
+          object BTSEND49: TButton
+            Left = 193
+            Top = 1078
+            Width = 22
+            Height = 22
+            Caption = '49'
+            TabOrder = 238
+            OnClick = BTSEND49Click
+          end
+          object BTSEND48: TButton
+            Left = 193
+            Top = 1056
+            Width = 22
+            Height = 22
+            Caption = '48'
+            TabOrder = 239
+            OnClick = BTSEND48Click
+          end
+          object BTSEND47: TButton
+            Left = 193
+            Top = 1034
+            Width = 22
+            Height = 22
+            Caption = '47'
+            TabOrder = 240
+            OnClick = BTSEND47Click
+          end
+          object BTSEND46: TButton
+            Left = 193
+            Top = 1012
+            Width = 22
+            Height = 22
+            Caption = '46'
+            TabOrder = 241
+            OnClick = BTSEND46Click
+          end
+          object BTSEND45: TButton
+            Left = 193
+            Top = 990
+            Width = 22
+            Height = 22
+            Caption = '45'
+            TabOrder = 242
+            OnClick = BTSEND45Click
+          end
+          object BTSEND44: TButton
+            Left = 193
+            Top = 968
+            Width = 22
+            Height = 22
+            Caption = '44'
+            TabOrder = 243
+            OnClick = BTSEND44Click
+          end
+          object BTSEND43: TButton
+            Left = 193
+            Top = 946
+            Width = 22
+            Height = 22
+            Caption = '43'
+            TabOrder = 244
+            OnClick = BTSEND43Click
+          end
+          object BTSEND42: TButton
+            Left = 193
+            Top = 924
+            Width = 22
+            Height = 22
+            Caption = '42'
+            TabOrder = 245
+            OnClick = BTSEND42Click
+          end
+          object TCHB99: TCheckBox
+            Left = 4
+            Top = 2181
+            Width = 17
+            Height = 17
+            TabOrder = 246
+          end
+          object TESEND99: TEdit
+            Left = 21
+            Top = 2178
+            Width = 173
+            Height = 22
+            TabOrder = 247
+          end
+          object BTSEND99: TButton
+            Left = 192
+            Top = 2178
+            Width = 22
+            Height = 22
+            Caption = '99'
+            TabOrder = 248
+            OnClick = BTSEND99Click
+          end
+          object TCHB98: TCheckBox
+            Left = 4
+            Top = 2159
+            Width = 17
+            Height = 17
+            TabOrder = 249
+          end
+          object TESEND98: TEdit
+            Left = 21
+            Top = 2156
+            Width = 173
+            Height = 22
+            TabOrder = 250
+          end
+          object BTSEND98: TButton
+            Left = 192
+            Top = 2156
+            Width = 22
+            Height = 22
+            Caption = '98'
+            TabOrder = 251
+            OnClick = BTSEND98Click
+          end
+          object TCHB97: TCheckBox
+            Left = 4
+            Top = 2137
+            Width = 17
+            Height = 17
+            TabOrder = 252
+          end
+          object TESEND97: TEdit
+            Left = 21
+            Top = 2134
+            Width = 173
+            Height = 22
+            TabOrder = 253
+          end
+          object BTSEND97: TButton
+            Left = 192
+            Top = 2134
+            Width = 22
+            Height = 22
+            Caption = '97'
+            TabOrder = 254
+            OnClick = BTSEND97Click
+          end
+          object TESEND96: TEdit
+            Left = 21
+            Top = 2112
+            Width = 173
+            Height = 22
+            TabOrder = 255
+          end
+          object BTSEND96: TButton
+            Left = 192
+            Top = 2112
+            Width = 22
+            Height = 22
+            Caption = '96'
+            TabOrder = 256
+            OnClick = BTSEND96Click
+          end
+          object TCHB96: TCheckBox
+            Left = 4
+            Top = 2115
+            Width = 17
+            Height = 17
+            TabOrder = 257
+          end
+          object TCHB95: TCheckBox
+            Left = 4
+            Top = 2093
+            Width = 17
+            Height = 17
+            TabOrder = 258
+          end
+          object TESEND95: TEdit
+            Left = 21
+            Top = 2090
+            Width = 173
+            Height = 22
+            TabOrder = 259
+          end
+          object BTSEND95: TButton
+            Left = 192
+            Top = 2090
+            Width = 22
+            Height = 22
+            Caption = '95'
+            TabOrder = 260
+            OnClick = BTSEND95Click
+          end
+          object TCHB94: TCheckBox
+            Left = 4
+            Top = 2071
+            Width = 17
+            Height = 17
+            TabOrder = 261
+          end
+          object TESEND94: TEdit
+            Left = 21
+            Top = 2068
+            Width = 173
+            Height = 22
+            TabOrder = 262
+          end
+          object BTSEND94: TButton
+            Left = 192
+            Top = 2068
+            Width = 22
+            Height = 22
+            Caption = '94'
+            TabOrder = 263
+            OnClick = BTSEND94Click
+          end
+          object TCHB93: TCheckBox
+            Left = 4
+            Top = 2049
+            Width = 17
+            Height = 17
+            TabOrder = 264
+          end
+          object TESEND93: TEdit
+            Left = 21
+            Top = 2046
+            Width = 173
+            Height = 22
+            TabOrder = 265
+          end
+          object BTSEND93: TButton
+            Left = 192
+            Top = 2046
+            Width = 22
+            Height = 22
+            Caption = '93'
+            TabOrder = 266
+            OnClick = BTSEND93Click
+          end
+          object TCHB92: TCheckBox
+            Left = 4
+            Top = 2027
+            Width = 17
+            Height = 17
+            TabOrder = 267
+          end
+          object TESEND92: TEdit
+            Left = 21
+            Top = 2024
+            Width = 173
+            Height = 22
+            TabOrder = 268
+          end
+          object BTSEND92: TButton
+            Left = 192
+            Top = 2024
+            Width = 22
+            Height = 22
+            Caption = '92'
+            TabOrder = 269
+            OnClick = BTSEND92Click
+          end
+          object TCHB91: TCheckBox
+            Left = 4
+            Top = 2005
+            Width = 17
+            Height = 17
+            TabOrder = 270
+          end
+          object TESEND91: TEdit
+            Left = 21
+            Top = 2002
+            Width = 173
+            Height = 22
+            TabOrder = 271
+          end
+          object BTSEND91: TButton
+            Left = 192
+            Top = 2002
+            Width = 22
+            Height = 22
+            Caption = '91'
+            TabOrder = 272
+            OnClick = BTSEND91Click
+          end
+          object TCHB90: TCheckBox
+            Left = 4
+            Top = 1983
+            Width = 17
+            Height = 17
+            TabOrder = 273
+          end
+          object TESEND90: TEdit
+            Left = 21
+            Top = 1980
+            Width = 173
+            Height = 22
+            TabOrder = 274
+          end
+          object BTSEND90: TButton
+            Left = 192
+            Top = 1980
+            Width = 22
+            Height = 22
+            Caption = '90'
+            TabOrder = 275
+            OnClick = BTSEND90Click
+          end
+          object TCHB89: TCheckBox
+            Left = 4
+            Top = 1961
+            Width = 17
+            Height = 17
+            TabOrder = 276
+          end
+          object TESEND89: TEdit
+            Left = 21
+            Top = 1958
+            Width = 173
+            Height = 22
+            TabOrder = 277
+          end
+          object BTSEND89: TButton
+            Left = 192
+            Top = 1958
+            Width = 22
+            Height = 22
+            Caption = '89'
+            TabOrder = 278
+            OnClick = BTSEND89Click
+          end
+          object TCHB88: TCheckBox
+            Left = 4
+            Top = 1939
+            Width = 17
+            Height = 17
+            TabOrder = 279
+          end
+          object TESEND88: TEdit
+            Left = 21
+            Top = 1936
+            Width = 173
+            Height = 22
+            TabOrder = 280
+          end
+          object BTSEND88: TButton
+            Left = 192
+            Top = 1936
+            Width = 22
+            Height = 22
+            Caption = '88'
+            TabOrder = 281
+            OnClick = BTSEND88Click
+          end
+          object TCHB87: TCheckBox
+            Left = 4
+            Top = 1917
+            Width = 17
+            Height = 17
+            TabOrder = 282
+          end
+          object TESEND87: TEdit
+            Left = 21
+            Top = 1914
+            Width = 173
+            Height = 22
+            TabOrder = 283
+          end
+          object BTSEND87: TButton
+            Left = 192
+            Top = 1914
+            Width = 22
+            Height = 22
+            Caption = '87'
+            TabOrder = 284
+            OnClick = BTSEND87Click
+          end
+          object TCHB86: TCheckBox
+            Left = 4
+            Top = 1895
+            Width = 17
+            Height = 17
+            TabOrder = 285
+          end
+          object TESEND86: TEdit
+            Left = 21
+            Top = 1892
+            Width = 173
+            Height = 22
+            TabOrder = 286
+          end
+          object BTSEND86: TButton
+            Left = 192
+            Top = 1892
+            Width = 22
+            Height = 22
+            Caption = '86'
+            TabOrder = 287
+            OnClick = BTSEND86Click
+          end
+          object TCHB85: TCheckBox
+            Left = 4
+            Top = 1873
+            Width = 17
+            Height = 17
+            TabOrder = 288
+          end
+          object TESEND85: TEdit
+            Left = 21
+            Top = 1870
+            Width = 173
+            Height = 22
+            TabOrder = 289
+          end
+          object BTSEND85: TButton
+            Left = 192
+            Top = 1870
+            Width = 22
+            Height = 22
+            Caption = '85'
+            TabOrder = 290
+            OnClick = BTSEND85Click
+          end
+          object TCHB84: TCheckBox
+            Left = 4
+            Top = 1851
+            Width = 17
+            Height = 17
+            TabOrder = 291
+          end
+          object TESEND84: TEdit
+            Left = 21
+            Top = 1848
+            Width = 173
+            Height = 22
+            TabOrder = 292
+          end
+          object BTSEND84: TButton
+            Left = 192
+            Top = 1848
+            Width = 22
+            Height = 22
+            Caption = '84'
+            TabOrder = 293
+            OnClick = BTSEND84Click
+          end
+          object TCHB83: TCheckBox
+            Left = 4
+            Top = 1829
+            Width = 17
+            Height = 17
+            TabOrder = 294
+          end
+          object TESEND83: TEdit
+            Left = 21
+            Top = 1826
+            Width = 173
+            Height = 22
+            TabOrder = 295
+          end
+          object BTSEND83: TButton
+            Left = 192
+            Top = 1826
+            Width = 22
+            Height = 22
+            Caption = '83'
+            TabOrder = 296
+            OnClick = BTSEND83Click
+          end
+        end
+      end
+    end
+    object ts1: TTabSheet
+      Caption = 'HID'
+      ImageIndex = 1
+      object DevListBox: TListBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 113
+        Align = alTop
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ItemHeight = 14
+        ParentFont = False
+        TabOrder = 0
+        OnClick = DevListBoxClick
+      end
+      object GroupBox10: TGroupBox
+        Left = 0
+        Top = 113
+        Width = 237
+        Height = 99
+        Align = alTop
+        Caption = 'Attribute'
+        TabOrder = 1
+        object Memo3: TMemo
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 81
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ParentFont = False
+          ScrollBars = ssVertical
+          TabOrder = 0
+        end
+      end
+      object GroupBox11: TGroupBox
+        Left = 0
+        Top = 212
+        Width = 237
+        Height = 116
+        Align = alClient
+        Caption = 'Send'
+        TabOrder = 2
+        object Memo4: TMemo
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 98
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 0
+        Top = 328
+        Width = 237
+        Height = 41
+        Align = alBottom
+        TabOrder = 3
+        object ReadBtn: TSpeedButton
+          Left = 9
+          Top = 10
+          Width = 68
+          Height = 25
+          AllowAllUp = True
+          GroupIndex = 1
+          Caption = #30417#25511
+          OnClick = ReadBtnClick
+        end
+        object CheckBox24: TCheckBox
+          Left = 100
+          Top = 13
+          Width = 46
+          Height = 22
+          Caption = 'HEX'
+          TabOrder = 0
+        end
+        object Button8: TButton
+          Left = 156
+          Top = 10
+          Width = 68
+          Height = 25
+          Caption = #21457#36865
+          TabOrder = 1
+          OnClick = Button8Click
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TCP'
+      ImageIndex = 2
+      PopupMenu = PopupMenu3
+      object GroupBox12: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 166
+        Align = alTop
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        TabOrder = 0
+        object GroupBox38: TGroupBox
+          Left = 2
+          Top = 132
+          Width = 233
+          Height = 32
+          Align = alBottom
+          TabOrder = 0
+          object CheckBox25: TCheckBox
+            Left = 8
+            Top = 11
+            Width = 73
+            Height = 17
+            Caption = #33258#21160#22238#22797
+            Checked = True
+            State = cbChecked
+            TabOrder = 0
+            OnClick = CheckBox25Click
+          end
+          object RadioButton1: TRadioButton
+            Left = 98
+            Top = 11
+            Width = 55
+            Height = 17
+            Caption = #25968#25454
+            TabOrder = 1
+            OnClick = RadioButton1Click
+          end
+          object RadioButton2: TRadioButton
+            Left = 161
+            Top = 11
+            Width = 54
+            Height = 17
+            Caption = #36879#26126
+            Checked = True
+            TabOrder = 2
+            TabStop = True
+          end
+        end
+        object GroupBox40: TGroupBox
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 57
+          Align = alTop
+          Caption = 'Server'
+          TabOrder = 1
+          object Label15: TLabel
+            Left = 8
+            Top = 13
+            Width = 63
+            Height = 14
+            Caption = #26412#26426'IP '#65306
+          end
+          object Shape3: TShape
+            Left = 193
+            Top = 9
+            Width = 25
+            Height = 17
+            Brush.Color = clGray
+            Shape = stCircle
+          end
+          object Label12: TLabel
+            Left = 8
+            Top = 35
+            Width = 59
+            Height = 14
+            AutoSize = False
+            Caption = #31471'  '#21475' '#65306
+          end
+          object Edit24: TEdit
+            Left = 65
+            Top = 8
+            Width = 113
+            Height = 22
+            TabOrder = 0
+            Text = '255.255.255.255'
+          end
+          object Button9: TButton
+            Left = 176
+            Top = 31
+            Width = 45
+            Height = 21
+            Caption = #24320#21551
+            TabOrder = 1
+            OnClick = Button9Click
+          end
+          object Button63: TButton
+            Left = 117
+            Top = 31
+            Width = 49
+            Height = 21
+            Caption = #33719#21462'IP'
+            TabOrder = 2
+            OnClick = Button63Click
+          end
+          object Edit15: TEdit
+            Left = 64
+            Top = 31
+            Width = 49
+            Height = 22
+            TabOrder = 3
+          end
+        end
+        object CheckListBox1: TCheckListBox
+          Left = 2
+          Top = 73
+          Width = 233
+          Height = 59
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          ItemHeight = 14
+          ParentFont = False
+          PopupMenu = PopupMenu2
+          TabOrder = 2
+        end
+      end
+      object GroupBox13: TGroupBox
+        Left = 0
+        Top = 166
+        Width = 237
+        Height = 57
+        Align = alTop
+        Caption = 'Client'
+        TabOrder = 1
+        object Label13: TLabel
+          Left = 8
+          Top = 15
+          Width = 42
+          Height = 14
+          Caption = 'IP  '#65306
+        end
+        object Label14: TLabel
+          Left = 8
+          Top = 34
+          Width = 42
+          Height = 14
+          Caption = #31471#21475#65306
+        end
+        object Shape4: TShape
+          Left = 172
+          Top = 9
+          Width = 25
+          Height = 17
+          Brush.Color = clGray
+          Shape = stCircle
+        end
+        object Edit22: TEdit
+          Left = 52
+          Top = 31
+          Width = 110
+          Height = 22
+          TabOrder = 0
+        end
+        object Button10: TButton
+          Left = 165
+          Top = 31
+          Width = 50
+          Height = 21
+          Caption = #36830#25509
+          TabOrder = 1
+          OnClick = Button10Click
+        end
+        object Edit21: TEdit
+          Left = 52
+          Top = 8
+          Width = 110
+          Height = 22
+          TabOrder = 2
+        end
+      end
+      object GroupBox14: TGroupBox
+        Left = 0
+        Top = 223
+        Width = 237
+        Height = 146
+        Align = alClient
+        Caption = 'Send'
+        TabOrder = 2
+        object Label19: TLabel
+          Left = 98
+          Top = 105
+          Width = 35
+          Height = 14
+          Caption = #38388#38548':'
+        end
+        object Label20: TLabel
+          Left = 194
+          Top = 104
+          Width = 14
+          Height = 14
+          Caption = #31186
+        end
+        object Memo5: TMemo
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 80
+          Align = alTop
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Courier New'
+          Font.Style = []
+          MaxLength = 32767
+          ParentFont = False
+          TabOrder = 0
+          OnChange = Memo5Change
+        end
+        object Button12: TButton
+          Left = 170
+          Top = 122
+          Width = 50
+          Height = 21
+          Caption = #21457#36865
+          TabOrder = 1
+          OnClick = Button12Click
+        end
+        object RadioButton3: TRadioButton
+          Left = 5
+          Top = 126
+          Width = 73
+          Height = 17
+          Caption = 'Server'
+          Checked = True
+          TabOrder = 2
+          TabStop = True
+        end
+        object RadioButton4: TRadioButton
+          Left = 65
+          Top = 127
+          Width = 55
+          Height = 17
+          Caption = 'Client'
+          TabOrder = 3
+        end
+        object CheckBox26: TCheckBox
+          Left = 123
+          Top = 126
+          Width = 41
+          Height = 17
+          Caption = 'HEX'
+          TabOrder = 4
+          OnClick = CheckBox26Click
+        end
+        object CheckBox27: TCheckBox
+          Left = 8
+          Top = 103
+          Width = 73
+          Height = 17
+          Caption = #33258#21160#21457#36865
+          TabOrder = 5
+          OnClick = CheckBox27Click
+        end
+        object Edit23: TEdit
+          Left = 134
+          Top = 100
+          Width = 59
+          Height = 22
+          TabOrder = 6
+          Text = '1'
+          OnKeyPress = Edit23KeyPress
+        end
+      end
+    end
+    object ts2: TTabSheet
+      Hint = 'DES:'#13#10#25968#25454#38271#24230#20026'8'#30340#20493#25968#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'8'#23383#33410
+      Caption = 'DES/MAC'
+      ImageIndex = 4
+      ParentShowHint = False
+      ShowHint = True
+      object GroupBox17: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 124
+        Align = alClient
+        Caption = 'data'
+        TabOrder = 0
+        object memo7: TMemo
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 106
+          Align = alClient
+          TabOrder = 0
+          OnChange = memo7Change
+        end
+      end
+      object GroupBox18: TGroupBox
+        Left = 0
+        Top = 124
+        Width = 237
+        Height = 161
+        Align = alBottom
+        TabOrder = 1
+        object Label17: TLabel
+          Left = 8
+          Top = 37
+          Width = 14
+          Height = 14
+          Caption = 'K1'
+        end
+        object Label18: TLabel
+          Left = 8
+          Top = 62
+          Width = 14
+          Height = 14
+          Caption = 'K2'
+        end
+        object Label27: TLabel
+          Left = 8
+          Top = 109
+          Width = 14
+          Height = 14
+          Caption = 'IV'
+        end
+        object Label28: TLabel
+          Left = 8
+          Top = 86
+          Width = 14
+          Height = 14
+          Caption = 'K3'
+        end
+        object Label2: TLabel
+          Left = 212
+          Top = 37
+          Width = 7
+          Height = 14
+        end
+        object Label3: TLabel
+          Left = 212
+          Top = 62
+          Width = 7
+          Height = 14
+        end
+        object Label5: TLabel
+          Left = 212
+          Top = 86
+          Width = 7
+          Height = 14
+        end
+        object Label6: TLabel
+          Left = 212
+          Top = 109
+          Width = 7
+          Height = 14
+        end
+        object Edit50: TEdit
+          Left = 28
+          Top = 32
+          Width = 180
+          Height = 22
+          TabOrder = 0
+          OnChange = Edit50Change
+        end
+        object Edit51: TEdit
+          Left = 27
+          Top = 57
+          Width = 180
+          Height = 22
+          Color = clScrollBar
+          Enabled = False
+          TabOrder = 1
+          OnChange = Edit51Change
+        end
+        object CheckBox55: TCheckBox
+          Left = 8
+          Top = 13
+          Width = 91
+          Height = 17
+          Caption = 'DATA HEX'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+          OnClick = CheckBox55Click
+        end
+        object CheckBox56: TCheckBox
+          Left = 130
+          Top = 13
+          Width = 84
+          Height = 17
+          Caption = 'KEY  HEX '
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
+          OnClick = CheckBox56Click
+        end
+        object Edit57: TEdit
+          Left = 27
+          Top = 105
+          Width = 180
+          Height = 22
+          Color = clScrollBar
+          Enabled = False
+          TabOrder = 4
+          OnChange = Edit57Change
+        end
+        object Edit58: TEdit
+          Left = 27
+          Top = 81
+          Width = 180
+          Height = 22
+          Color = clScrollBar
+          Enabled = False
+          TabOrder = 5
+          OnChange = Edit58Change
+        end
+        object GroupBox35: TGroupBox
+          Left = 6
+          Top = 127
+          Width = 204
+          Height = 27
+          TabOrder = 6
+          Visible = False
+          object RadioButton15: TRadioButton
+            Left = 11
+            Top = 7
+            Width = 73
+            Height = 17
+            Caption = '128bit'
+            Checked = True
+            TabOrder = 0
+            TabStop = True
+            OnClick = RadioButton15Click
+          end
+          object RadioButton16: TRadioButton
+            Left = 123
+            Top = 7
+            Width = 67
+            Height = 17
+            Caption = '192bit'
+            TabOrder = 1
+            OnClick = RadioButton16Click
+          end
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 0
+        Top = 285
+        Width = 237
+        Height = 84
+        Align = alBottom
+        TabOrder = 2
+        object RadioButton5: TRadioButton
+          Left = 4
+          Top = 9
+          Width = 57
+          Height = 17
+          Caption = 'DES'
+          Checked = True
+          TabOrder = 0
+          TabStop = True
+          OnClick = RadioButton5Click
+        end
+        object RadioButton6: TRadioButton
+          Left = 78
+          Top = 8
+          Width = 73
+          Height = 17
+          Caption = '3DES'
+          TabOrder = 1
+          OnClick = RadioButton6Click
+        end
+        object RadioButton7: TRadioButton
+          Left = 153
+          Top = 8
+          Width = 57
+          Height = 17
+          Caption = 'CBC'
+          TabOrder = 2
+          OnClick = RadioButton7Click
+        end
+        object RadioButton21: TRadioButton
+          Left = 119
+          Top = 24
+          Width = 105
+          Height = 17
+          Caption = 'ANSI-9.19-MAC'
+          TabOrder = 3
+          OnClick = RadioButton21Click
+        end
+        object RadioButton20: TRadioButton
+          Left = 4
+          Top = 39
+          Width = 113
+          Height = 17
+          Caption = 'ANSI-X9.9 MAC'
+          TabOrder = 4
+          OnClick = RadioButton20Click
+        end
+        object RadioButton22: TRadioButton
+          Left = 4
+          Top = 24
+          Width = 113
+          Height = 17
+          Caption = 'PBOC-3DES-MAC'
+          TabOrder = 5
+          OnClick = RadioButton22Click
+        end
+        object Button65: TButton
+          Left = 136
+          Top = 39
+          Width = 75
+          Height = 17
+          Caption = 'MAC'#35828#26126
+          TabOrder = 6
+          OnClick = Button65Click
+        end
+        object Button56: TButton
+          Left = 10
+          Top = 60
+          Width = 75
+          Height = 17
+          Caption = #21152#23494
+          TabOrder = 7
+          OnClick = Button56Click
+        end
+        object Button55: TButton
+          Left = 136
+          Top = 60
+          Width = 75
+          Height = 17
+          Caption = #35299#23494
+          TabOrder = 8
+          OnClick = Button55Click
+        end
+      end
+    end
+    object TabSheet6: TTabSheet
+      Hint = 'AES:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968','#19981#36275#26411#23614#34917#20805'0x00'#13#10#27599#20010'KEY'#20026'8'#23383#33410#13#10'IV'#20026'16'#23383#33410
+      Caption = 'AES'
+      ImageIndex = 7
+      ParentShowHint = False
+      ShowHint = True
+      object GroupBox29: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 369
+        Align = alClient
+        TabOrder = 0
+        object GroupBox30: TGroupBox
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 95
+          Align = alClient
+          Caption = 'data'
+          TabOrder = 0
+          object Memo12: TMemo
+            Left = 2
+            Top = 16
+            Width = 229
+            Height = 77
+            Align = alClient
+            TabOrder = 0
+            OnChange = Memo12Change
+          end
+        end
+        object GroupBox31: TGroupBox
+          Left = 2
+          Top = 111
+          Width = 233
+          Height = 131
+          Align = alBottom
+          TabOrder = 1
+          object Label21: TLabel
+            Left = 8
+            Top = 13
+            Width = 14
+            Height = 14
+            Caption = 'K1'
+          end
+          object Label22: TLabel
+            Left = 7
+            Top = 37
+            Width = 14
+            Height = 14
+            Caption = 'K2'
+          end
+          object Label23: TLabel
+            Left = 7
+            Top = 61
+            Width = 14
+            Height = 14
+            Caption = 'K3'
+          end
+          object Label24: TLabel
+            Left = 40
+            Top = 40
+            Width = 28
+            Height = 14
+            Caption = 'KEY1'
+          end
+          object Label25: TLabel
+            Left = 8
+            Top = 84
+            Width = 14
+            Height = 14
+            Caption = 'K4'
+          end
+          object Label26: TLabel
+            Left = 8
+            Top = 108
+            Width = 14
+            Height = 14
+            Caption = 'IV'
+          end
+          object Label7: TLabel
+            Left = 210
+            Top = 13
+            Width = 7
+            Height = 14
+          end
+          object Label8: TLabel
+            Left = 210
+            Top = 37
+            Width = 7
+            Height = 14
+          end
+          object Label29: TLabel
+            Left = 210
+            Top = 60
+            Width = 7
+            Height = 14
+          end
+          object Label30: TLabel
+            Left = 210
+            Top = 84
+            Width = 7
+            Height = 14
+          end
+          object Label31: TLabel
+            Left = 210
+            Top = 108
+            Width = 7
+            Height = 14
+          end
+          object Edit52: TEdit
+            Left = 28
+            Top = 8
+            Width = 180
+            Height = 22
+            Hint = '8 bytes'
+            TabOrder = 0
+            OnChange = Edit52Change
+          end
+          object Edit53: TEdit
+            Left = 28
+            Top = 32
+            Width = 180
+            Height = 22
+            TabOrder = 1
+            OnChange = Edit53Change
+          end
+          object Edit54: TEdit
+            Left = 28
+            Top = 55
+            Width = 180
+            Height = 22
+            Hint = '8 bytes'
+            Color = clScrollBar
+            Enabled = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            OnChange = Edit54Change
+          end
+          object Edit55: TEdit
+            Left = 28
+            Top = 80
+            Width = 180
+            Height = 22
+            Color = clScrollBar
+            Enabled = False
+            TabOrder = 3
+            OnChange = Edit55Change
+          end
+          object Edit56: TEdit
+            Left = 28
+            Top = 104
+            Width = 180
+            Height = 22
+            Color = clScrollBar
+            Enabled = False
+            TabOrder = 4
+            OnChange = Edit56Change
+          end
+        end
+        object GroupBox32: TGroupBox
+          Left = 2
+          Top = 242
+          Width = 233
+          Height = 125
+          Align = alBottom
+          TabOrder = 2
+          object Button60: TButton
+            Left = 8
+            Top = 96
+            Width = 75
+            Height = 25
+            Caption = #21152#23494
+            TabOrder = 0
+            OnClick = Button60Click
+          end
+          object GroupBox33: TGroupBox
+            Left = 0
+            Top = 7
+            Width = 214
+            Height = 33
+            Align = alCustom
+            TabOrder = 1
+            object RadioButton10: TRadioButton
+              Left = 7
+              Top = 8
+              Width = 73
+              Height = 17
+              Caption = '128Bit'
+              Checked = True
+              TabOrder = 0
+              TabStop = True
+              OnClick = RadioButton10Click
+            end
+            object RadioButton11: TRadioButton
+              Left = 74
+              Top = 8
+              Width = 80
+              Height = 17
+              Caption = '192Bit'
+              TabOrder = 1
+              OnClick = RadioButton11Click
+            end
+            object RadioButton12: TRadioButton
+              Left = 142
+              Top = 8
+              Width = 60
+              Height = 17
+              Caption = '256Bit'
+              TabOrder = 2
+              OnClick = RadioButton12Click
+            end
+          end
+          object GroupBox34: TGroupBox
+            Left = 0
+            Top = 40
+            Width = 214
+            Height = 30
+            TabOrder = 2
+            object RadioButton13: TRadioButton
+              Left = 8
+              Top = 7
+              Width = 89
+              Height = 17
+              Caption = 'ECB'
+              Checked = True
+              TabOrder = 0
+              TabStop = True
+              OnClick = RadioButton13Click
+            end
+            object RadioButton14: TRadioButton
+              Left = 145
+              Top = 8
+              Width = 51
+              Height = 17
+              Caption = 'CBC'
+              TabOrder = 1
+              OnClick = RadioButton14Click
+            end
+          end
+          object Button61: TButton
+            Left = 128
+            Top = 96
+            Width = 75
+            Height = 25
+            Caption = #35299#23494
+            TabOrder = 3
+            OnClick = Button61Click
+          end
+          object CheckBox59: TCheckBox
+            Left = 8
+            Top = 74
+            Width = 97
+            Height = 17
+            Caption = 'HEX'
+            Checked = True
+            State = cbChecked
+            TabOrder = 4
+            OnClick = CheckBox59Click
+          end
+        end
+      end
+    end
+    object TabSheet4: TTabSheet
+      Hint = 
+        'SM4:'#13#10#25968#25454#38271#24230#20026'16'#30340#20493#25968#19988#23567#20110#31561#20110'4096'#13#10'KEY'#20026'16'#23383#33410#13#10'IV'#20026'16'#23383#33410#13#10#13#10'SM3:'#13#10#36755#20837#25968#25454#38656#23567#20110#31561#20110'4' +
+        '096'
+      Caption = 'SM'
+      ImageIndex = 5
+      ParentShowHint = False
+      ShowHint = True
+      object GroupBox19: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 175
+        Align = alClient
+        Caption = 'data'
+        TabOrder = 0
+        object Memo8: TMemo
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 157
+          Hint = 'Multiples of 16'
+          Align = alClient
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 0
+          OnChange = Memo8Change
+        end
+      end
+      object GroupBox20: TGroupBox
+        Left = 0
+        Top = 175
+        Width = 237
+        Height = 46
+        Align = alBottom
+        Caption = 'key'
+        TabOrder = 1
+        object Edit59: TEdit
+          Left = 1
+          Top = 17
+          Width = 229
+          Height = 22
+          TabOrder = 0
+          OnChange = Edit59Change
+        end
+      end
+      object GroupBox21: TGroupBox
+        Left = 0
+        Top = 268
+        Width = 237
+        Height = 101
+        Align = alBottom
+        TabOrder = 2
+        object Button58: TButton
+          Left = 24
+          Top = 78
+          Width = 75
+          Height = 20
+          Caption = #21152#23494
+          TabOrder = 0
+          OnClick = Button58Click
+        end
+        object Button59: TButton
+          Left = 128
+          Top = 78
+          Width = 75
+          Height = 20
+          Caption = #35299#23494
+          TabOrder = 1
+          OnClick = Button59Click
+        end
+        object GroupBox22: TGroupBox
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 28
+          Align = alTop
+          TabOrder = 2
+          object CheckBox57: TCheckBox
+            Left = 19
+            Top = 9
+            Width = 45
+            Height = 17
+            Caption = 'HEX'
+            Checked = True
+            State = cbChecked
+            TabOrder = 0
+            OnClick = CheckBox57Click
+          end
+          object RadioSm4: TRadioButton
+            Left = 119
+            Top = 9
+            Width = 49
+            Height = 17
+            Caption = 'SM4'
+            Checked = True
+            TabOrder = 1
+            TabStop = True
+            OnClick = RadioSm4Click
+          end
+          object RadioSm3: TRadioButton
+            Left = 169
+            Top = 9
+            Width = 50
+            Height = 17
+            Caption = 'SM3'
+            TabOrder = 2
+            OnClick = RadioSm3Click
+          end
+        end
+        object GroupBox23: TGroupBox
+          Left = 2
+          Top = 44
+          Width = 233
+          Height = 30
+          Align = alTop
+          TabOrder = 3
+          object RadioButton8: TRadioButton
+            Left = 16
+            Top = 8
+            Width = 55
+            Height = 17
+            Caption = 'ECB'
+            Checked = True
+            TabOrder = 0
+            TabStop = True
+          end
+          object RadioButton9: TRadioButton
+            Left = 120
+            Top = 8
+            Width = 57
+            Height = 17
+            Caption = 'CBC'
+            TabOrder = 1
+          end
+        end
+      end
+      object GroupBox24: TGroupBox
+        Left = 0
+        Top = 221
+        Width = 237
+        Height = 47
+        Align = alBottom
+        Caption = 'IV'
+        TabOrder = 3
+        object Edit60: TEdit
+          Left = 2
+          Top = 16
+          Width = 229
+          Height = 22
+          TabOrder = 0
+          OnChange = Edit60Change
+        end
+      end
+    end
+    object TabSheet5: TTabSheet
+      Caption = 'HASH/MD5/CRC'
+      ImageIndex = 6
+      object GroupBox25: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 237
+        Height = 369
+        Align = alClient
+        TabOrder = 0
+        object GroupBox26: TGroupBox
+          Left = 2
+          Top = 16
+          Width = 233
+          Height = 273
+          Align = alClient
+          Caption = 'data'
+          TabOrder = 0
+          object Memo11: TMemo
+            Left = 2
+            Top = 16
+            Width = 229
+            Height = 255
+            Align = alClient
+            ScrollBars = ssVertical
+            TabOrder = 0
+            OnChange = Memo11Change
+          end
+        end
+        object GroupBox27: TGroupBox
+          Left = 2
+          Top = 289
+          Width = 233
+          Height = 32
+          Align = alBottom
+          TabOrder = 1
+          object CheckBox58: TCheckBox
+            Left = 7
+            Top = 11
+            Width = 60
+            Height = 17
+            Caption = 'HEX'
+            Checked = True
+            State = cbChecked
+            TabOrder = 0
+            OnClick = CheckBox58Click
+          end
+          object RadioButton17: TRadioButton
+            Left = 65
+            Top = 11
+            Width = 55
+            Height = 17
+            Caption = 'HASH'
+            Checked = True
+            TabOrder = 1
+            TabStop = True
+          end
+          object RadioButton18: TRadioButton
+            Left = 124
+            Top = 11
+            Width = 45
+            Height = 17
+            Caption = 'MD5'
+            TabOrder = 2
+          end
+          object RadioButton19: TRadioButton
+            Left = 174
+            Top = 11
+            Width = 45
+            Height = 17
+            Caption = 'CRC'
+            TabOrder = 3
+          end
+        end
+        object GroupBox28: TGroupBox
+          Left = 2
+          Top = 321
+          Width = 233
+          Height = 46
+          Align = alBottom
+          TabOrder = 2
+          object Button57: TButton
+            Left = 17
+            Top = 14
+            Width = 75
+            Height = 25
+            Caption = #36755#20837#35745#31639
+            TabOrder = 0
+            OnClick = Button57Click
+          end
+          object Button62: TButton
+            Left = 128
+            Top = 14
+            Width = 75
+            Height = 25
+            Caption = #25991#20214#35745#31639
+            TabOrder = 1
+            OnClick = Button62Click
+          end
+        end
+      end
+    end
+    object TabSheet7: TTabSheet
+      Caption = 'XOR'
+      ImageIndex = 8
+      object GroupBox4: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 231
+        Height = 351
+        Align = alClient
+        TabOrder = 0
+        object GroupBox6: TGroupBox
+          Left = 2
+          Top = 16
+          Width = 227
+          Height = 204
+          Align = alClient
+          Caption = 'data1/data2'
+          TabOrder = 0
+          object Memo14: TMemo
+            Left = 2
+            Top = 16
+            Width = 223
+            Height = 93
+            Align = alClient
+            TabOrder = 0
+            OnChange = Memo14Change
+          end
+          object Memo15: TMemo
+            Left = 2
+            Top = 109
+            Width = 223
+            Height = 93
+            Align = alBottom
+            TabOrder = 1
+            OnChange = Memo15Change
+          end
+        end
+        object GroupBox36: TGroupBox
+          Left = 2
+          Top = 220
+          Width = 227
+          Height = 49
+          Align = alBottom
+          TabOrder = 1
+          object CheckBox54: TCheckBox
+            Left = 9
+            Top = 20
+            Width = 58
+            Height = 17
+            Caption = 'HEX'
+            TabOrder = 0
+            OnClick = CheckBox54Click
+          end
+        end
+        object GroupBox37: TGroupBox
+          Left = 2
+          Top = 269
+          Width = 227
+          Height = 80
+          Align = alBottom
+          TabOrder = 2
+          object Button64: TButton
+            Left = 16
+            Top = 53
+            Width = 75
+            Height = 20
+            Caption = #35745#31639
+            TabOrder = 0
+            OnClick = Button64Click
+          end
+          object RadioButton23: TRadioButton
+            Left = 16
+            Top = 15
+            Width = 122
+            Height = 17
+            Caption = #20004#32452#25968#25454#20301#24322#25110
+            Checked = True
+            TabOrder = 1
+            TabStop = True
+            OnClick = RadioButton23Click
+          end
+          object RadioButton24: TRadioButton
+            Left = 16
+            Top = 35
+            Width = 167
+            Height = 17
+            Caption = '8'#23383#33410#20998#32452#20301#24322#25110
+            TabOrder = 2
+            OnClick = RadioButton24Click
+          end
+        end
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'More'
+      ImageIndex = 3
+      object GroupBox15: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 231
+        Height = 351
+        Align = alClient
+        Caption = 'data'
+        TabOrder = 0
+        object Memo13: TMemo
+          Left = 2
+          Top = 16
+          Width = 227
+          Height = 173
+          Align = alClient
+          TabOrder = 0
+          OnChange = Memo13Change
+        end
+        object GroupBox16: TGroupBox
+          Left = 2
+          Top = 189
+          Width = 227
+          Height = 160
+          Align = alBottom
+          TabOrder = 1
+          object CheckBox61: TCheckBox
+            Left = 5
+            Top = 14
+            Width = 91
+            Height = 23
+            Caption = 'HEX'
+            TabOrder = 0
+            OnClick = CheckBox61Click
+          end
+          object Button5: TButton
+            Left = 152
+            Top = 57
+            Width = 75
+            Height = 23
+            Caption = 'SendFile'
+            TabOrder = 1
+            Visible = False
+            OnClick = Button5Click
+          end
+          object Button4: TButton
+            Left = 5
+            Top = 47
+            Width = 91
+            Height = 23
+            Caption = #24322#25110#21644
+            TabOrder = 2
+            OnClick = Button4Click
+          end
+          object Button3: TButton
+            Left = 131
+            Top = 46
+            Width = 91
+            Height = 23
+            Caption = #32047#21152#21644
+            TabOrder = 3
+            OnClick = Button3Click
+          end
+          object Button6: TButton
+            Left = 5
+            Top = 73
+            Width = 91
+            Height = 23
+            Caption = 'ASCII'#30721#34920
+            TabOrder = 4
+            OnClick = Button6Click
+          end
+          object Button54: TButton
+            Left = 5
+            Top = 98
+            Width = 91
+            Height = 23
+            Caption = 'HexToAscii'
+            TabOrder = 5
+            OnClick = Button54Click
+          end
+          object Button67: TButton
+            Left = 131
+            Top = 73
+            Width = 91
+            Height = 23
+            Caption = 'UTF8'#26174#31034
+            TabOrder = 6
+            OnClick = Button67Click
+          end
+          object Button11: TButton
+            Left = 131
+            Top = 99
+            Width = 91
+            Height = 23
+            Caption = 'AsciiToHex'
+            TabOrder = 7
+            OnClick = Button11Click
+          end
+          object Button14: TButton
+            Left = 5
+            Top = 124
+            Width = 91
+            Height = 25
+            Caption = #25130#22270
+            TabOrder = 8
+            OnClick = Button14Click
+          end
+          object Button15: TButton
+            Left = 131
+            Top = 124
+            Width = 91
+            Height = 25
+            Caption = #25171#24320#35745#31639#22120
+            TabOrder = 9
+            OnClick = Button15Click
+          end
+        end
+      end
+    end
   end
   object Comm1: TComm
     CommName = 'COM1'

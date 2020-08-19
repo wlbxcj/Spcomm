@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 428
-  Top = 104
+  Left = 556
+  Top = 62
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
@@ -519,7 +519,7 @@ object Form1: TForm1
       Top = 16
       Width = 239
       Height = 380
-      ActivePage = ts2
+      ActivePage = TabSheet1
       Align = alClient
       ParentShowHint = False
       ShowHint = False
@@ -3346,25 +3346,25 @@ object Form1: TForm1
             Caption = 'K3'
           end
           object Label2: TLabel
-            Left = 202
+            Left = 212
             Top = 37
             Width = 7
             Height = 14
           end
           object Label3: TLabel
-            Left = 202
+            Left = 212
             Top = 62
             Width = 7
             Height = 14
           end
           object Label5: TLabel
-            Left = 202
+            Left = 212
             Top = 86
             Width = 7
             Height = 14
           end
           object Label6: TLabel
-            Left = 202
+            Left = 212
             Top = 109
             Width = 7
             Height = 14
@@ -3372,7 +3372,7 @@ object Form1: TForm1
           object Edit50: TEdit
             Left = 28
             Top = 32
-            Width = 169
+            Width = 180
             Height = 22
             TabOrder = 0
             OnChange = Edit50Change
@@ -3380,7 +3380,7 @@ object Form1: TForm1
           object Edit51: TEdit
             Left = 27
             Top = 57
-            Width = 169
+            Width = 180
             Height = 22
             Color = clScrollBar
             Enabled = False
@@ -3412,7 +3412,7 @@ object Form1: TForm1
           object Edit57: TEdit
             Left = 27
             Top = 105
-            Width = 169
+            Width = 180
             Height = 22
             Color = clScrollBar
             Enabled = False
@@ -3422,7 +3422,7 @@ object Form1: TForm1
           object Edit58: TEdit
             Left = 27
             Top = 81
-            Width = 169
+            Width = 180
             Height = 22
             Color = clScrollBar
             Enabled = False
@@ -3631,31 +3631,31 @@ object Form1: TForm1
               Caption = 'IV'
             end
             object Label7: TLabel
-              Left = 208
+              Left = 210
               Top = 13
               Width = 7
               Height = 14
             end
             object Label8: TLabel
-              Left = 208
+              Left = 210
               Top = 37
               Width = 7
               Height = 14
             end
             object Label29: TLabel
-              Left = 208
+              Left = 210
               Top = 60
               Width = 7
               Height = 14
             end
             object Label30: TLabel
-              Left = 208
+              Left = 210
               Top = 84
               Width = 7
               Height = 14
             end
             object Label31: TLabel
-              Left = 208
+              Left = 210
               Top = 108
               Width = 7
               Height = 14
@@ -3663,7 +3663,7 @@ object Form1: TForm1
             object Edit52: TEdit
               Left = 28
               Top = 8
-              Width = 177
+              Width = 180
               Height = 22
               Hint = '8 bytes'
               TabOrder = 0
@@ -3672,7 +3672,7 @@ object Form1: TForm1
             object Edit53: TEdit
               Left = 28
               Top = 32
-              Width = 177
+              Width = 180
               Height = 22
               TabOrder = 1
               OnChange = Edit53Change
@@ -3680,7 +3680,7 @@ object Form1: TForm1
             object Edit54: TEdit
               Left = 28
               Top = 55
-              Width = 177
+              Width = 180
               Height = 22
               Hint = '8 bytes'
               Color = clScrollBar
@@ -3693,7 +3693,7 @@ object Form1: TForm1
             object Edit55: TEdit
               Left = 28
               Top = 80
-              Width = 177
+              Width = 180
               Height = 22
               Color = clScrollBar
               Enabled = False
@@ -3703,7 +3703,7 @@ object Form1: TForm1
             object Edit56: TEdit
               Left = 28
               Top = 104
-              Width = 177
+              Width = 180
               Height = 22
               Color = clScrollBar
               Enabled = False
@@ -3806,6 +3806,8 @@ object Form1: TForm1
               Width = 97
               Height = 17
               Caption = 'HEX'
+              Checked = True
+              State = cbChecked
               TabOrder = 4
               OnClick = CheckBox59Click
             end

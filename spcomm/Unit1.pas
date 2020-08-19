@@ -1749,7 +1749,7 @@ begin
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
-     //ShowMessage('RichEdit1.Font.style = ' + IntToStr(BYte(RichEdit1.Font.style)));
+     N20m1.Click;
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
 
      InitializeCriticalSection(CS);  //³õÊ¼»¯
@@ -1851,7 +1851,7 @@ procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
 var
     j,i,len:integer;
     date_str, data_str:string;
-    rbuf:array[0..5000] of byte;
+    rbuf:array[0..50000] of byte;
     pc:PChar;
     prstr:pointer;
 begin
@@ -1907,7 +1907,9 @@ begin
                 if Length(Memo1.Lines[Memo1.Lines.Count-1]) = 21 then
                     Memo1.Lines[Memo1.Lines.Count-1] := date_str + data_str
                 else
+                begin
                     Memo1.Lines.Add(date_str + data_str);
+                end
             end
             else
             begin
@@ -1929,10 +1931,11 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-   i ,j,TextLen: Integer;
+   i ,j,TextLen, cnt: Integer;
    //aucBuf : array[0..4096] of byte;
    SendBuf : string;
    strbuf : string;
+   PC :PChar;
    result : DWORD;
 begin
     TextLen := Length(Memo2.Text);
@@ -1984,19 +1987,34 @@ begin
            check_result.caption :=  inttohex(Result, 8);
        end;
     end;
-    comm1.writecommdata(pchar(sendbuf), TextLen);
+    //comm1.writecommdata(pchar(sendbuf), TextLen);
     if CheckBox6.Checked = true then
     begin
-        strbuf := #13;
-        comm1.writecommdata(pchar(strbuf), 1);
+        sendbuf := sendbuf + #13;
+        //strbuf := #13;
+        //comm1.writecommdata(pchar(strbuf), 1);
+        TextLen := TextLen + 1;
         SendLen := SendLen + 1;
     end;
     if CheckBox7.Checked = true then
     begin
-        strbuf := #10;
-        comm1.writecommdata(pchar(strbuf), 1);
+        sendbuf := sendbuf + #10;
+        //strbuf := #10;
+        //comm1.writecommdata(pchar(strbuf), 1);
+        TextLen := TextLen + 1;
         SendLen := SendLen + 1;
     end;
+    if Length(sendbuf) > 4096 then begin
+         cnt := (Length(sendbuf) + 4095) div 4096;
+         PC := PChar(sendbuf);
+         for i := 0 to cnt - 2 do begin
+             comm1.writecommdata(PC + i *4096, 4096);
+         end;
+         comm1.writecommdata(PC + i *4096, TextLen - i *4096);
+    end
+    else
+        comm1.writecommdata(pchar(sendbuf), TextLen);
+
     StatusBar1.Panels[0].Text := 'S:' + IntToStr(SendLen);
 end;
 

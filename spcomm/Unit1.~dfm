@@ -6,7 +6,7 @@ object Form1: TForm1
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V5.5'
+  Caption = 'Spcom V6.0'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -513,7 +513,7 @@ object Form1: TForm1
     Top = 0
     Width = 245
     Height = 398
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
@@ -4073,31 +4073,31 @@ object Form1: TForm1
       object GroupBox4: TGroupBox
         Left = 0
         Top = 0
-        Width = 231
-        Height = 351
+        Width = 237
+        Height = 369
         Align = alClient
         TabOrder = 0
         object GroupBox6: TGroupBox
           Left = 2
           Top = 16
-          Width = 227
-          Height = 204
+          Width = 233
+          Height = 222
           Align = alClient
           Caption = 'data1/data2'
           TabOrder = 0
           object Memo14: TMemo
             Left = 2
             Top = 16
-            Width = 223
-            Height = 93
+            Width = 229
+            Height = 111
             Align = alClient
             TabOrder = 0
             OnChange = Memo14Change
           end
           object Memo15: TMemo
             Left = 2
-            Top = 109
-            Width = 223
+            Top = 127
+            Width = 229
             Height = 93
             Align = alBottom
             TabOrder = 1
@@ -4106,8 +4106,8 @@ object Form1: TForm1
         end
         object GroupBox36: TGroupBox
           Left = 2
-          Top = 220
-          Width = 227
+          Top = 238
+          Width = 233
           Height = 49
           Align = alBottom
           TabOrder = 1
@@ -4123,8 +4123,8 @@ object Form1: TForm1
         end
         object GroupBox37: TGroupBox
           Left = 2
-          Top = 269
-          Width = 227
+          Top = 287
+          Width = 233
           Height = 80
           Align = alBottom
           TabOrder = 2
@@ -4166,25 +4166,25 @@ object Form1: TForm1
       object GroupBox15: TGroupBox
         Left = 0
         Top = 0
-        Width = 231
-        Height = 351
+        Width = 237
+        Height = 369
         Align = alClient
         Caption = 'data'
         TabOrder = 0
         object Memo13: TMemo
           Left = 2
           Top = 16
-          Width = 227
-          Height = 173
+          Width = 233
+          Height = 237
           Align = alClient
           TabOrder = 0
           OnChange = Memo13Change
         end
         object GroupBox16: TGroupBox
           Left = 2
-          Top = 189
-          Width = 227
-          Height = 160
+          Top = 253
+          Width = 233
+          Height = 114
           Align = alBottom
           TabOrder = 1
           object CheckBox61: TCheckBox
@@ -4197,86 +4197,62 @@ object Form1: TForm1
             OnClick = CheckBox61Click
           end
           object Button5: TButton
-            Left = 152
-            Top = 57
-            Width = 75
+            Left = 180
+            Top = 12
+            Width = 47
             Height = 23
             Caption = 'SendFile'
             TabOrder = 1
             Visible = False
             OnClick = Button5Click
           end
-          object Button4: TButton
-            Left = 5
-            Top = 47
-            Width = 91
-            Height = 23
-            Caption = #24322#25110#21644
-            TabOrder = 2
-            OnClick = Button4Click
-          end
-          object Button3: TButton
-            Left = 131
-            Top = 46
-            Width = 91
-            Height = 23
-            Caption = #32047#21152#21644
-            TabOrder = 3
-            OnClick = Button3Click
-          end
-          object Button6: TButton
-            Left = 5
-            Top = 73
-            Width = 91
-            Height = 23
-            Caption = 'ASCII'#30721#34920
-            TabOrder = 4
-            OnClick = Button6Click
-          end
-          object Button54: TButton
-            Left = 5
-            Top = 98
-            Width = 91
-            Height = 23
-            Caption = 'HexToAscii'
-            TabOrder = 5
-            OnClick = Button54Click
-          end
-          object Button67: TButton
-            Left = 131
-            Top = 73
-            Width = 91
-            Height = 23
-            Caption = 'UTF8'#26174#31034
-            TabOrder = 6
-            OnClick = Button67Click
-          end
-          object Button11: TButton
-            Left = 131
-            Top = 99
-            Width = 91
-            Height = 23
-            Caption = 'AsciiToHex'
-            TabOrder = 7
-            OnClick = Button11Click
-          end
           object Button14: TButton
-            Left = 5
-            Top = 124
+            Left = 7
+            Top = 78
             Width = 91
             Height = 25
             Caption = #25130#22270
-            TabOrder = 8
+            TabOrder = 2
             OnClick = Button14Click
           end
           object Button15: TButton
             Left = 131
-            Top = 124
+            Top = 78
             Width = 91
             Height = 25
             Caption = #25171#24320#35745#31639#22120
-            TabOrder = 9
+            TabOrder = 3
             OnClick = Button15Click
+          end
+          object ComboBox6: TComboBox
+            Left = 7
+            Top = 43
+            Width = 145
+            Height = 22
+            ItemHeight = 14
+            ItemIndex = 0
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 4
+            Text = #24322#25110#21644
+            Items.Strings = (
+              #24322#25110#21644
+              #32047#21152#21644
+              'HexToAscii'
+              'AsciiToHex'
+              'Ascii'#30721#34920
+              'UTF8'#26174#31034
+              #36716#25442#20026'Unicode'#32534#30721
+              'Unicode'#36716'Ascii')
+          end
+          object Button17: TButton
+            Left = 157
+            Top = 45
+            Width = 66
+            Height = 20
+            Caption = #35745#31639
+            TabOrder = 5
+            OnClick = Button17Click
           end
         end
       end

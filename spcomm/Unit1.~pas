@@ -582,14 +582,10 @@ type
     GroupBox16: TGroupBox;
     CheckBox61: TCheckBox;
     Button5: TButton;
-    Button4: TButton;
-    Button3: TButton;
-    Button6: TButton;
-    Button54: TButton;
-    Button67: TButton;
-    Button11: TButton;
     Button14: TButton;
     Button15: TButton;
+    ComboBox6: TComboBox;
+    Button17: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -603,8 +599,6 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure CheckBox4Click(Sender: TObject);
@@ -753,7 +747,6 @@ type
     procedure BTSEND98Click(Sender: TObject);
     procedure BTSEND99Click(Sender: TObject);
     procedure CheckBox53Click(Sender: TObject);
-    procedure Button54Click(Sender: TObject);
     procedure Button55Click(Sender: TObject);
     procedure Button56Click(Sender: TObject);
     procedure Button57Click(Sender: TObject);
@@ -838,7 +831,6 @@ type
     procedure Memo14Change(Sender: TObject);
     procedure CheckBox54Click(Sender: TObject);
     procedure Memo15Change(Sender: TObject);
-    procedure Button67Click(Sender: TObject);
     procedure Memo2Change(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
@@ -856,7 +848,6 @@ type
     procedure MACOS1Click(Sender: TObject);
     procedure RadioSm3Click(Sender: TObject);
     procedure RadioSm4Click(Sender: TObject);
-    procedure Button11Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure N22Click(Sender: TObject);
@@ -872,6 +863,7 @@ type
     procedure MORE1Click(Sender: TObject);
     procedure N25Click(Sender: TObject);
     procedure Splitter1Paint(Sender: TObject);
+    procedure Button17Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -2185,7 +2177,7 @@ begin
     DeleteCriticalSection(CS);   //删除
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure get_add_value();
 var
     EditLen,j:Integer;
     ResultSun:Integer;
@@ -2195,8 +2187,8 @@ begin
     Inc(HexOrChar);
     ResultSun := 0;
     Resultxor := 0;
-    StrTemp := Memo13.Text;
-    if CheckBox61.Checked = True then
+    StrTemp := Form1.Memo13.Text;
+    if Form1.CheckBox61.Checked = True then
     begin
         strbuf := TwoAsciiToHex(StrTemp);
         EditLen := Length(strbuf);
@@ -2227,7 +2219,7 @@ begin
     end;
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+procedure get_xor_value();
 var
     EditLen,j:Integer;
     ResultSun:Integer;
@@ -2237,8 +2229,8 @@ begin
     Inc(HexOrChar);
     ResultSun := 0;
     Resultxor := 0;
-    StrTemp := Memo13.Text;
-    if CheckBox61.Checked = True then
+    StrTemp := Form1.Memo13.Text;
+    if Form1.CheckBox61.Checked = True then
     begin
         strbuf := TwoAsciiToHex(StrTemp);
         EditLen := Length(strbuf);
@@ -3752,7 +3744,7 @@ begin
         setwindowpos(self.handle,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE or SWP_NOSIZE);//取消窗口置顶
 end;
 
-procedure TForm1.Button54Click(Sender: TObject);
+procedure get_hextoascii();
 var
     EditLen,j:Integer;
     i:Integer;
@@ -3760,7 +3752,7 @@ var
     sendbuf,strbuf: string;
     ivtmp, iv : string;
 begin
-    strbuf :=Memo13.text;
+    strbuf :=Form1.Memo13.text;
     sendbuf := '';
     //if HexSendFlag = True then
     begin
@@ -6158,12 +6150,12 @@ begin
     end;
 end;
 
-procedure TForm1.Button67Click(Sender: TObject);
+procedure get_utf8_value();
 var
     StrTemp,strbuf: string;
 begin
-    StrTemp := Memo13.Text;
-    if CheckBox61.Checked = True then
+    StrTemp := Form1.Memo13.Text;
+    if Form1.CheckBox61.Checked = True then
     begin
         StrTemp := TwoAsciiToHex(StrTemp);
     end;
@@ -6404,13 +6396,13 @@ begin
     end;
 end;
 
-procedure TForm1.Button11Click(Sender: TObject);
+procedure get_asciitohex();
 var
     i:Integer;
     StrTemp,strbuf: string;
 begin
-    StrTemp := Memo13.Text;
-    if CheckBox61.Checked = True then
+    StrTemp := Form1.Memo13.Text;
+    if Form1.CheckBox61.Checked = True then
     begin
         StrTemp := TwoAsciiToHex(StrTemp);
     end;
@@ -6660,4 +6652,77 @@ begin
     Edit59.Width := GroupBox20.Width - 5;
     Edit60.Width := GroupBox24.Width - 5;
 end;
+
+function StrtoUnicode(Str:string):string;
+var
+    s:string;
+    i,j,k:Integer;
+    a:array of Char;
+begin
+    SetLength(a, Length(Str) * 5);
+    s:='';
+    StringToWideChar(Str,@(a[1]),500);
+    i:=1;
+    while ((a[i]<>#0) or (a[i+1]<>#0)) do
+    begin
+        j:=Integer(a[i]);
+        k:=Integer(a[i+1]);
+        s:=s+copy(Format('%X ',[k*$100+j+$10000]),2,4) + ' ';
+        i:=i+2;
+        if ((i-1) mod 16) = 0 then
+            s := s + #13+#10;
+    end;
+    Result:=s;
+end;
+
+procedure get_strtounicode();
+var
+    st:string;
+begin
+    st := StrtoUnicode(Form1.Memo13.Text);
+    Form1.Memo1.Lines.Add('Unicode(hex):');
+    Form1.Memo1.Lines.Add(st);
+end;
+// 将Unicode转化成字符
+function Unicode_str(text: string):string;
+var
+    i,len: Integer;
+    ws: WideString;
+begin
+    ws := '';
+    i := 1;
+    len := Length(text);
+    while i < len do
+    begin
+        ws := ws + Widechar(StrToInt('$' + Copy(text,i,4)));
+        i := i+4;
+    end;
+    Result := ws;
+end;
+procedure TForm1.Button17Click(Sender: TObject);
+var
+    temp : string;
+begin
+    case ComboBox6.ItemIndex of
+        0 : get_xor_value();
+        1 : get_add_value();
+        2 : get_hextoascii();
+        3 : get_asciitohex();
+        4 : form2.Show;
+        5 : get_utf8_value();
+        6 : get_strtounicode();
+        7 : begin
+              temp := TwoAsciiToHex(Memo13.Text);
+              if (temp = '') then
+                Exit;
+              temp := StringReplace(Memo13.Text, #10, '', [rfReplaceAll]);
+              temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+              temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+              temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+              Memo1.Lines.Add('String:');
+              Memo1.Lines.Add(Unicode_str(temp));
+            end
+    end;
+end;
+
 end.

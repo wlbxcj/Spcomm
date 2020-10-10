@@ -586,6 +586,7 @@ type
     Button15: TButton;
     ComboBox6: TComboBox;
     Button17: TButton;
+    CheckBox62: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -864,6 +865,8 @@ type
     procedure N25Click(Sender: TObject);
     procedure Splitter1Paint(Sender: TObject);
     procedure Button17Click(Sender: TObject);
+    procedure Memo4Change(Sender: TObject);
+    procedure CheckBox62Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -885,6 +888,7 @@ type
 
     procedure LockControls(ALock:Boolean);
     procedure DisplayRecData(buffer:array of byte; DataLen: Integer; disIP:string);
+    procedure auto_set_scrollbal_Vertical(Memo : TMemo);
   end;
 
 var
@@ -1888,6 +1892,11 @@ begin
         else
         begin
             pc:=PChar(Buffer);
+            if (CheckBox62.Checked = True) then// UTF8
+            begin
+                // utf8转换显示
+                pc:= PChar(UTF8ToAnsi(String(Buffer)));
+            end;
             //move(buffer^, pchar(rbufstr)^, bufferlength);
             if CheckBox3.Checked = True then      // time
             begin
@@ -2010,10 +2019,16 @@ end;
 
 procedure TForm1.CheckBox1Click(Sender: TObject);
 begin
-     if CheckBox1.Checked = False then
-        HexShow := False
-     else
-         HexShow := True;
+    if CheckBox1.Checked = False then
+      HexShow := False
+    else
+       HexShow := True;
+
+    if CheckBox62.Checked = True then
+    begin
+        ShowMessage('HEX和UTF8不能同时勾选');
+        CheckBox62.Checked := False;
+    end;
 end;
 
 procedure TForm1.BitBtn1Click(Sender: TObject);
@@ -2199,8 +2214,8 @@ begin
                 ResultSun := ResultSun + Integer(strbuf[j]);
             end;
             resultsun := resultsun and $00FF;
-            //Edit1.Text := 'Hex:  ' + IntToHex(ResultSun, 2);
-            Display_Info('Add: Hex: 0x' + IntToHex(resultsun, 2));
+            Display_Info('');
+            Display_Info('Add(hex): 0x' + IntToHex(resultsun, 2));
         end;
     end
     else
@@ -2211,11 +2226,8 @@ begin
             Resultxor := Resultxor + Integer(StrTemp[j]);
          end;
          Resultxor := Resultxor and $0000ff;
-         {if (HexOrChar mod 2 = 0) then
-             Edit1.Text := 'Hex:  ' + IntToHex(Resultxor, 2)
-         else
-             Edit1.Text := 'Char:  ' + Char(Resultxor); }
-         Display_Info('Add: Hex: 0x' + IntToHex(Resultxor, 2));
+         Display_Info('');
+         Display_Info('Add(hex): 0x' + IntToHex(Resultxor, 2));
     end;
 end;
 
@@ -2242,8 +2254,8 @@ begin
             end;
             resultsun := resultsun and $00FF;
             //Edit1.Text := '0x' + IntToHex(ResultSun, 2);
-            //Display_Info('Hex: 0x' + IntToHex(ResultSun, 2));
-            Display_Info('Xor: Hex: 0x' + IntToHex(resultsun, 2));
+            Display_Info('');
+            Display_Info('Xor(hex): 0x' + IntToHex(resultsun, 2));
         end;
     end
     else
@@ -2259,7 +2271,8 @@ begin
             else
                Edit1.Text := 'Char:  ' + Char(Resultxor);}
         end;
-        Display_Info('Xor: Hex: 0x' + IntToHex(Resultxor, 2));
+        Display_Info('');
+        Display_Info('Xor(hex): 0x' + IntToHex(Resultxor, 2));
     end;
 
 end;
@@ -3763,6 +3776,7 @@ begin
              //ShowMessage('非法的十六进制数');
              Exit;
         end;
+        Display_info('');
         Display_info(SendBuf);
     end
 end;
@@ -5877,6 +5891,7 @@ begin
     begin
         GroupBox19.Caption := 'data (cur len: ' + IntToStr(Length(Memo8.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo8);
 end;
 
 procedure TForm1.memo7Change(Sender: TObject);
@@ -5889,6 +5904,7 @@ begin
     begin
         GroupBox17.Caption := 'data (cur len: ' + IntToStr(Length(Memo7.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo7);
 end;
 
 procedure TForm1.Edit50Change(Sender: TObject);
@@ -5967,6 +5983,7 @@ begin
     begin
         GroupBox30.Caption := 'data (cur len: ' + IntToStr(Length(Memo12.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo12);
 end;
 
 procedure TForm1.Edit52Change(Sender: TObject);
@@ -6049,6 +6066,35 @@ begin
     begin
         GroupBox26.Caption := 'data (cur len: ' + IntToStr(Length(Memo11.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo11);
+end;
+
+procedure tForm1.auto_set_scrollbal_Vertical(Memo : TMemo);
+var
+    ContentHeight: Integer;
+    vControlCanvas: TControlCanvas;
+begin
+    vControlCanvas:= TControlCanvas.Create;
+    vControlCanvas.Control := Memo;
+    vControlCanvas.Font.Assign(Memo.Font);
+    //Canvas.Font := Memo.Font;        //canvas是memo1控件的画布，memo1显示出的东西都是画在这上面的。
+    ContentHeight := vControlCanvas.TextHeight('好');  //这句是得到单独一行文字的高度，"好"字没意义，只是随便用一字来取得当前字体下，一行文字的高度，你可以换成其它字。
+    ContentHeight := (Memo.Lines.Count+1) * ContentHeight;//这句话得到memo1中所有行的文字高度
+    if ContentHeight < Memo.Height then       //这里下面我知道.判断是否超出memo的高度
+    begin
+        if Memo.ScrollBars <> ssNone then begin
+            Memo.ScrollBars := ssNone;
+            memo.SelStart :=length(memo.Text);
+        end;
+    end
+    else
+    begin
+        if Memo.ScrollBars <> ssVertical then begin
+            Memo.ScrollBars := ssVertical;
+            memo.SelStart :=length(memo.Text);
+        end;
+    end;
+    vControlCanvas.Free;
 end;
 
 procedure TForm1.CheckBox58Click(Sender: TObject);
@@ -6066,6 +6112,7 @@ begin
     begin
         GroupBox15.Caption := 'data (cur len: ' + IntToStr(Length(Memo13.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo13);
 end;
 
 procedure TForm1.CheckBox61Click(Sender: TObject);
@@ -6092,6 +6139,7 @@ begin
     begin
         GroupBox14.Caption := 'Send (cur len: ' + IntToStr(Length(Memo5.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo5);
 end;
 
 procedure TForm1.Memo14Change(Sender: TObject);
@@ -6117,6 +6165,7 @@ begin
     begin
         GroupBox6.Caption := d1 + '/' + d2;
     end;
+    auto_set_scrollbal_Vertical(Memo14);
 end;
 
 procedure TForm1.CheckBox54Click(Sender: TObject);
@@ -6148,19 +6197,61 @@ begin
     begin
         GroupBox6.Caption := d1 + '/' + d2;
     end;
+    auto_set_scrollbal_Vertical(Memo15);
 end;
 
-procedure get_utf8_value();
+procedure get_utf8_2_gbk_value();
 var
-    StrTemp,strbuf: string;
+    StrTemp,strbuf, disstr: string;
+    i, len: Integer;
 begin
     StrTemp := Form1.Memo13.Text;
     if Form1.CheckBox61.Checked = True then
     begin
         StrTemp := TwoAsciiToHex(StrTemp);
     end;
+    strbuf := UTF8ToAnsi(StrTemp);
+    len := Length(strbuf);
+    StrTemp := '';
+    Display_Info('');
+    Display_Info('Gbk:');
+    Display_Info(strbuf);
+    for i := 0 to len -2 do
+    begin
+        StrTemp := StrTemp + IntToHex(Byte(Pointer(Integer(strbuf)+i)^),2) + ' ';
+        if (i+1) mod 16 = 0 then
+        begin
+            StrTemp := StrTemp + #13#10;
+        end;
+    end;
+    Display_Info('Gbk(hex):');
+    Display_Info(StrTemp);
+    Display_Info('');
+end;
 
-    Display_Info(UTF8ToAnsi(StrTemp));
+procedure get_gbk_2_utf8_value();
+var
+    StrTemp,strbuf: string;
+    i : integer;
+begin
+    StrTemp := Form1.Memo13.Text;
+    if Form1.CheckBox61.Checked = True then
+    begin
+        StrTemp := TwoAsciiToHex(StrTemp);
+    end;
+    strbuf := AnsiToUtf8(StrTemp);
+    StrTemp := '';
+    // 末尾多了一个空字节，去掉
+    for i := 0 to Length(strbuf)-2 do
+    begin
+        StrTemp := StrTemp + IntToHex(Byte(Pointer(Integer(strbuf)+i)^),2) + ' ';
+        if (i+1) mod 16 = 0 then
+             StrTemp := StrTemp + #13#10;
+    end;
+    Display_Info('');
+    Display_Info('Utf8(hex):');
+    Display_Info(StrTemp);
+    Display_Info('');
 end;
 
 procedure TForm1.Memo2Change(Sender: TObject);
@@ -6173,6 +6264,7 @@ begin
     begin
         GroupBoxinput.Caption := 'data (len: ' + IntToStr(Length(Memo2.text))+')';
     end;
+    auto_set_scrollbal_Vertical(Memo2);
 end;
 
 procedure TForm1.BitBtn2Click(Sender: TObject);
@@ -6418,6 +6510,7 @@ begin
                 strbuf:= strbuf + #13 + #10;
             end;
         end;
+        Display_Info('');
         Display_Info('Hex:');
         Display_Info(strbuf);
     end;
@@ -6661,7 +6754,7 @@ var
 begin
     SetLength(a, Length(Str) * 5);
     s:='';
-    StringToWideChar(Str,@(a[1]),500);
+    StringToWideChar(Str,@(a[1]),Length(Str) * 5);
     i:=1;
     while ((a[i]<>#0) or (a[i+1]<>#0)) do
     begin
@@ -6709,9 +6802,10 @@ begin
         2 : get_hextoascii();
         3 : get_asciitohex();
         4 : form2.Show;
-        5 : get_utf8_value();
-        6 : get_strtounicode();
-        7 : begin
+        5 : get_utf8_2_gbk_value();
+        6 : get_gbk_2_utf8_value();
+        7 : get_strtounicode();
+        8 : begin
               temp := TwoAsciiToHex(Memo13.Text);
               if (temp = '') then
                 Exit;
@@ -6722,6 +6816,20 @@ begin
               Memo1.Lines.Add('String:');
               Memo1.Lines.Add(Unicode_str(temp));
             end
+    end;
+end;
+
+procedure TForm1.Memo4Change(Sender: TObject);
+begin
+    auto_set_scrollbal_Vertical(Memo4);
+end;
+
+procedure TForm1.CheckBox62Click(Sender: TObject);
+begin
+    if CheckBox1.Checked = True then
+    begin
+        ShowMessage('HEX和UTF8不能同时勾选');
+        CheckBox62.Checked := False;
     end;
 end;
 

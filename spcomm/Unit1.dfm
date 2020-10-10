@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 556
-  Top = 62
+  Left = 552
+  Top = 75
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V6.0'
+  Caption = 'Spcom V6.2'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -301,7 +301,6 @@ object Form1: TForm1
           ParentFont = False
           ParentShowHint = False
           PopupMenu = pm1
-          ScrollBars = ssVertical
           ShowHint = True
           TabOrder = 0
           OnChange = Memo2Change
@@ -326,7 +325,7 @@ object Form1: TForm1
         TabOrder = 1
       end
       object CheckBox1: TCheckBox
-        Left = 70
+        Left = 69
         Top = 7
         Width = 70
         Height = 17
@@ -353,7 +352,7 @@ object Form1: TForm1
         OnClick = Button13Click
       end
       object CheckBox5: TCheckBox
-        Left = 141
+        Left = 218
         Top = 7
         Width = 75
         Height = 17
@@ -382,7 +381,7 @@ object Form1: TForm1
         OnClick = Button66Click
       end
       object CheckBox53: TCheckBox
-        Left = 215
+        Left = 293
         Top = 7
         Width = 53
         Height = 19
@@ -447,6 +446,15 @@ object Form1: TForm1
         TabOrder = 11
         Visible = False
         OnClick = CheckBox60Click
+      end
+      object CheckBox62: TCheckBox
+        Left = 139
+        Top = 7
+        Width = 79
+        Height = 17
+        Caption = 'UTF8'#26174#31034
+        TabOrder = 12
+        OnClick = CheckBox62Click
       end
     end
   end
@@ -513,7 +521,7 @@ object Form1: TForm1
     Top = 0
     Width = 245
     Height = 398
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
@@ -2964,6 +2972,7 @@ object Form1: TForm1
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          OnChange = Memo4Change
         end
       end
       object GroupBox2: TGroupBox
@@ -3989,7 +3998,6 @@ object Form1: TForm1
             Width = 229
             Height = 255
             Align = alClient
-            ScrollBars = ssVertical
             TabOrder = 0
             OnChange = Memo11Change
           end
@@ -4238,12 +4246,13 @@ object Form1: TForm1
             Items.Strings = (
               #24322#25110#21644
               #32047#21152#21644
-              'HexToAscii'
-              'AsciiToHex'
+              'Hex2Ascii'
+              'Ascii2Hex'
               'Ascii'#30721#34920
-              'UTF8'#26174#31034
-              #36716#25442#20026'Unicode'#32534#30721
-              'Unicode'#36716'Ascii')
+              'Utf8_2_Gbk'
+              'Gbk2Utf8'
+              'Gbk2Unicode'
+              'Unicode2Gbk')
           end
           object Button17: TButton
             Left = 157

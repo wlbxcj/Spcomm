@@ -521,7 +521,7 @@ object Form1: TForm1
     Top = 0
     Width = 245
     Height = 398
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
@@ -3069,40 +3069,25 @@ object Form1: TForm1
           Align = alTop
           Caption = 'Server'
           TabOrder = 1
-          object Label15: TLabel
-            Left = 8
-            Top = 13
-            Width = 63
-            Height = 14
-            Caption = #26412#26426'IP '#65306
-          end
           object Shape3: TShape
             Left = 193
-            Top = 9
+            Top = 11
             Width = 25
             Height = 17
             Brush.Color = clGray
             Shape = stCircle
           end
-          object Label12: TLabel
-            Left = 8
-            Top = 35
-            Width = 59
-            Height = 14
-            AutoSize = False
-            Caption = #31471'  '#21475' '#65306
-          end
           object Edit24: TEdit
-            Left = 65
-            Top = 8
+            Left = 5
+            Top = 12
             Width = 113
             Height = 22
             TabOrder = 0
             Text = '255.255.255.255'
           end
           object Button9: TButton
-            Left = 176
-            Top = 31
+            Left = 69
+            Top = 34
             Width = 45
             Height = 21
             Caption = #24320#21551
@@ -3110,8 +3095,8 @@ object Form1: TForm1
             OnClick = Button9Click
           end
           object Button63: TButton
-            Left = 117
-            Top = 31
+            Left = 8
+            Top = 34
             Width = 49
             Height = 21
             Caption = #33719#21462'IP'
@@ -3119,11 +3104,20 @@ object Form1: TForm1
             OnClick = Button63Click
           end
           object Edit15: TEdit
-            Left = 64
-            Top = 31
+            Left = 131
+            Top = 12
             Width = 49
             Height = 22
             TabOrder = 3
+          end
+          object Button3: TButton
+            Left = 122
+            Top = 35
+            Width = 102
+            Height = 21
+            Caption = #36716#21457#26381#21153#22120
+            TabOrder = 4
+            OnClick = Button3Click
           end
         end
         object CheckListBox1: TCheckListBox

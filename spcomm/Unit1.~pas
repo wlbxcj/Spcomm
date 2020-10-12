@@ -448,9 +448,7 @@ type
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     GroupBox40: TGroupBox;
-    Label15: TLabel;
     Shape3: TShape;
-    Label12: TLabel;
     Edit24: TEdit;
     Button9: TButton;
     Button63: TButton;
@@ -587,6 +585,7 @@ type
     ComboBox6: TComboBox;
     Button17: TButton;
     CheckBox62: TCheckBox;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -867,6 +866,7 @@ type
     procedure Button17Click(Sender: TObject);
     procedure Memo4Change(Sender: TObject);
     procedure CheckBox62Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -942,6 +942,7 @@ implementation
 uses Unit5;
 
 {$R *.dfm}
+{$R DoweiPortTool.res}
 
 function GetTwoAsciiToHexLen(Str: String): Integer;
 var
@@ -5247,18 +5248,18 @@ begin
             strIp := GetPublicIP;
             if Length(strIp) > 0 then
             begin
-              Label15.Caption := '服务器 :';
+              //Label15.Caption := '服务器 :';
               Edit24.Text := strIp;
             end
             else
             begin
-              Label15.Caption := '本地IP :';
+              //Label15.Caption := '本地IP :';
               Edit24.Text := IdIPWatch1.LocalIP;
             end;
         end
         else
         begin
-            Label15.Caption := '本地IP :';
+            //Label15.Caption := '本地IP :';
             Edit24.Text := IdIPWatch1.LocalIP;
         end;
 end;
@@ -6226,6 +6227,7 @@ begin
     end;
     Display_Info('Gbk(hex):');
     Display_Info(StrTemp);
+    Display_Info('');
 end;
 
 procedure get_gbk_2_utf8_value();
@@ -6250,6 +6252,7 @@ begin
     Display_Info('');
     Display_Info('Utf8(hex):');
     Display_Info(StrTemp);
+    Display_Info('');
 end;
 
 procedure TForm1.Memo2Change(Sender: TObject);
@@ -6790,6 +6793,7 @@ begin
     end;
     Result := ws;
 end;
+
 procedure TForm1.Button17Click(Sender: TObject);
 var
     temp : string;
@@ -6829,6 +6833,28 @@ begin
         ShowMessage('HEX和UTF8不能同时勾选');
         CheckBox62.Checked := False;
     end;
+end;
+
+procedure DoweiPortTool();
+var
+  t : TResourceStream;
+begin
+    if FileExists('DoweiPortTool.exe') then
+        WinExec('DoweiPortTool.exe',Sw_normal)
+    else
+    begin
+        try
+            t := TResourceStream.Create(HInstance,'AEXE','EXEFILE'); //其中HInstance为一个句柄常量；rwww为资源名；exefile为资源类型
+            t.SaveToFile('DoweiPortTool.exe');
+        finally
+            t.free;
+        end;
+        WinExec('DoweiPortTool.exe',Sw_normal);
+    end;
+end;
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+    DoweiPortTool();
 end;
 
 end.

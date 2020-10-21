@@ -581,11 +581,11 @@ type
     CheckBox61: TCheckBox;
     Button5: TButton;
     Button14: TButton;
-    Button15: TButton;
     ComboBox6: TComboBox;
     Button17: TButton;
     CheckBox62: TCheckBox;
     Button3: TButton;
+    Button4: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -849,7 +849,6 @@ type
     procedure RadioSm3Click(Sender: TObject);
     procedure RadioSm4Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
-    procedure Button15Click(Sender: TObject);
     procedure N22Click(Sender: TObject);
     procedure N23Click(Sender: TObject);
     procedure String1Click(Sender: TObject);
@@ -867,6 +866,7 @@ type
     procedure Memo4Change(Sender: TObject);
     procedure CheckBox62Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -6587,11 +6587,6 @@ begin
 end;
 
 
-procedure TForm1.Button15Click(Sender: TObject);
-begin
-    WinExec('calc.exe',SW_SHOWNORMAL);
-end;
-
 procedure TForm1.N22Click(Sender: TObject);
 begin
     //Memo2.SelectAll;
@@ -6855,6 +6850,19 @@ end;
 procedure TForm1.Button3Click(Sender: TObject);
 begin
     DoweiPortTool();
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+    if FileExists('Image2Lcd\Img2Lcd.exe') then
+    begin
+        Display_Info('注册码：0000-0000-0000-0000-6A3B');
+        WinExec('Image2Lcd\Img2Lcd',Sw_normal)
+    end
+    else
+    begin
+        ShowMessage('未发现Img2Lcd可执行文件，可重新安装修复');
+    end;
 end;
 
 end.

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 552
-  Top = 75
+  Left = 536
+  Top = 85
   Width = 700
   Height = 573
   HorzScrollBar.Range = 633
@@ -521,7 +521,7 @@ object Form1: TForm1
     Top = 0
     Width = 245
     Height = 398
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
@@ -4190,9 +4190,9 @@ object Form1: TForm1
           Align = alBottom
           TabOrder = 1
           object CheckBox61: TCheckBox
-            Left = 5
-            Top = 14
-            Width = 91
+            Left = 3
+            Top = 9
+            Width = 52
             Height = 23
             Caption = 'HEX'
             TabOrder = 0
@@ -4209,7 +4209,7 @@ object Form1: TForm1
             OnClick = Button5Click
           end
           object Button14: TButton
-            Left = 7
+            Left = 11
             Top = 78
             Width = 91
             Height = 25
@@ -4217,25 +4217,16 @@ object Form1: TForm1
             TabOrder = 2
             OnClick = Button14Click
           end
-          object Button15: TButton
-            Left = 131
-            Top = 78
-            Width = 91
-            Height = 25
-            Caption = #25171#24320#35745#31639#22120
-            TabOrder = 3
-            OnClick = Button15Click
-          end
           object ComboBox6: TComboBox
-            Left = 7
-            Top = 43
-            Width = 145
+            Left = 11
+            Top = 39
+            Width = 116
             Height = 22
             ItemHeight = 14
             ItemIndex = 0
             ParentShowHint = False
             ShowHint = True
-            TabOrder = 4
+            TabOrder = 3
             Text = #24322#25110#21644
             Items.Strings = (
               #24322#25110#21644
@@ -4249,13 +4240,22 @@ object Form1: TForm1
               'Unicode2Gbk')
           end
           object Button17: TButton
-            Left = 157
-            Top = 45
+            Left = 151
+            Top = 39
             Width = 66
             Height = 20
             Caption = #35745#31639
-            TabOrder = 5
+            TabOrder = 4
             OnClick = Button17Click
+          end
+          object Button4: TButton
+            Left = 130
+            Top = 78
+            Width = 91
+            Height = 25
+            Caption = 'Img2Lcd'
+            TabOrder = 5
+            OnClick = Button4Click
           end
         end
       end

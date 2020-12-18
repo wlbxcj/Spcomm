@@ -9,13 +9,14 @@ uses
   Unit5 in 'Unit5.pas',
   Unit7 in 'Unit7.pas' {Form6},
   util_utf8 in 'util_utf8.pas',
-  Unit8 in 'Unit8.pas' {Form8};
+  Unit8 in 'Unit8.pas' {Form8},
+  SortThds in 'SortThds.pas';
 
 {$R *.res}
 {$R manage.res}
 begin
   Application.Initialize;
-  Application.Title := 'Spcom V6.1';
+  Application.Title := 'Spcom V6.3';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm6, Form6);

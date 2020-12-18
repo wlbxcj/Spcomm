@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 536
-  Top = 85
-  Width = 700
-  Height = 573
+  Left = 343
+  Top = 56
+  Width = 695
+  Height = 628
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V6.2'
+  Caption = 'Spcom V6.3'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -20,19 +20,29 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 14
   object Splitter1: TSplitter
-    Left = 446
+    Left = 686
     Top = 0
     Width = 1
-    Height = 398
+    Height = 450
     Align = alRight
     OnPaint = Splitter1Paint
   end
+  object Splitter2: TSplitter
+    Left = 0
+    Top = 450
+    Width = 687
+    Height = 2
+    Cursor = crVSplit
+    Align = alBottom
+    OnPaint = Splitter2Paint
+  end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 398
-    Width = 692
-    Height = 124
+    Top = 452
+    Width = 687
+    Height = 142
     Align = alBottom
+    Constraints.MinHeight = 70
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -1
@@ -43,8 +53,8 @@ object Form1: TForm1
     object TGroupBox
       Left = 2
       Top = 5
-      Width = 233
-      Height = 117
+      Width = 230
+      Height = 118
       Align = alLeft
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -235,11 +245,11 @@ object Form1: TForm1
       end
     end
     object DataCtlBox: TGroupBox
-      Left = 235
+      Left = 232
       Top = 5
-      Width = 455
-      Height = 117
-      Align = alClient
+      Width = 450
+      Height = 118
+      Align = alLeft
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -275,8 +285,8 @@ object Form1: TForm1
       end
       object GroupBoxinput: TGroupBox
         Left = 2
-        Top = 43
-        Width = 451
+        Top = 44
+        Width = 446
         Height = 72
         Align = alBottom
         Font.Charset = ANSI_CHARSET
@@ -289,7 +299,7 @@ object Form1: TForm1
         object Memo2: TMemo
           Left = 2
           Top = 16
-          Width = 447
+          Width = 442
           Height = 54
           Hint = #21452#20987#21487#21457#36865#25991#20214
           Align = alClient
@@ -457,76 +467,76 @@ object Form1: TForm1
         OnClick = CheckBox62Click
       end
     end
-  end
-  object GroupBox5: TGroupBox
-    Left = 0
-    Top = 522
-    Width = 692
-    Height = 17
-    Align = alBottom
-    TabOrder = 1
-    object Label1: TLabel
-      Left = 1
-      Top = 3
-      Width = 0
-      Height = 14
-      AutoSize = False
-      Color = clBtnFace
-      ParentColor = False
-    end
-    object StatusBar1: TStatusBar
+    object GroupBox5: TGroupBox
       Left = 2
-      Top = -3
-      Width = 688
-      Height = 18
-      Panels = <
-        item
-          Text = 'S:0'
-          Width = 100
-        end
-        item
-          Text = 'R:0'
-          Width = 100
-        end
-        item
-          Text = 'COM '#26410#25171#24320
-          Width = 200
-        end
-        item
-          BiDiMode = bdLeftToRight
-          ParentBiDiMode = False
-          Text = 'https://github.com/wlbxcj/Spcomm'
-          Width = 100
-        end>
-      SimpleText = 'werrqwer'
-      OnMouseMove = StatusBar1MouseMove
+      Top = 123
+      Width = 683
+      Height = 17
+      Align = alBottom
+      TabOrder = 2
+      object Label1: TLabel
+        Left = 1
+        Top = 3
+        Width = 0
+        Height = 14
+        AutoSize = False
+        Color = clBtnFace
+        ParentColor = False
+      end
+      object StatusBar1: TStatusBar
+        Left = 2
+        Top = -3
+        Width = 679
+        Height = 18
+        Panels = <
+          item
+            Text = 'S:0'
+            Width = 100
+          end
+          item
+            Text = 'R:0'
+            Width = 100
+          end
+          item
+            Text = 'COM '#26410#25171#24320
+            Width = 200
+          end
+          item
+            BiDiMode = bdLeftToRight
+            ParentBiDiMode = False
+            Text = 'https://github.com/wlbxcj/Spcomm'
+            Width = 100
+          end>
+        SimpleText = 'werrqwer'
+        OnMouseMove = StatusBar1MouseMove
+      end
     end
   end
   object Memo1: TMemo
     Left = 0
     Top = 0
-    Width = 446
-    Height = 398
+    Width = 441
+    Height = 450
     Align = alClient
     ParentShowHint = False
     PopupMenu = PopupMenu1
     ReadOnly = True
     ScrollBars = ssVertical
     ShowHint = False
-    TabOrder = 2
+    TabOrder = 1
     WordWrap = False
   end
   object PageControl2: TPageControl
-    Left = 447
+    Left = 441
     Top = 0
     Width = 245
-    Height = 398
-    ActivePage = TabSheet3
+    Height = 450
+    ActivePage = TabSheet1
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
     object TabSheet1: TTabSheet
       Caption = 'String'
@@ -583,7 +593,7 @@ object Form1: TForm1
         Left = 0
         Top = 28
         Width = 237
-        Height = 341
+        Height = 393
         VertScrollBar.Range = 2200
         VertScrollBar.Smooth = True
         VertScrollBar.Tracking = True
@@ -2955,7 +2965,7 @@ object Form1: TForm1
         Left = 0
         Top = 212
         Width = 237
-        Height = 116
+        Height = 168
         Align = alClient
         Caption = 'Send'
         TabOrder = 2
@@ -2977,7 +2987,7 @@ object Form1: TForm1
       end
       object GroupBox2: TGroupBox
         Left = 0
-        Top = 328
+        Top = 380
         Width = 237
         Height = 41
         Align = alBottom
@@ -3019,13 +3029,13 @@ object Form1: TForm1
         Left = 0
         Top = 0
         Width = 237
-        Height = 166
+        Height = 218
         Align = alTop
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
         object GroupBox38: TGroupBox
           Left = 2
-          Top = 132
+          Top = 184
           Width = 233
           Height = 32
           Align = alBottom
@@ -3124,7 +3134,7 @@ object Form1: TForm1
           Left = 2
           Top = 73
           Width = 233
-          Height = 59
+          Height = 111
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -3139,7 +3149,7 @@ object Form1: TForm1
       end
       object GroupBox13: TGroupBox
         Left = 0
-        Top = 166
+        Top = 218
         Width = 237
         Height = 57
         Align = alTop
@@ -3193,7 +3203,7 @@ object Form1: TForm1
       end
       object GroupBox14: TGroupBox
         Left = 0
-        Top = 223
+        Top = 275
         Width = 237
         Height = 146
         Align = alClient
@@ -4169,7 +4179,7 @@ object Form1: TForm1
         Left = 0
         Top = 0
         Width = 237
-        Height = 369
+        Height = 421
         Align = alClient
         Caption = 'data'
         TabOrder = 0
@@ -4177,14 +4187,14 @@ object Form1: TForm1
           Left = 2
           Top = 16
           Width = 233
-          Height = 237
+          Height = 289
           Align = alClient
           TabOrder = 0
           OnChange = Memo13Change
         end
         object GroupBox16: TGroupBox
           Left = 2
-          Top = 253
+          Top = 305
           Width = 233
           Height = 114
           Align = alBottom
@@ -4289,7 +4299,7 @@ object Form1: TForm1
     WriteTotalTimeoutMultiplier = 0
     WriteTotalTimeoutConstant = 0
     OnReceiveData = Comm1ReceiveData
-    Left = 21
+    Left = 22
     Top = 217
   end
   object SaveDialog1: TSaveDialog

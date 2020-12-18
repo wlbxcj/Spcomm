@@ -10,16 +10,14 @@ uses
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
-  SM, Jpeg, SCapture,ScrnCap, ImgList;
+  SM, Jpeg, SCapture,ScrnCap, ImgList,Contnrs;
 
 type
   TForm1 = class(TForm)
     Comm1: TComm;
     GroupBox1: TGroupBox;
-    GroupBox5: TGroupBox;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
-    StatusBar1: TStatusBar;
     Timer1: TTimer;
     Timer2: TTimer;
     PopupMenu1: TPopupMenu;
@@ -65,7 +63,6 @@ type
     Button7: TButton;
     Button66: TButton;
     GroupBoxinput: TGroupBox;
-    Label1: TLabel;
     N7: TMenuItem;
     N8: TMenuItem;
     N1K1ms1: TMenuItem;
@@ -586,6 +583,10 @@ type
     CheckBox62: TCheckBox;
     Button3: TButton;
     Button4: TButton;
+    Splitter2: TSplitter;
+    GroupBox5: TGroupBox;
+    Label1: TLabel;
+    StatusBar1: TStatusBar;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -867,6 +868,7 @@ type
     procedure CheckBox62Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Splitter2Paint(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -877,8 +879,10 @@ type
     ServerThread: TIdPeerThread;
     FList: TList;
     myThread: TThread;
+    ComThread: TThread;
     ID: DWORD;
     MythreadHandle : THandle;
+    ComthreadHandle : THandle;
 
     CurrentDevice: TJvHidDevice;
     procedure AddToHistory(Str: string);
@@ -889,6 +893,12 @@ type
     procedure LockControls(ALock:Boolean);
     procedure DisplayRecData(buffer:array of byte; DataLen: Integer; disIP:string);
     procedure auto_set_scrollbal_Vertical(Memo : TMemo);
+  end;
+
+  PComData = ^TComData;
+  TComData = record
+    len: Integer;
+    buf:array[0..50000] of byte;
   end;
 
 var
@@ -918,6 +928,7 @@ var
   ReplaceCrLfStr  : string = #13;         // 无意义换行符
   RealCrLfStr     : string = #10;         // 需要替换掉的换行符
   FinalCrLfStr    : string = #13#10;      // 最终的换行符
+  ComQueue: TQueue;
 
 const
   strHexTable =
@@ -1380,6 +1391,89 @@ begin
     end;
 end;
 
+procedure deal_com_data(buffer:Pointer ;BufferLength:Integer);
+//begin
+// Sort(Slice(FSortArray^, FSize));
+var
+    j,i,len:integer;
+    date_str, data_str:string;
+    rbuf:array[0..50000] of byte;
+    pc:PChar;
+    prstr:pointer;
+    viewstring: string;
+begin
+    viewstring := '' ;
+    len:=BufferLength;
+    prstr:=buffer;
+    if form1.CheckBox3.Checked = True then    // TIME
+    begin
+        date_str:= '[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ';
+    end;
+
+    if form1.CheckBox1.Checked = True then   // hex
+    begin
+         Form1.Memo1.Lines.Add(date_str);
+         //prstr:=buffer;
+         for i:=0 to len - 1 do
+         begin
+             viewstring:= viewstring + IntToHex(Byte(Pointer(Integer(prstr)+i)^),2) + ' ' ;
+             if (i + 1) mod 16 = 0 then
+             begin
+                 viewstring:= viewstring + #13 + #10;
+             end;
+         end;
+         form1.Memo1.Lines.Add(viewstring);
+    end
+    else
+    begin
+        pc:=PChar(Buffer);
+        if (form1.CheckBox62.Checked = True) then// UTF8
+        begin
+            // utf8转换显示
+            pc:= PChar(UTF8ToAnsi(String(pc)));
+        end;
+        //move(buffer^, pchar(rbufstr)^, bufferlength);
+        if form1.CheckBox3.Checked = True then      // time
+        begin
+            data_str := StringReplace(string(pc), ReplaceCrLfStr, '', [rfReplaceAll]);
+            data_str := StringReplace(data_str, RealCrLfStr, #13#10+date_str, [rfReplaceAll]);
+            // 末尾有换行的话，会多出一行时间，下次数据来时替换掉
+            if Length(Form1.Memo1.Lines[Form1.Memo1.Lines.Count-1]) = 21 then
+                Form1.Memo1.Lines[Form1.Memo1.Lines.Count-1] := date_str + data_str
+            else
+            begin
+                Form1.Memo1.Lines.Add(date_str + data_str);
+            end
+        end
+        else
+        begin
+            Form1.Memo1.Lines[Form1.Memo1.Lines.Count-1] := Form1.Memo1.Lines[Form1.Memo1.Lines.Count-1] + String(pc);
+        end;
+    end;
+    //FreeMemory(Buffer);
+end;
+
+function ComThreadFun(P: Pointer):Integer;stdcall;
+var
+  cdata: PComData;
+  d:Integer;
+begin
+    while True do
+    begin
+        //d := ComQueue;
+        if comqueue.Count > 0 then
+        begin
+          //New(cdata);
+          cdata:= comqueue.Pop;
+          deal_com_data(@cdata^.buf, cdata^.len);
+          //Form1.Memo1.Lines.Add(string(@cdata^.buf));
+          Dispose(cdata);
+        end;
+        //Form1.Memo1.Lines.Add(IntToStr(d));
+        Sleep(1);
+    end;
+end;
+
 procedure   TForm1.WMSysCommand(var   Msg:   TMessage);
 begin
     case   Msg.WParam   of
@@ -1570,7 +1664,7 @@ begin
               CheckBox4.Enabled := True;
               CheckBox8.Enabled := True;
               Timer5.Interval := 6000;
-
+              ResumeThread(ComthreadHandle);
               StatusBar1.Panels[2].Text := Comm1.CommName + ' 已打开 ' +  ComboBox2.text +','+ComboBox3.Items[ComboBox3.itemindex]+','+ str_tmp+',1';
          end;
      end
@@ -1589,6 +1683,7 @@ begin
           Timer3.Enabled := False;
           //TotalComNum := 0;
           Timer5.Interval := 1000;
+          SuspendThread(ComthreadHandle); //挂起线程
           StatusBar1.Panels[2].Text := Comm1.CommName + ' 已关闭 ' +  ComboBox2.text +','+ComboBox3.Items[ComboBox3.itemindex]+','+ str_tmp+',1';
      end;
 end;
@@ -1744,9 +1839,11 @@ begin
      end;
      MyIniFile.Destroy;
      GetComListFromReg();
-     N20m1.Click;
+     //N20m1.Click;
+     N1.Click;
+     ComQueue := TQueue.Create;
      Mythreadhandle := CreateThread(nil, 0, @MyThreadFun, nil, CREATE_SUSPENDED, ID);
-
+     Comthreadhandle := CreateThread(nil, 0, @ComThreadFun, nil, CREATE_SUSPENDED, ID);
      InitializeCriticalSection(CS);  //初始化
 end;
 
@@ -1841,14 +1938,18 @@ begin
     Result[1] := P^; Inc(P);
     Result[2] := P^;
 end;
+
 procedure TForm1.Comm1ReceiveData(Sender: TObject; Buffer: Pointer;
   BufferLength: Word);
 var
     j,i,len:integer;
     date_str, data_str:string;
-    rbuf:array[0..50000] of byte;
+    //rbuf:array[0..50000] of byte;
+    //rbuf2:array[0..50000] of byte;
     pc:PChar;
+    pc2:PChar;
     prstr:pointer;
+    cdata: PComData;
 begin
     put_raw_data(Buffer, BufferLength);   // 原始数据保存
     if CheckBox5.Checked = True then
@@ -1862,9 +1963,21 @@ begin
     end
     else
     begin
+        New(cdata);
+        cdata^.len := BufferLength;
+        fillchar(pchar(@cdata^.buf)^,BufferLength+10,0);
+        move(buffer^, pchar(@cdata^.buf)^, BufferLength);
+        try
+          comqueue.Push(cdata);
+        except
+          on e: Exception do
+          begin
+            ShowMessage(e.Message);
+          end;
+        end;
+        RecLen := RecLen + BufferLength;
         Timer5.Enabled := False;
-
-        viewstring := '' ;
+        {viewstring := '' ;
         len:=BufferLength;
         //setlength(rbufstr, len);
         RecLen := RecLen + len;
@@ -1915,7 +2028,7 @@ begin
             begin
                 Memo1.Lines[Memo1.Lines.Count-1] := Memo1.Lines[Memo1.Lines.Count-1] + String(pc);
             end;
-        end;
+        end;}
         StatusBar1.Panels[1].Text := 'R:' + IntToStr(RecLen);
 
         Timer5.Enabled := True;
@@ -2189,6 +2302,7 @@ begin
     MyIniFile.Destroy;
 
     TerminateThread(MythreadHandle, 0); //　终止线程
+    TerminateThread(ComthreadHandle, 0); //　终止线程
 
     DeleteCriticalSection(CS);   //删除
 end;
@@ -5518,17 +5632,14 @@ procedure TForm1.Button66Click(Sender: TObject);
 begin
      if Button66.Caption = '折叠↓' then
      begin
-        GroupBox1.Height := 50;
+        GroupBox1.Height := 142-72;
         Button66.Caption := '展开↑';
-        GroupBoxinput.Visible := False;
+
      end
      else
      begin
         Button66.Caption := '折叠↓';
-        GroupBox1.Height := 124;
-        GroupBox1.Align := alTop;
-        GroupBox1.Align := alBottom;
-        GroupBoxinput.Visible := True;
+        GroupBox1.Height := 142;
      end;
 end;
 
@@ -6863,6 +6974,11 @@ begin
     begin
         ShowMessage('未发现Img2Lcd可执行文件，可重新安装修复');
     end;
+end;
+
+procedure TForm1.Splitter2Paint(Sender: TObject);
+begin
+    GroupBoxinput.Height := GroupBox1.Height - (142-72);
 end;
 
 end.

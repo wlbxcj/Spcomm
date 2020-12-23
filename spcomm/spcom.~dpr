@@ -9,8 +9,7 @@ uses
   Unit5 in 'Unit5.pas',
   Unit7 in 'Unit7.pas' {Form6},
   util_utf8 in 'util_utf8.pas',
-  Unit8 in 'Unit8.pas' {Form8},
-  SortThds in 'SortThds.pas';
+  Unit8 in 'Unit8.pas' {Form8};
 
 {$R *.res}
 {$R manage.res}

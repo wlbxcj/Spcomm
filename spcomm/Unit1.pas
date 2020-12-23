@@ -10,7 +10,8 @@ uses
   IdBaseComponent, IdComponent, IdTCPServer, JvHidControllerClass, CheckLst,
   Mask, winsock, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
-  SM, Jpeg, SCapture,ScrnCap, ImgList,Contnrs;
+  SM, Jpeg, SCapture,ScrnCap, ImgList,Contnrs, IdUDPClient, IdUDPBase,
+  IdUDPServer, IdSocketHandle;
 
 type
   TForm1 = class(TForm)
@@ -587,6 +588,39 @@ type
     GroupBox5: TGroupBox;
     Label1: TLabel;
     StatusBar1: TStatusBar;
+    TabSheet8: TTabSheet;
+    GroupBox7: TGroupBox;
+    GroupBox39: TGroupBox;
+    CheckBox63: TCheckBox;
+    RadioButton25: TRadioButton;
+    RadioButton26: TRadioButton;
+    GroupBox41: TGroupBox;
+    Shape2: TShape;
+    Edit1: TEdit;
+    Button6: TButton;
+    Button11: TButton;
+    Edit5: TEdit;
+    GroupBox42: TGroupBox;
+    Label12: TLabel;
+    Label15: TLabel;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    GroupBox43: TGroupBox;
+    Memo6: TMemo;
+    IdUDPServer1: TIdUDPServer;
+    IdUDPClient1: TIdUDPClient;
+    Timer6: TTimer;
+    GroupBox44: TGroupBox;
+    Button18: TButton;
+    Label34: TLabel;
+    Edit8: TEdit;
+    CheckBox64: TCheckBox;
+    RadioButton28: TRadioButton;
+    Label16: TLabel;
+    CheckBox65: TCheckBox;
+    RadioButton27: TRadioButton;
+    UDP1: TMenuItem;
+    Button15: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -654,8 +688,11 @@ type
     procedure IdTCPClient1Disconnected(Sender: TObject);
     procedure IdTCPServer1Disconnect(AThread: TIdPeerThread);
     procedure Button12Click(Sender: TObject);
+    procedure Button18Click(Sender: TObject);
     procedure CheckBox25Click(Sender: TObject);
-    procedure CheckBox27Click(Sender: TObject);
+    procedure CheckBox63Click(Sender: TObject);
+    procedure CheckBox65Click5(Sender: TObject);
+    procedure CheckBox65Click(Sender: TObject);
     procedure Timer4Timer(Sender: TObject);
     procedure Edit23KeyPress(Sender: TObject; var Key: Char);
     procedure TcpClient1Receive(Sender: TObject; Buf: PAnsiChar;
@@ -771,6 +808,7 @@ type
     procedure RadioButton15Click(Sender: TObject);
     procedure RadioButton16Click(Sender: TObject);
     procedure Button63Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
     procedure shape1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure Button64Click(Sender: TObject);
@@ -828,7 +866,9 @@ type
     procedure Memo13Change(Sender: TObject);
     procedure CheckBox61Click(Sender: TObject);
     procedure CheckBox26Click(Sender: TObject);
+    procedure CheckBox64Click(Sender: TObject);
     procedure Memo5Change(Sender: TObject);
+    procedure Memo6Change(Sender: TObject);
     procedure Memo14Change(Sender: TObject);
     procedure CheckBox54Click(Sender: TObject);
     procedure Memo15Change(Sender: TObject);
@@ -869,6 +909,11 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Splitter2Paint(Sender: TObject);
+    procedure IdUDPServer1UDPRead(Sender: TObject; AData: TStream;
+      ABinding: TIdSocketHandle);
+    procedure Timer6Timer(Sender: TObject);
+    procedure UDP1Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -1460,16 +1505,12 @@ var
 begin
     while True do
     begin
-        //d := ComQueue;
         if comqueue.Count > 0 then
         begin
-          //New(cdata);
           cdata:= comqueue.Pop;
           deal_com_data(@cdata^.buf, cdata^.len);
-          //Form1.Memo1.Lines.Add(string(@cdata^.buf));
           Dispose(cdata);
         end;
-        //Form1.Memo1.Lines.Add(IntToStr(d));
         Sleep(1);
     end;
 end;
@@ -1765,6 +1806,12 @@ begin
           Edit22.Text := MyIniFile.ReadString('TCP', 'CLIENT_PORT',  '');
           str_tmp := MyIniFile.ReadString('TCP', 'SEND', str_tmp);
           Memo5.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
+
+          Edit5.Text := MyIniFile.ReadString('UDP', 'SERVER_PORT',  '');
+          Edit7.Text := MyIniFile.ReadString('UDP', 'CLIENT_IP',    '');
+          Edit6.Text := MyIniFile.ReadString('UDP', 'CLIENT_PORT',  '');
+          str_tmp := MyIniFile.ReadString('UDP', 'SEND', str_tmp);
+          Memo6.Text := StringReplace(str_tmp, #03#04+'@', #13#10, [rfReplaceAll]);
 
           Memo1.Font.name := MyIniFile.ReadString('DIS_PARA', 'font_name', 'Courier New');
           Memo1.Font.size := MyIniFile.ReadInteger('DIS_PARA', 'font_size', 9);
@@ -2246,6 +2293,12 @@ begin
     str_tmp := StringReplace(Memo5.Text, #13#10, #03#04+'@', [rfReplaceAll]);
     MyIniFile.WriteString('TCP', 'SEND', str_tmp);
 
+    MyIniFile.WriteString('UDP', 'SERVER_PORT', Edit5.Text);
+    MyIniFile.WriteString('UDP', 'CLIENT_IP',   Edit7.Text);
+    MyIniFile.WriteString('UDP', 'CLIENT_PORT', Edit6.Text);
+    str_tmp := StringReplace(Memo6.Text, #13#10, #03#04+'@', [rfReplaceAll]);
+    MyIniFile.WriteString('UDP', 'SEND', str_tmp);
+
     MyIniFile.WriteString('DIS_PARA', 'font_name', Memo1.Font.name);
     MyIniFile.WriteInteger('DIS_PARA', 'font_size', Memo1.Font.size);
     MyIniFile.WriteString('DIS_PARA', 'font_color', ColorToString(Memo1.Font.Color));
@@ -2303,7 +2356,6 @@ begin
 
     TerminateThread(MythreadHandle, 0); //　终止线程
     TerminateThread(ComthreadHandle, 0); //　终止线程
-
     DeleteCriticalSection(CS);   //删除
 end;
 
@@ -2514,11 +2566,6 @@ end;
 procedure TForm1.Timer2Timer(Sender: TObject);
 begin
      Button2.Click;
-end;
-
-procedure TForm1.Button6Click(Sender: TObject);
-begin
-    form2.Show;//Modal;
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
@@ -3047,6 +3094,34 @@ begin
     end;
 end;
 
+procedure TForm1.Button6Click(Sender: TObject);
+var
+    list : TList;
+    Count : Integer;
+begin
+    if Button6.Caption = '开启' then
+    begin
+        if Edit5.Text = '' then
+        begin
+            ShowMessage('请输入正确的端口');
+            Exit;
+        end;
+        IdUDPServer1.Bindings.Clear;
+        IdUDPServer1.DefaultPort := StrToInt(Edit5.Text);
+        IdUDPServer1.Active :=True; //开启服务器
+        Display_info('服务器已开启');
+        Shape2.Brush.Color := clRed;
+        Button6.Caption := '停止';
+    end
+    else
+    begin
+        IdUDPServer1.Active :=False; //开启服务器
+        Button6.Caption := '开启';
+        Display_info('服务器已停止');
+        Shape2.Brush.Color := clGray;
+    end;
+end;
+
 procedure TForm1.IdTCPServer1Execute(AThread: TIdPeerThread);
 var
    msg : string;
@@ -3318,6 +3393,65 @@ begin
     end;
 end;
 
+procedure TForm1.Button18Click(Sender: TObject);
+var
+   sm:TStringStream;
+   msize:Integer;
+
+   i ,j,TextLen: Integer;
+   aucBuf : array[0..40960] of byte;
+   SendBuf : string;
+   strbuf : string;
+   Count : Integer;
+   list : TList;
+   clientIP : string;
+   dis : string;
+begin
+    if Memo6.Text = '' then
+    begin
+        Timer6.Enabled := False;
+        CheckBox65.Checked := False;
+        ShowMessage('请先输入要发送的内容!!!');
+        Exit;
+    end;
+        
+
+    strbuf :=Memo6.text;
+    sendbuf := '';
+    // HEX
+    if CheckBox64.Checked = True then
+    begin
+          strbuf := TwoAsciiToHex(strbuf);
+          TextLen := Length(strbuf);
+          if 0 = TextLen then
+          begin
+              //ShowMessage('非法的十六进制数');
+              Timer6.Enabled := False;
+              CheckBox64.Checked := False;
+              Exit;
+          end;
+
+          for j:=0 to (TextLen - 1) do
+          begin
+              aucBuf[j] := Byte(strbuf[j + 1]);
+          end;
+    end
+    else
+    begin
+        // str
+        TextLen := Length(strbuf);
+        for j:=0 to (TextLen - 1) do
+        begin
+            aucBuf[j] := Byte(strbuf[j + 1]);
+        end;
+    end;
+
+    if Button15.Caption = '断开' then
+    begin
+        IdUDPClient1.SendBuffer(aucBuf, TextLen);
+    end;
+end;
+
 procedure TForm1.CheckBox25Click(Sender: TObject);
 begin
     if CheckBox25.Checked = True then
@@ -3332,7 +3466,21 @@ begin
     end;
 end;
 
-procedure TForm1.CheckBox27Click(Sender: TObject);
+procedure TForm1.CheckBox63Click(Sender: TObject);
+begin
+    if CheckBox63.Checked = True then
+    begin
+        RadioButton25.Enabled := True;
+        RadioButton26.Enabled := True;
+    end
+    else
+    begin
+        RadioButton25.Enabled := False;
+        RadioButton26.Enabled := False;
+    end;
+end;
+
+procedure TForm1.CheckBox65Click5(Sender: TObject);
 begin
     if CheckBox27.Checked = True then
     begin
@@ -3350,7 +3498,26 @@ begin
     begin
         Timer4.Enabled := False;
     end;
+end;
 
+procedure TForm1.CheckBox65Click(Sender: TObject);
+begin
+    if CheckBox65.Checked = True then
+    begin
+        if StrToInt(Edit8.Text) > 0 then
+        begin
+            Timer6.Interval := StrToInt(Edit8.Text) * 1000;
+            Timer6.Enabled := True;
+        end
+        else
+        begin
+            ShowMessage('请输入正确的时间间隔');
+        end;
+    end
+    else
+    begin
+        Timer6.Enabled := False;
+    end;
 end;
 
 procedure TForm1.Timer4Timer(Sender: TObject);
@@ -5378,6 +5545,11 @@ begin
         end;
 end;
 
+procedure TForm1.Button11Click(Sender: TObject);
+begin
+    Edit1.Text := IdIPWatch1.LocalIP;
+end;
+
 procedure TForm1.shape1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
@@ -6241,17 +6413,37 @@ begin
       TwoAsciiToHex(Memo5.Text);
 end;
 
+procedure TForm1.CheckBox64Click(Sender: TObject);
+begin
+    Memo6.OnChange(Sender);
+    if CheckBox64.Checked = True then
+      TwoAsciiToHex(Memo6.Text);
+end;
+
 procedure TForm1.Memo5Change(Sender: TObject);
 begin
     if CheckBox26.Checked = True then // hex
     begin
-        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo5.text))+')';
+        GroupBox14.Caption := 'Client Send (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo5.text))+')';
     end
     else
     begin
-        GroupBox14.Caption := 'Send (cur len: ' + IntToStr(Length(Memo5.text))+')';
+        GroupBox14.Caption := 'Client Send (cur len: ' + IntToStr(Length(Memo5.text))+')';
     end;
     auto_set_scrollbal_Vertical(Memo5);
+end;
+
+procedure TForm1.Memo6Change(Sender: TObject);
+begin
+    if CheckBox64.Checked = True then // hex
+    begin
+        GroupBox43.Caption := 'Client Send (cur len: ' + IntToStr(GetTwoAsciiToHexLen(Memo6.text))+')';
+    end
+    else
+    begin
+        GroupBox43.Caption := 'Client Send (cur len: ' + IntToStr(Length(Memo6.text))+')';
+    end;
+    auto_set_scrollbal_Vertical(Memo6);
 end;
 
 procedure TForm1.Memo14Change(Sender: TObject);
@@ -6749,7 +6941,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 3;
+    PageControl2.TabIndex := 4;
 end;
 
 procedure TForm1.AES1Click(Sender: TObject);
@@ -6758,7 +6950,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 4;
+    PageControl2.TabIndex := 5;
 end;
 
 procedure TForm1.SM1Click(Sender: TObject);
@@ -6767,7 +6959,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 5;
+    PageControl2.TabIndex := 6;
 end;
 
 procedure TForm1.HASH1Click(Sender: TObject);
@@ -6776,7 +6968,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 6;
+    PageControl2.TabIndex := 7;
 end;
 
 procedure TForm1.XOR1Click(Sender: TObject);
@@ -6785,7 +6977,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 7;
+    PageControl2.TabIndex := 8;
 end;
 
 procedure TForm1.MORE1Click(Sender: TObject);
@@ -6794,7 +6986,7 @@ begin
     begin
         Button13.Click;
     end;
-    PageControl2.TabIndex := 8;
+    PageControl2.TabIndex := 9;
 end;
 
 procedure TForm1.N25Click(Sender: TObject);
@@ -6851,6 +7043,10 @@ begin
     //SM///////////////////////////////////
     Edit59.Width := GroupBox20.Width - 5;
     Edit60.Width := GroupBox24.Width - 5;
+
+    Edit6.Width := GroupBox42.Width - (237-140);
+    Edit7.Width := GroupBox42.Width - (237-140);
+    Button15.Left := GroupBox42.Width - (237 - 196);
 end;
 
 function StrtoUnicode(Str:string):string;
@@ -6979,6 +7175,85 @@ end;
 procedure TForm1.Splitter2Paint(Sender: TObject);
 begin
     GroupBoxinput.Height := GroupBox1.Height - (142-72);
+end;
+
+procedure TForm1.IdUDPServer1UDPRead(Sender: TObject; AData: TStream;
+  ABinding: TIdSocketHandle);
+var
+    Data: TStringStream;
+    p:   PChar;
+    i, sendlen : Integer;
+    datasting : string;
+begin
+    Data:= TStringStream.Create('');
+    Data.CopyFrom( AData, AData.Size);
+    Display_Info('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
+    Display_Info(Data.DataString);
+    //Display_Info('data.size='+inttostr(Data.size));
+
+    if CheckBox63.Checked = True then begin    // 自动回复
+        if RadioButton26.Checked = True then begin     // 透明回复
+            p := GetMemory(Data.Size+1);
+            for i :=1 to Data.Size do begin
+                p[i-1] := data.DataString[i];
+            end;
+            sendlen := data.Size;
+        end
+        else begin
+            datasting := Memo6.Text;
+            if CheckBox64.Checked = True then begin
+                datasting := TwoAsciiToHex(datasting);
+            end;
+            sendlen := Length(datasting);
+            p := GetMemory(sendlen+1);
+            for i := 1 to sendlen do begin
+                p[i-1] := datasting[i];
+            end;
+
+        end;
+
+        IdUDPServer1.SendBuffer(ABinding.PeerIP, ABinding.PeerPort, (@p[0])^, sendlen);
+        FreeMemory(p);
+    end;
+
+    Data.Free;
+end;
+
+procedure TForm1.Timer6Timer(Sender: TObject);
+begin
+    Button18.Click;
+end;
+
+procedure TForm1.UDP1Click(Sender: TObject);
+begin
+    if ExtendFun = 0 then
+    begin
+        Button13.Click;
+    end;
+    PageControl2.TabIndex := 3;
+end;
+
+procedure TForm1.Button15Click(Sender: TObject);
+begin
+    if Button15.Caption = '连接' then begin
+        if inet_addr(pchar(Edit7.Text)) = INADDR_NONE then
+        begin
+            showmessage('ip不正确 ');
+            Exit;
+        end;
+        Button15.Caption := '断开';
+        IdUDPClient1.Host := Edit7.Text;
+        IdUDPClient1.Port := StrToInt(Edit6.Text);
+        //IdUDPClient1.ReceiveTimeout := 50;
+        IdUDPClient1.Active := True;
+        Button18.Enabled := True;
+    end
+    else begin
+        CheckBox65.Checked := False;
+        Button15.Caption := '连接';
+        IdUDPClient1.Active := False;
+        Button18.Enabled := False;
+    end;
 end;
 
 end.

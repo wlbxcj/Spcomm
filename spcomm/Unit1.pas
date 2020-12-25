@@ -11,7 +11,7 @@ uses
   Mask, winsock, Sockets, DB, DBClient,
   MConnect, SConnect, IdThread, wininet, util_utf8,IdHashMessageDigest,Unit_CRC,
   SM, Jpeg, SCapture,ScrnCap, ImgList,Contnrs, IdUDPClient, IdUDPBase,
-  IdUDPServer, IdSocketHandle;
+  IdUDPServer, IdSocketHandle, IdStackWindows;
 
 type
   TForm1 = class(TForm)
@@ -608,7 +608,6 @@ type
     GroupBox43: TGroupBox;
     Memo6: TMemo;
     IdUDPServer1: TIdUDPServer;
-    IdUDPClient1: TIdUDPClient;
     Timer6: TTimer;
     GroupBox44: TGroupBox;
     Button18: TButton;
@@ -621,6 +620,7 @@ type
     RadioButton27: TRadioButton;
     UDP1: TMenuItem;
     Button15: TButton;
+    IdUDPServer2: TIdUDPServer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -914,6 +914,8 @@ type
     procedure Timer6Timer(Sender: TObject);
     procedure UDP1Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
+    procedure IdUDPServer2UDPRead(Sender: TObject; AData: TStream;
+      ABinding: TIdSocketHandle);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -3099,7 +3101,7 @@ var
     list : TList;
     Count : Integer;
 begin
-    if Button6.Caption = '开启' then
+    if Button6.Caption = '监听' then
     begin
         if Edit5.Text = '' then
         begin
@@ -3111,12 +3113,12 @@ begin
         IdUDPServer1.Active :=True; //开启服务器
         Display_info('服务器已开启');
         Shape2.Brush.Color := clRed;
-        Button6.Caption := '停止';
+        Button6.Caption := '关闭';
     end
     else
     begin
         IdUDPServer1.Active :=False; //开启服务器
-        Button6.Caption := '开启';
+        Button6.Caption := '监听';
         Display_info('服务器已停止');
         Shape2.Brush.Color := clGray;
     end;
@@ -3448,7 +3450,7 @@ begin
 
     if Button15.Caption = '断开' then
     begin
-        IdUDPClient1.SendBuffer(aucBuf, TextLen);
+        IdUDPServer2.SendBuffer(Edit7.Text, StrToInt(Edit6.Text), aucBuf, TextLen);
     end;
 end;
 
@@ -5544,10 +5546,38 @@ begin
             Edit24.Text := IdIPWatch1.LocalIP;
         end;
 end;
-
+type
+    TaPInAddr = array [0..10] of PInAddr;
+    PaPInAddr = ^TaPInAddr;
 procedure TForm1.Button11Click(Sender: TObject);
+var
+    phe : PHostEnt;
+    pptr : PaPInAddr;
+    Buffer : array [0..63] of char;
+    I : Integer;
+    GInitData : TWSADATA;
+    ss:TStringList;
 begin
-    Edit1.Text := IdIPWatch1.LocalIP;
+    WSAStartup($101, GInitData);
+    GetHostName(@Buffer, SizeOf(Buffer));
+    phe :=GetHostByName(@buffer);
+    if phe = nil then
+    begin
+        WSACleanup;
+        Edit1.Text := IdIPWatch1.LocalIP;
+        Exit;
+    end;
+    Display_Info('本地IP:');
+    pptr := PaPInAddr(Phe^.h_addr_list);
+    I := 0;
+    while pptr^[I] <> nil do
+    begin
+      Display_Info(StrPas(inet_ntoa(pptr^[I]^)));
+      Edit1.Text := StrPas(inet_ntoa(pptr^[I]^));
+      Inc(I);
+    end;
+
+    WSACleanup;
 end;
 
 procedure TForm1.shape1MouseDown(Sender: TObject; Button: TMouseButton;
@@ -7242,18 +7272,38 @@ begin
             Exit;
         end;
         Button15.Caption := '断开';
-        IdUDPClient1.Host := Edit7.Text;
-        IdUDPClient1.Port := StrToInt(Edit6.Text);
-        //IdUDPClient1.ReceiveTimeout := 50;
-        IdUDPClient1.Active := True;
         Button18.Enabled := True;
+
+        Randomize;//初始化随机种子
+        IdUDPServer2.Bindings.Clear;
+        IdUDPServer2.DefaultPort := random(60000) + 1;
+        IdUDPServer2.Active :=True; //开启服务器
+        Display_info('服务器已开启');
+        Button6.Caption := '关闭';
     end
     else begin
+        IdUDPServer2.Active := false;
         CheckBox65.Checked := False;
         Button15.Caption := '连接';
-        IdUDPClient1.Active := False;
         Button18.Enabled := False;
     end;
+end;
+
+procedure TForm1.IdUDPServer2UDPRead(Sender: TObject; AData: TStream;
+  ABinding: TIdSocketHandle);
+var
+    Data: TStringStream;
+    p:   PChar;
+    i, sendlen : Integer;
+    datasting : string;
+begin
+    Data:= TStringStream.Create('');
+    Data.CopyFrom( AData, AData.Size);
+    //Display_Info('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
+
+    Display_Info('>>> ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(Data.Size)+'):');
+    Display_Info(Data.DataString);
+    Data.Free;
 end;
 
 end.

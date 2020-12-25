@@ -3372,7 +3372,7 @@ object Form1: TForm1
             Top = 35
             Width = 45
             Height = 21
-            Caption = #24320#21551
+            Caption = #30417#21548
             TabOrder = 1
             OnClick = Button6Click
           end
@@ -6505,15 +6505,17 @@ object Form1: TForm1
     Left = 348
     Top = 74
   end
-  object IdUDPClient1: TIdUDPClient
-    Port = 0
-    Left = 305
-    Top = 80
-  end
   object Timer6: TTimer
     Enabled = False
     OnTimer = Timer6Timer
     Left = 180
     Top = 46
+  end
+  object IdUDPServer2: TIdUDPServer
+    Bindings = <>
+    DefaultPort = 0
+    OnUDPRead = IdUDPServer2UDPRead
+    Left = 355
+    Top = 111
   end
 end

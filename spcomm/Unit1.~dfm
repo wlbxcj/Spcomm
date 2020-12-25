@@ -531,7 +531,7 @@ object Form1: TForm1
     Top = 0
     Width = 245
     Height = 450
-    ActivePage = TabSheet8
+    ActivePage = TabSheet1
     Align = alRight
     Constraints.MinWidth = 245
     ParentShowHint = False
@@ -3492,6 +3492,7 @@ object Form1: TForm1
             Width = 54
             Height = 21
             Caption = #21457#36865
+            Enabled = False
             TabOrder = 0
             OnClick = Button18Click
           end

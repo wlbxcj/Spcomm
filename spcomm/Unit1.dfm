@@ -2973,7 +2973,7 @@ object Form1: TForm1
           Left = 2
           Top = 16
           Width = 233
-          Height = 98
+          Height = 150
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText

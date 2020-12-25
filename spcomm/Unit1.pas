@@ -5579,6 +5579,7 @@ begin
 
     WSACleanup;
 end;
+//
 
 procedure TForm1.shape1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -7217,9 +7218,18 @@ var
 begin
     Data:= TStringStream.Create('');
     Data.CopyFrom( AData, AData.Size);
-    Display_Info('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
-    Display_Info(Data.DataString);
-    //Display_Info('data.size='+inttostr(Data.size));
+    Display_Info('[' + formatdatetime('hh:mm:ss',now) + '] Udp Server rec ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
+    if CheckBox64.Checked <> True then
+        Display_Info(Data.DataString)
+    else
+    begin
+        datasting := '';
+        for i :=1 to Data.Size do begin
+            datasting   := datasting + IntToHex(Byte(data.DataString[i]), 2) + ' ';
+        end;
+        Display_Info(datasting);
+    end;
+    
 
     if CheckBox63.Checked = True then begin    // 自动回复
         if RadioButton26.Checked = True then begin     // 透明回复
@@ -7279,7 +7289,6 @@ begin
         IdUDPServer2.DefaultPort := random(60000) + 1;
         IdUDPServer2.Active :=True; //开启服务器
         Display_info('服务器已开启');
-        Button6.Caption := '关闭';
     end
     else begin
         IdUDPServer2.Active := false;
@@ -7299,10 +7308,17 @@ var
 begin
     Data:= TStringStream.Create('');
     Data.CopyFrom( AData, AData.Size);
-    //Display_Info('[' + formatdatetime('mm/dd hh:mm:ss:zzz',now) + '] ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
-
-    Display_Info('>>> ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(Data.Size)+'):');
-    Display_Info(Data.DataString);
+    Display_Info('[' + formatdatetime('hh:mm:ss',now) + '] Udp Client rec ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
+    if CheckBox64.Checked <> True then
+        Display_Info(Data.DataString)
+    else
+    begin
+        datasting := '';
+        for i :=1 to Data.Size do begin
+            datasting   := datasting + IntToHex(Byte(data.DataString[i]), 2) + ' ';
+        end;
+        Display_Info(datasting);
+    end;
     Data.Free;
 end;
 

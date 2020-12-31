@@ -1338,11 +1338,16 @@ begin
     if not CurrentDevice.HasReadWriteAccess then
       ReadBtn.Down := False
     else
-    if ReadBtn.Down then
-      CurrentDevice.OnData := ShowRead
+    if ReadBtn.Down then begin
+        Memo1.ReadOnly := False;
+        N15.CLICK;
+
+        CurrentDevice.OnData := ShowRead;
+    end
     else
-      CurrentDevice.OnData := nil;
+        CurrentDevice.OnData := nil;
   end;
+  Memo1.SetFocus;
 end;
 
 procedure TForm1.ShowRead(HidDev: TJvHidDevice; ReportID: Byte;
@@ -7288,7 +7293,6 @@ begin
         IdUDPServer2.Bindings.Clear;
         IdUDPServer2.DefaultPort := random(60000) + 1;
         IdUDPServer2.Active :=True; //开启服务器
-        Display_info('服务器已开启');
     end
     else begin
         IdUDPServer2.Active := false;

@@ -2973,7 +2973,7 @@ object Form1: TForm1
           Left = 2
           Top = 16
           Width = 233
-          Height = 98
+          Height = 150
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -4516,6 +4516,7 @@ object Form1: TForm1
             Height = 25
             Caption = 'Img2Lcd'
             TabOrder = 5
+            Visible = False
             OnClick = Button4Click
           end
         end

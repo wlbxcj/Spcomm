@@ -1338,11 +1338,18 @@ begin
     if not CurrentDevice.HasReadWriteAccess then
       ReadBtn.Down := False
     else
-    if ReadBtn.Down then
-      CurrentDevice.OnData := ShowRead
+    if ReadBtn.Down then begin
+        Memo1.ReadOnly := False;
+        N15.CLICK;
+        Memo1.SetFocus;
+        CurrentDevice.OnData := ShowRead;
+    end
     else
-      CurrentDevice.OnData := nil;
+        CurrentDevice.OnData := nil;
   end;
+    Memo1.ReadOnly := False;
+    N15.CLICK;
+    Memo1.SetFocus;
 end;
 
 procedure TForm1.ShowRead(HidDev: TJvHidDevice; ReportID: Byte;
@@ -7219,8 +7226,17 @@ begin
     Data:= TStringStream.Create('');
     Data.CopyFrom( AData, AData.Size);
     Display_Info('[' + formatdatetime('hh:mm:ss',now) + '] Udp Server rec ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
-    Display_Info(Data.DataString);
-    //Display_Info('data.size='+inttostr(Data.size));
+    if CheckBox64.Checked <> True then
+        Display_Info(Data.DataString)
+    else
+    begin
+        datasting := '';
+        for i :=1 to Data.Size do begin
+            datasting   := datasting + IntToHex(Byte(data.DataString[i]), 2) + ' ';
+        end;
+        Display_Info(datasting);
+    end;
+    
 
     if CheckBox63.Checked = True then begin    // 自动回复
         if RadioButton26.Checked = True then begin     // 透明回复
@@ -7279,7 +7295,6 @@ begin
         IdUDPServer2.Bindings.Clear;
         IdUDPServer2.DefaultPort := random(60000) + 1;
         IdUDPServer2.Active :=True; //开启服务器
-        Display_info('服务器已开启');
     end
     else begin
         IdUDPServer2.Active := false;
@@ -7300,9 +7315,16 @@ begin
     Data:= TStringStream.Create('');
     Data.CopyFrom( AData, AData.Size);
     Display_Info('[' + formatdatetime('hh:mm:ss',now) + '] Udp Client rec ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(AData.Size)+'):');
-
-    //Display_Info('udp client rec ' + ABinding.PeerIP + ' ' + IntToStr(ABinding.PeerPort) + '(' + IntToStr(Data.Size)+'):');
-    Display_Info(Data.DataString);
+    if CheckBox64.Checked <> True then
+        Display_Info(Data.DataString)
+    else
+    begin
+        datasting := '';
+        for i :=1 to Data.Size do begin
+            datasting   := datasting + IntToHex(Byte(data.DataString[i]), 2) + ' ';
+        end;
+        Display_Info(datasting);
+    end;
     Data.Free;
 end;
 

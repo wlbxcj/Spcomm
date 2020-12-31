@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 560
-  Top = 102
+  Left = 599
+  Top = 113
   Width = 695
   Height = 628
   HorzScrollBar.Range = 633
@@ -4516,6 +4516,7 @@ object Form1: TForm1
             Height = 25
             Caption = 'Img2Lcd'
             TabOrder = 5
+            Visible = False
             OnClick = Button4Click
           end
         end

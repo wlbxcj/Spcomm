@@ -1481,7 +1481,7 @@ begin
         for i := 0 to BufferLength - 1 do
         begin
             rbuf[j] := Byte(pc[i]);
-            if (((Byte(pc[i]) > $7e) or (Byte(pc[i]) < $11)) and
+            if (((Byte(pc[i]) < $11)) and
                 ((Byte(pc[i]) <> $0d) and (Byte(pc[i]) <> $0a))) then
             begin
                  rbuf[j] := byte('\'); inc(j);

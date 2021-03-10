@@ -1476,22 +1476,19 @@ begin
     end
     else
     begin
-        //Display_Info('len = ' + IntToStr(BufferLength));
         pc:=PChar(Buffer);
         j := 0;
         for i := 0 to BufferLength - 1 do
         begin
             rbuf[j] := Byte(pc[i]);
-            //ShowMessage(IntToHex(Byte(pc[i]),2));
-            if ((Byte(pc[i]) > $7e) or (Byte(pc[i]) < $11)) then
+            if (((Byte(pc[i]) < $11)) and
+                ((Byte(pc[i]) <> $0d) and (Byte(pc[i]) <> $0a))) then
             begin
                  rbuf[j] := byte('\'); inc(j);
-                 rbuf[j] := byte('\x'); inc(j);
+                 rbuf[j] := byte('x'); inc(j);
                  viewstring := IntToHex(Byte(pc[i]),2);
                  rbuf[j] := byte(viewstring[1]); inc(j);
                  rbuf[j] := byte(viewstring[2]);
-                 //rbuf[j] := Byte(Byte(pc[i]) div 16 + Byte('0')); inc(j);
-                 //rbuf[j] := Byte(Byte(pc[i]) mod 16 + Byte('0'));
             end;
             inc(j);
             rbuf[j] := 0;

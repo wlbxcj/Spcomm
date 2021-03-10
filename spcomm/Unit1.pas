@@ -1444,8 +1444,6 @@ begin
 end;
 
 procedure deal_com_data(buffer:Pointer ;BufferLength:Integer);
-//begin
-// Sort(Slice(FSortArray^, FSize));
 var
     j,i,len:integer;
     date_str, data_str:string;
@@ -1479,6 +1477,23 @@ begin
     else
     begin
         pc:=PChar(Buffer);
+        j := 0;
+        for i := 0 to BufferLength - 1 do
+        begin
+            rbuf[j] := Byte(pc[i]);
+            if (((Byte(pc[i]) > $7e) or (Byte(pc[i]) < $11)) and
+                ((Byte(pc[i]) <> $0d) and (Byte(pc[i]) <> $0a))) then
+            begin
+                 rbuf[j] := byte('\'); inc(j);
+                 rbuf[j] := byte('x'); inc(j);
+                 viewstring := IntToHex(Byte(pc[i]),2);
+                 rbuf[j] := byte(viewstring[1]); inc(j);
+                 rbuf[j] := byte(viewstring[2]);
+            end;
+            inc(j);
+            rbuf[j] := 0;
+        end;
+        pc:=PChar(@rbuf);
         if (form1.CheckBox62.Checked = True) then// UTF8
         begin
             // utf8×ª»»ÏÔÊ¾

@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=6
 MinorVer=4
 Release=0
-Build=6
+Build=20
 Debug=0
 PreRelease=1
 Special=0
@@ -126,7 +126,7 @@ CodePage=936
 [Version Info Keys]
 CompanyName=
 FileDescription=多功能小工具
-FileVersion=6.4.0.6
+FileVersion=6.4.0.20
 InternalName=
 LegalCopyright=
 LegalTrademarks=

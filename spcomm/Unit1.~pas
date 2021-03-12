@@ -945,7 +945,7 @@ type
   PComData = ^TComData;
   TComData = record
     len: Integer;
-    buf:array[0..50000] of byte;
+    buf:array[0..10000] of byte;
   end;
 
 var
@@ -1481,7 +1481,7 @@ begin
         for i := 0 to BufferLength - 1 do
         begin
             rbuf[j] := Byte(pc[i]);
-            if (((Byte(pc[i]) < $11)) and
+            if (((Byte(pc[i]) < $11) or (Byte(pc[i]) = $ff)) and
                 ((Byte(pc[i]) <> $0d) and (Byte(pc[i]) <> $0a))) then
             begin
                  rbuf[j] := byte('\'); inc(j);
@@ -2020,6 +2020,7 @@ var
     prstr:pointer;
     cdata: PComData;
 begin
+    Timer5.Enabled := False;
     put_raw_data(Buffer, BufferLength);   // 原始数据保存
     if CheckBox5.Checked = True then
     begin
@@ -6638,10 +6639,10 @@ end;
 procedure TForm1.ScrollBox1MouseWheel(Sender: TObject; Shift: TShiftState;
   WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 begin
-    if WheelDelta < 0 then
+    {if WheelDelta < 0 then
         ScrollBox1.Perform(WM_VSCROLL,SB_LINEDOWN,0)
     else
-        ScrollBox1.Perform(WM_VSCROLL,SB_LINEUP,0);
+        ScrollBox1.Perform(WM_VSCROLL,SB_LINEUP,0);}
 end;
 
 procedure TForm1.ComboBox5Change(Sender: TObject);
@@ -7336,9 +7337,4 @@ begin
         for i :=1 to Data.Size do begin
             datasting   := datasting + IntToHex(Byte(data.DataString[i]), 2) + ' ';
         end;
-        Display_Info(datasting);
-    end;
-    Data.Free;
-end;
-
-end.
+        Display_Info(datasting)

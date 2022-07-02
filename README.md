@@ -2,13 +2,33 @@
 基于dephi 7实现的多功能串口工具，集合了串口收发/多字符串发送、TCP功能、HID功能、DES、AES、SM4、XOR、HASH、CRC、MD5功能等
 
 VM下的XP系统环境：
-链接: https://pan.baidu.com/s/1v_DA3uTcsMU7X_srS_qsQw 
-提取码: aqwi
+链接: https://pan.baidu.com/s/1D1EKV-rrdYD5LcYpoZH52g
+提取码: n3os
 
 Email:357853730@qq.com
 
 
 注意： 由于访问GIT经常网络有问题，此版本后不再GIT上更新，转至https://gitee.com/wlbgit/Spcomm.git
+
+2021-12-01
+
+1、升级到6.7
+
+2、修复奇偶校验设置不成功的问题
+
+3、修复定时发送时会提示出错的问题
+
+
+
+2021-11-16
+
+1、升级到6.6
+
+2、右键菜单添加“清除前是否需要确认”的菜单
+
+3、转换成16进制时，增加将 ','和'-'字符的替换
+
+4、定时发送时，如果是发送16进制数，功能打开时增加对数据是否正确的判断
 
 
 

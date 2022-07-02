@@ -647,7 +647,9 @@ begin
     temp := str;
     temp := StringReplace(temp, #10, '', [rfReplaceAll]);
     temp := StringReplace(temp, #13, '', [rfReplaceAll]);
-    temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+    temp := StringReplace(temp, #9, '',  [rfReplaceAll]);
+    temp := StringReplace(temp, '-', '', [rfReplaceAll]);
+    temp := StringReplace(temp, ',', '', [rfReplaceAll]);
     temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
     Len := Length(temp);
     //ShowMessage('2 datalen = ' + IntToStr(len));

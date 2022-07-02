@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 599
-  Top = 113
+  Left = 202
+  Top = 76
   Width = 695
   Height = 628
   HorzScrollBar.Range = 633
   VertScrollBar.Range = 414
   AutoScroll = False
-  Caption = 'Spcom V6.4'
+  Caption = 'Spcom V6.7'
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -151,14 +151,15 @@ object Form1: TForm1
         Width = 65
         Height = 22
         ItemHeight = 14
-        ItemIndex = 0
         TabOrder = 3
         Text = 'None'
         OnChange = ComboBox4Change
         Items.Strings = (
           'None'
           'Odd'
-          'Even')
+          'Even'
+          'Mark'
+          'Space')
       end
       object Button1: TButton
         Left = 167
@@ -504,7 +505,7 @@ object Form1: TForm1
           item
             BiDiMode = bdLeftToRight
             ParentBiDiMode = False
-            Text = 'https://github.com/wlbxcj/Spcomm'
+            Text = 'https://gitee.com/wlbgit/Spcomm'
             Width = 100
           end>
         SimpleText = 'werrqwer'
@@ -4577,7 +4578,7 @@ object Form1: TForm1
     Top = 41
   end
   object PopupMenu1: TPopupMenu
-    Left = 131
+    Left = 135
     Top = 123
     object N9: TMenuItem
       Caption = #22797#21046
@@ -4714,6 +4715,20 @@ object Form1: TForm1
         Hint = #37319#29992#22238#36710#31526'CR'#34920#31034#19979#19968#34892
         RadioItem = True
         OnClick = MACOS1Click
+      end
+    end
+    object N25: TMenuItem
+      Caption = #28165#38500#25509#25910#31383#21475#26102#30830#35748
+      object N26: TMenuItem
+        Caption = #38656#35201#30830#35748
+        RadioItem = True
+        OnClick = N26Click
+      end
+      object N27: TMenuItem
+        Caption = #19981#38656#35201#30830#35748
+        Checked = True
+        RadioItem = True
+        OnClick = N27Click
       end
     end
     object N24: TMenuItem

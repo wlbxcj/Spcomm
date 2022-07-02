@@ -13,9 +13,10 @@ uses
 
 {$R *.res}
 {$R manage.res}
+//{$APPTYPE   CONSOLE}
 begin
   Application.Initialize;
-  Application.Title := 'Spcom V6.4';
+  Application.Title := 'Spcom V6.7';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm6, Form6);

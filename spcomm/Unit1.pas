@@ -621,6 +621,9 @@ type
     UDP1: TMenuItem;
     Button15: TButton;
     IdUDPServer2: TIdUDPServer;
+    N25: TMenuItem;
+    N26: TMenuItem;
+    N27: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -916,6 +919,8 @@ type
     procedure Button15Click(Sender: TObject);
     procedure IdUDPServer2UDPRead(Sender: TObject; AData: TStream;
       ABinding: TIdSocketHandle);
+    procedure N26Click(Sender: TObject);
+    procedure N27Click(Sender: TObject);
     //procedure TForm1.CaptureRegion();
     
   private
@@ -970,6 +975,7 @@ var
   RawBackUpFlag : Integer = 0;
   RawDataSize : Integer = 0;
   RawDatalen : Integer = 0;
+  confirm_before_clearing : Integer = 0;  // confirm before clearing ， 0  不确认
   ComReadIntervalTimeout : Integer = 20;  // 串口字节间间隔超时时间
   CrLfMode        : Integer = 0;          // 0  windos, 1 linux, 2 mac
   ReplaceCrLfStr  : string = #13;         // 无意义换行符
@@ -1014,6 +1020,8 @@ begin
     temp := StringReplace(temp, #13, '', [rfReplaceAll]);
     temp := StringReplace(temp, #9, '', [rfReplaceAll]);
     temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+    temp := StringReplace(temp, '-', '', [rfReplaceAll]);
+    temp := StringReplace(temp, ',', '', [rfReplaceAll]);
     Len := Length(temp);
     i:=1;
     while (i <= Len) and (temp[i] in ['0'..'9','A'..'F','a'..'f']) do
@@ -1692,7 +1700,7 @@ begin
          begin
               Comm1.ByteSize := _5;
          end
-         else if  ComboBox3.Items[ComboBox4.itemindex] = '6' then
+         else if  ComboBox3.Items[ComboBox3.itemindex] = '6' then
          begin
               Comm1.ByteSize := _6;
          end
@@ -1713,9 +1721,17 @@ begin
          begin
               Comm1.Parity := Even;
          end
-         else if  ComboBox3.Items[ComboBox4.itemindex] = 'Odd' then
+         else if  ComboBox4.Items[ComboBox4.itemindex] = 'Odd' then
          begin
               Comm1.Parity := Odd;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = 'Mark' then
+         begin
+              Comm1.Parity := Mark;
+         end
+         else if  ComboBox4.Items[ComboBox4.itemindex] = 'Space' then
+         begin
+              Comm1.Parity := Space;
          end;
          Comm1.StartComm;
          //if False <> Comm1.StartComm then
@@ -1749,6 +1765,8 @@ begin
           SuspendThread(ComthreadHandle); //挂起线程
           StatusBar1.Panels[2].Text := Comm1.CommName + ' 已关闭 ' +  ComboBox2.text +','+ComboBox3.Items[ComboBox3.itemindex]+','+ str_tmp+',1';
      end;
+     Memo2.ReadOnly := False;
+     Memo2.Color := clWindow;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -2219,7 +2237,7 @@ procedure TForm1.BitBtn1Click(Sender: TObject);
 begin
     if Memo1.Text <> '' then
     begin
-        if (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion)) then
+        if ((confirm_before_clearing = 0) or (IDYES = Application.MessageBox('确定要清除吗？','提示',MB_YesNo+MB_IconQuestion))) then
         begin
             Memo1.Text := '';
             SendLen := 0;
@@ -2552,28 +2570,45 @@ begin
 end;
 
 procedure TForm1.CheckBox4Click(Sender: TObject);
+var
+  temp : string;
 begin
      if CheckBox4.Checked = True then
      begin
           if Length(Edit2.Text) > 0 then
           begin
-               Timer2.Interval := StrToInt(Edit2.Text);
-               Timer2.Enabled := True;
-               Edit2.Enabled := False;
+              if (CheckBox2.Checked = True) then begin
+                  temp := Memo2.Text;
+                  temp := StringReplace(temp, #10, '', [rfReplaceAll]);
+                  temp := StringReplace(temp, #13, '', [rfReplaceAll]);
+                  temp := StringReplace(temp, #9, '', [rfReplaceAll]);
+                  temp := StringReplace(temp, ' ', '', [rfReplaceAll]);
+                  temp := StringReplace(temp, '-', '', [rfReplaceAll]);
+                  if Length(temp) mod 2 > 0 then begin
+                      CheckBox4.Checked := False;
+                      ShowMessage('数据长度有误');
+                      Exit;
+                  end;
+              end;
+              Timer2.Interval := StrToInt(Edit2.Text);
+              Timer2.Enabled := True;
+              Edit2.Enabled := False;
                //Button2.Enabled := False;
+              Memo2.ReadOnly := True;
+              Memo2.Color := clBtnFace;
           end
           else
           begin
                ShowMessage('未输入时间');
                CheckBox4.Checked := False;
           end;
-
      end
      else
      begin
           Timer2.Enabled := False;
           Edit2.Enabled := True;
-          //Button2.Enabled := True;
+          Memo2.ReadOnly := False;
+          Memo2.Color := clWindow;
      end;
 end;
 
@@ -7340,6 +7375,24 @@ begin
         Display_Info(datasting);
     end;
     Data.Free;
+end;
+
+procedure TForm1.N26Click(Sender: TObject);
+begin
+    if N26.Checked <> True then
+    begin
+        N26.Checked := True;
+        confirm_before_clearing := 1;
+    end;
+end;
+
+procedure TForm1.N27Click(Sender: TObject);
+begin
+    if N27.Checked <> True then
+    begin
+        N27.Checked := True;
+        confirm_before_clearing := 0;
+    end;
 end;
 
 end.
